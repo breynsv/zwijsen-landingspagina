@@ -304,34 +304,151 @@ a { color: var(--zw-red); text-decoration-thickness: 1px; text-underline-offset:
 }
 
 /* ==========================================================================
-   Voettekst (zoals zwijsen.be)
+   Voettekst — 1-op-1 nagebouwd naar zwijsen.be
+   --------------------------------------------------------------------------
+   Opgemeten op de live site (1440px breed) op 2026-08-11:
+     donker deel  #121413, padding-top 72px
+     container    1120px, 160px marge links/rechts
+     kolommen     254 / 276 / 265 / 265 px, telkens 20px ertussen
+     koppen       Roboto 20px/700, wit, geen ondermarge
+     links        Roboto 15px/500, wit, regelhoogte 20px, padding 10px 0
+     knop         #E60E13, Roboto 15px/700, radius 3px, padding 12px 24px
+     onderbalk    WIT, 61px hoog, Open Sans 13px in #121413
    ========================================================================== */
 
-.zw-footer {
-  background: var(--zw-ink);
-  color: var(--zw-grey);
-  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
-  font-size: 14px;
+.zw-footer { background: var(--zw-ink); }
+
+.zw-footer__main { padding-top: 72px; padding-bottom: 48px; }
+
+.zw-footer__inner {
+  width: 100%; max-width: 1120px;
+  margin-inline: auto; padding-inline: 20px;
 }
-.zw-footer h4 {
-  color: var(--zw-white);
-  font-size: 15px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  margin-bottom: 1.1rem;
-}
-.zw-footer a { color: var(--zw-grey); text-decoration: none; }
-.zw-footer a:hover { color: var(--zw-yellow); text-decoration: underline; }
+@media (min-width: 1200px) { .zw-footer__inner { padding-inline: 0; } }
+
 .zw-footer__grid {
-  display: grid; gap: 2.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: grid;
+  grid-template-columns: 254fr 276fr 265fr 265fr;
+  gap: 20px;
 }
-.zw-footer__grid ul { list-style: none; margin: 0; padding: 0; }
-.zw-footer__grid li { margin-bottom: .5rem; }
+
+.zw-footer h4 {
+  font-family: var(--zw-font-head);
+  font-size: 20px; font-weight: 700; line-height: 1.3;
+  color: var(--zw-white);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  margin: 0 0 18px;
+}
+
+.zw-footer__list { list-style: none; margin: 0; padding: 0; }
+.zw-footer__list a,
+.zw-footer__list span {
+  display: block;
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 500; line-height: 20px;
+  color: var(--zw-white); text-decoration: none;
+  padding: 10px 0;
+  transition: color .16s var(--zw-ease);
+}
+.zw-footer__list a:hover { color: var(--zw-yellow); }
+
+/* Adresblok — vetter dan de menulinks, zoals op de live site */
+.zw-footer__addr {
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 700; line-height: 21px;
+  color: var(--zw-white);
+  margin: 0 0 22px;
+}
+.zw-footer__addr strong { display: block; font-weight: 700; }
+
+.zw-footer__contact { list-style: none; margin: 0; padding: 0; }
+.zw-footer__contact li { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.zw-footer__contact svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--zw-white); }
+.zw-footer__contact a {
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 700; line-height: 20px;
+  color: var(--zw-white); text-decoration: none;
+}
+.zw-footer__contact a:hover { color: var(--zw-yellow); }
+
+/* Sociale iconen — 50x50 raakvlak met een glyph van 24px erin gecentreerd,
+   waardoor ze hart-op-hart 53px uit elkaar staan, net als op de live site. */
+.zw-footer__social {
+  display: flex; gap: 3px; padding: 0; list-style: none;
+  margin: -12px 0 4px 0;   /* compenseert enkel de verticale padding */
+}
+.zw-footer__social a {
+  display: grid; place-items: center;
+  width: 50px; height: 50px; color: var(--zw-white);
+  transition: color .16s var(--zw-ease), transform .16s var(--zw-ease);
+}
+.zw-footer__social svg { width: 24px; height: 24px; fill: currentColor; }
+.zw-footer__social a:hover { color: var(--zw-yellow); transform: translateY(-2px); }
+
+/* Juridische links, compacter dan het hoofdmenu */
+.zw-footer__legal { list-style: none; margin: 0 0 24px; padding: 0; }
+.zw-footer__legal a {
+  display: block;
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 500; line-height: 24px;
+  color: var(--zw-white); text-decoration: none;
+}
+.zw-footer__legal a:hover { color: var(--zw-yellow); }
+
+.zw-footer__quote {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 700; line-height: 15px;
+  color: var(--zw-white); text-decoration: none;
+  background: var(--zw-red);
+  border-radius: 3px;
+  padding: 12px 24px;
+  transition: background-color .18s var(--zw-ease);
+}
+.zw-footer__quote:hover { background: var(--zw-red-dark); }
+
+/* Certificaatlogo's — gecentreerd onder kolom 1 en 2, zoals op de live site.
+   Die twee kolommen samen zijn 254 + 20 + 276 = 550px breed. */
+.zw-footer__badges {
+  display: flex; align-items: center; justify-content: center;
+  gap: 30px; width: 560px; max-width: 100%; margin-top: 24px;
+}
+.zw-footer__badges img { height: 117px; width: auto; }
+.zw-footer__badges img + img { height: 125px; }
+
+/* Witte onderbalk */
 .zw-footer__bottom {
-  margin-top: 3rem; padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, .14);
-  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
-  color: var(--zw-grey-500); font-size: 13px;
+  background: var(--zw-white);
+  min-height: 61px;
+  display: flex; align-items: center;
+}
+.zw-footer__bottom .zw-footer__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 16px;
+  padding-block: 10px;
+}
+.zw-footer__copy {
+  margin: 0;
+  font-family: var(--zw-font-body);
+  font-size: 13px; font-weight: 400; line-height: 1.5;
+  color: var(--zw-ink);
+}
+.zw-footer__copy a { color: var(--zw-red); text-decoration: none; }
+.zw-footer__copy a:hover { text-decoration: underline; }
+.zw-footer__esf { height: 41px; width: auto; }
+
+@media (max-width: 900px) {
+  .zw-footer__main { padding-top: 48px; }
+  .zw-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
+  .zw-footer__badges { margin-top: 32px; gap: 20px; }
+  .zw-footer__badges img { height: 84px; }
+  .zw-footer__badges img + img { height: 90px; }
+}
+@media (max-width: 560px) {
+  .zw-footer__grid { grid-template-columns: 1fr; gap: 28px; }
+  .zw-footer__bottom .zw-footer__inner { flex-direction: column; align-items: flex-start; }
+  .zw-footer__esf { max-width: 100%; height: auto; }
 }
 
 /* ==========================================================================
