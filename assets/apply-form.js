@@ -399,7 +399,13 @@
     if (this.step < QUESTIONS.length) {
       var q = QUESTIONS[this.step];
       if (!this.answers[q.name]) { this.showError('Kies een antwoord om verder te gaan.'); return; }
-      track('SollicitatieStap', { stap: this.step + 1, vraag: q.name, antwoord: this.answers[q.name] });
+      /* Bewust ALLEEN het stapnummer en de vraagnaam naar Meta/Analytics.
+         Het gegeven antwoord (rijbewijs, taalniveau, opleiding) gaat NIET mee:
+         dat is persoonlijke informatie over een sollicitant, en die hoort bij
+         Zwijsen thuis — niet bij een advertentieplatform. Voor het meten van
+         afhaakpunten volstaat het stapnummer. De antwoorden zitten wel in de
+         inzending naar de backend, zie submit(). */
+      track('SollicitatieStap', { stap: this.step + 1, vraag: q.name });
     }
     this.step = Math.min(this.step + 1, this.total);
     this.render();
