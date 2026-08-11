@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kom jij in aanmerking als technieker bij Electro Zwijsen? | Regio Dendermonde</title>
+<meta name="description" content="Doe de korte check en weet in 60 seconden of je in aanmerking komt als technieker algemene elektriciteit bij Electro Zwijsen. Regio Dendermonde. Geen CV nodig.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/zwijsen.css">
+<link rel="stylesheet" href="assets/apply-form.css">
+<link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
+
+<!-- Meta Pixel — vervang de ID. Pas afvuren na cookietoestemming. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '000000000000000');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+/* ==========================================================================
+   ONTWERP 2 — "De check"
+   Een korte vragenreeks die in een venster opent, rustig en zakelijk gehouden.
+   Geen tellertjes, geen kunstmatige schaarste.
+   De invalshoek is omgekeerd: niet "solliciteer", maar "kijk of het past".
+   Dat verlaagt de drempel zonder iemand onder druk te zetten.
+   ========================================================================== */
+
+.hero2 {
+  background:
+    radial-gradient(120% 90% at 88% 8%, rgba(252,199,21,.16) 0%, transparent 58%),
+    linear-gradient(180deg, var(--zw-grey-50) 0%, var(--zw-white) 100%);
+  border-bottom: 1px solid var(--zw-line);
+  position: relative; overflow: hidden;
+}
+/* Fijn technisch raster op de achtergrond — verwijzing naar schema's */
+.hero2::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--zw-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--zw-line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: .5;
+  mask-image: radial-gradient(90% 70% at 50% 0%, #000 0%, transparent 72%);
+}
+.hero2__inner {
+  position: relative;
+  display: grid; gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  align-items: center;
+  padding: clamp(2.75rem, 6vw, 5rem) 0;
+}
+@media (max-width: 920px) { .hero2__inner { grid-template-columns: 1fr; } }
+
+.hero2 h1 { max-width: 17ch; }
+.hero2 h1 em { font-style: normal; color: var(--zw-red); }
+.hero2__sub { font-size: clamp(1.02rem, .96rem + .4vw, 1.22rem); color: var(--zw-grey-700); max-width: 48ch; }
+
+/* De grote startknop — het hart van deze variant */
+.starter {
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-top: 5px solid var(--zw-red);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.5rem, 3vw, 2.15rem);
+  box-shadow: var(--zw-shadow-md);
+}
+.starter h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: .5rem; }
+.starter p { font-size: 14px; color: var(--zw-grey-700); }
+.starter__preview {
+  margin: 1.25rem 0;
+  border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius);
+  background: var(--zw-grey-50);
+  padding: 1.1rem;
+}
+.starter__preview p {
+  font-family: var(--zw-font-head); font-weight: 700;
+  font-size: 14.5px; color: var(--zw-ink); margin: 0 0 .7rem;
+}
+.starter__preview ol { margin: 0; padding-left: 1.15rem; font-size: 13.5px; color: var(--zw-grey-700); }
+.starter__preview li { margin-bottom: .3rem; }
+.starter__preview li::marker { color: var(--zw-red); font-weight: 700; }
+
+/* Aftelbalkje dat toont hoe kort het is (feitelijk, geen druk) */
+.meter { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; font-size: 12px; color: var(--zw-grey-500); }
+.meter__track { flex: 1; height: 4px; background: var(--zw-grey-100); border-radius: 99px; overflow: hidden; }
+.meter__fill { display: block; height: 100%; width: 12%; background: var(--zw-red); border-radius: 99px; }
+
+/* Uitleg in drie stappen */
+.how { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: how; }
+.how__item { counter-increment: how; position: relative; padding-top: 3.25rem; }
+.how__item::before {
+  content: counter(how, decimal-leading-zero);
+  position: absolute; top: 0; left: 0;
+  font-family: var(--zw-font-head); font-size: 2.5rem; font-weight: 900;
+  color: var(--zw-grey-100); line-height: 1;
+}
+.how__item h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: .35rem; }
+.how__item p { font-size: 14px; color: var(--zw-grey-700); margin: 0; }
+
+/* Voordelen als duidelijke puntjes, in twee kolommen */
+.benefits { display: grid; gap: 2.5rem; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; }
+@media (max-width: 820px) { .benefits { grid-template-columns: 1fr; } }
+.benefits h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 2px solid var(--zw-yellow); }
+
+/* Regiovak */
+.region {
+  display: grid; gap: 2rem;
+  grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr);
+  align-items: center;
+}
+@media (max-width: 820px) { .region { grid-template-columns: 1fr; } }
+.region__towns { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+.region__towns li {
+  font-family: var(--zw-font-head); font-size: 13px; font-weight: 500;
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-radius: 99px; padding: .35rem .85rem;
+}
+.region__towns li:first-child { background: var(--zw-ink); color: var(--zw-white); border-color: var(--zw-ink); font-weight: 700; }
+
+/* Vergelijking: wat dit wél en niet is */
+.compare { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.compare__col { padding: 1.6rem; border-radius: var(--zw-radius-card); }
+.compare__col--no { background: var(--zw-grey-50); border: 1px solid var(--zw-line); }
+.compare__col--yes { background: var(--zw-ink); color: var(--zw-grey); }
+.compare__col--yes h3 { color: var(--zw-white); }
+.compare__col h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; }
+.compare__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; font-size: 14.5px; }
+.compare__col li { padding-left: 1.75rem; position: relative; line-height: 1.5; }
+.compare__col--no li::before { content: "—"; position: absolute; left: 0; color: var(--zw-grey-500); font-weight: 700; }
+.compare__col--yes li::before { content: "✓"; position: absolute; left: 0; color: var(--zw-yellow); font-weight: 700; }
+
+/* Terugkerende oproepstrook */
+.cta-strip {
+  background: var(--zw-red); color: var(--zw-white);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.cta-strip h3 { color: var(--zw-white); font-size: clamp(1.15rem, 1rem + .7vw, 1.6rem); font-weight: 700; margin: 0 0 .3rem; }
+.cta-strip p { margin: 0; color: rgba(255,255,255,.85); font-size: 14.5px; }
+</style>
+</head>
+<body>
+
+<!-- Hoofding: identiek aan zwijsen.be. De gele knop opent hier het formulier. -->
+<div data-zw-header data-cta-modal data-cta-text="Solliciteer Nu!"></div>
+
+<main>
+
+  <!-- ====================== HERO ====================== -->
+  <section class="hero2">
+    <div class="zw-container hero2__inner">
+      <div class="zw-rise zw-rise-1">
+        <span class="zw-eyebrow">Technieker algemene elektriciteit · Dendermonde</span>
+        <h1>Kom jij in aanmerking als <em>technieker</em> bij Electro Zwijsen?</h1>
+        <p class="hero2__sub">
+          Acht korte vragen over je ervaring, je rijbewijs en je regio.
+          Je weet meteen waar je staat — en wij weten of we je kunnen bellen.
+          Geen CV, geen motivatiebrief, geen verplichtingen.
+        </p>
+        <p style="margin-bottom:1.5rem;">
+          <button class="zw-btn zw-btn--lg" type="button" data-za-open>Start de check</button>
+        </p>
+        <ul class="zw-trust">
+          <li>60 seconden</li>
+          <li>Geen CV nodig</li>
+          <li>Volledig vertrouwelijk</li>
+          <li>Antwoord binnen 1 werkdag</li>
+        </ul>
+      </div>
+
+      <div class="starter zw-rise zw-rise-2">
+        <h2>Wat we je vragen</h2>
+        <p>Vooraf weten wat komt, scheelt een drempel. Dit is de volledige lijst:</p>
+        <div class="starter__preview">
+          <p>De acht vragen</p>
+          <ol>
+            <li>Je ervaring met elektriciteit</li>
+            <li>Residentieel, utiliteit of industrieel</li>
+            <li>Schema's lezen</li>
+            <li>VCA-attest</li>
+            <li>Rijbewijs</li>
+            <li>Kennis Nederlands</li>
+            <li>Regio Dendermonde</li>
+            <li>Wanneer je kan starten</li>
+          </ol>
+        </div>
+        <div class="meter">
+          <span>Ongeveer 60 sec</span>
+          <span class="meter__track"><span class="meter__fill"></span></span>
+        </div>
+        <p style="margin:1.1rem 0 0;">
+          <button class="zw-btn zw-btn--block" type="button" data-za-open>Begin met vraag 1</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== HOE HET WERKT ====================== -->
+  <section class="zw-section">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.75rem;">
+        <span class="zw-eyebrow">Hoe het verder gaat</span>
+        <h2>Van één minuut naar een gesprek</h2>
+        <p class="zw-lead">Geen zwart gat na het versturen. Dit is precies wat er gebeurt.</p>
+      </div>
+      <div class="how">
+        <div class="how__item">
+          <h3>Je doet de check</h3>
+          <p>Acht vragen, één minuut. Op het einde laat je je naam en nummer achter.</p>
+        </div>
+        <div class="how__item">
+          <h3>Bevestiging in je mailbox</h3>
+          <p>Meteen een mail met wie je contacteert, wanneer, en waarover het gesprek gaat.</p>
+        </div>
+        <div class="how__item">
+          <h3>Telefoontje binnen 1 werkdag</h3>
+          <p>Tien minuten kennismaken. Past het langs beide kanten, dan kom je langs in Duffel.</p>
+        </div>
+      </div>
+      <p style="margin-top:2.25rem;">
+        <button class="zw-btn" type="button" data-za-open>Doe de check</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================== VOORDELEN ====================== -->
+  <section class="zw-section zw-section--grey">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.5rem;">
+        <span class="zw-eyebrow">Ons aanbod</span>
+        <h2>Wat je bij Electro Zwijsen krijgt</h2>
+      </div>
+      <div class="benefits">
+        <div>
+          <h3>Het werk zelf</h3>
+          <ul class="zw-checks">
+            <li>Opbouw en onderhoud van elektrische installaties</li>
+            <li>Scholen, ziekenhuizen, rusthuizen en appartementsgebouwen</li>
+            <li>Kabelgoten, kabels trekken, schakelmateriaal, verdeelborden</li>
+            <li>Elke werf anders — geen dag hetzelfde</li>
+            <li>Je start altijd naast een ervaren collega</li>
+            <li>Zelfstandigheid zodra je er klaar voor bent</li>
+          </ul>
+        </div>
+        <div>
+          <h3>De voorwaarden</h3>
+          <ul class="zw-checks">
+            <li>Vast contract, voltijds</li>
+            <li>Competitief loon volgens PC 149.01</li>
+            <li>VCA-opleiding betaald en ingepland door ons</li>
+            <li>Doorlopende bijscholing en opleidingsmogelijkheden</li>
+            <li>Werven in je eigen regio — 's avonds thuis</li>
+            <li>Een groeiend bedrijf met een gevulde orderportefeuille</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:2.25rem;">
+        <button class="zw-btn" type="button" data-za-open>Kijk of het past</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================== REGIO ====================== -->
+  <section class="zw-section">
+    <div class="zw-container region">
+      <div>
+        <span class="zw-eyebrow">Je werkgebied</span>
+        <h2>Werven rond Dendermonde</h2>
+        <p class="zw-lead">
+          We zoeken specifiek versterking voor de werven in en rond Dendermonde.
+          Woon je in deze omgeving, dan is je rit naar de werf kort — en ben je
+          's avonds gewoon weer thuis.
+        </p>
+        <ul class="region__towns">
+          <li>Dendermonde</li><li>Lebbeke</li><li>Buggenhout</li><li>Zele</li>
+          <li>Berlare</li><li>Waasmunster</li><li>Hamme</li><li>Wichelen</li>
+          <li>Laarne</li><li>Bornem</li><li>Puurs-Sint-Amands</li><li>Willebroek</li>
+        </ul>
+        <!-- LET OP: deze gemeentelijst is een voorstel op basis van de campagneregio.
+             Laten bevestigen door Katrien. Zie README. -->
+      </div>
+      <div>
+        <img src="https://zwijsen.be/wp-content/uploads/2022/01/worker-is-cutting-wires-with-linemans-pliers-scaled.jpg"
+             alt="Elektricien aan het werk met een kniptang"
+             style="border-radius:var(--zw-radius-card);aspect-ratio:4/3;object-fit:cover;width:100%;"
+             loading="lazy" width="800" height="600">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WAT DIT WEL EN NIET IS ====================== -->
+  <section class="zw-section zw-section--grey">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.25rem;">
+        <span class="zw-eyebrow">Eerlijk</span>
+        <h2>Wat deze sollicitatie wél en niet is</h2>
+      </div>
+      <div class="compare">
+        <div class="compare__col compare__col--no">
+          <h3>Wat het niet is</h3>
+          <ul>
+            <li>Geen uitgebreid formulier van twintig velden</li>
+            <li>Geen motivatiebrief schrijven</li>
+            <li>Geen CV verplicht uploaden</li>
+            <li>Geen weken wachten op een antwoord</li>
+            <li>Geen verbintenis — je kan altijd nog nee zeggen</li>
+          </ul>
+        </div>
+        <div class="compare__col compare__col--yes">
+          <h3>Wat het wél is</h3>
+          <ul>
+            <li>Acht vragen die er echt toe doen</li>
+            <li>Meteen duidelijkheid of je profiel past</li>
+            <li>Een bevestigingsmail met de volgende stap erin</li>
+            <li>Een telefoontje binnen één werkdag</li>
+            <li>Altijd een duidelijk antwoord, ook bij een nee</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SLOTOPROEP ====================== -->
+  <section class="zw-section">
+    <div class="zw-container">
+      <div class="cta-strip">
+        <div>
+          <h3>Benieuwd of je in aanmerking komt?</h3>
+          <p>Acht vragen, één minuut, en je weet het. Zonder CV.</p>
+        </div>
+        <button class="zw-btn zw-btn--light zw-btn--lg" type="button" data-za-open>Start de check</button>
+      </div>
+      <p style="text-align:center;margin-top:1.5rem;font-size:13.5px;color:var(--zw-grey-500);">
+        Liever gewoon bellen? <a href="tel:+3215305305">015 305 305</a> — vraag naar de personeelsdienst.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<div data-zw-footer></div>
+
+<div class="zw-mobilebar">
+  <button class="zw-btn zw-btn--block" type="button" data-za-open>Doe de check — 60 sec</button>
+</div>
+
+<script src="assets/site-chrome.js"></script>
+<script src="assets/apply-form.js"></script>
+<script>
+  ZwijsenApply.mountModal();
+</script>
+</body>
+</html>

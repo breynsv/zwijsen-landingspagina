@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wat je krijgt als technieker bij Electro Zwijsen | Vacature Dendermonde</title>
+<meta name="description" content="Loon volgens PC 149.01, vast contract, VCA betaald, opleiding voorzien en werven in je eigen regio. Alles wat Electro Zwijsen biedt aan een technieker algemene elektriciteit, op een rij.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/zwijsen.css">
+<link rel="stylesheet" href="assets/apply-form.css">
+<link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
+
+<!-- Meta Pixel — vervang de ID. Pas afvuren na cookietoestemming. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '000000000000000');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+/* ==========================================================================
+   ONTWERP 4 — "Wat je krijgt"
+   Voor de vakman die al werk heeft en dus vergelijkt. Die leest geen verhaal,
+   die wil weten wat er in het pakket zit. Alles staat op een rij, met een
+   duidelijke tabel als kern. Werkt goed op Meta bij 25-45 jarigen met ervaring.
+   ========================================================================== */
+
+.hero4 {
+  background: var(--zw-ink); color: var(--zw-grey);
+  position: relative; overflow: hidden;
+}
+/* Diagonale gele wig — het merkaccent van Zwijsen, groot ingezet */
+.hero4::after {
+  content: ""; position: absolute; right: -8%; top: 0; bottom: 0; width: 46%;
+  background: linear-gradient(150deg, var(--zw-red) 0%, #8f070a 100%);
+  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: .92;
+}
+@media (max-width: 920px) { .hero4::after { display: none; } }
+
+.hero4__inner {
+  position: relative; z-index: 1;
+  display: grid; gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  padding: clamp(2.75rem, 6vw, 5rem) 0;
+}
+@media (max-width: 920px) { .hero4__inner { grid-template-columns: 1fr; } }
+.hero4 h1 { color: var(--zw-white); max-width: 16ch; }
+.hero4 h1 mark { background: var(--zw-yellow); color: var(--zw-ink); padding: 0 .12em; }
+.hero4__sub { font-size: clamp(1.02rem, .96rem + .4vw, 1.22rem); color: rgba(255,255,255,.82); max-width: 46ch; }
+
+/* Kaart met de kernvoorwaarden */
+.package {
+  background: var(--zw-white); color: var(--zw-ink);
+  border-radius: var(--zw-radius-card);
+  box-shadow: var(--zw-shadow-lg);
+  overflow: hidden;
+}
+.package__top {
+  background: var(--zw-yellow);
+  padding: 1.1rem 1.5rem;
+  font-family: var(--zw-font-head); font-weight: 700; font-size: 1.05rem;
+}
+.package__list { list-style: none; margin: 0; padding: .5rem 0; }
+.package__list li {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: .85rem 1.5rem;
+  border-bottom: 1px solid var(--zw-grey-100);
+  font-size: 14.5px;
+}
+.package__list li:last-child { border-bottom: 0; }
+.package__list dt, .package__list .k { color: var(--zw-grey-700); }
+.package__list .v { font-family: var(--zw-font-head); font-weight: 700; text-align: right; color: var(--zw-ink); }
+.package__foot { padding: 1.25rem 1.5rem 1.5rem; border-top: 2px solid var(--zw-grey-100); }
+
+/* Grote tabel met alle voorwaarden */
+.tablewrap { overflow-x: auto; border-radius: var(--zw-radius-card); border: 1px solid var(--zw-line); }
+table.terms { width: 100%; border-collapse: collapse; background: var(--zw-white); min-width: 620px; }
+table.terms caption { text-align: left; padding: 1.15rem 1.35rem; font-family: var(--zw-font-head); font-weight: 700; font-size: 1.05rem; background: var(--zw-grey-50); border-bottom: 1px solid var(--zw-line); }
+table.terms th, table.terms td { text-align: left; padding: .95rem 1.35rem; border-bottom: 1px solid var(--zw-grey-100); font-size: 14.5px; vertical-align: top; }
+table.terms th { font-family: var(--zw-font-head); font-weight: 700; width: 32%; color: var(--zw-ink); }
+table.terms td { color: var(--zw-grey-700); }
+table.terms tr:last-child th, table.terms tr:last-child td { border-bottom: 0; }
+table.terms tr:hover td, table.terms tr:hover th { background: var(--zw-grey-50); }
+
+/* Voordelenblokken */
+.stack { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.stack__item {
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-left: 4px solid var(--zw-red);
+  border-radius: var(--zw-radius); padding: 1.35rem 1.5rem;
+}
+.stack__item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+.stack__item p { margin: 0; font-size: 14px; color: var(--zw-grey-700); line-height: 1.6; }
+
+/* Formulier naast de inhoud, kleeft mee */
+.applygrid {
+  display: grid; gap: clamp(2rem, 4vw, 3.25rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  align-items: start;
+}
+@media (max-width: 980px) { .applygrid { grid-template-columns: 1fr; } }
+.applygrid__form {
+  position: sticky; top: 110px;
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line); border-top: 5px solid var(--zw-red);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--zw-shadow-md);
+}
+@media (max-width: 980px) { .applygrid__form { position: static; } }
+
+.band4 { background: var(--zw-ink); color: var(--zw-grey); text-align: center; }
+.band4 h2 { color: var(--zw-white); max-width: 22ch; margin-inline: auto; }
+</style>
+</head>
+<body>
+
+<div data-zw-header data-cta="#solliciteer"></div>
+
+<main>
+
+  <!-- ====================== HERO ====================== -->
+  <section class="hero4">
+    <div class="zw-container hero4__inner">
+      <div class="zw-rise zw-rise-1">
+        <span class="zw-eyebrow" style="color:var(--zw-yellow);">Technieker algemene elektriciteit · Dendermonde</span>
+        <h1>Vergelijk gerust. <mark>Wij zetten alles op tafel.</mark></h1>
+        <p class="hero4__sub">
+          Je hebt al werk. Dan wissel je niet voor een mooie zin, maar voor
+          betere voorwaarden. Hier staat het volledige pakket — geen "marktconform",
+          geen "aantrekkelijk salaris" zonder uitleg.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.75rem;">
+          <a class="zw-btn zw-btn--lg" href="#solliciteer">Solliciteer in 60 seconden</a>
+          <a class="zw-btn zw-btn--lg zw-btn--ghost" style="border-color:rgba(255,255,255,.45);color:#fff;" href="#voorwaarden">Bekijk de voorwaarden</a>
+        </div>
+      </div>
+
+      <div class="package zw-rise zw-rise-2">
+        <div class="package__top">Het pakket in het kort</div>
+        <ul class="package__list">
+          <li><span class="k">Contract</span><span class="v">Vast, voltijds</span></li>
+          <li><span class="k">Loon</span><span class="v">Volgens PC 149.01</span></li>
+          <li><span class="k">Sector</span><span class="v">Elektriciens (149.01)</span></li>
+          <li><span class="k">Werkregio</span><span class="v">Dendermonde e.o.</span></li>
+          <li><span class="k">VCA-attest</span><span class="v">Wij betalen het</span></li>
+          <li><span class="k">Opleiding</span><span class="v">On-the-job + bijscholing</span></li>
+          <li><span class="k">Werkkledij</span><span class="v">Voorzien</span></li>
+          <li><span class="k">Ervaring vereist</span><span class="v">Nee, een plus</span></li>
+        </ul>
+        <div class="package__foot">
+          <a class="zw-btn zw-btn--block" href="#solliciteer">Ik wil dit — solliciteer</a>
+          <p style="margin:.85rem 0 0;font-size:12.5px;color:var(--zw-grey-500);text-align:center;">
+            Geen CV nodig · antwoord binnen 1 werkdag
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== TABEL ====================== -->
+  <section class="zw-section" id="voorwaarden">
+    <div class="zw-container">
+      <div style="max-width:58ch;margin-bottom:2.25rem;">
+        <span class="zw-eyebrow">Alle voorwaarden</span>
+        <h2>Punt per punt, zonder wollige taal</h2>
+        <p class="zw-lead">
+          Zo weet je meteen waar je aan toe bent — en of het de moeite is om
+          verder te praten.
+        </p>
+      </div>
+
+      <div class="tablewrap">
+        <table class="terms">
+          <caption>Technieker algemene elektriciteit — regio Dendermonde</caption>
+          <tbody>
+            <tr><th>Contract</th><td>Vast contract, voltijds. Geen interim-constructie, geen proefproject.</td></tr>
+            <tr><th>Loon</th><td>Competitief salarispakket conform paritair comité 149.01, afgestemd op je ervaring en anciënniteit.</td></tr>
+            <tr><th>Werkuren</th><td>Vaste dagploeg. Je start op de werf en bent 's avonds gewoon weer thuis.</td></tr>
+            <tr><th>Werkgebied</th><td>Werven in en rond Dendermonde: Lebbeke, Buggenhout, Zele, Berlare, Hamme, Waasmunster, Wichelen, Laarne en omgeving.</td></tr>
+            <tr><th>Soort klanten</th><td>Scholen, ziekenhuizen, rusthuizen en appartementsgebouwen. Residentieel en utiliteit, geen twee werven hetzelfde.</td></tr>
+            <tr><th>Je taken</th><td>Kabelgoten plaatsen, kabels trekken, schakelmateriaal plaatsen, verlichtingstoestellen aansluiten, aansluitingen in het verdeelbord.</td></tr>
+            <tr><th>VCA-attest</th><td>Vereist om op de werf te staan. Heb je het nog niet, dan plannen en betalen wij de opleiding.</td></tr>
+            <tr><th>Rijbewijs</th><td>Rijbewijs B is nodig om de werven te bereiken.</td></tr>
+            <tr><th>Taal</th><td>Goede kennis van het Nederlands. Frans is een pluspunt, geen vereiste.</td></tr>
+            <tr><th>Ervaring</th><td>Een eerste ervaring als elektricien is een plus, geen voorwaarde. Een technische opleiding en leergierigheid volstaan.</td></tr>
+            <tr><th>Begeleiding</th><td>Je start naast een ervaren technieker en groeit naar zelfstandig werk.</td></tr>
+            <tr><th>Materiaal</th><td>Werkkledij en gereedschap worden voorzien.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- LET OP: enkele rijen (werkuren, materiaal) zijn ingevuld op basis van
+           wat gangbaar is in PC 149.01 en wat op de site staat. Laten bevestigen
+           door Katrien vóór publicatie, en aanvullen met maaltijdcheques,
+           hospitalisatieverzekering, fietslease enz. als die er zijn. Zie README. -->
+
+      <div style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+        <a class="zw-btn zw-btn--lg" href="#solliciteer">Dit past bij mij — solliciteer</a>
+        <span style="font-size:14px;color:var(--zw-grey-500);">
+          Of bel <a href="tel:+3215305305"><strong>015 305 305</strong></a> voor je solliciteert.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WAAROM ZWIJSEN ====================== -->
+  <section class="zw-section zw-section--grey">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.25rem;">
+        <span class="zw-eyebrow">Waarom Electro Zwijsen</span>
+        <h2>Zes redenen die je pas na een jaar echt voelt</h2>
+      </div>
+      <div class="stack">
+        <div class="stack__item">
+          <h3>Een werkgever die blijft bestaan</h3>
+          <p>Electro Zwijsen bestaat al decennia, groeit nog steeds en heeft een gevulde
+             orderportefeuille. Je bouwt hier iets op.</p>
+        </div>
+        <div class="stack__item">
+          <h3>Je leert er effectief bij</h3>
+          <p>Opleidingsmogelijkheden en bijscholing, plus collega's die het vak al jaren
+             doen en het je willen tonen.</p>
+        </div>
+        <div class="stack__item">
+          <h3>Afwisseling, geen sleur</h3>
+          <p>Scholen, ziekenhuizen, rusthuizen, appartementen. Andere werf, andere uitdaging.</p>
+        </div>
+        <div class="stack__item">
+          <h3>Zelfstandigheid met vangnet</h3>
+          <p>Je krijgt je eigen verantwoordelijkheid, maar er is altijd iemand om te bellen.</p>
+        </div>
+        <div class="stack__item">
+          <h3>Twee vestigingen, één aanpak</h3>
+          <p>Duffel en Zonhoven, met dezelfde manier van werken: correct, degelijk, afgewerkt.</p>
+        </div>
+        <div class="stack__item">
+          <h3>Werk dicht bij huis</h3>
+          <p>We zoeken specifiek versterking voor de regio Dendermonde. Korte ritten,
+             geen eindeloze verplaatsingen.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:2.25rem;">
+        <a class="zw-btn zw-btn--lg" href="#solliciteer">Start je sollicitatie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SOLLICITEREN ====================== -->
+  <section class="zw-section" id="solliciteer">
+    <div class="zw-container applygrid">
+      <div>
+        <span class="zw-eyebrow">Solliciteren</span>
+        <h2>Acht vragen, en je weet waar je staat</h2>
+        <p class="zw-lead">
+          We vragen geen motivatiebrief. We vragen wat je kan, wat je hebt en
+          waar je woont — dat is genoeg om te weten of het zin heeft om te bellen.
+        </p>
+
+        <h3 style="font-size:1.1rem;font-weight:700;margin:2rem 0 .85rem;">Wat er daarna gebeurt</h3>
+        <ul class="zw-checks" style="font-size:14.5px;">
+          <li><strong>Meteen:</strong> een bevestigingsmail met de volgende stap</li>
+          <li><strong>Binnen 1 werkdag:</strong> een telefoontje van tien minuten</li>
+          <li><strong>Daarna:</strong> langskomen in Duffel, werkplek en ploeg zien</li>
+          <li><strong>Altijd:</strong> een duidelijk antwoord, ook bij een nee</li>
+        </ul>
+
+        <h3 style="font-size:1.1rem;font-weight:700;margin:2rem 0 .85rem;">Wat je niet hoeft te doen</h3>
+        <ul class="zw-checks" style="font-size:14.5px;">
+          <li>Geen motivatiebrief schrijven</li>
+          <li>Geen CV opzoeken of uploaden — mag wel, moet niet</li>
+          <li>Geen weken wachten op een antwoord</li>
+          <li>Geen verbintenis aangaan: informeren mag vrijblijvend</li>
+        </ul>
+
+        <p style="margin-top:2rem;font-size:14px;color:var(--zw-grey-500);">
+          Volledig vertrouwelijk. Je gegevens gaan enkel naar onze personeelsdienst
+          en worden niet gedeeld met derden.
+        </p>
+      </div>
+
+      <div class="applygrid__form" data-za-scroll>
+        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:.35rem;">Kom jij in aanmerking?</h3>
+        <p style="font-size:13.5px;color:var(--zw-grey-700);margin-bottom:1.1rem;">
+          Eén minuut. Geen CV nodig.
+        </p>
+        <div id="apply"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SLOT ====================== -->
+  <section class="zw-section band4">
+    <div class="zw-container">
+      <span class="zw-eyebrow" style="justify-content:center;color:var(--zw-yellow);">Nog twijfel?</span>
+      <h2>Bellen mag ook. Dan hoor je het gewoon van ons.</h2>
+      <p style="max-width:50ch;margin:0 auto 2rem;color:rgba(255,255,255,.78);">
+        Liever eerst je vragen stellen voor je iets invult? Volkomen begrijpelijk.
+        Vraag naar de personeelsdienst — ze weten waarover het gaat.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;">
+        <a class="zw-btn zw-btn--lg zw-btn--yellow" href="tel:+3215305305">015 305 305</a>
+        <a class="zw-btn zw-btn--lg zw-btn--ghost" style="border-color:rgba(255,255,255,.45);color:#fff;" href="#solliciteer">Toch online solliciteren</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-zw-footer></div>
+
+<div class="zw-mobilebar">
+  <a class="zw-btn zw-btn--block" href="#solliciteer">Solliciteer in 60 seconden</a>
+</div>
+
+<script src="assets/site-chrome.js"></script>
+<script src="assets/apply-form.js"></script>
+<script>
+  ZwijsenApply.mount('#apply');
+</script>
+</body>
+</html>

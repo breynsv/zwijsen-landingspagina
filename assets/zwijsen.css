@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Electro Zwijsen — landingspagina design tokens
+   Afgeleid van de live site (Elementor global kit, post-6.css) op 2026-08-11.
+   Bron: https://zwijsen.be/wp-content/uploads/elementor/css/post-6.css
+   ========================================================================== */
+
+:root {
+  /* --- Merkkleuren, exact uit de Elementor kit --- */
+  --zw-ink:        #121413;   /* --e-global-color-primary / secondary / text */
+  --zw-red:        #E60E13;   /* --e-global-color-accent  */
+  --zw-red-dark:   #B60A0E;
+  --zw-red-tint:   #FDECEC;
+  --zw-yellow:     #FCC715;   /* --e-global-color-78f9a77 */
+  --zw-yellow-dk:  #E0AC00;
+  --zw-white:      #FFFFFF;   /* --e-global-color-2c5975e */
+  --zw-grey:       #E8E6E7;   /* --e-global-color-9b6502c */
+
+  /* --- Afgeleide neutralen --- */
+  --zw-grey-50:    #F7F6F6;
+  --zw-grey-100:   #EFEDEE;
+  --zw-grey-300:   #CFCCCE;
+  --zw-grey-500:   #8C8788;
+  --zw-grey-700:   #4A4647;
+  --zw-line:       #DDD9DB;
+
+  /* --- Typografie, exact uit de kit --- */
+  --zw-font-head: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --zw-font-body: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  --zw-body-size: 15px;
+  --zw-body-weight: 500;
+
+  /* h1 50px / h2 40px / h3 35px / h4 30px op desktop — vloeiend geschaald */
+  --zw-h1: clamp(2.05rem, 1.35rem + 2.6vw, 3.125rem);
+  --zw-h2: clamp(1.7rem, 1.2rem + 1.9vw, 2.5rem);
+  --zw-h3: clamp(1.4rem, 1.1rem + 1.3vw, 2.1875rem);
+  --zw-h4: clamp(1.2rem, 1.02rem + 0.8vw, 1.875rem);
+
+  /* --- Vorm --- */
+  --zw-radius: 3px;           /* Elementor button radius = 3px 3px 3px 3px */
+  --zw-radius-card: 6px;
+  --zw-shadow-sm: 0 1px 2px rgba(18, 20, 19, .06), 0 2px 8px rgba(18, 20, 19, .05);
+  --zw-shadow-md: 0 4px 12px rgba(18, 20, 19, .08), 0 12px 32px rgba(18, 20, 19, .07);
+  --zw-shadow-lg: 0 10px 24px rgba(18, 20, 19, .10), 0 28px 60px rgba(18, 20, 19, .12);
+
+  --zw-container: 1180px;
+  --zw-gutter: clamp(1rem, 0.6rem + 1.8vw, 2.25rem);
+
+  --zw-ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--zw-font-body);
+  font-size: var(--zw-body-size);
+  font-weight: var(--zw-body-weight);
+  line-height: 1.72;
+  color: var(--zw-ink);
+  background: var(--zw-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--zw-font-head);
+  color: var(--zw-ink);
+  margin: 0 0 .5em;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+h1 { font-size: var(--zw-h1); font-weight: 700; line-height: 1.1; }
+h2 { font-size: var(--zw-h2); font-weight: 700; line-height: 1.16; }
+h3 { font-size: var(--zw-h3); font-weight: 500; line-height: 1.24; }
+h4 { font-size: var(--zw-h4); font-weight: 500; line-height: 1.3; }
+
+p { margin: 0 0 1.15em; text-wrap: pretty; }
+a { color: var(--zw-red); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+:focus-visible {
+  outline: 3px solid var(--zw-red);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.zw-container {
+  width: 100%;
+  max-width: var(--zw-container);
+  margin-inline: auto;
+  padding-inline: var(--zw-gutter);
+}
+
+.zw-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Knoppen
+   ========================================================================== */
+
+.zw-btn {
+  --_bg: var(--zw-red);
+  --_fg: var(--zw-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6em;
+  font-family: var(--zw-font-head);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .02em;
+  padding: 1.05em 1.9em;
+  border: 2px solid transparent;
+  border-radius: var(--zw-radius);
+  background: var(--_bg);
+  color: var(--_fg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),
+              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);
+  box-shadow: var(--zw-shadow-sm);
+  text-align: center;
+}
+.zw-btn:hover { --_bg: var(--zw-red-dark); transform: translateY(-2px); box-shadow: var(--zw-shadow-md); }
+.zw-btn:active { transform: translateY(0); }
+.zw-btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+
+.zw-btn--yellow { --_bg: var(--zw-yellow); --_fg: var(--zw-ink); }
+.zw-btn--yellow:hover { --_bg: var(--zw-yellow-dk); }
+
+.zw-btn--ghost {
+  --_bg: transparent; --_fg: var(--zw-ink);
+  border-color: var(--zw-ink); box-shadow: none;
+}
+.zw-btn--ghost:hover { --_bg: var(--zw-ink); --_fg: var(--zw-white); }
+
+.zw-btn--light { --_bg: var(--zw-white); --_fg: var(--zw-ink); }
+.zw-btn--light:hover { --_bg: var(--zw-grey-100); }
+
+.zw-btn--block { width: 100%; }
+.zw-btn--lg { font-size: 17px; padding: 1.2em 2.3em; }
+
+/* ==========================================================================
+   Sitehoofding — 1-op-1 nagebouwd naar zwijsen.be
+   --------------------------------------------------------------------------
+   Opgemeten op de live site (1440px breed) op 2026-08-11:
+     container   max-width 1340px, 50px marge links/rechts
+     hoogte      90px, witte achtergrond, geen onderrand
+     logo        163 x 70 px
+     menulinks   Open Sans 15px/600, #121413, padding 13px 25px
+     knop        Roboto 18px/500, #121413 op #FCC715, radius 3px, padding 15px 25px
+   ========================================================================== */
+
+.zw-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--zw-white);
+  transition: box-shadow .2s var(--zw-ease);
+}
+.zw-header.is-stuck { box-shadow: 0 2px 14px rgba(18, 20, 19, .1); }
+
+.zw-header__inner {
+  width: 100%;
+  max-width: 1340px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  display: flex; align-items: center;
+  min-height: 90px;
+}
+@media (min-width: 1100px) { .zw-header__inner { padding-inline: 0; } }
+
+.zw-header__logo { display: block; flex-shrink: 0; margin-right: 18px; }
+.zw-header__logo img { width: 163px; height: 70px; object-fit: contain; }
+
+/* margin/padding expliciet op nul: een <ul> krijgt anders 40px inspringing,
+   waardoor het hele menu 40px te ver naar rechts staat. */
+.zw-header__nav {
+  display: flex; align-items: center;
+  margin: 0; padding: 0; list-style: none;
+}
+
+.zw-header__nav > li { position: relative; list-style: none; }
+
+.zw-header__link {
+  display: flex; align-items: center; gap: 15px;
+  font-family: var(--zw-font-body);
+  font-size: 15px; font-weight: 600;
+  line-height: 20px;
+  color: var(--zw-ink);
+  text-decoration: none;
+  padding: 13px 25px;
+  white-space: nowrap;
+  background: none; border: 0; cursor: pointer;
+  transition: color .16s var(--zw-ease);
+}
+.zw-header__link:hover, .zw-header__link[aria-expanded="true"] { color: var(--zw-red); }
+
+/* Pijltje bij Diensten en Werken bij */
+.zw-header__caret { width: 9px; height: 6px; flex-shrink: 0; transition: transform .18s var(--zw-ease); }
+.zw-header__link[aria-expanded="true"] .zw-header__caret { transform: rotate(180deg); }
+
+/* Uitklapmenu */
+.zw-header__sub {
+  position: absolute; top: 100%; left: 12px; z-index: 10;
+  min-width: 268px; margin: 0; padding: 8px 0;
+  list-style: none;
+  background: var(--zw-white);
+  border-top: 3px solid var(--zw-red);
+  box-shadow: 0 10px 28px rgba(18, 20, 19, .14);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .18s var(--zw-ease), transform .18s var(--zw-ease), visibility .18s;
+}
+.zw-header__nav > li:hover .zw-header__sub,
+.zw-header__nav > li:focus-within .zw-header__sub {
+  opacity: 1; visibility: visible; transform: none;
+}
+.zw-header__sub a {
+  display: block; padding: 9px 22px;
+  font-family: var(--zw-font-body);
+  font-size: 14.5px; font-weight: 500;
+  color: var(--zw-ink); text-decoration: none;
+  transition: background-color .14s var(--zw-ease), color .14s var(--zw-ease);
+}
+.zw-header__sub a:hover { background: var(--zw-grey-50); color: var(--zw-red); }
+
+/* De gele hoofdknop, uiterst rechts */
+.zw-header__cta {
+  margin-left: auto; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--zw-font-head);
+  font-size: 18px; font-weight: 500; line-height: 18px;
+  color: var(--zw-ink);
+  background: var(--zw-yellow);
+  border: 0; border-radius: 3px;
+  padding: 15px 25px;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background-color .18s var(--zw-ease), transform .18s var(--zw-ease);
+}
+.zw-header__cta:hover { background: var(--zw-yellow-dk); transform: translateY(-1px); }
+
+/* Hamburger */
+.zw-header__burger {
+  display: none;
+  margin-left: auto;
+  width: 46px; height: 46px;
+  align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--zw-line); border-radius: 3px;
+  cursor: pointer;
+}
+.zw-header__burger svg { width: 22px; height: 22px; }
+
+@media (max-width: 1099px) {
+  .zw-header__inner { min-height: 76px; }
+  .zw-header__logo img { width: 132px; height: 56px; }
+  .zw-header__nav { display: none; }
+  .zw-header__cta { display: none; }
+  .zw-header__burger { display: inline-flex; }
+
+  /* Uitgeklapt mobiel menu */
+  .zw-header.is-open .zw-header__nav {
+    display: flex; flex-direction: column; align-items: stretch;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--zw-white);
+    border-top: 1px solid var(--zw-line);
+    box-shadow: 0 12px 24px rgba(18, 20, 19, .12);
+    padding: 8px 0 16px;
+    max-height: calc(100vh - 76px); overflow-y: auto;
+  }
+  .zw-header.is-open .zw-header__cta {
+    display: inline-flex; margin: 10px 20px 0; justify-content: center;
+  }
+  .zw-header__link { padding: 14px 20px; }
+  .zw-header__sub {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; border-top: 0; border-left: 3px solid var(--zw-yellow);
+    margin: 0 0 4px 20px; padding: 0; min-width: 0;
+    display: none;
+  }
+  .zw-header__nav > li.is-open .zw-header__sub { display: block; }
+  .zw-header__sub a { padding: 9px 20px; font-size: 14px; }
+}
+
+/* ==========================================================================
+   Voettekst (zoals zwijsen.be)
+   ========================================================================== */
+
+.zw-footer {
+  background: var(--zw-ink);
+  color: var(--zw-grey);
+  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+  font-size: 14px;
+}
+.zw-footer h4 {
+  color: var(--zw-white);
+  font-size: 15px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+.zw-footer a { color: var(--zw-grey); text-decoration: none; }
+.zw-footer a:hover { color: var(--zw-yellow); text-decoration: underline; }
+.zw-footer__grid {
+  display: grid; gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.zw-footer__grid ul { list-style: none; margin: 0; padding: 0; }
+.zw-footer__grid li { margin-bottom: .5rem; }
+.zw-footer__bottom {
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+  color: var(--zw-grey-500); font-size: 13px;
+}
+
+/* ==========================================================================
+   Herbruikbare stukken
+   ========================================================================== */
+
+.zw-eyebrow {
+  display: inline-flex; align-items: center; gap: .55em;
+  font-family: var(--zw-font-head);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--zw-red);
+  margin-bottom: 1rem;
+}
+.zw-eyebrow::before {
+  content: ""; width: 28px; height: 3px;
+  background: var(--zw-yellow); border-radius: 2px;
+}
+
+.zw-section { padding: clamp(3.25rem, 7vw, 6rem) 0; }
+.zw-section--grey { background: var(--zw-grey-50); }
+.zw-section--ink { background: var(--zw-ink); color: var(--zw-grey); }
+.zw-section--ink h2, .zw-section--ink h3 { color: var(--zw-white); }
+
+.zw-lead { font-size: clamp(1rem, .95rem + .3vw, 1.175rem); line-height: 1.7; color: var(--zw-grey-700); }
+
+/* Opsommingslijst met vinkje */
+.zw-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
+.zw-checks li { position: relative; padding-left: 2.15rem; }
+.zw-checks li::before {
+  content: ""; position: absolute; left: 0; top: .45em;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: var(--zw-red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / .8rem no-repeat;
+}
+
+/* Kaart */
+.zw-card {
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  box-shadow: var(--zw-shadow-sm);
+}
+
+/* Onderbroken accentbalk boven een kaart */
+.zw-card--accent { border-top: 4px solid var(--zw-red); }
+
+/* Vertrouwensrij */
+.zw-trust {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+  list-style: none; margin: 0; padding: 0;
+  font-size: 12px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--zw-grey-500);
+  font-family: var(--zw-font-head);
+}
+.zw-trust li { display: flex; align-items: center; gap: .45em; }
+.zw-trust li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--zw-yellow); }
+
+/* Kleefbare mobiele actiebalk */
+.zw-mobilebar {
+  position: fixed; inset: auto 0 0 0; z-index: 70;
+  display: none;
+  padding: .7rem var(--zw-gutter) calc(.7rem + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, .97);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--zw-line);
+  box-shadow: 0 -4px 20px rgba(18, 20, 19, .1);
+}
+@media (max-width: 860px) { .zw-mobilebar { display: block; } body { padding-bottom: 5.5rem; } }
+
+/* Instapanimatie */
+@keyframes zw-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.zw-rise { animation: zw-rise .7s var(--zw-ease) both; }
+.zw-rise-1 { animation-delay: .06s; }
+.zw-rise-2 { animation-delay: .14s; }
+.zw-rise-3 { animation-delay: .22s; }
+.zw-rise-4 { animation-delay: .3s; }

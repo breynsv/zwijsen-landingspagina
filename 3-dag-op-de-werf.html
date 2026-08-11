@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Een dag als technieker bij Electro Zwijsen | Vacature regio Dendermonde</title>
+<meta name="description" content="Van 7u30 op de werf tot 16u30 naar huis: zo ziet een dag als technieker algemene elektriciteit bij Electro Zwijsen eruit. Vacature regio Dendermonde, solliciteren in 60 seconden.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/zwijsen.css">
+<link rel="stylesheet" href="assets/apply-form.css">
+<link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
+
+<!-- Meta Pixel — vervang de ID. Pas afvuren na cookietoestemming. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '000000000000000');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+/* ==========================================================================
+   ONTWERP 3 — "Een dag op de werf"
+   Vertelt de job in plaats van hem op te sommen. Werkt sterk op koud
+   Meta-verkeer: mensen die niet actief zoeken, herkennen hun eigen dag
+   (of het gebrek eraan) en blijven hangen. De tijdlijn is het hart.
+   ========================================================================== */
+
+.hero3 {
+  position: relative; color: var(--zw-white);
+  min-height: min(78vh, 660px);
+  display: flex; align-items: flex-end;
+  background:
+    linear-gradient(180deg, rgba(18,20,19,.35) 0%, rgba(18,20,19,.55) 45%, rgba(18,20,19,.96) 100%),
+    url("https://zwijsen.be/wp-content/uploads/2022/01/worker-is-cutting-wires-with-linemans-pliers-scaled.jpg")
+    center 35% / cover no-repeat;
+}
+.hero3__inner { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 5vw, 3.5rem); width: 100%; }
+.hero3 h1 { color: var(--zw-white); max-width: 18ch; }
+.hero3 h1 span { color: var(--zw-yellow); }
+.hero3__sub { font-size: clamp(1.05rem, .98rem + .45vw, 1.3rem); color: rgba(255,255,255,.88); max-width: 50ch; }
+.hero3__cta { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.75rem; }
+
+/* Tijdlijn */
+.timeline { position: relative; max-width: 860px; margin-inline: auto; }
+.timeline::before {
+  content: ""; position: absolute; left: 78px; top: .5rem; bottom: .5rem;
+  width: 2px; background: linear-gradient(var(--zw-red), var(--zw-yellow));
+}
+@media (max-width: 660px) { .timeline::before { left: 9px; } }
+
+.tl {
+  position: relative; display: grid;
+  grid-template-columns: 78px 1fr; gap: 0 2.25rem;
+  padding-bottom: 2.25rem;
+}
+@media (max-width: 660px) { .tl { grid-template-columns: 1fr; padding-left: 2.25rem; gap: 0; } }
+
+.tl__time {
+  font-family: var(--zw-font-head);
+  font-size: 1.1rem; font-weight: 900;
+  color: var(--zw-ink); text-align: right;
+  line-height: 1.4; padding-top: .1rem;
+}
+@media (max-width: 660px) { .tl__time { text-align: left; margin-bottom: .3rem; } }
+
+.tl::after {
+  content: ""; position: absolute; left: 72px; top: .55rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--zw-white); border: 3px solid var(--zw-red);
+  z-index: 1;
+}
+@media (max-width: 660px) { .tl::after { left: 3px; } }
+.tl--gold::after { border-color: var(--zw-yellow); }
+
+.tl__body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .3rem; }
+.tl__body p { margin: 0; font-size: 15px; color: var(--zw-grey-700); line-height: 1.68; }
+.tl__tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .7rem; }
+.tl__tags span {
+  font-family: var(--zw-font-head); font-size: 11.5px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  background: var(--zw-red-tint); color: var(--zw-red);
+  border-radius: 3px; padding: .25rem .55rem;
+}
+
+/* "Dit is niet" blok — eerlijk over wat de job niet is */
+.honest { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.honest div {
+  padding: 1.4rem;
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius-card);
+}
+.honest h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; display: flex; gap: .5rem; align-items: center; }
+.honest h3::before {
+  content: ""; width: 10px; height: 10px; border-radius: 2px;
+  background: var(--zw-yellow); flex-shrink: 0;
+}
+.honest p { margin: 0; font-size: 14px; color: var(--zw-grey-700); }
+
+/* Voordelen in puntjes, drie kolommen */
+.plus { display: grid; gap: 1.75rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.plus h3 {
+  font-size: 1.05rem; font-weight: 700; margin-bottom: .85rem;
+  padding-bottom: .5rem; border-bottom: 2px solid var(--zw-red);
+}
+.plus .zw-checks { font-size: 14.5px; }
+
+/* Formulierblok onderaan */
+.applyblock {
+  display: grid; gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  align-items: start;
+}
+@media (max-width: 920px) { .applyblock { grid-template-columns: 1fr; } }
+.applyblock__form {
+  background: var(--zw-white);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.5rem, 3vw, 2.1rem);
+  box-shadow: var(--zw-shadow-lg);
+}
+
+/* Doorlopende oproepstrook */
+.band {
+  background: var(--zw-yellow); color: var(--zw-ink);
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0;
+}
+.band__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.band h3 { font-size: clamp(1.15rem, 1rem + .75vw, 1.7rem); font-weight: 700; margin: 0 0 .25rem; }
+.band p { margin: 0; font-size: 14.5px; }
+</style>
+</head>
+<body>
+
+<div data-zw-header data-cta="#solliciteer"></div>
+
+<main>
+
+  <!-- ====================== HERO ====================== -->
+  <section class="hero3">
+    <div class="zw-container hero3__inner">
+      <span class="zw-eyebrow" style="color:var(--zw-yellow);">Technieker algemene elektriciteit · Dendermonde</span>
+      <h1 class="zw-rise zw-rise-1">Om 16u30 leg je je tang neer.<br><span>En dan is het gedaan.</span></h1>
+      <p class="hero3__sub zw-rise zw-rise-2">
+        Geen files van twee uur, geen werven aan de andere kant van het land.
+        Je werkt in je eigen regio, met degelijk materiaal en collega's die
+        het vak al twintig jaar doen. Dit is hoe je dag eruitziet.
+      </p>
+      <div class="hero3__cta zw-rise zw-rise-3">
+        <a class="zw-btn zw-btn--lg" href="#solliciteer">Solliciteer in 60 seconden</a>
+        <a class="zw-btn zw-btn--lg zw-btn--ghost" style="border-color:rgba(255,255,255,.5);color:#fff;" href="#dag">Lees eerst de dag</a>
+      </div>
+      <ul class="zw-trust" style="margin-top:1.5rem;color:rgba(255,255,255,.65);">
+        <li>Vast contract</li>
+        <li>Loon volgens PC 149.01</li>
+        <li>VCA betaald door ons</li>
+        <li>Geen CV nodig om te solliciteren</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================== DE DAG ====================== -->
+  <section class="zw-section" id="dag">
+    <div class="zw-container">
+      <div style="text-align:center;max-width:56ch;margin:0 auto 3rem;">
+        <span class="zw-eyebrow" style="justify-content:center;">Een doordeweekse dinsdag</span>
+        <h2>Van 7u30 tot 16u30</h2>
+        <p class="zw-lead">
+          Geen twee werven zijn hetzelfde, maar het ritme wel. Zo verloopt een
+          gewone dag bij Electro Zwijsen.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="tl">
+          <div class="tl__time">7u30</div>
+          <div class="tl__body">
+            <h3>Start op de werf</h3>
+            <p>Je rijdt rechtstreeks naar de werf — een school in Dendermonde die een
+               nieuwe vleugel krijgt. Korte briefing met je ploegbaas: wat vandaag af moet,
+               waar het materiaal staat, wie waaraan begint.</p>
+            <div class="tl__tags"><span>Korte rit</span><span>Duidelijke planning</span></div>
+          </div>
+        </article>
+
+        <article class="tl">
+          <div class="tl__time">8u00</div>
+          <div class="tl__body">
+            <h3>Kabelgoten en tracé</h3>
+            <p>Je zet het tracé uit en hangt de kabelgoten. Recht, waterpas, netjes —
+               want alles wat erna komt, hangt hieraan. Je werkt met een collega samen;
+               één meet, één boort.</p>
+            <div class="tl__tags"><span>Kabelgoten</span><span>Teamwork</span></div>
+          </div>
+        </article>
+
+        <article class="tl">
+          <div class="tl__time">10u00</div>
+          <div class="tl__body">
+            <h3>Kabels trekken</h3>
+            <p>De goten liggen, nu gaan de kabels erin. Je leest het schema, je weet welke
+               waar hoort, je labelt meteen. Kan je nog geen schema's lezen? Dan leer je het
+               hier — naast iemand die het je toont in plaats van uitlegt.</p>
+            <div class="tl__tags"><span>Schema's lezen</span><span>On-the-job leren</span></div>
+          </div>
+        </article>
+
+        <article class="tl tl--gold">
+          <div class="tl__time">12u00</div>
+          <div class="tl__body">
+            <h3>Middagpauze op de werf</h3>
+            <p>Boterhammen in de keet, koffie, en het gesprek van elke werf: voetbal,
+               de planning en wie er dit weekend werkt (niemand).</p>
+            <div class="tl__tags"><span>Vaste uren</span></div>
+          </div>
+        </article>
+
+        <article class="tl">
+          <div class="tl__time">12u30</div>
+          <div class="tl__body">
+            <h3>Schakelmateriaal en verlichting</h3>
+            <p>Stopcontacten, schakelaars, verlichtingstoestellen. Het zichtbare werk —
+               en dus het werk waar de klant naar kijkt. Hier telt afwerking net zo hard
+               als techniek.</p>
+            <div class="tl__tags"><span>Schakelmateriaal</span><span>Verlichting</span></div>
+          </div>
+        </article>
+
+        <article class="tl">
+          <div class="tl__time">14u30</div>
+          <div class="tl__body">
+            <h3>Aansluiten in het verdeelbord</h3>
+            <p>Het precisiewerk. Aders op de juiste klem, alles gelabeld, alles nagemeten.
+               In het begin kijkt een ervaren collega mee. Na een paar maanden doe je
+               je eerste bord zelfstandig.</p>
+            <div class="tl__tags"><span>Verdeelbord</span><span>Groeipad</span></div>
+          </div>
+        </article>
+
+        <article class="tl tl--gold">
+          <div class="tl__time">16u30</div>
+          <div class="tl__body">
+            <h3>Opruimen en naar huis</h3>
+            <p>Materiaal opbergen, werf proper achterlaten, kort doorgeven wat morgen
+               nog moet. En dan naar huis — geen overuren die niemand gevraagd heeft.</p>
+            <div class="tl__tags"><span>'s Avonds thuis</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:1rem;">
+        <a class="zw-btn zw-btn--lg" href="#solliciteer">Zo'n dag wil ik wel — solliciteer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== EERLIJK ====================== -->
+  <section class="zw-section zw-section--grey">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.25rem;">
+        <span class="zw-eyebrow">Eerlijk erbij verteld</span>
+        <h2>Waar je rekening mee moet houden</h2>
+        <p class="zw-lead">Een vacature die alleen maar mooi klinkt, klopt niet. Dit hoort er ook bij.</p>
+      </div>
+      <div class="honest">
+        <div>
+          <h3>Het is fysiek werk</h3>
+          <p>Je staat, je kruipt, je boort boven je hoofd. Wie een bureaujob zoekt, zit hier verkeerd.</p>
+        </div>
+        <div>
+          <h3>Een werf is een werf</h3>
+          <p>Stof, lawaai en soms een planning die schuift omdat een andere aannemer uitloopt.</p>
+        </div>
+        <div>
+          <h3>VCA is verplicht</h3>
+          <p>Zonder attest kom je niet op de werf. Heb je het nog niet, dan plannen en betalen wij het.</p>
+        </div>
+        <div>
+          <h3>Je moet kunnen rijden</h3>
+          <p>Rijbewijs B is nodig om de werven te bereiken. Zonder rijbewijs lukt het niet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WAT ERTEGENOVER STAAT ====================== -->
+  <section class="zw-section">
+    <div class="zw-container">
+      <div style="max-width:56ch;margin-bottom:2.5rem;">
+        <span class="zw-eyebrow">Ons aanbod</span>
+        <h2>Wat daar tegenover staat</h2>
+      </div>
+      <div class="plus">
+        <div>
+          <h3>Je loon en contract</h3>
+          <ul class="zw-checks">
+            <li>Vast contract, voltijds</li>
+            <li>Competitief loon volgens PC 149.01</li>
+            <li>Correcte en stipte uitbetaling</li>
+            <li>Een bedrijf dat al decennia bestaat en nog groeit</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Je ontwikkeling</h3>
+          <ul class="zw-checks">
+            <li>VCA-opleiding betaald en ingepland</li>
+            <li>Bijscholing en opleidingsmogelijkheden</li>
+            <li>Je start naast een ervaren technieker</li>
+            <li>Zelfstandigheid zodra je er klaar voor bent</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Je dagelijkse leven</h3>
+          <ul class="zw-checks">
+            <li>Werven in en rond Dendermonde</li>
+            <li>Vaste uren, 's avonds gewoon thuis</li>
+            <li>Degelijk materiaal en werkkledij voorzien</li>
+            <li>Afwisseling: scholen, ziekenhuizen, rusthuizen, appartementen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== OPROEPSTROOK ====================== -->
+  <section class="band">
+    <div class="zw-container band__inner">
+      <div>
+        <h3>Acht vragen. Eén minuut. Geen CV.</h3>
+        <p>En je weet meteen of je in aanmerking komt.</p>
+      </div>
+      <a class="zw-btn zw-btn--lg" href="#solliciteer">Start je sollicitatie</a>
+    </div>
+  </section>
+
+  <!-- ====================== SOLLICITEREN ====================== -->
+  <section class="zw-section" id="solliciteer">
+    <div class="zw-container applyblock">
+      <div>
+        <span class="zw-eyebrow">Solliciteren</span>
+        <h2>Klaar om je eigen dag zo in te vullen?</h2>
+        <p class="zw-lead">
+          Je hoeft geen motivatiebrief te schrijven en geen CV op te zoeken.
+          Acht korte vragen volstaan om te weten of het klikt.
+        </p>
+        <ul class="zw-checks" style="margin-top:1.5rem;font-size:14.5px;">
+          <li>Bevestiging per mail, meteen na het versturen</li>
+          <li>Telefoontje binnen één werkdag</li>
+          <li>Daarna langskomen in Duffel: werkplek en ploeg zien</li>
+          <li>Altijd een duidelijk antwoord, ook als het geen match is</li>
+          <li>Volledig vertrouwelijk — je huidige werkgever verneemt niets</li>
+        </ul>
+        <p style="margin-top:1.75rem;font-size:14px;color:var(--zw-grey-500);">
+          Liever eerst even bellen? Dat mag ook:
+          <a href="tel:+3215305305"><strong>015 305 305</strong></a>
+        </p>
+      </div>
+      <div class="applyblock__form" data-za-scroll>
+        <div id="apply"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-zw-footer></div>
+
+<div class="zw-mobilebar">
+  <a class="zw-btn zw-btn--block" href="#solliciteer">Solliciteer in 60 seconden</a>
+</div>
+
+<script src="assets/site-chrome.js"></script>
+<script src="assets/apply-form.js"></script>
+<script>
+  ZwijsenApply.mount('#apply');
+</script>
+</body>
+</html>
