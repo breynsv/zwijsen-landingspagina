@@ -204,7 +204,6 @@ selector .zwl.zw-mobilebar {
 }
 @media (max-width: 860px) {
   selector .zwl.zw-mobilebar { display: flex; }
-  selector { padding-bottom: 5.5rem; }
 }
 /* In de Elementor-editor de balk gewoon onderaan tonen, niet zwevend */
 selector.elementor-editor-active .zwl.zw-mobilebar { position: static; display: flex; }

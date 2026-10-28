@@ -82,3 +82,13 @@ selector .zwl .m-call {
 }
 selector .zwl .m-call-h .elementor-heading-title { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
 selector .zwl .m-call-p { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 1.15rem; }
+
+selector .zwl .m-list { margin-top: 1.35rem; }
+selector .zwl .m-15 { font-size: 15px; }
+selector .zwl .m-quotes-h .elementor-heading-title { margin-bottom: 1.35rem; }
+selector .zwl .m-group { margin-top: 1.75rem; margin-bottom: 0; }
+selector .zwl.m-col { --zp-bleed: 20px; }
+selector .zwl.m-col .zw-about { margin-bottom: 0; }
+
+/* Onderbalk op mobiel: ruimte onderaan zodat hij niets bedekt */
+@media (max-width: 860px) { selector { padding-bottom: 5.5rem; } }
