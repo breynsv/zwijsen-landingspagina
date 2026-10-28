@@ -213,18 +213,6 @@
   background: var(--zw-red-tint); color: var(--zw-ink); font-weight: 600;
 }
 
-.za__consent {
-  display: flex; align-items: flex-start; gap: .7rem;
-  margin-top: 1.1rem;
-  font-size: 13px; line-height: 1.55; color: var(--zw-grey-700);
-}
-.za__consent input {
-  flex-shrink: 0; margin-top: .18rem;
-  width: 1.15rem; height: 1.15rem;
-  accent-color: var(--zw-red); cursor: pointer;
-}
-.za__consent label { cursor: pointer; }
-
 .za__legal {
   margin: 1rem 0 0;
   font-size: 12px; line-height: 1.55;

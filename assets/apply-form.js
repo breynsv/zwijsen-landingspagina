@@ -298,20 +298,6 @@
 
     fs.appendChild(grid);
 
-    /* Toestemming — LET OP: staat op vraag van de klant standaard AAN.
-       Onder de AVG moet toestemming een actieve handeling zijn (een vooraf
-       aangevinkt vakje geldt niet als toestemming). Voor contact over een
-       sollicitatie kan "precontractuele maatregelen" (art. 6.1.b) volstaan,
-       maar dit moet met de klant besproken worden vóór livegang. */
-    var consentWrap = el('div', { class: 'za__consent' });
-    consentWrap.appendChild(el('input', { type: 'checkbox', id: 'za_consent', name: 'consent',
-      required: 'required', checked: 'checked' }));
-    consentWrap.appendChild(el('label', { for: 'za_consent', html:
-      'Door mijn gegevens te versturen, geef ik Electro Zwijsen toestemming om contact met mij op te nemen ' +
-      'over deze vacature. <a href="' + PRIVACY_URL + '" target="_blank" rel="noopener">Privacyverklaring</a>' }));
-    fs.appendChild(consentWrap);
-    fs.appendChild(el('p', { class: 'za__field-error za__consent-error', 'aria-live': 'polite' }));
-
     this.body.appendChild(fs);
     this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));
 
@@ -323,8 +309,11 @@
         onclick: function (e) { self.submit(e.currentTarget); } })
     ]));
 
-    this.body.appendChild(el('p', { class: 'za__legal',
-      text: 'Je gegevens worden vertrouwelijk verwerkt en niet gedeeld met derden.' }));
+    /* Geen toestemmingsvakje: wie solliciteert vraagt zelf om contact
+       (AVG art. 6.1.b). Wel informeren, met de privacyverklaring erbij. */
+    this.body.appendChild(el('p', { class: 'za__legal', html:
+      'Electro Zwijsen gebruikt je gegevens alleen om je over deze vacature te contacteren. ' +
+      'Meer in onze <a href="' + PRIVACY_URL + '" target="_blank" rel="noopener">privacyverklaring</a>.' }));
   };
 
   ZwijsenApply.prototype.field = function (name, label, type, o) {
@@ -423,7 +412,6 @@
       landcode: get('za_landcode'),
       telefoon: get('za_tel')
     };
-    var consent = this.body.querySelector('#za_consent').checked;
     var honeypot = this.body.querySelector('#za_website').value;
 
     var bad = false;
@@ -439,10 +427,6 @@
     if (!data.naam) fail('za_naam', 'Vul je naam in.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) fail('za_email', 'Vul een geldig e-mailadres in.');
     if (data.telefoon.replace(/\D/g, '').length < 8) fail('za_tel', 'Vul een geldig telefoonnummer in.');
-    if (!consent) {
-      this.body.querySelector('.za__consent-error').textContent = 'Zonder je toestemming kunnen we je niet contacteren.';
-      bad = true;
-    }
     if (bad) { this.showError('Even nakijken — er ontbreekt nog iets.'); return; }
 
     /* Bot gedetecteerd: doe alsof alles lukte, verstuur niets. */
@@ -506,7 +490,7 @@
       el('ol', { class: 'za__steps' }, [
         el('li', {}, [el('strong', { text: 'Bevestiging per mail' }),
           el('span', { text: 'Meteen in je inbox, met wie je contacteert en wanneer.' })]),
-        el('li', {}, [el('strong', { text: 'Telefoontje binnen 1 werkdag' }),
+        el('li', {}, [el('strong', { text: 'We bellen je zo snel mogelijk' }),
           el('span', { text: 'Een gesprek van 10 minuten. Geen druk, gewoon kennismaken.' })]),
         el('li', {}, [el('strong', { text: 'Langskomen in Duffel' }),
           el('span', { text: 'Je ziet het atelier, het materiaal en je toekomstige ploeg.' })]),
