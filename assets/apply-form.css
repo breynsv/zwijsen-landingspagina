@@ -293,6 +293,8 @@
   transition: background-color .16s var(--zw-ease), color .16s var(--zw-ease);
 }
 .za-modal__close:hover { background: var(--zw-ink); color: var(--zw-white); }
+/* In het venster ruimte laten voor de sluitknop, anders valt hij op gsm over "Stap x van y". */
+.za-modal__panel .za__head { padding-right: 2.75rem; }
 
 /* --- Vrije tekst: "Een andere taal:" en de woonplaatsvraag --------------- */
 
