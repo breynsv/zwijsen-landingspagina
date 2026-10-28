@@ -1,0 +1,221 @@
+/* ==========================================================================
+   Electro Zwijsen — landingspagina vacature, basisstijl voor Elementor
+   Gedeeld door de vijf voorstellen. Wordt in de pagina-instelling
+   "Aangepaste CSS" gezet. Het woord dat Elementor vervangt door
+   body.elementor-page-<id> staat vooraan elke regel: zo geldt alles
+   enkel op deze pagina en raakt niets de sitehoofding of voettekst.
+   Alle inhoud zit bovendien in containers met de klasse .zwl.
+   ========================================================================== */
+
+selector {
+  --zw-ink: #121413;
+  --zw-red: #E60E13;
+  --zw-red-dark: #B60A0E;
+  --zw-red-tint: #FDECEC;
+  --zw-yellow: #FCC715;
+  --zw-yellow-dk: #E0AC00;
+  --zw-white: #FFFFFF;
+  --zw-grey: #E8E6E7;
+  --zw-grey-50: #F7F6F6;
+  --zw-grey-100: #EFEDEE;
+  --zw-grey-300: #CFCCCE;
+  --zw-grey-500: #8C8788;
+  --zw-grey-700: #4A4647;
+  --zw-line: #DDD9DB;
+  --zw-font-head: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --zw-font-body: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  --zw-h1: clamp(2.05rem, 1.35rem + 2.6vw, 3.125rem);
+  --zw-h2: clamp(1.7rem, 1.2rem + 1.9vw, 2.5rem);
+  --zw-h3: clamp(1.4rem, 1.1rem + 1.3vw, 2.1875rem);
+  --zw-radius: 3px;
+  --zw-radius-card: 6px;
+  --zw-shadow-sm: 0 1px 2px rgba(18,20,19,.06), 0 2px 8px rgba(18,20,19,.05);
+  --zw-shadow-md: 0 4px 12px rgba(18,20,19,.08), 0 12px 32px rgba(18,20,19,.07);
+  --zw-shadow-lg: 0 10px 24px rgba(18,20,19,.10), 0 28px 60px rgba(18,20,19,.12);
+  --zw-gutter: clamp(1rem, 0.6rem + 1.8vw, 2.25rem);
+  --zw-ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* --- Containers: alle Elementor-standaardruimte op nul, de opmaak hieronder
+       bepaalt de afstanden zoals in het HTML-voorstel. ------------------- */
+selector .zwl.e-con,
+selector .zwl .e-con {
+  --padding-top: 0px; --padding-right: 0px; --padding-bottom: 0px; --padding-left: 0px;
+  --gap: 0px; --row-gap: 0px; --column-gap: 0px;
+  --container-default-padding-top: 0px; --container-default-padding-right: 0px;
+  --container-default-padding-bottom: 0px; --container-default-padding-left: 0px;
+  --widgets-spacing: 0px; --widgets-spacing-row: 0px; --widgets-spacing-column: 0px;
+  --kit-widget-spacing: 0px;
+}
+selector .zwl .elementor-widget { margin-block-end: 0; }
+selector .zwl.e-con {
+  font-family: var(--zw-font-body);
+  font-size: 15px; font-weight: 500; line-height: 1.72;
+  color: var(--zw-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sectie = één band over de volle breedte, inhoud max 1180px zoals het voorstel */
+selector .zwl.zw-sec {
+  --content-width: 1180px;
+  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);
+}
+selector .zwl.zw-sec > .e-con-inner { max-width: min(100%, calc(1180px - 2 * var(--zw-gutter))); }
+selector .zwl.zw-section { --padding-top: clamp(3.25rem, 7vw, 6rem); --padding-bottom: clamp(3.25rem, 7vw, 6rem); }
+selector .zwl.zw-section--grey { background-color: var(--zw-grey-50); }
+selector .zwl.zw-section--ink { background-color: var(--zw-ink); color: var(--zw-grey); }
+selector .zwl .zw-narrow { max-width: 860px; margin-inline: auto; width: 100%; }
+selector .zwl .zw-intro { max-width: 60ch; margin-bottom: 2.5rem; }
+selector .zwl .zw-intro--center { max-width: 56ch; margin: 0 auto 3rem; text-align: center; }
+selector .zwl .zw-center { text-align: center; }
+
+/* --- Typografie -------------------------------------------------------- */
+selector .zwl .elementor-heading-title {
+  font-family: var(--zw-font-head);
+  margin: 0 0 .5em; letter-spacing: 0;
+  text-wrap: balance;
+}
+selector .zwl h1.elementor-heading-title { font-size: var(--zw-h1); font-weight: 700; line-height: 1.1; }
+selector .zwl h2.elementor-heading-title { font-size: var(--zw-h2); font-weight: 700; line-height: 1.16; }
+selector .zwl h3.elementor-heading-title { font-size: var(--zw-h3); font-weight: 500; line-height: 1.24; }
+selector .zwl .elementor-widget-text-editor {
+  font-family: var(--zw-font-body);
+  font-size: 15px; font-weight: 500; line-height: 1.72;
+  color: inherit;
+}
+selector .zwl .elementor-widget-text-editor p { margin: 0 0 1.15em; text-wrap: pretty; }
+selector .zwl .elementor-widget-text-editor a { color: var(--zw-red); text-underline-offset: 2px; }
+selector .zwl .elementor-widget-text-editor > :last-child,
+selector .zwl .elementor-widget-text-editor > .elementor-widget-container > :last-child { margin-bottom: 0; }
+selector .zwl .zw-lead { font-size: clamp(1rem, .95rem + .3vw, 1.175rem); line-height: 1.7; color: var(--zw-grey-700); }
+selector .zwl .zw-lead p { margin-bottom: 1.15em; }
+selector .zwl .zw-muted { color: var(--zw-grey-500); font-size: 13.5px; }
+
+/* Bovenschrift met streepje */
+selector .zwl .zw-eyebrow .elementor-heading-title {
+  display: inline-flex; align-items: center; gap: .55em;
+  font-family: var(--zw-font-head);
+  font-size: 12px; font-weight: 700; line-height: 1.4;
+  letter-spacing: .18em; text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+selector .zwl .zw-eyebrow .elementor-heading-title::before {
+  content: ""; width: 28px; height: 3px; flex-shrink: 0;
+  background: var(--zw-yellow); border-radius: 2px;
+}
+selector .zwl .zw-eyebrow--redbar .elementor-heading-title::before { background: var(--zw-red); }
+selector .zwl .zw-eyebrow--center .elementor-heading-title { justify-content: center; }
+
+/* --- Knoppen (kleuren staan in de knop zelf, via de globale kleuren) --- */
+selector .zwl .elementor-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;
+  padding: 1.05em 1.9em;
+  border-radius: var(--zw-radius);
+  box-shadow: var(--zw-shadow-sm);
+  text-align: center;
+  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),
+              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);
+}
+selector .zwl .elementor-button:hover { transform: translateY(-2px); box-shadow: var(--zw-shadow-md); }
+selector .zwl .zw-btn--lg .elementor-button { font-size: 17px; padding: 1.2em 2.3em; }
+selector .zwl .zw-btn--block, selector .zwl .zw-btn--block .elementor-button-wrapper { width: 100%; }
+selector .zwl .zw-btn--block .elementor-button { width: 100%; }
+selector .zwl .zw-btn--ghost .elementor-button { box-shadow: none; }
+selector .zwl .zw-btnrow { display: flex; --flex-direction: row; flex-direction: row; flex-wrap: wrap; gap: .85rem; align-items: center; justify-content: flex-start; }
+selector .zwl .zw-btnrow.zw-center { justify-content: center; }
+selector .zwl .zw-btnrow > .elementor-widget { width: auto; }
+
+/* --- Vinkjeslijst ------------------------------------------------------ */
+selector .zwl .zw-checks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
+selector .zwl .zw-checks li { position: relative; padding-left: 2.15rem; }
+selector .zwl .zw-checks li::before {
+  content: ""; position: absolute; left: 0; top: .2em;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: var(--zw-red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / .8rem no-repeat;
+}
+selector .zwl .zw-checks--sm { font-size: 14.5px; }
+
+/* Vertrouwensrij */
+selector .zwl .zw-trust ul {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+  list-style: none; margin: 0; padding: 0;
+  font-family: var(--zw-font-head);
+  font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--zw-grey-500);
+}
+selector .zwl .zw-trust li { display: flex; align-items: center; gap: .45em; }
+selector .zwl .zw-trust li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--zw-yellow); }
+
+/* Kaart */
+selector .zwl .zw-card {
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius-card);
+  --padding-top: clamp(1.35rem, 2.5vw, 2rem); --padding-bottom: clamp(1.35rem, 2.5vw, 2rem);
+  --padding-left: clamp(1.35rem, 2.5vw, 2rem); --padding-right: clamp(1.35rem, 2.5vw, 2rem);
+  box-shadow: var(--zw-shadow-sm);
+}
+selector .zwl .zw-card--accent { border-top: 4px solid var(--zw-red); }
+
+/* Veelgestelde vragen — Elementor-accordeon in de stijl van het voorstel */
+selector .zwl .zw-faq { max-width: 760px; margin-inline: auto; width: 100%; }
+selector .zwl .zw-faq .e-n-accordion { display: grid; gap: .6rem; }
+selector .zwl .zw-faq .e-n-accordion-item {
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius); overflow: hidden;
+}
+selector .zwl .zw-faq .e-n-accordion-item[open] { border-color: var(--zw-red); }
+selector .zwl .zw-faq .e-n-accordion-item-title {
+  padding: 1.05rem 1.25rem; border: 0; background: transparent;
+  justify-content: space-between; gap: 1rem;
+}
+selector .zwl .zw-faq .e-n-accordion-item-title-header { flex: 1 1 auto; justify-content: flex-start; text-align: left; }
+selector .zwl .zw-faq .e-n-accordion-item-title-icon { order: 2; flex-shrink: 0; }
+selector .zwl .zw-faq .e-n-accordion-item-title-text {
+  font-family: var(--zw-font-head); font-size: 15.5px; font-weight: 700; line-height: 1.4;
+  color: var(--zw-ink);
+}
+selector .zwl .zw-faq .e-n-accordion-item-title-icon svg { fill: var(--zw-red); width: .9rem; height: .9rem; }
+selector .zwl .zw-faq .e-n-accordion-item > .e-con {
+  --padding-top: 0px; --padding-left: 1.25rem; --padding-right: 1.25rem; --padding-bottom: 1.15rem;
+  border: 0;
+}
+selector .zwl .zw-faq .e-n-accordion-item .elementor-widget-text-editor { font-size: 14.5px; color: var(--zw-grey-700); }
+selector .zwl .zw-faq--sm .e-n-accordion-item-title { padding: 1rem 1.1rem; }
+selector .zwl .zw-faq--sm .e-n-accordion-item-title-text { font-size: 15px; }
+selector .zwl .zw-faq--sm .e-n-accordion-item > .e-con { --padding-left: 1.1rem; --padding-right: 1.1rem; --padding-bottom: 1.05rem; }
+selector .zwl .zw-faq--sm .e-n-accordion-item .elementor-widget-text-editor { font-size: 14px; }
+
+/* Afbeelding met ronde hoeken in 4:3 */
+selector .zwl .zw-photo img { border-radius: var(--zw-radius-card); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; height: auto; }
+
+/* Kleefbare actiebalk op mobiel */
+selector .zwl.zw-mobilebar {
+  position: fixed; inset: auto 0 0 0; z-index: 70;
+  display: none;
+  --padding-top: .7rem; --padding-bottom: calc(.7rem + env(safe-area-inset-bottom));
+  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--zw-line);
+  box-shadow: 0 -4px 20px rgba(18,20,19,.1);
+}
+@media (max-width: 860px) {
+  selector .zwl.zw-mobilebar { display: flex; }
+  selector { padding-bottom: 5.5rem; }
+}
+/* In de Elementor-editor de balk gewoon onderaan tonen, niet zwevend */
+selector.elementor-editor-active .zwl.zw-mobilebar { position: static; display: flex; }
+
+/* Instapanimatie */
+@keyframes zw-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+selector .zwl .zw-rise { animation: zw-rise .7s var(--zw-ease) both; }
+selector .zwl .zw-rise-2 { animation-delay: .14s; }
+@media (prefers-reduced-motion: reduce) {
+  selector .zwl *, selector .zwl *::before, selector .zwl *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Ankers niet onder de sitehoofding laten verdwijnen */
+selector .zwl [id] { scroll-margin-top: 110px; }

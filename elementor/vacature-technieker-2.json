@@ -1,0 +1,911 @@
+{
+ "content": [
+  {
+   "id": "17d967b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec hero2"
+   },
+   "elements": [
+    {
+     "id": "9f01d73",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "hero2__inner"
+     },
+     "elements": [
+      {
+       "id": "24d015b",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "css_classes": "zw-rise"
+       },
+       "elements": [
+        {
+         "id": "855cdff",
+         "elType": "widget",
+         "settings": {
+          "title": "Technieker algemene elektriciteit · Dendermonde",
+          "header_size": "div",
+          "_css_classes": "zw-eyebrow",
+          "__globals__": {
+           "title_color": "globals/colors?id=accent"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "987fc91",
+         "elType": "widget",
+         "settings": {
+          "title": "Kom jij in aanmerking als <em>technieker</em> bij Electro Zwijsen?",
+          "header_size": "h1",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "6bd70d8",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Acht korte vragen over je ervaring, je rijbewijs en je regio. Je weet meteen waar je staat — en wij weten of we je kunnen bellen. Geen CV, geen motivatiebrief, geen verplichtingen.</p>",
+          "_css_classes": "hero2__sub"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "e638bca",
+         "elType": "widget",
+         "settings": {
+          "text": "Start de check",
+          "link": {
+           "url": "#check",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "__globals__": {
+           "background_color": "globals/colors?id=accent",
+           "button_text_color": "globals/colors?id=2c5975e"
+          },
+          "button_background_hover_color": "#B60A0E",
+          "hover_color": "#FFFFFF",
+          "_css_classes": "zw-btn--lg hero2__btn"
+         },
+         "elements": [],
+         "widgetType": "button"
+        },
+        {
+         "id": "388fdce",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>60 seconden</li><li>Geen CV nodig</li><li>Volledig vertrouwelijk</li><li>Antwoord binnen 1 werkdag</li></ul>",
+          "_css_classes": "zw-trust"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "95563c5",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "css_classes": "starter zw-rise zw-rise-2"
+       },
+       "elements": [
+        {
+         "id": "215dc56",
+         "elType": "widget",
+         "settings": {
+          "title": "Wat we je vragen",
+          "header_size": "h2",
+          "_css_classes": "starter-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "4706aca",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Vooraf weten wat komt, scheelt een drempel. Dit is de volledige lijst:</p>",
+          "_css_classes": "starter-p"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "7be4a80",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>De acht vragen</p><ol><li>Je ervaring met elektriciteit</li><li>Residentieel, utiliteit of industrieel</li><li>Schema's lezen</li><li>VCA-attest</li><li>Rijbewijs</li><li>Kennis Nederlands</li><li>Regio Dendermonde</li><li>Wanneer je kan starten</li></ol>",
+          "_css_classes": "starter__preview"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "20835e0",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Ongeveer 60 sec</p>",
+          "_css_classes": "meter"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "a0475dd",
+         "elType": "widget",
+         "settings": {
+          "text": "Begin met vraag 1",
+          "link": {
+           "url": "#check",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "__globals__": {
+           "background_color": "globals/colors?id=accent",
+           "button_text_color": "globals/colors?id=2c5975e"
+          },
+          "button_background_hover_color": "#B60A0E",
+          "hover_color": "#FFFFFF",
+          "_css_classes": "zw-btn--block"
+         },
+         "elements": [],
+         "widgetType": "button"
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "212e03b",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec zw-section"
+   },
+   "elements": [
+    {
+     "id": "82974e2",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "zw-intro"
+     },
+     "elements": [
+      {
+       "id": "b51024e",
+       "elType": "widget",
+       "settings": {
+        "title": "Hoe het verder gaat",
+        "header_size": "div",
+        "_css_classes": "zw-eyebrow",
+        "__globals__": {
+         "title_color": "globals/colors?id=accent"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "feefa67",
+       "elType": "widget",
+       "settings": {
+        "title": "Van één minuut naar een gesprek",
+        "header_size": "h2",
+        "__globals__": {
+         "title_color": "globals/colors?id=primary"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "6f761b0",
+       "elType": "widget",
+       "settings": {
+        "editor": "<p>Geen zwart gat na het versturen. Dit is precies wat er gebeurt.</p>",
+        "_css_classes": "zw-lead"
+       },
+       "elements": [],
+       "widgetType": "text-editor"
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "8e683f2",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "how"
+     },
+     "elements": [
+      {
+       "id": "39b95d9",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "0c5026a",
+         "elType": "widget",
+         "settings": {
+          "title": "Je doet de check",
+          "header_size": "h3",
+          "_css_classes": "how-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "3df5bb1",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Acht vragen, één minuut. Op het einde laat je je naam en nummer achter.</p>",
+          "_css_classes": "how-p"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "0a546c0",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "ff113a1",
+         "elType": "widget",
+         "settings": {
+          "title": "Bevestiging in je mailbox",
+          "header_size": "h3",
+          "_css_classes": "how-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "c9de48f",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Meteen een mail met wie je contacteert, wanneer, en waarover het gesprek gaat.</p>",
+          "_css_classes": "how-p"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "90b123f",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "6bcc7b9",
+         "elType": "widget",
+         "settings": {
+          "title": "Telefoontje binnen 1 werkdag",
+          "header_size": "h3",
+          "_css_classes": "how-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "0722d19",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Tien minuten kennismaken. Past het langs beide kanten, dan kom je langs in Duffel.</p>",
+          "_css_classes": "how-p"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "ad28d47",
+     "elType": "widget",
+     "settings": {
+      "text": "Doe de check",
+      "link": {
+       "url": "#check",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "__globals__": {
+       "background_color": "globals/colors?id=accent",
+       "button_text_color": "globals/colors?id=2c5975e"
+      },
+      "button_background_hover_color": "#B60A0E",
+      "hover_color": "#FFFFFF",
+      "_css_classes": "zw-after"
+     },
+     "elements": [],
+     "widgetType": "button"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "14786e9",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec zw-section zw-section--grey"
+   },
+   "elements": [
+    {
+     "id": "299a528",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "zw-intro"
+     },
+     "elements": [
+      {
+       "id": "c1bfc7a",
+       "elType": "widget",
+       "settings": {
+        "title": "Ons aanbod",
+        "header_size": "div",
+        "_css_classes": "zw-eyebrow",
+        "__globals__": {
+         "title_color": "globals/colors?id=accent"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "9541937",
+       "elType": "widget",
+       "settings": {
+        "title": "Wat je bij Electro Zwijsen krijgt",
+        "header_size": "h2",
+        "__globals__": {
+         "title_color": "globals/colors?id=primary"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "a636039",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "benefits"
+     },
+     "elements": [
+      {
+       "id": "c0cf17c",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "4fd7eba",
+         "elType": "widget",
+         "settings": {
+          "title": "Het werk zelf",
+          "header_size": "h3",
+          "_css_classes": "benefits-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "775ace3",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Opbouw en onderhoud van elektrische installaties</li><li>Scholen, ziekenhuizen, rusthuizen en appartementsgebouwen</li><li>Kabelgoten, kabels trekken, schakelmateriaal, verdeelborden</li><li>Elke werf anders — geen dag hetzelfde</li><li>Je start altijd naast een ervaren collega</li><li>Zelfstandigheid zodra je er klaar voor bent</li></ul>",
+          "_css_classes": "zw-checks"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "ef512c5",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "a714a1e",
+         "elType": "widget",
+         "settings": {
+          "title": "De voorwaarden",
+          "header_size": "h3",
+          "_css_classes": "benefits-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "c835156",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Vast contract, voltijds</li><li>Competitief loon volgens PC 149.01</li><li>VCA-opleiding betaald en ingepland door ons</li><li>Doorlopende bijscholing en opleidingsmogelijkheden</li><li>Werven in je eigen regio — 's avonds thuis</li><li>Een groeiend bedrijf met een gevulde orderportefeuille</li></ul>",
+          "_css_classes": "zw-checks"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "47eb93c",
+     "elType": "widget",
+     "settings": {
+      "text": "Kijk of het past",
+      "link": {
+       "url": "#check",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "__globals__": {
+       "background_color": "globals/colors?id=accent",
+       "button_text_color": "globals/colors?id=2c5975e"
+      },
+      "button_background_hover_color": "#B60A0E",
+      "hover_color": "#FFFFFF",
+      "_css_classes": "zw-after"
+     },
+     "elements": [],
+     "widgetType": "button"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "ef82807",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec zw-section"
+   },
+   "elements": [
+    {
+     "id": "a78b624",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "region"
+     },
+     "elements": [
+      {
+       "id": "8644a1e",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "e685acb",
+         "elType": "widget",
+         "settings": {
+          "title": "Je werkgebied",
+          "header_size": "div",
+          "_css_classes": "zw-eyebrow",
+          "__globals__": {
+           "title_color": "globals/colors?id=accent"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "db70a64",
+         "elType": "widget",
+         "settings": {
+          "title": "Werven rond Dendermonde",
+          "header_size": "h2",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "d94d8d2",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>We zoeken specifiek versterking voor de werven in en rond Dendermonde. Woon je in deze omgeving, dan is je rit naar de werf kort — en ben je 's avonds gewoon weer thuis.</p>",
+          "_css_classes": "zw-lead"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        },
+        {
+         "id": "d2818ad",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Dendermonde</li><li>Lebbeke</li><li>Buggenhout</li><li>Zele</li><li>Berlare</li><li>Waasmunster</li><li>Hamme</li><li>Wichelen</li><li>Laarne</li><li>Bornem</li><li>Puurs-Sint-Amands</li><li>Willebroek</li></ul>",
+          "_css_classes": "region__towns"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "94222be",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "f0217c3",
+         "elType": "widget",
+         "settings": {
+          "image": {
+           "id": 1240,
+           "url": "https://staging.zwijsen.be/wp-content/uploads/2022/01/worker-is-cutting-wires-with-linemans-pliers-scaled.jpg",
+           "alt": "Elektricien aan het werk met een kniptang",
+           "source": "library"
+          },
+          "image_size": "large",
+          "_css_classes": "zw-photo"
+         },
+         "elements": [],
+         "widgetType": "image"
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "16d2b9a",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec zw-section zw-section--grey"
+   },
+   "elements": [
+    {
+     "id": "9f4e53b",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "zw-intro"
+     },
+     "elements": [
+      {
+       "id": "b0f125a",
+       "elType": "widget",
+       "settings": {
+        "title": "Eerlijk",
+        "header_size": "div",
+        "_css_classes": "zw-eyebrow",
+        "__globals__": {
+         "title_color": "globals/colors?id=accent"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      },
+      {
+       "id": "70ae31c",
+       "elType": "widget",
+       "settings": {
+        "title": "Wat deze sollicitatie wél en niet is",
+        "header_size": "h2",
+        "__globals__": {
+         "title_color": "globals/colors?id=primary"
+        }
+       },
+       "elements": [],
+       "widgetType": "heading"
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "b7fe7f4",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "compare"
+     },
+     "elements": [
+      {
+       "id": "cc2114b",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "css_classes": "compare__col--no"
+       },
+       "elements": [
+        {
+         "id": "4a13b9d",
+         "elType": "widget",
+         "settings": {
+          "title": "Wat het niet is",
+          "header_size": "h3",
+          "_css_classes": "compare-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=primary"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "b33f70f",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Geen uitgebreid formulier van twintig velden</li><li>Geen motivatiebrief schrijven</li><li>Geen CV verplicht uploaden</li><li>Geen weken wachten op een antwoord</li><li>Geen verbintenis — je kan altijd nog nee zeggen</li></ul>",
+          "_css_classes": "compare-l"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "6d95190",
+       "elType": "container",
+       "settings": {
+        "content_width": "full",
+        "css_classes": "compare__col--yes"
+       },
+       "elements": [
+        {
+         "id": "125e5cf",
+         "elType": "widget",
+         "settings": {
+          "title": "Wat het wél is",
+          "header_size": "h3",
+          "_css_classes": "compare-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=2c5975e"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "19ec441",
+         "elType": "widget",
+         "settings": {
+          "editor": "<ul><li>Acht vragen die er echt toe doen</li><li>Meteen duidelijkheid of je profiel past</li><li>Een bevestigingsmail met de volgende stap erin</li><li>Een telefoontje binnen één werkdag</li><li>Altijd een duidelijk antwoord, ook bij een nee</li></ul>",
+          "_css_classes": "compare-l"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      }
+     ],
+     "isInner": true
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "9bf7088",
+   "elType": "container",
+   "settings": {
+    "content_width": "boxed",
+    "css_classes": "zwl zw-sec zw-section"
+   },
+   "elements": [
+    {
+     "id": "f075cd9",
+     "elType": "container",
+     "settings": {
+      "content_width": "full",
+      "css_classes": "cta-strip"
+     },
+     "elements": [
+      {
+       "id": "642a1d5",
+       "elType": "container",
+       "settings": {
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "a51bdbe",
+         "elType": "widget",
+         "settings": {
+          "title": "Benieuwd of je in aanmerking komt?",
+          "header_size": "h3",
+          "_css_classes": "cta-strip-h",
+          "__globals__": {
+           "title_color": "globals/colors?id=2c5975e"
+          }
+         },
+         "elements": [],
+         "widgetType": "heading"
+        },
+        {
+         "id": "11a6fff",
+         "elType": "widget",
+         "settings": {
+          "editor": "<p>Acht vragen, één minuut, en je weet het. Zonder CV.</p>",
+          "_css_classes": "cta-strip-p"
+         },
+         "elements": [],
+         "widgetType": "text-editor"
+        }
+       ],
+       "isInner": true
+      },
+      {
+       "id": "502fe65",
+       "elType": "widget",
+       "settings": {
+        "text": "Start de check",
+        "link": {
+         "url": "#check",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "__globals__": {
+         "background_color": "globals/colors?id=2c5975e",
+         "button_text_color": "globals/colors?id=primary"
+        },
+        "button_background_hover_color": "#EFEDEE",
+        "hover_color": "#121413",
+        "_css_classes": "zw-btn--lg"
+       },
+       "elements": [],
+       "widgetType": "button"
+      }
+     ],
+     "isInner": true
+    },
+    {
+     "id": "cf057c3",
+     "elType": "widget",
+     "settings": {
+      "editor": "<p>Liever gewoon bellen? <a href=\"tel:+3215305305\">015 305 305</a> — vraag naar de personeelsdienst.</p>",
+      "_css_classes": "call-note"
+     },
+     "elements": [],
+     "widgetType": "text-editor"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "6ab39be",
+   "elType": "container",
+   "settings": {
+    "content_width": "full",
+    "css_classes": "zwl zw-mobilebar"
+   },
+   "elements": [
+    {
+     "id": "9902e94",
+     "elType": "widget",
+     "settings": {
+      "text": "Doe de check — 60 sec",
+      "link": {
+       "url": "#check",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "__globals__": {
+       "background_color": "globals/colors?id=accent",
+       "button_text_color": "globals/colors?id=2c5975e"
+      },
+      "button_background_hover_color": "#B60A0E",
+      "hover_color": "#FFFFFF",
+      "_css_classes": "zw-btn--block zw-btn--block"
+     },
+     "elements": [],
+     "widgetType": "button"
+    }
+   ],
+   "isInner": false
+  },
+  {
+   "id": "27a3f19",
+   "elType": "container",
+   "settings": {
+    "content_width": "full",
+    "css_classes": "zwl zw-formhost"
+   },
+   "elements": [
+    {
+     "id": "f606c2d",
+     "elType": "widget",
+     "settings": {
+      "html": "<script>\n/* ==========================================================================\n   Electro Zwijsen — sollicitatieflow (\"kwalificatieformulier\")\n   --------------------------------------------------------------------------\n   Eén herbruikbare motor voor alle vijf de ontwerpen.\n\n   Opbouw: korte vragen, één per scherm, een voortgangsbalk, en pas op het\n   einde de contactgegevens. Dat verlaagt de drempel om te beginnen en houdt\n   mensen op gang. Bewust rustig gehouden: geen tellers, geen kunstmatige\n   schaarste en geen automatische afwijzing — elke sollicitatie komt binnen,\n   met de antwoorden erbij zodat Zwijsen zelf kan beoordelen.\n\n   Gebruik:\n     ZwijsenApply.mount('#doelelement', { variant: 'inline' | 'modal' });\n\n   Koppelen aan een echte backend: zie onSubmit() onderaan.\n   ========================================================================== */\n\n(function (global) {\n  'use strict';\n\n  /* ----------------------------------------------------------------------\n     1. De vragen\n     Afgeleid van de echte vacature-eisen op zwijsen.be:\n     technische richting, eerste ervaring = plus, Nederlands, rijbewijs B,\n     VCA-attest, zelfstandig kunnen werken.\n     ---------------------------------------------------------------------- */\n\n  var QUESTIONS = [\n    {\n      name: 'ervaring',\n      label: 'Heb je al ervaring met of kennis van elektriciteit?',\n      icon: '⚡',\n      options: [\n        { value: 'werkervaring', label: 'Ja, vanuit werkervaring' },\n        { value: 'opleiding', label: 'Ja, vanuit mijn opleiding' },\n        { value: 'beide', label: 'Ja, vanuit werkervaring én opleiding' },\n        { value: 'geen', label: 'Nog niet, maar ik leer het graag' }\n      ]\n    },\n    {\n      name: 'domein',\n      label: 'Waar ligt je ervaring vooral?',\n      icon: '\\u{1F3D7}️',\n      hint: 'Geen van beide? Ook prima — je leert bij ons on-the-job.',\n      options: [\n        { value: 'residentieel', label: 'Residentieel (woningen, appartementen)' },\n        { value: 'utiliteit', label: 'Utiliteit (scholen, ziekenhuizen, rusthuizen)' },\n        { value: 'industrieel', label: 'Industrieel' },\n        { value: 'nvt', label: 'Nog geen ervaring op de werf' }\n      ]\n    },\n    {\n      name: 'schemas',\n      label: 'Kan je elektrische schema’s en componenten lezen?',\n      icon: '\\u{1F4D6}',\n      options: [\n        { value: 'ja', label: 'Ja, vlot' },\n        { value: 'basis', label: 'De basis wel' },\n        { value: 'nee', label: 'Nee, maar ik wil dat graag leren' }\n      ]\n    },\n    {\n      name: 'vca',\n      label: 'Heb je een geldig VCA-attest?',\n      icon: '\\u{1F9BA}',\n      hint: 'Nog geen attest? Geen probleem — Zwijsen betaalt en plant je VCA-opleiding.',\n      options: [\n        { value: 'geldig', label: 'Ja, geldig' },\n        { value: 'vervallen', label: 'Gehad, maar vervallen' },\n        { value: 'nee', label: 'Nee, nog niet' }\n      ]\n    },\n    {\n      name: 'rijbewijs',\n      label: 'Welk rijbewijs heb je?',\n      icon: '\\u{1F697}',\n      options: [\n        { value: 'b', label: 'Rijbewijs B' },\n        { value: 'be', label: 'Rijbewijs BE' },\n        { value: 'ce', label: 'Rijbewijs C(E)' },\n        { value: 'geen', label: '(Nog) geen rijbewijs' }\n      ]\n    },\n    {\n      name: 'nederlands',\n      label: 'Hoe goed is je Nederlands?',\n      icon: '\\u{1F5E3}️',\n      hint: 'Frans is een pluspunt, geen vereiste.',\n      options: [\n        { value: 'moedertaal', label: 'Moedertaal' },\n        { value: 'gevorderd', label: 'Gevorderd' },\n        { value: 'basis', label: 'Basis' },\n        { value: 'geen', label: 'Ik spreek geen Nederlands' }\n      ]\n    },\n    {\n      name: 'regio',\n      label: 'Werk je graag in de regio Dendermonde?',\n      icon: '\\u{1F5FA}️',\n      map: true,\n      options: [\n        { value: 'ja', label: 'Ja, dat ligt goed voor mij' },\n        { value: 'bespreekbaar', label: 'Bespreekbaar' },\n        { value: 'nee', label: 'Liever een andere regio' }\n      ]\n    },\n    {\n      name: 'start',\n      label: 'Wanneer zou je kunnen starten?',\n      icon: '\\u{1F5D3}️',\n      options: [\n        { value: 'direct', label: 'Zo goed als direct' },\n        { value: 'maand', label: 'Binnen de maand' },\n        { value: 'kwartaal', label: 'Over 1 tot 3 maanden' },\n        { value: 'orienteren', label: 'Ik kijk voorlopig rond' }\n      ]\n    }\n  ];\n\n  /* Gemeenten in de wervingsregio — getoond bij de regiovraag. */\n  var REGIO = ['Dendermonde', 'Lebbeke', 'Buggenhout', 'Zele', 'Berlare',\n    'Waasmunster', 'Hamme', 'Wichelen', 'Laarne', 'Bornem', 'Puurs-Sint-Amands', 'Willebroek'];\n\n  var LANDCODES = [\n    ['BE', '\\u{1F1E7}\\u{1F1EA} +32'], ['NL', '\\u{1F1F3}\\u{1F1F1} +31'],\n    ['FR', '\\u{1F1EB}\\u{1F1F7} +33'], ['DE', '\\u{1F1E9}\\u{1F1EA} +49'],\n    ['LU', '\\u{1F1F1}\\u{1F1FA} +352'], ['PL', '\\u{1F1F5}\\u{1F1F1} +48'],\n    ['PT', '\\u{1F1F5}\\u{1F1F9} +351'], ['RO', '\\u{1F1F7}\\u{1F1F4} +40']\n  ];\n\n  /* ----------------------------------------------------------------------\n     2. Hulpjes\n     ---------------------------------------------------------------------- */\n\n  function el(tag, attrs, kids) {\n    var n = document.createElement(tag);\n    attrs = attrs || {};\n    Object.keys(attrs).forEach(function (k) {\n      if (k === 'class') n.className = attrs[k];\n      else if (k === 'text') n.textContent = attrs[k];\n      else if (k === 'html') n.innerHTML = attrs[k];\n      else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), attrs[k]);\n      else if (attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]);\n    });\n    (kids || []).forEach(function (c) { if (c) n.appendChild(c); });\n    return n;\n  }\n\n  var LETTERS = 'ABCDEF';\n\n  /* Meting staat UIT op staging: er is nog geen echte pixel-ID en geen\n     toestemmingslaag. Zie README, hoofdstuk \"Meta Pixel en events\". */\n  function track() {}\n  function trackStandard() {}\n\n  /* ----------------------------------------------------------------------\n     3. De motor\n     ---------------------------------------------------------------------- */\n\n  function ZwijsenApply(root, opts) {\n    this.root = root;\n    this.opts = opts || {};\n    this.answers = {};\n    this.step = 0;\n    this.total = QUESTIONS.length + 1;   /* vragen + contactstap */\n    this.started = false;\n    this.render();\n  }\n\n  ZwijsenApply.prototype.progress = function () {\n    return Math.round(((this.step) / this.total) * 100);\n  };\n\n  ZwijsenApply.prototype.render = function () {\n    this.root.innerHTML = '';\n    this.root.classList.add('za');\n\n    var head = el('div', { class: 'za__head' }, [\n      el('div', { class: 'za__bar', role: 'progressbar', 'aria-valuemin': '0',\n        'aria-valuemax': '100', 'aria-valuenow': String(this.progress()),\n        'aria-label': 'Voortgang sollicitatie' }, [\n        el('span', { class: 'za__bar-fill', style: 'width:' + Math.max(this.progress(), 4) + '%' })\n      ]),\n      el('span', { class: 'za__step', text: this.step >= this.total\n        ? 'Laatste stap'\n        : 'Stap ' + (this.step + 1) + ' van ' + this.total })\n    ]);\n    this.root.appendChild(head);\n\n    var body = el('div', { class: 'za__body' });\n    this.root.appendChild(body);\n    this.body = body;\n\n    if (this.done) this.renderDone();\n    else if (this.step < QUESTIONS.length) this.renderQuestion(QUESTIONS[this.step]);\n    else this.renderContact();\n  };\n\n  ZwijsenApply.prototype.renderQuestion = function (q) {\n    var self = this;\n    var group = 'q_' + q.name;\n\n    var fs = el('fieldset', { class: 'za__fieldset' });\n    fs.appendChild(el('legend', { class: 'za__legend',\n      html: (q.icon ? '<span class=\"za__icon\" aria-hidden=\"true\">' + q.icon + '</span> ' : '') + q.label }));\n\n    if (q.hint) fs.appendChild(el('p', { class: 'za__hint', text: q.hint }));\n\n    if (q.map) fs.appendChild(this.buildMap());\n\n    var list = el('div', { class: 'za__options' });\n    q.options.forEach(function (o, i) {\n      var id = group + '_' + o.value;\n      var input = el('input', {\n        class: 'za__radio', type: 'radio', name: group, id: id, value: o.value,\n        onchange: function () {\n          self.answers[q.name] = o.value;\n          list.querySelectorAll('.za__option').forEach(function (n) { n.classList.remove('is-on'); });\n          label.classList.add('is-on');\n          self.clearError();\n          /* Kort uitstel zodat de selectie zichtbaar is voor we doorgaan. */\n          setTimeout(function () { self.next(); }, 260);\n        }\n      });\n      if (self.answers[q.name] === o.value) input.checked = true;\n\n      var label = el('label', { class: 'za__option' + (self.answers[q.name] === o.value ? ' is-on' : ''), for: id }, [\n        input,\n        el('span', { class: 'za__letter', 'aria-hidden': 'true', text: LETTERS[i] || '+' }),\n        el('span', { class: 'za__option-text', text: o.label })\n      ]);\n      list.appendChild(label);\n    });\n    fs.appendChild(list);\n    this.body.appendChild(fs);\n\n    this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));\n\n    var nav = el('div', { class: 'za__nav' }, [\n      this.step > 0 ? el('button', { class: 'za__back', type: 'button', text: '← Terug',\n        onclick: function () { self.prev(); } }) : null,\n      el('button', { class: 'zw-btn za__next', type: 'button',\n        html: 'Volgende <span aria-hidden=\"true\">→</span>',\n        onclick: function () { self.next(); } })\n    ]);\n    this.body.appendChild(nav);\n    this.body.appendChild(this.reassure());\n\n    if (!this.started) {\n      this.started = true;\n      track('SollicitatieGestart', { vacature: 'technieker-algemene-elektriciteit' });\n    }\n  };\n\n  /* Eenvoudige regiokaart — bewust zonder externe kaartbibliotheek,\n     zodat de pagina snel blijft en er geen extra cookie-toestemming nodig is. */\n  ZwijsenApply.prototype.buildMap = function () {\n    var wrap = el('div', { class: 'za__map' });\n    wrap.appendChild(el('div', { class: 'za__map-visual', 'aria-hidden': 'true', html:\n      '<svg viewBox=\"0 0 320 150\" role=\"presentation\">' +\n      '<defs><radialGradient id=\"zaGlow\" cx=\"50%\" cy=\"50%\" r=\"50%\">' +\n      '<stop offset=\"0%\" stop-color=\"#E60E13\" stop-opacity=\".28\"/>' +\n      '<stop offset=\"100%\" stop-color=\"#E60E13\" stop-opacity=\"0\"/></radialGradient></defs>' +\n      '<rect width=\"320\" height=\"150\" fill=\"#EFEDEE\"/>' +\n      '<path d=\"M0 96 L52 84 L104 98 L156 76 L208 92 L262 72 L320 88 L320 150 L0 150Z\" fill=\"#DDD9DB\"/>' +\n      '<path d=\"M0 118 L60 110 L128 122 L196 104 L268 118 L320 108 L320 150 L0 150Z\" fill=\"#CFCCCE\"/>' +\n      '<circle cx=\"160\" cy=\"72\" r=\"58\" fill=\"url(#zaGlow)\"/>' +\n      '<circle cx=\"160\" cy=\"72\" r=\"30\" fill=\"none\" stroke=\"#E60E13\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/>' +\n      '<circle cx=\"160\" cy=\"72\" r=\"7\" fill=\"#E60E13\"/>' +\n      '<circle cx=\"160\" cy=\"72\" r=\"13\" fill=\"none\" stroke=\"#E60E13\" stroke-width=\"2\" opacity=\".45\"/>' +\n      '<text x=\"160\" y=\"104\" text-anchor=\"middle\" font-family=\"Roboto,sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#121413\">Dendermonde</text>' +\n      '</svg>' }));\n    wrap.appendChild(el('p', { class: 'za__map-caption',\n      text: 'Werven in en rond: ' + REGIO.join(' · ') }));\n    return wrap;\n  };\n\n  ZwijsenApply.prototype.reassure = function () {\n    return el('ul', { class: 'za__reassure' }, [\n      el('li', { text: 'Duurt 60 seconden' }),\n      el('li', { text: 'CV niet verplicht' }),\n      el('li', { text: '100% vertrouwelijk' })\n    ]);\n  };\n\n  /* ----------------------------------------------------------------------\n     Contactstap\n     ---------------------------------------------------------------------- */\n\n  ZwijsenApply.prototype.renderContact = function () {\n    var self = this;\n\n    var fs = el('fieldset', { class: 'za__fieldset' });\n    fs.appendChild(el('legend', { class: 'za__legend', text: 'Waar mogen we je bereiken?' }));\n    fs.appendChild(el('p', { class: 'za__hint',\n      text: 'Je krijgt binnen 1 werkdag antwoord van Katrien, rechtstreeks. Geen wachtrij, geen tussenpersoon.' }));\n\n    /* Honeypot — echte bezoekers zien dit veld niet. */\n    fs.appendChild(el('div', { class: 'za__hp', 'aria-hidden': 'true' }, [\n      el('label', { for: 'za_website', text: 'Laat dit veld leeg' }),\n      el('input', { type: 'text', id: 'za_website', name: 'company_website', tabindex: '-1', autocomplete: 'off' })\n    ]));\n\n    var grid = el('div', { class: 'za__grid' });\n    grid.appendChild(this.field('voornaam', 'Voornaam', 'text', { autocomplete: 'given-name', required: true }));\n    grid.appendChild(this.field('achternaam', 'Achternaam', 'text', { autocomplete: 'family-name', required: true }));\n    grid.appendChild(this.field('email', 'E-mailadres', 'email', { autocomplete: 'email', required: true, full: true }));\n\n    /* Telefoon met landcode */\n    var telWrap = el('div', { class: 'za__field za__field--full' });\n    telWrap.appendChild(el('label', { class: 'za__label', for: 'za_tel', text: 'Telefoon' }));\n    var telRow = el('div', { class: 'za__telrow' });\n    var sel = el('select', { class: 'za__select', id: 'za_landcode', name: 'landcode',\n      'aria-label': 'Landcode' });\n    LANDCODES.forEach(function (c) { sel.appendChild(el('option', { value: c[0], text: c[1] })); });\n    telRow.appendChild(sel);\n    telRow.appendChild(el('input', { class: 'za__input', type: 'tel', id: 'za_tel', name: 'telefoon',\n      autocomplete: 'tel-national', inputmode: 'tel', placeholder: '0470 12 34 56', required: 'required' }));\n    telWrap.appendChild(telRow);\n    telWrap.appendChild(el('p', { class: 'za__field-error', 'aria-live': 'polite' }));\n    grid.appendChild(telWrap);\n\n    fs.appendChild(grid);\n\n    /* CV — optioneel, precies zoals in de referentie */\n    var fileWrap = el('div', { class: 'za__file' });\n    fileWrap.appendChild(el('input', { type: 'file', id: 'za_cv', name: 'cv',\n      accept: '.pdf,.doc,.docx,.jpg,.png', class: 'zw-visually-hidden',\n      onchange: function (e) {\n        var f = e.target.files && e.target.files[0];\n        fileLabel.querySelector('.za__file-text').textContent = f ? f.name : 'CV toevoegen (optioneel)';\n        fileWrap.classList.toggle('is-set', !!f);\n      } }));\n    var fileLabel = el('label', { class: 'za__file-label', for: 'za_cv' }, [\n      el('span', { class: 'za__file-icon', 'aria-hidden': 'true', text: '\\u{1F4CE}' }),\n      el('span', { class: 'za__file-text', text: 'CV toevoegen (optioneel)' })\n    ]);\n    fileWrap.appendChild(fileLabel);\n    fs.appendChild(fileWrap);\n\n    /* GDPR — expliciete, niet vooraf aangevinkte toestemming */\n    var consentWrap = el('div', { class: 'za__consent' });\n    consentWrap.appendChild(el('input', { type: 'checkbox', id: 'za_consent', name: 'consent', required: 'required' }));\n    consentWrap.appendChild(el('label', { for: 'za_consent', html:\n      'Ik ga ermee akkoord dat Electro Zwijsen mijn gegevens bijhoudt om deze sollicitatie te behandelen. ' +\n      '<a href=\"https://zwijsen.be/privacy-verklaring/\" target=\"_blank\" rel=\"noopener\">Privacyverklaring</a>.' }));\n    fs.appendChild(consentWrap);\n    fs.appendChild(el('p', { class: 'za__field-error za__consent-error', 'aria-live': 'polite' }));\n\n    this.body.appendChild(fs);\n    this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));\n\n    this.body.appendChild(el('div', { class: 'za__nav' }, [\n      el('button', { class: 'za__back', type: 'button', text: '← Terug',\n        onclick: function () { self.prev(); } }),\n      el('button', { class: 'zw-btn za__next za__submit', type: 'button',\n        text: 'Verstuur mijn sollicitatie',\n        onclick: function (e) { self.submit(e.currentTarget); } })\n    ]));\n\n    this.body.appendChild(el('p', { class: 'za__legal',\n      text: 'Je gegevens worden vertrouwelijk verwerkt en niet gedeeld met derden.' }));\n  };\n\n  ZwijsenApply.prototype.field = function (name, label, type, o) {\n    o = o || {};\n    var wrap = el('div', { class: 'za__field' + (o.full ? ' za__field--full' : '') });\n    wrap.appendChild(el('label', { class: 'za__label', for: 'za_' + name, text: label }));\n    wrap.appendChild(el('input', {\n      class: 'za__input', type: type, id: 'za_' + name, name: name,\n      autocomplete: o.autocomplete || 'on',\n      required: o.required ? 'required' : null,\n      value: this.answers[name] || ''\n    }));\n    wrap.appendChild(el('p', { class: 'za__field-error', 'aria-live': 'polite' }));\n    return wrap;\n  };\n\n  /* ----------------------------------------------------------------------\n     Navigatie\n     ---------------------------------------------------------------------- */\n\n  ZwijsenApply.prototype.showError = function (msg) {\n    var n = this.body.querySelector('.za__error');\n    if (n) { n.textContent = msg; n.classList.add('is-on'); }\n  };\n  ZwijsenApply.prototype.clearError = function () {\n    var n = this.body.querySelector('.za__error');\n    if (n) { n.textContent = ''; n.classList.remove('is-on'); }\n  };\n\n  ZwijsenApply.prototype.next = function () {\n    if (this.step < QUESTIONS.length) {\n      var q = QUESTIONS[this.step];\n      if (!this.answers[q.name]) { this.showError('Kies een antwoord om verder te gaan.'); return; }\n      /* Bewust ALLEEN het stapnummer en de vraagnaam naar Meta/Analytics.\n         Het gegeven antwoord (rijbewijs, taalniveau, opleiding) gaat NIET mee:\n         dat is persoonlijke informatie over een sollicitant, en die hoort bij\n         Zwijsen thuis — niet bij een advertentieplatform. Voor het meten van\n         afhaakpunten volstaat het stapnummer. De antwoorden zitten wel in de\n         inzending naar de backend, zie submit(). */\n      track('SollicitatieStap', { stap: this.step + 1, vraag: q.name });\n    }\n    this.step = Math.min(this.step + 1, this.total);\n    this.render();\n    this.focusFirst();\n  };\n\n  ZwijsenApply.prototype.prev = function () {\n    this.step = Math.max(0, this.step - 1);\n    this.render();\n    this.focusFirst();\n  };\n\n  ZwijsenApply.prototype.focusFirst = function () {\n    var n = this.body.querySelector('.za__legend');\n    if (n) { n.setAttribute('tabindex', '-1'); n.focus({ preventScroll: true }); }\n    var box = this.root.closest('[data-za-scroll]') || this.root;\n    if (box.scrollIntoView) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });\n  };\n\n  /* ----------------------------------------------------------------------\n     Verzenden\n     ---------------------------------------------------------------------- */\n\n  ZwijsenApply.prototype.submit = function (btn) {\n    var self = this;\n    this.clearError();\n    this.body.querySelectorAll('.za__field-error').forEach(function (n) { n.textContent = ''; });\n\n    var get = function (id) { var n = self.body.querySelector('#' + id); return n ? n.value.trim() : ''; };\n    var data = {\n      voornaam: get('za_voornaam'),\n      achternaam: get('za_achternaam'),\n      email: get('za_email'),\n      landcode: get('za_landcode'),\n      telefoon: get('za_tel')\n    };\n    var consent = this.body.querySelector('#za_consent').checked;\n    var honeypot = this.body.querySelector('#za_website').value;\n\n    var bad = false;\n    function fail(id, msg) {\n      var input = self.body.querySelector('#' + id);\n      var slot = input.closest('.za__field').querySelector('.za__field-error');\n      if (slot) slot.textContent = msg;\n      input.classList.add('is-bad');\n      input.setAttribute('aria-invalid', 'true');\n      if (!bad) input.focus();\n      bad = true;\n    }\n    if (!data.voornaam) fail('za_voornaam', 'Vul je voornaam in.');\n    if (!data.achternaam) fail('za_achternaam', 'Vul je achternaam in.');\n    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(data.email)) fail('za_email', 'Vul een geldig e-mailadres in.');\n    if (data.telefoon.replace(/\\D/g, '').length < 8) fail('za_tel', 'Vul een geldig telefoonnummer in.');\n    if (!consent) {\n      this.body.querySelector('.za__consent-error').textContent = 'Je moet akkoord gaan om te kunnen versturen.';\n      bad = true;\n    }\n    if (bad) { this.showError('Even nakijken — er ontbreekt nog iets.'); return; }\n\n    /* Bot gedetecteerd: doe alsof alles lukte, verstuur niets. */\n    if (honeypot) { this.done = true; this.render(); return; }\n\n    var payload = Object.assign({}, this.answers, data, {\n      vacature: 'Technieker Algemene Elektriciteit',\n      regio_campagne: 'Dendermonde',\n      bron: (global.location && global.location.search) || '',\n      tijdstip: new Date().toISOString()\n    });\n\n    btn.disabled = true;\n    btn.textContent = 'Versturen…';\n\n    /* --------------------------------------------------------------\n       KOPPELPUNT — hier gaat de inzending naar de backend.\n       Zie README: WP Forms / Fluent Forms / Make / n8n / eigen endpoint.\n       De Lead-event blijft hoe dan ook vuren zodat Meta kan optimaliseren.\n       -------------------------------------------------------------- */\n    var endpoint = self.opts.endpoint;\n    var finish = function () {\n      trackStandard('Lead', {\n        content_name: 'Technieker Algemene Elektriciteit',\n        content_category: 'Vacature',\n        value: 1, currency: 'EUR'\n      });\n      track('SollicitatieVoltooid', { vacature: 'technieker-algemene-elektriciteit' });\n      self.done = true;\n      self.payload = payload;\n      self.render();\n    };\n\n    if (!endpoint) { setTimeout(finish, 550); return; }   /* demo-modus */\n\n    fetch(endpoint, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify(payload)\n    }).then(finish).catch(function () {\n      btn.disabled = false;\n      btn.textContent = 'Verstuur mijn sollicitatie';\n      self.showError('Versturen lukte niet. Probeer opnieuw of bel 015 305 305.');\n    });\n  };\n\n  /* ----------------------------------------------------------------------\n     Bedanktscherm\n     ---------------------------------------------------------------------- */\n\n  ZwijsenApply.prototype.renderDone = function () {\n    var naam = (this.payload && this.payload.voornaam) || '';\n    this.body.appendChild(el('div', { class: 'za__done' }, [\n      el('div', { class: 'za__done-mark', 'aria-hidden': 'true', html:\n        '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" ' +\n        'stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg>' }),\n      el('h3', { text: naam ? 'Bedankt, ' + naam + '!' : 'Bedankt voor je sollicitatie!' }),\n      el('p', { class: 'za__done-lead',\n        text: 'We hebben je sollicitatie goed ontvangen. Er is net een bevestigingsmail naar je onderweg.' }),\n      el('ol', { class: 'za__steps' }, [\n        el('li', {}, [el('strong', { text: 'Bevestiging per mail' }),\n          el('span', { text: 'Meteen in je inbox, met wie je contacteert en wanneer.' })]),\n        el('li', {}, [el('strong', { text: 'Telefoontje binnen 1 werkdag' }),\n          el('span', { text: 'Een gesprek van 10 minuten. Geen druk, gewoon kennismaken.' })]),\n        el('li', {}, [el('strong', { text: 'Langskomen in Duffel' }),\n          el('span', { text: 'Je ziet het atelier, het materiaal en je toekomstige ploeg.' })]),\n        el('li', {}, [el('strong', { text: 'Duidelijk antwoord' }),\n          el('span', { text: 'Altijd een antwoord — ook als het geen match is.' })])\n      ]),\n      el('p', { class: 'za__legal',\n        text: 'Liever meteen bellen? 015 305 305 — vraag naar de personeelsdienst.' })\n    ]));\n  };\n\n  /* ----------------------------------------------------------------------\n     4. Publieke API\n     ---------------------------------------------------------------------- */\n\n  var API = {\n    QUESTIONS: QUESTIONS,\n    mount: function (target, opts) {\n      var node = typeof target === 'string' ? document.querySelector(target) : target;\n      if (!node) return null;\n      return new ZwijsenApply(node, opts);\n    },\n    /* Modale variant: elke [data-za-open] knop opent het formulier. */\n    mountModal: function (opts) {\n      var overlay = el('div', { class: 'za-modal', hidden: 'hidden' });\n      var panel = el('div', { class: 'za-modal__panel', role: 'dialog', 'aria-modal': 'true',\n        'aria-label': 'Sollicitatieformulier', 'data-za-scroll': '' });\n      var close = el('button', { class: 'za-modal__close', type: 'button', 'aria-label': 'Sluiten', html: '&times;' });\n      var host = el('div');\n      panel.appendChild(close);\n      panel.appendChild(host);\n      overlay.appendChild(panel);\n      document.body.appendChild(overlay);\n\n      var app = new ZwijsenApply(host, opts);\n      var lastFocus = null;\n\n      function open(trigger) {\n        lastFocus = trigger || document.activeElement;\n        overlay.hidden = false;\n        document.body.style.overflow = 'hidden';\n        trackStandard('ViewContent', { content_name: 'Sollicitatieformulier geopend' });\n        requestAnimationFrame(function () {\n          overlay.classList.add('is-on');\n          app.focusFirst();\n        });\n      }\n      function shut() {\n        overlay.classList.remove('is-on');\n        document.body.style.overflow = '';\n        setTimeout(function () { overlay.hidden = true; }, 220);\n        if (lastFocus && lastFocus.focus) lastFocus.focus();\n      }\n\n      close.addEventListener('click', shut);\n      overlay.addEventListener('click', function (e) { if (e.target === overlay) shut(); });\n      document.addEventListener('keydown', function (e) {\n        if (e.key === 'Escape' && !overlay.hidden) shut();\n      });\n      document.addEventListener('click', function (e) {\n        var t = e.target.closest('[data-za-open]');\n        if (t) { e.preventDefault(); open(t); }\n      });\n\n      return { open: open, close: shut, app: app };\n    }\n  };\n\n  global.ZwijsenApply = API;\n\n})(window);\n\n(function () {\n  var m = ZwijsenApply.mountModal();\n  /* Elke Elementor-knop met link #check opent het venster */\n  document.addEventListener('click', function (e) {\n    var a = e.target.closest('a[href$=\"#check\"]');\n    if (a) { e.preventDefault(); m.open(a); }\n  });\n})();\n</script>",
+      "_css_classes": "zw-form"
+     },
+     "elements": [],
+     "widgetType": "html"
+    }
+   ],
+   "isInner": false
+  }
+ ],
+ "page_settings": {
+  "hide_title": "yes",
+  "custom_css": "/* ==========================================================================\n   Electro Zwijsen — landingspagina vacature, basisstijl voor Elementor\n   Gedeeld door de vijf voorstellen. Wordt in de pagina-instelling\n   \"Aangepaste CSS\" gezet. Het woord dat Elementor vervangt door\n   body.elementor-page-<id> staat vooraan elke regel: zo geldt alles\n   enkel op deze pagina en raakt niets de sitehoofding of voettekst.\n   Alle inhoud zit bovendien in containers met de klasse .zwl.\n   ========================================================================== */\n\nselector {\n  --zw-ink: #121413;\n  --zw-red: #E60E13;\n  --zw-red-dark: #B60A0E;\n  --zw-red-tint: #FDECEC;\n  --zw-yellow: #FCC715;\n  --zw-yellow-dk: #E0AC00;\n  --zw-white: #FFFFFF;\n  --zw-grey: #E8E6E7;\n  --zw-grey-50: #F7F6F6;\n  --zw-grey-100: #EFEDEE;\n  --zw-grey-300: #CFCCCE;\n  --zw-grey-500: #8C8788;\n  --zw-grey-700: #4A4647;\n  --zw-line: #DDD9DB;\n  --zw-font-head: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  --zw-font-body: \"Open Sans\", \"Helvetica Neue\", Arial, sans-serif;\n  --zw-h1: clamp(2.05rem, 1.35rem + 2.6vw, 3.125rem);\n  --zw-h2: clamp(1.7rem, 1.2rem + 1.9vw, 2.5rem);\n  --zw-h3: clamp(1.4rem, 1.1rem + 1.3vw, 2.1875rem);\n  --zw-radius: 3px;\n  --zw-radius-card: 6px;\n  --zw-shadow-sm: 0 1px 2px rgba(18,20,19,.06), 0 2px 8px rgba(18,20,19,.05);\n  --zw-shadow-md: 0 4px 12px rgba(18,20,19,.08), 0 12px 32px rgba(18,20,19,.07);\n  --zw-shadow-lg: 0 10px 24px rgba(18,20,19,.10), 0 28px 60px rgba(18,20,19,.12);\n  --zw-gutter: clamp(1rem, 0.6rem + 1.8vw, 2.25rem);\n  --zw-ease: cubic-bezier(.22,.61,.36,1);\n}\n\n/* --- Containers: alle Elementor-standaardruimte op nul, de opmaak hieronder\n       bepaalt de afstanden zoals in het HTML-voorstel. ------------------- */\nselector .zwl.e-con,\nselector .zwl .e-con {\n  --padding-top: 0px; --padding-right: 0px; --padding-bottom: 0px; --padding-left: 0px;\n  --gap: 0px; --row-gap: 0px; --column-gap: 0px;\n  --container-default-padding-top: 0px; --container-default-padding-right: 0px;\n  --container-default-padding-bottom: 0px; --container-default-padding-left: 0px;\n  --widgets-spacing: 0px; --widgets-spacing-row: 0px; --widgets-spacing-column: 0px;\n  --kit-widget-spacing: 0px;\n}\nselector .zwl .elementor-widget { margin-block-end: 0; }\nselector .zwl.e-con {\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500; line-height: 1.72;\n  color: var(--zw-ink);\n  -webkit-font-smoothing: antialiased;\n}\n\n/* Sectie = één band over de volle breedte, inhoud max 1180px zoals het voorstel */\nselector .zwl.zw-sec {\n  --content-width: 1180px;\n  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);\n}\nselector .zwl.zw-sec > .e-con-inner { max-width: min(100%, calc(1180px - 2 * var(--zw-gutter))); }\nselector .zwl.zw-section { --padding-top: clamp(3.25rem, 7vw, 6rem); --padding-bottom: clamp(3.25rem, 7vw, 6rem); }\nselector .zwl.zw-section--grey { background-color: var(--zw-grey-50); }\nselector .zwl.zw-section--ink { background-color: var(--zw-ink); color: var(--zw-grey); }\nselector .zwl .zw-narrow { max-width: 860px; margin-inline: auto; width: 100%; }\nselector .zwl .zw-intro { max-width: 60ch; margin-bottom: 2.5rem; }\nselector .zwl .zw-intro--center { max-width: 56ch; margin: 0 auto 3rem; text-align: center; }\nselector .zwl .zw-center { text-align: center; }\n\n/* --- Typografie -------------------------------------------------------- */\nselector .zwl .elementor-heading-title {\n  font-family: var(--zw-font-head);\n  margin: 0 0 .5em; letter-spacing: 0;\n  text-wrap: balance;\n}\nselector .zwl h1.elementor-heading-title { font-size: var(--zw-h1); font-weight: 700; line-height: 1.1; }\nselector .zwl h2.elementor-heading-title { font-size: var(--zw-h2); font-weight: 700; line-height: 1.16; }\nselector .zwl h3.elementor-heading-title { font-size: var(--zw-h3); font-weight: 500; line-height: 1.24; }\nselector .zwl .elementor-widget-text-editor {\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500; line-height: 1.72;\n  color: inherit;\n}\nselector .zwl .elementor-widget-text-editor p { margin: 0 0 1.15em; text-wrap: pretty; }\nselector .zwl .elementor-widget-text-editor a { color: var(--zw-red); text-underline-offset: 2px; }\nselector .zwl .elementor-widget-text-editor > :last-child,\nselector .zwl .elementor-widget-text-editor > .elementor-widget-container > :last-child { margin-bottom: 0; }\nselector .zwl .zw-lead { font-size: clamp(1rem, .95rem + .3vw, 1.175rem); line-height: 1.7; color: var(--zw-grey-700); }\nselector .zwl .zw-lead p { margin-bottom: 1.15em; }\nselector .zwl .zw-muted { color: var(--zw-grey-500); font-size: 13.5px; }\n\n/* Bovenschrift met streepje */\nselector .zwl .zw-eyebrow .elementor-heading-title {\n  display: inline-flex; align-items: center; gap: .55em;\n  font-family: var(--zw-font-head);\n  font-size: 12px; font-weight: 700; line-height: 1.4;\n  letter-spacing: .18em; text-transform: uppercase;\n  margin: 0 0 1rem;\n}\nselector .zwl .zw-eyebrow .elementor-heading-title::before {\n  content: \"\"; width: 28px; height: 3px; flex-shrink: 0;\n  background: var(--zw-yellow); border-radius: 2px;\n}\nselector .zwl .zw-eyebrow--redbar .elementor-heading-title::before { background: var(--zw-red); }\nselector .zwl .zw-eyebrow--center .elementor-heading-title { justify-content: center; }\n\n/* --- Knoppen (kleuren staan in de knop zelf, via de globale kleuren) --- */\nselector .zwl .elementor-button {\n  display: inline-flex; align-items: center; justify-content: center; gap: .6em;\n  font-family: var(--zw-font-head);\n  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;\n  padding: 1.05em 1.9em;\n  border-radius: var(--zw-radius);\n  box-shadow: var(--zw-shadow-sm);\n  text-align: center;\n  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),\n              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);\n}\nselector .zwl .elementor-button:hover { transform: translateY(-2px); box-shadow: var(--zw-shadow-md); }\nselector .zwl .zw-btn--lg .elementor-button { font-size: 17px; padding: 1.2em 2.3em; }\nselector .zwl .zw-btn--block, selector .zwl .zw-btn--block .elementor-button-wrapper { width: 100%; }\nselector .zwl .zw-btn--block .elementor-button { width: 100%; }\nselector .zwl .zw-btn--ghost .elementor-button { box-shadow: none; }\nselector .zwl .zw-btnrow { display: flex; --flex-direction: row; flex-direction: row; flex-wrap: wrap; gap: .85rem; align-items: center; justify-content: flex-start; }\nselector .zwl .zw-btnrow.zw-center { justify-content: center; }\nselector .zwl .zw-btnrow > .elementor-widget { width: auto; }\n\n/* --- Vinkjeslijst ------------------------------------------------------ */\nselector .zwl .zw-checks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }\nselector .zwl .zw-checks li { position: relative; padding-left: 2.15rem; }\nselector .zwl .zw-checks li::before {\n  content: \"\"; position: absolute; left: 0; top: .2em;\n  width: 1.35rem; height: 1.35rem; border-radius: 50%;\n  background: var(--zw-red) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E\") center / .8rem no-repeat;\n}\nselector .zwl .zw-checks--sm { font-size: 14.5px; }\n\n/* Vertrouwensrij */\nselector .zwl .zw-trust ul {\n  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;\n  list-style: none; margin: 0; padding: 0;\n  font-family: var(--zw-font-head);\n  font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;\n  color: var(--zw-grey-500);\n}\nselector .zwl .zw-trust li { display: flex; align-items: center; gap: .45em; }\nselector .zwl .zw-trust li::before { content: \"\"; width: 6px; height: 6px; border-radius: 50%; background: var(--zw-yellow); }\n\n/* Kaart */\nselector .zwl .zw-card {\n  background: var(--zw-white);\n  border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius-card);\n  --padding-top: clamp(1.35rem, 2.5vw, 2rem); --padding-bottom: clamp(1.35rem, 2.5vw, 2rem);\n  --padding-left: clamp(1.35rem, 2.5vw, 2rem); --padding-right: clamp(1.35rem, 2.5vw, 2rem);\n  box-shadow: var(--zw-shadow-sm);\n}\nselector .zwl .zw-card--accent { border-top: 4px solid var(--zw-red); }\n\n/* Veelgestelde vragen — Elementor-accordeon in de stijl van het voorstel */\nselector .zwl .zw-faq { max-width: 760px; margin-inline: auto; width: 100%; }\nselector .zwl .zw-faq .e-n-accordion { display: grid; gap: .6rem; }\nselector .zwl .zw-faq .e-n-accordion-item {\n  background: var(--zw-white); border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius); overflow: hidden;\n}\nselector .zwl .zw-faq .e-n-accordion-item[open] { border-color: var(--zw-red); }\nselector .zwl .zw-faq .e-n-accordion-item-title {\n  padding: 1.05rem 1.25rem; border: 0; background: transparent;\n  justify-content: space-between; gap: 1rem;\n}\nselector .zwl .zw-faq .e-n-accordion-item-title-header { flex: 1 1 auto; justify-content: flex-start; text-align: left; }\nselector .zwl .zw-faq .e-n-accordion-item-title-icon { order: 2; flex-shrink: 0; }\nselector .zwl .zw-faq .e-n-accordion-item-title-text {\n  font-family: var(--zw-font-head); font-size: 15.5px; font-weight: 700; line-height: 1.4;\n  color: var(--zw-ink);\n}\nselector .zwl .zw-faq .e-n-accordion-item-title-icon svg { fill: var(--zw-red); width: .9rem; height: .9rem; }\nselector .zwl .zw-faq .e-n-accordion-item > .e-con {\n  --padding-top: 0px; --padding-left: 1.25rem; --padding-right: 1.25rem; --padding-bottom: 1.15rem;\n  border: 0;\n}\nselector .zwl .zw-faq .e-n-accordion-item .elementor-widget-text-editor { font-size: 14.5px; color: var(--zw-grey-700); }\nselector .zwl .zw-faq--sm .e-n-accordion-item-title { padding: 1rem 1.1rem; }\nselector .zwl .zw-faq--sm .e-n-accordion-item-title-text { font-size: 15px; }\nselector .zwl .zw-faq--sm .e-n-accordion-item > .e-con { --padding-left: 1.1rem; --padding-right: 1.1rem; --padding-bottom: 1.05rem; }\nselector .zwl .zw-faq--sm .e-n-accordion-item .elementor-widget-text-editor { font-size: 14px; }\n\n/* Afbeelding met ronde hoeken in 4:3 */\nselector .zwl .zw-photo img { border-radius: var(--zw-radius-card); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; height: auto; }\n\n/* Kleefbare actiebalk op mobiel */\nselector .zwl.zw-mobilebar {\n  position: fixed; inset: auto 0 0 0; z-index: 70;\n  display: none;\n  --padding-top: .7rem; --padding-bottom: calc(.7rem + env(safe-area-inset-bottom));\n  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);\n  background: rgba(255,255,255,.97);\n  backdrop-filter: blur(8px);\n  border-top: 1px solid var(--zw-line);\n  box-shadow: 0 -4px 20px rgba(18,20,19,.1);\n}\n@media (max-width: 860px) {\n  selector .zwl.zw-mobilebar { display: flex; }\n  selector { padding-bottom: 5.5rem; }\n}\n/* In de Elementor-editor de balk gewoon onderaan tonen, niet zwevend */\nselector.elementor-editor-active .zwl.zw-mobilebar { position: static; display: flex; }\n\n/* Instapanimatie */\n@keyframes zw-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }\nselector .zwl .zw-rise { animation: zw-rise .7s var(--zw-ease) both; }\nselector .zwl .zw-rise-2 { animation-delay: .14s; }\n@media (prefers-reduced-motion: reduce) {\n  selector .zwl *, selector .zwl *::before, selector .zwl *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }\n}\n\n/* Ankers niet onder de sitehoofding laten verdwijnen */\nselector .zwl [id] { scroll-margin-top: 110px; }\n\n\n/* ONTWERP 2 — \"De check\": de vragen openen in een venster */\n\nselector .zwl.hero2 {\n  background:\n    radial-gradient(120% 90% at 88% 8%, rgba(252,199,21,.16) 0%, transparent 58%),\n    linear-gradient(180deg, var(--zw-grey-50) 0%, var(--zw-white) 100%);\n  border-bottom: 1px solid var(--zw-line);\n  position: relative; overflow: hidden;\n}\nselector .zwl.hero2::before {\n  content: \"\"; position: absolute; inset: 0; pointer-events: none; width: auto; height: auto;\n  background-image:\n    linear-gradient(var(--zw-line) 1px, transparent 1px),\n    linear-gradient(90deg, var(--zw-line) 1px, transparent 1px);\n  background-size: 46px 46px;\n  opacity: .5; mix-blend-mode: normal;\n  -webkit-mask-image: radial-gradient(90% 70% at 50% 0%, #000 0%, transparent 72%);\n  mask-image: radial-gradient(90% 70% at 50% 0%, #000 0%, transparent 72%);\n}\nselector .zwl.hero2 > .e-con-inner { position: relative; z-index: 1; }\nselector .zwl .hero2__inner {\n  display: grid; gap: clamp(2rem, 4vw, 3.5rem);\n  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);\n  align-items: center;\n  --padding-top: clamp(2.75rem, 6vw, 5rem); --padding-bottom: clamp(2.75rem, 6vw, 5rem);\n}\n@media (max-width: 920px) { selector .zwl .hero2__inner { grid-template-columns: 1fr; } }\nselector .zwl.hero2 h1.elementor-heading-title { max-width: 17ch; }\nselector .zwl.hero2 h1.elementor-heading-title em { font-style: normal; color: var(--zw-red); }\nselector .zwl .hero2__sub { font-size: clamp(1.02rem, .96rem + .4vw, 1.22rem); color: var(--zw-grey-700); }\nselector .zwl .hero2__sub p { max-width: 48ch; }\nselector .zwl .hero2__btn { margin-bottom: 1.5rem; }\n\nselector .zwl .starter {\n  background: var(--zw-white);\n  border: 1px solid var(--zw-line);\n  border-top: 5px solid var(--zw-red);\n  border-radius: var(--zw-radius-card);\n  --padding-top: clamp(1.5rem, 3vw, 2.15rem); --padding-bottom: clamp(1.5rem, 3vw, 2.15rem);\n  --padding-left: clamp(1.5rem, 3vw, 2.15rem); --padding-right: clamp(1.5rem, 3vw, 2.15rem);\n  box-shadow: var(--zw-shadow-md);\n}\nselector .zwl .starter-h .elementor-heading-title { font-size: 1.3rem; font-weight: 700; margin-bottom: .5rem; }\nselector .zwl .starter-p { font-size: 14px; color: var(--zw-grey-700); }\nselector .zwl .starter__preview {\n  margin: 1.25rem 0;\n  border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius);\n  background: var(--zw-grey-50);\n  padding: 1.1rem;\n}\nselector .zwl .starter__preview p { font-family: var(--zw-font-head); font-weight: 700; font-size: 14.5px; color: var(--zw-ink); margin: 0 0 .7rem; }\nselector .zwl .starter__preview ol { margin: 0; padding-left: 1.15rem; font-size: 13.5px; color: var(--zw-grey-700); }\nselector .zwl .starter__preview li { margin-bottom: .3rem; }\nselector .zwl .starter__preview li::marker { color: var(--zw-red); font-weight: 700; }\nselector .zwl .meter { margin-bottom: 1.1rem; }\nselector .zwl .meter p { display: flex; align-items: center; gap: .6rem; margin: 0; font-size: 12px; color: var(--zw-grey-500); }\nselector .zwl .meter p::after { content: \"\"; flex: 1; height: 4px; border-radius: 99px; background: linear-gradient(90deg, var(--zw-red) 0 12%, var(--zw-grey-100) 12%); }\n\n/* Drie stappen met grote nummers */\nselector .zwl .how { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: how; }\nselector .zwl .how > .e-con { counter-increment: how; position: relative; --padding-top: 3.25rem; }\nselector .zwl .how > .e-con::before {\n  content: counter(how, decimal-leading-zero);\n  position: absolute; top: 0; left: 0; width: auto; height: auto; opacity: 1; display: block;\n  font-family: var(--zw-font-head); font-size: 2.5rem; font-weight: 900;\n  color: var(--zw-grey-100); line-height: 1;\n}\nselector .zwl .how-h .elementor-heading-title { font-size: 1.08rem; font-weight: 700; margin-bottom: .35rem; }\nselector .zwl .how-p { font-size: 14px; color: var(--zw-grey-700); }\nselector .zwl .zw-after { margin-top: 2.25rem; }\n\n/* Voordelen in twee kolommen */\nselector .zwl .benefits { display: grid; gap: 2.5rem; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: start; }\n@media (max-width: 820px) { selector .zwl .benefits { grid-template-columns: 1fr; } }\nselector .zwl .benefits-h .elementor-heading-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 2px solid var(--zw-yellow); }\n\n/* Regio */\nselector .zwl .region { display: grid; gap: 2rem; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); align-items: center; }\n@media (max-width: 820px) { selector .zwl .region { grid-template-columns: 1fr; } }\nselector .zwl .region__towns ul { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 1rem 0 0; padding: 0; }\nselector .zwl .region__towns li {\n  font-family: var(--zw-font-head); font-size: 13px; font-weight: 500; line-height: 1.5;\n  background: var(--zw-white); border: 1px solid var(--zw-line);\n  border-radius: 99px; padding: .35rem .85rem;\n}\nselector .zwl .region__towns li:first-child { background: var(--zw-ink); color: var(--zw-white); border-color: var(--zw-ink); font-weight: 700; }\n\n/* Wat het wél en niet is */\nselector .zwl .compare { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }\nselector .zwl .compare > .e-con { --padding-top: 1.6rem; --padding-bottom: 1.6rem; --padding-left: 1.6rem; --padding-right: 1.6rem; border-radius: var(--zw-radius-card); }\nselector .zwl .compare__col--no { background: var(--zw-grey-50); border: 1px solid var(--zw-line); }\nselector .zwl .compare__col--yes { background: var(--zw-ink); color: var(--zw-grey); }\nselector .zwl .compare-h .elementor-heading-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; }\nselector .zwl .compare ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; font-size: 14.5px; }\nselector .zwl .compare li { padding-left: 1.75rem; position: relative; line-height: 1.5; }\nselector .zwl .compare__col--no li::before { content: \"—\"; position: absolute; left: 0; color: var(--zw-grey-500); font-weight: 700; }\nselector .zwl .compare__col--yes li::before { content: \"✓\"; position: absolute; left: 0; color: var(--zw-yellow); font-weight: 700; }\n\n/* Slotoproep */\nselector .zwl .cta-strip {\n  background: var(--zw-red); color: var(--zw-white);\n  border-radius: var(--zw-radius-card);\n  --padding-top: clamp(1.5rem, 3.5vw, 2.5rem); --padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);\n  --padding-left: clamp(1.5rem, 3.5vw, 2.5rem); --padding-right: clamp(1.5rem, 3.5vw, 2.5rem);\n  display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;\n}\nselector .zwl .cta-strip > .e-con { width: auto; flex: 1 1 280px; }\nselector .zwl .cta-strip > .elementor-widget-button { width: auto; }\nselector .zwl .cta-strip-h .elementor-heading-title { font-size: clamp(1.15rem, 1rem + .7vw, 1.6rem); font-weight: 700; margin: 0 0 .3rem; }\nselector .zwl .cta-strip-p { color: rgba(255,255,255,.85); font-size: 14.5px; }\nselector .zwl .call-note { text-align: center; margin-top: 1.5rem; font-size: 13.5px; color: var(--zw-grey-500); }\n\n\nselector .zw-btn {--_bg: var(--zw-red);\n  --_fg: var(--zw-white);\n  display: inline-flex; align-items: center; justify-content: center; gap: .6em;\n  font-family: var(--zw-font-head);\n  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;\n  text-transform: none;\n  padding: 1.05em 1.9em;\n  border: 2px solid transparent;\n  border-radius: var(--zw-radius);\n  background: var(--_bg);\n  color: var(--_fg);\n  text-decoration: none;\n  cursor: pointer;\n  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),\n              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);\n  box-shadow: var(--zw-shadow-sm);\n  text-align: center;}\nselector .zw-btn:hover, selector .zw-btn:focus {--_bg: var(--zw-red-dark); background: var(--_bg); color: var(--_fg); transform: translateY(-2px); box-shadow: var(--zw-shadow-md);}\nselector .zw-btn:active {transform: translateY(0);}\nselector .zw-btn[disabled] {opacity: .5; cursor: not-allowed; transform: none;}\nselector .zw-visually-hidden {position: absolute !important;\n  width: 1px; height: 1px; margin: -1px; padding: 0;\n  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;}\nselector .za, selector .za-modal {font-family: var(--zw-font-body); font-size: 15px; font-weight: 500; line-height: 1.72; color: var(--zw-ink);}\nselector .za *, selector .za *::before, selector .za *::after, selector .za-modal *, selector .za-modal *::before, selector .za-modal *::after {box-sizing: border-box;}\nselector .za h3 {font-family: var(--zw-font-head); color: var(--zw-ink); margin: 0 0 .5em; line-height: 1.24;}\nselector .za p {margin: 0 0 1.15em;}\nselector .za a {color: var(--zw-red);}\nselector .za :focus-visible {outline: 3px solid var(--zw-red); outline-offset: 2px; border-radius: 2px;}\n\nselector .za {background: var(--zw-white);\n  border-radius: var(--zw-radius-card);\n  color: var(--zw-ink);\n  container-type: inline-size;}\nselector .za__head {display: flex; align-items: center; gap: .9rem;\n  padding: 0 0 1.15rem;}\nselector .za__bar {flex: 1; height: 5px; border-radius: 99px;\n  background: var(--zw-grey-100); overflow: hidden;}\nselector .za__bar-fill {display: block; height: 100%; border-radius: 99px;\n  background: linear-gradient(90deg, var(--zw-red), #FF4B4F);\n  transition: width .45s var(--zw-ease);}\nselector .za__step {flex-shrink: 0;\n  font-family: var(--zw-font-head);\n  font-size: 11px; font-weight: 700;\n  letter-spacing: .12em; text-transform: uppercase;\n  color: var(--zw-grey-500);\n  background: var(--zw-grey-50);\n  border-radius: 99px;\n  padding: .38rem .78rem;}\nselector .za__fieldset {border: 0; margin: 0; padding: 0; min-width: 0;}\nselector .za__legend {font-family: var(--zw-font-head);\n  font-size: clamp(1.08rem, 1rem + .45vw, 1.4rem);\n  font-weight: 700; line-height: 1.32;\n  color: var(--zw-ink);\n  padding: 0; margin: 0 0 .5rem;\n  display: block; width: 100%;}\nselector .za__legend:focus {outline: none;}\nselector .za__icon {font-size: .95em;}\nselector .za__hint {margin: 0 0 1.1rem;\n  font-size: 13.5px; line-height: 1.6;\n  color: var(--zw-grey-700);\n  border-left: 3px solid var(--zw-yellow);\n  padding-left: .8rem;}\nselector .za__options {display: grid; gap: .55rem; margin-top: 1.15rem;}\nselector .za__option {position: relative;\n  display: flex; align-items: center; gap: .85rem;\n  padding: .95rem 1.05rem;\n  border: 2px solid var(--zw-line);\n  border-radius: var(--zw-radius);\n  background: var(--zw-white);\n  cursor: pointer;\n  font-size: 15px; line-height: 1.45;\n  transition: border-color .16s var(--zw-ease), background-color .16s var(--zw-ease),\n              transform .16s var(--zw-ease), box-shadow .16s var(--zw-ease);}\nselector .za__option:hover {border-color: var(--zw-grey-300); background: var(--zw-grey-50); transform: translateX(3px);}\nselector .za__option.is-on {border-color: var(--zw-red); background: var(--zw-red-tint);}\nselector .za__option:focus-within {outline: 3px solid var(--zw-red); outline-offset: 2px;}\nselector .za__radio {position: absolute; opacity: 0; width: 1px; height: 1px;}\nselector .za__letter {flex-shrink: 0;\n  width: 1.75rem; height: 1.75rem;\n  display: grid; place-items: center;\n  border-radius: var(--zw-radius);\n  background: var(--zw-ink); color: var(--zw-white);\n  font-family: var(--zw-font-head);\n  font-size: 12px; font-weight: 700;\n  transition: background-color .16s var(--zw-ease);}\nselector .za__option.is-on .za__letter {background: var(--zw-red);}\nselector .za__option-text {flex: 1;}\nselector .za__map {margin: 0 0 1.1rem;}\nselector .za__map-visual {border-radius: var(--zw-radius); overflow: hidden;\n  border: 1px solid var(--zw-line);}\nselector .za__map-visual svg {width: 100%; height: auto; display: block;}\nselector .za__map-caption {margin: .55rem 0 0;\n  font-size: 12px; line-height: 1.55;\n  color: var(--zw-grey-500);}\nselector .za__nav {display: flex; align-items: center; gap: 1rem;\n  margin-top: 1.35rem;}\nselector .za__next {flex: 1;}\nselector .za__back {order: -1;\n  background: none; border: 0;\n  font-family: var(--zw-font-head);\n  font-size: 14px; font-weight: 500;\n  color: var(--zw-grey-500);\n  cursor: pointer; padding: .6rem .2rem;\n  transition: color .16s var(--zw-ease);}\nselector .za__back:hover {color: var(--zw-ink); text-decoration: underline;}\nselector .za__error {margin: .8rem 0 0; min-height: 0;\n  font-size: 13.5px; font-weight: 600; color: var(--zw-red);}\nselector .za__error:empty {margin: 0;}\nselector .za__error.is-on::before {content: \"⚠ \";}\nselector .za__reassure {display: flex; flex-wrap: wrap; justify-content: center;\n  gap: .35rem 1rem; list-style: none;\n  margin: 1.15rem 0 0; padding: 0;\n  font-family: var(--zw-font-head);\n  font-size: 10.5px; font-weight: 700;\n  letter-spacing: .14em; text-transform: uppercase;\n  color: var(--zw-grey-500);}\nselector .za__reassure li {display: flex; align-items: center; gap: .5rem;}\nselector .za__reassure li + li::before {content: \"\"; width: 4px; height: 4px; border-radius: 50%;\n  background: var(--zw-grey-300); margin-right: .5rem;}\nselector .za__grid {display: grid; gap: .9rem;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin-top: 1.1rem;}\nselector .za__field--full {grid-column: 1 / -1;}\n@container (max-width: 420px){selector .za__grid {grid-template-columns: 1fr;}}\nselector .za__label {display: block;\n  font-family: var(--zw-font-head);\n  font-size: 11px; font-weight: 700;\n  letter-spacing: .11em; text-transform: uppercase;\n  color: var(--zw-grey-700);\n  margin-bottom: .38rem;}\nselector .za__input, selector .za__select {width: 100%;\n  padding: .82rem .9rem;\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500;\n  color: var(--zw-ink);\n  background: var(--zw-white);\n  border: 2px solid var(--zw-line);\n  border-radius: var(--zw-radius);\n  transition: border-color .16s var(--zw-ease), box-shadow .16s var(--zw-ease);}\nselector .za__input:hover, selector .za__select:hover {border-color: var(--zw-grey-300);}\nselector .za__input:focus, selector .za__select:focus {outline: none; border-color: var(--zw-red);\n  box-shadow: 0 0 0 3px var(--zw-red-tint);}\nselector .za__input.is-bad {border-color: var(--zw-red); background: var(--zw-red-tint);}\nselector .za__telrow {display: flex; gap: .5rem;}\nselector .za__select {width: auto; flex-shrink: 0; padding-inline: .6rem;}\nselector .za__field-error {margin: .3rem 0 0;\n  font-size: 12.5px; font-weight: 600; color: var(--zw-red);}\nselector .za__field-error:empty {display: none;}\nselector .za__hp {position: absolute !important;\n  left: -9999px; width: 1px; height: 1px; overflow: hidden;}\nselector .za__file {margin-top: 1rem;}\nselector .za__file-label {display: flex; align-items: center; gap: .65rem;\n  padding: .85rem 1rem;\n  border: 2px dashed var(--zw-grey-300);\n  border-radius: var(--zw-radius);\n  font-size: 14px; color: var(--zw-grey-700);\n  cursor: pointer;\n  transition: border-color .16s var(--zw-ease), background-color .16s var(--zw-ease);}\nselector .za__file-label:hover {border-color: var(--zw-red); background: var(--zw-grey-50);}\nselector .za__file.is-set .za__file-label {border-style: solid; border-color: var(--zw-red);\n  background: var(--zw-red-tint); color: var(--zw-ink); font-weight: 600;}\nselector .za__consent {display: flex; align-items: flex-start; gap: .7rem;\n  margin-top: 1.1rem;\n  font-size: 13px; line-height: 1.55; color: var(--zw-grey-700);}\nselector .za__consent input {flex-shrink: 0; margin-top: .18rem;\n  width: 1.15rem; height: 1.15rem;\n  accent-color: var(--zw-red); cursor: pointer;}\nselector .za__consent label {cursor: pointer;}\nselector .za__legal {margin: 1rem 0 0;\n  font-size: 12px; line-height: 1.55;\n  color: var(--zw-grey-500); text-align: center;}\nselector .za__done {text-align: center; padding: .5rem 0 0; animation: zw-rise .5s var(--zw-ease) both;}\nselector .za__done-mark {width: 3.75rem; height: 3.75rem; margin: 0 auto 1.1rem;\n  display: grid; place-items: center;\n  border-radius: 50%;\n  background: var(--zw-red); color: var(--zw-white);}\nselector .za__done-mark svg {width: 1.8rem; height: 1.8rem;}\nselector .za__done h3 {font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); font-weight: 700; margin-bottom: .4rem;}\nselector .za__done-lead {color: var(--zw-grey-700); margin-bottom: 1.75rem;}\nselector .za__steps {list-style: none; counter-reset: za; margin: 0; padding: 0;\n  display: grid; gap: .85rem; text-align: left;}\nselector .za__steps li {counter-increment: za;\n  position: relative; padding-left: 3rem; min-height: 2.1rem;}\nselector .za__steps li::before {content: counter(za);\n  position: absolute; left: 0; top: 0;\n  width: 2.1rem; height: 2.1rem;\n  display: grid; place-items: center;\n  border-radius: 50%;\n  background: var(--zw-grey-50);\n  border: 2px solid var(--zw-red);\n  color: var(--zw-red);\n  font-family: var(--zw-font-head);\n  font-size: 13px; font-weight: 700;}\nselector .za__steps strong {display: block; font-family: var(--zw-font-head); font-size: 15px;}\nselector .za__steps span {font-size: 13.5px; color: var(--zw-grey-700); line-height: 1.5;}\nselector .za-modal {position: fixed; inset: 0; z-index: 200;\n  display: grid; place-items: center;\n  padding: 1rem;\n  background: rgba(18, 20, 19, .68);\n  backdrop-filter: blur(3px);\n  opacity: 0; transition: opacity .22s var(--zw-ease);\n  overflow-y: auto;}\nselector .za-modal.is-on {opacity: 1;}\nselector .za-modal[hidden] {display: none;}\nselector .za-modal__panel {position: relative;\n  width: min(560px, 100%);\n  max-height: min(92vh, 900px);\n  overflow-y: auto;\n  background: var(--zw-white);\n  border-radius: var(--zw-radius-card);\n  padding: clamp(1.5rem, 4vw, 2.4rem);\n  box-shadow: var(--zw-shadow-lg);\n  transform: translateY(14px) scale(.985);\n  transition: transform .28s var(--zw-ease);}\nselector .za-modal.is-on .za-modal__panel {transform: none;}\nselector .za-modal__close {position: absolute; top: .7rem; right: .8rem;\n  width: 2.2rem; height: 2.2rem;\n  display: grid; place-items: center;\n  border: 0; border-radius: 50%;\n  background: var(--zw-grey-50); color: var(--zw-grey-700);\n  font-size: 1.5rem; line-height: 1; cursor: pointer;\n  transition: background-color .16s var(--zw-ease), color .16s var(--zw-ease);}\nselector .za-modal__close:hover {background: var(--zw-ink); color: var(--zw-white);}"
+ },
+ "version": "0.4",
+ "title": "Vacature technieker — voorstel 2 (Kwalificatietest)",
+ "type": "page"
+}

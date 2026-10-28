@@ -1,0 +1,35 @@
+/* Knopstijl en hulpklassen die het sollicitatieformulier nodig heeft
+   (overgenomen uit assets/zwijsen.css, enkel wat het formulier gebruikt). */
+.zw-btn {
+  --_bg: var(--zw-red);
+  --_fg: var(--zw-white);
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  font-family: var(--zw-font-head);
+  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;
+  text-transform: none;
+  padding: 1.05em 1.9em;
+  border: 2px solid transparent;
+  border-radius: var(--zw-radius);
+  background: var(--_bg);
+  color: var(--_fg);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),
+              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);
+  box-shadow: var(--zw-shadow-sm);
+  text-align: center;
+}
+.zw-btn:hover, .zw-btn:focus { --_bg: var(--zw-red-dark); background: var(--_bg); color: var(--_fg); transform: translateY(-2px); box-shadow: var(--zw-shadow-md); }
+.zw-btn:active { transform: translateY(0); }
+.zw-btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+.zw-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.za, .za-modal { font-family: var(--zw-font-body); font-size: 15px; font-weight: 500; line-height: 1.72; color: var(--zw-ink); }
+.za *, .za *::before, .za *::after, .za-modal *, .za-modal *::before, .za-modal *::after { box-sizing: border-box; }
+.za h3 { font-family: var(--zw-font-head); color: var(--zw-ink); margin: 0 0 .5em; line-height: 1.24; }
+.za p { margin: 0 0 1.15em; }
+.za a { color: var(--zw-red); }
+.za :focus-visible { outline: 3px solid var(--zw-red); outline-offset: 2px; border-radius: 2px; }

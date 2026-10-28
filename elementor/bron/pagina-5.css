@@ -1,0 +1,84 @@
+/* ONTWERP 5 — "Snelsollicitatie": één kolom, gebouwd voor de duim */
+
+selector .zwl.m-col { --padding-left: 20px; --padding-right: 20px; }
+selector .zwl.m-col > .e-con-inner { max-width: min(100%, 600px); }
+
+selector .zwl.m-hero { color: var(--zw-white); position: relative; overflow: hidden;
+  --padding-top: clamp(1.75rem, 6vw, 3rem); --padding-bottom: clamp(6rem, 16vw, 8rem); }
+selector .zwl.m-hero::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; top: auto; height: 5px; width: auto;
+  background: linear-gradient(90deg, var(--zw-red) 0 55%, var(--zw-yellow) 55% 100%);
+  opacity: 1; z-index: 2;
+}
+selector .zwl.m-hero h1.elementor-heading-title { font-size: clamp(1.85rem, 1.4rem + 2.6vw, 2.6rem); line-height: 1.12; margin-bottom: .6rem; }
+selector .zwl.m-hero h1.elementor-heading-title span { color: var(--zw-yellow); }
+selector .zwl .m-hero-p { color: rgba(255,255,255,.85); font-size: 1.02rem; }
+selector .zwl .m-hero-p p { margin-bottom: 1.35rem; }
+selector .zwl .chips ul { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0 0 1.5rem; padding: 0; }
+selector .zwl .chips li {
+  display: flex; align-items: center; gap: .4rem;
+  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700; line-height: 1.5;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 99px; padding: .42rem .8rem; color: var(--zw-white);
+}
+selector .zwl .chips li::before { content: "✓"; color: var(--zw-yellow); }
+
+/* Formulierkaart die over de hero schuift */
+selector .zwl.m-formsec { position: relative; z-index: 3; }
+selector .zwl .m-form {
+  margin-top: clamp(-5.5rem, -14vw, -7rem);
+  background: var(--zw-white); border-radius: var(--zw-radius-card);
+  --padding-top: clamp(1.25rem, 4vw, 1.85rem); --padding-bottom: clamp(1.25rem, 4vw, 1.85rem);
+  --padding-left: clamp(1.25rem, 4vw, 1.85rem); --padding-right: clamp(1.25rem, 4vw, 1.85rem);
+  box-shadow: var(--zw-shadow-lg);
+}
+selector .zwl .m-form-h .elementor-heading-title { font-size: 1.22rem; font-weight: 700; margin-bottom: .25rem; }
+selector .zwl .m-form-p { font-size: 13.5px; color: var(--zw-grey-700); margin-bottom: 1rem; }
+
+/* Compacte secties */
+selector .zwl.m-sec { --padding-top: clamp(2.25rem, 7vw, 3.25rem); --padding-bottom: clamp(2.25rem, 7vw, 3.25rem); }
+selector .zwl.m-sec--grey { background-color: var(--zw-grey-50); }
+selector .zwl.m-sec h2.elementor-heading-title { font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem); font-weight: 700; }
+selector .zwl .m-intro { color: var(--zw-grey-700); margin-bottom: 1.35rem; }
+selector .zwl .m-gap { margin-top: 1.25rem; }
+
+/* Duimvriendelijke lijst (Elementor-pictogramvakken) */
+selector .zwl .m-list { display: grid; gap: .55rem; }
+selector .zwl .m-item {
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius); padding: .95rem 1.05rem;
+}
+selector .zwl .m-item .elementor-icon-box-wrapper { display: flex; flex-direction: row; align-items: flex-start; gap: .85rem; text-align: left; }
+selector .zwl .m-item .elementor-icon-box-icon { margin: 0; flex-shrink: 0; display: block; }
+selector .zwl .m-item .elementor-icon {
+  width: 2rem; height: 2rem; display: grid; place-items: center;
+  border-radius: var(--zw-radius); background: var(--zw-red); font-size: 1rem;
+}
+selector .zwl .m-item .elementor-icon svg { width: 1rem; height: 1rem; fill: var(--zw-white); }
+selector .zwl .m-item .elementor-icon-box-content { flex: 1; }
+selector .zwl .m-item .elementor-icon-box-title { font-family: var(--zw-font-head); font-size: 15px; font-weight: 700; line-height: 1.5; margin: 0; color: var(--zw-ink); }
+selector .zwl .m-item .elementor-icon-box-description { margin: 0; font-family: var(--zw-font-body); font-size: 15px; font-weight: 500; line-height: 1.5; color: var(--zw-ink); }
+
+selector .zwl .m-cta { margin-top: 1.5rem; }
+selector .zwl .m-cta-note { margin-top: .6rem; text-align: center; font-size: 12.5px; color: var(--zw-grey-500); }
+
+/* Stappen */
+selector .zwl .m-steps ol { list-style: none; counter-reset: s; margin: 1.35rem 0 0; padding: 0; display: grid; gap: .75rem; }
+selector .zwl .m-steps li { counter-increment: s; position: relative; padding-left: 3rem; }
+selector .zwl .m-steps li::before {
+  content: counter(s); position: absolute; left: 0; top: -.1rem;
+  width: 2.15rem; height: 2.15rem; display: grid; place-items: center;
+  border-radius: 50%; background: var(--zw-yellow); color: var(--zw-ink);
+  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700;
+}
+selector .zwl .m-steps strong { display: block; font-family: var(--zw-font-head); font-size: 15px; }
+selector .zwl .m-steps span { font-size: 14px; color: var(--zw-grey-700); }
+selector .zwl .zw-faq.m-faq-w { margin-top: 1.35rem; max-width: none; }
+
+/* Bellen */
+selector .zwl .m-call {
+  background: var(--zw-ink); color: var(--zw-grey); border-radius: var(--zw-radius-card);
+  --padding-top: 1.6rem; --padding-bottom: 1.6rem; --padding-left: 1.5rem; --padding-right: 1.5rem; text-align: center;
+}
+selector .zwl .m-call-h .elementor-heading-title { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
+selector .zwl .m-call-p { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 1.15rem; }

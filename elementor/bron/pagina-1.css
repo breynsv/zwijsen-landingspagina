@@ -1,0 +1,124 @@
+/* ONTWERP 1 — "Vacature+": formulier meteen naast de titel */
+
+selector .zwl.hero { position: relative; overflow: hidden; color: var(--zw-white); }
+selector .zwl.hero::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; top: auto; height: 6px; width: auto;
+  background: linear-gradient(90deg, var(--zw-red) 0 32%, var(--zw-yellow) 32% 46%, transparent 46%);
+  z-index: 2; opacity: 1;
+}
+selector .zwl .hero__inner {
+  display: grid; gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: start;
+  --padding-top: clamp(2.5rem, 5vw, 4.5rem); --padding-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+@media (max-width: 940px) { selector .zwl .hero__inner { grid-template-columns: 1fr; } }
+selector .zwl.hero h1.elementor-heading-title { max-width: 15ch; }
+selector .zwl .hero__sub {
+  font-size: clamp(1.02rem, .96rem + .4vw, 1.25rem);
+  line-height: 1.65; color: rgba(255,255,255,.86);
+  margin-bottom: 1.75rem;
+}
+selector .zwl .hero__sub p { max-width: 46ch; }
+
+selector .zwl .facts {
+  display: grid; gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--zw-radius-card);
+  overflow: hidden; max-width: 500px;
+}
+selector .zwl .facts > .e-con { background: #232524; --padding-top: 1rem; --padding-bottom: 1rem; --padding-left: 1.15rem; --padding-right: 1.15rem; }
+selector .zwl .fact-k .elementor-heading-title {
+  font-family: var(--zw-font-head);
+  font-size: 10.5px; font-weight: 700; letter-spacing: .15em; line-height: 1.5;
+  text-transform: uppercase; margin: 0 0 .2rem;
+}
+selector .zwl .fact-v { font-size: 14.5px; font-weight: 600; line-height: 1.4; color: var(--zw-white); }
+
+selector .zwl .hero__form {
+  background: var(--zw-white); color: var(--zw-ink);
+  border-radius: var(--zw-radius-card);
+  --padding-top: clamp(1.35rem, 2.6vw, 1.9rem); --padding-bottom: clamp(1.35rem, 2.6vw, 1.9rem);
+  --padding-left: clamp(1.35rem, 2.6vw, 1.9rem); --padding-right: clamp(1.35rem, 2.6vw, 1.9rem);
+  box-shadow: var(--zw-shadow-lg);
+  position: sticky; top: 96px;
+}
+@media (max-width: 940px) { selector .zwl .hero__form { position: static; } }
+selector .zwl .hero__form-h .elementor-heading-title { font-size: 1.28rem; font-weight: 700; margin-bottom: .3rem; line-height: 1.25; }
+selector .zwl .hero__form-p { font-size: 13.5px; color: var(--zw-grey-700); margin-bottom: 1.1rem; }
+
+/* Tweekolommen inhoud */
+selector .zwl .split {
+  display: grid; gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: start;
+}
+@media (max-width: 880px) { selector .zwl .split { grid-template-columns: 1fr; } }
+selector .zwl .taskgrid ul { display: grid; gap: .65rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin: 0; padding: 0; }
+selector .zwl .taskgrid li {
+  list-style: none;
+  padding: .95rem 1.1rem;
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-left: 3px solid var(--zw-red);
+  border-radius: var(--zw-radius);
+  font-size: 14.5px; line-height: 1.5;
+}
+selector .zwl .aside-h .elementor-heading-title { font-size: 1.25rem; font-weight: 700; }
+
+/* Voordelenraster met Elementor-pictogramvakken */
+selector .zwl .perks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+selector .zwl .perk {
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius-card);
+  padding: 1.5rem 1.35rem;
+  transition: transform .2s var(--zw-ease), box-shadow .2s var(--zw-ease), border-color .2s var(--zw-ease);
+}
+selector .zwl .perk:hover { transform: translateY(-3px); box-shadow: var(--zw-shadow-md); border-color: var(--zw-grey-300); }
+selector .zwl .perk .elementor-icon-box-wrapper { display: block; text-align: left; }
+selector .zwl .perk .elementor-icon-box-icon { display: block; margin: 0 0 .9rem; }
+selector .zwl .perk .elementor-icon {
+  width: 2.6rem; height: 2.6rem; display: grid; place-items: center;
+  border-radius: var(--zw-radius); background: var(--zw-red-tint); font-size: 1.15rem;
+}
+selector .zwl .perk .elementor-icon svg { width: 1.15rem; height: 1.15rem; fill: var(--zw-red); }
+selector .zwl .perk .elementor-icon-box-title { font-family: var(--zw-font-head); font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin: 0 0 .35rem; color: var(--zw-ink); }
+selector .zwl .perk .elementor-icon-box-description { margin: 0; font-family: var(--zw-font-body); font-size: 14px; font-weight: 500; color: var(--zw-grey-700); line-height: 1.6; }
+
+/* Citaat */
+selector .zwl .quote {
+  background: var(--zw-white);
+  border-radius: var(--zw-radius-card);
+  border: 1px solid var(--zw-line);
+  border-top: 4px solid var(--zw-yellow);
+  --padding-top: clamp(1.5rem, 3vw, 2.25rem); --padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  --padding-left: clamp(1.5rem, 3vw, 2.25rem); --padding-right: clamp(1.5rem, 3vw, 2.25rem);
+}
+selector .zwl .quote-q { font-family: var(--zw-font-head); font-size: clamp(1.1rem, 1rem + .55vw, 1.45rem); font-weight: 500; line-height: 1.45; margin-bottom: 1.1rem; }
+selector .zwl .quote-who { font-size: 13.5px; color: var(--zw-grey-500); }
+selector .zwl .quote-who strong { display: block; color: var(--zw-ink); font-size: 15px; }
+
+/* Terugkerende oproep */
+selector .zwl .cta-inline {
+  margin-top: 2.5rem;
+  display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 1.25rem;
+  --padding-top: 1.5rem; --padding-bottom: 1.5rem; --padding-left: 1.75rem; --padding-right: 1.75rem;
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line);
+  border-left: 5px solid var(--zw-yellow);
+  border-radius: var(--zw-radius-card);
+}
+selector .zwl .cta-inline > .elementor-widget-text-editor { flex: 1 1 260px; width: auto; font-family: var(--zw-font-head); font-size: 1.05rem; font-weight: 500; line-height: 1.45; }
+selector .zwl .cta-inline > .elementor-widget-button { width: auto; }
+selector .zwl .cta-inline strong { display: block; font-weight: 700; }
+
+/* Slotoproep */
+selector .zwl.finale { text-align: center; }
+selector .zwl.finale h2.elementor-heading-title { max-width: 20ch; margin-inline: auto; }
+selector .zwl .finale-p { color: rgba(255,255,255,.78); margin-bottom: 2rem; }
+selector .zwl .finale-p p { max-width: 52ch; margin-inline: auto; }
+selector .zwl .finale-call { margin-top: 1.5rem; font-size: 13px; color: rgba(255,255,255,.78); }
+selector .zwl .finale-call a { color: var(--zw-yellow); }

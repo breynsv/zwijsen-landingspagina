@@ -1,0 +1,83 @@
+/* ONTWERP 4 — "Wat je krijgt": het volledige pakket op tafel */
+
+selector .zwl.hero4 { background-color: var(--zw-ink); color: var(--zw-grey); position: relative; overflow: hidden; }
+selector .zwl.hero4::after {
+  content: ""; position: absolute; right: -8%; left: auto; top: 0; bottom: 0; width: 46%; height: auto;
+  background: linear-gradient(150deg, var(--zw-red) 0%, #8f070a 100%);
+  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: .92; z-index: 0;
+}
+@media (max-width: 920px) { selector .zwl.hero4::after { display: none; } }
+selector .zwl.hero4 > .e-con-inner { position: relative; z-index: 1; }
+selector .zwl .hero4__inner {
+  display: grid; gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  --padding-top: clamp(2.75rem, 6vw, 5rem); --padding-bottom: clamp(2.75rem, 6vw, 5rem);
+}
+@media (max-width: 920px) { selector .zwl .hero4__inner { grid-template-columns: 1fr; } }
+selector .zwl.hero4 h1.elementor-heading-title { max-width: 16ch; }
+selector .zwl.hero4 h1.elementor-heading-title mark { background: var(--zw-yellow); color: var(--zw-ink); padding: 0 .12em; }
+selector .zwl .hero4__sub { font-size: clamp(1.02rem, .96rem + .4vw, 1.22rem); color: rgba(255,255,255,.82); }
+selector .zwl .hero4__sub p { max-width: 46ch; }
+selector .zwl .hero4__cta { margin-top: .6rem; }
+
+/* Kaart met de kernvoorwaarden */
+selector .zwl .package { background: var(--zw-white); color: var(--zw-ink); border-radius: var(--zw-radius-card); box-shadow: var(--zw-shadow-lg); overflow: hidden; }
+selector .zwl .package__top { background: var(--zw-yellow); padding: 1.1rem 1.5rem; }
+selector .zwl .package__top .elementor-heading-title { font-family: var(--zw-font-head); font-weight: 700; font-size: 1.05rem; line-height: 1.4; margin: 0; }
+selector .zwl .package__list ul { list-style: none; margin: 0; padding: .5rem 0; }
+selector .zwl .package__list li {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: .85rem 1.5rem; border-bottom: 1px solid var(--zw-grey-100);
+  font-size: 14.5px; line-height: 1.5; color: var(--zw-grey-700);
+}
+selector .zwl .package__list li:last-child { border-bottom: 0; }
+selector .zwl .package__list li strong { font-family: var(--zw-font-head); font-weight: 700; text-align: right; color: var(--zw-ink); }
+selector .zwl .package__foot { --padding-top: 1.25rem; --padding-bottom: 1.5rem; --padding-left: 1.5rem; --padding-right: 1.5rem; border-top: 2px solid var(--zw-grey-100); }
+selector .zwl .package__note { margin-top: .85rem; font-size: 12.5px; color: var(--zw-grey-500); text-align: center; }
+
+/* Tabel (HTML-widget) */
+selector .zwl .tablewrap { overflow-x: auto; border-radius: var(--zw-radius-card); border: 1px solid var(--zw-line); }
+selector .zwl table.terms { width: 100%; border-collapse: collapse; background: var(--zw-white); min-width: 620px; margin: 0; border: 0; }
+selector .zwl table.terms caption { text-align: left; padding: 1.15rem 1.35rem; font-family: var(--zw-font-head); font-weight: 700; font-size: 1.05rem; background: var(--zw-grey-50); border-bottom: 1px solid var(--zw-line); color: var(--zw-ink); }
+selector .zwl table.terms th, selector .zwl table.terms td { text-align: left; padding: .95rem 1.35rem; border: 0; border-bottom: 1px solid var(--zw-grey-100); font-size: 14.5px; line-height: 1.6; vertical-align: top; background: var(--zw-white); }
+selector .zwl table.terms th { font-family: var(--zw-font-head); font-weight: 700; width: 32%; color: var(--zw-ink); }
+selector .zwl table.terms td { color: var(--zw-grey-700); }
+selector .zwl table.terms tr:last-child th, selector .zwl table.terms tr:last-child td { border-bottom: 0; }
+selector .zwl table.terms tr:hover td, selector .zwl table.terms tr:hover th { background: var(--zw-grey-50); }
+selector .zwl .terms-cta { margin-top: 2rem; }
+selector .zwl .terms-cta > .elementor-widget-text-editor { width: auto; font-size: 14px; color: var(--zw-grey-500); }
+
+/* Zes redenen */
+selector .zwl .stack { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+selector .zwl .stack > .e-con {
+  background: var(--zw-white); border: 1px solid var(--zw-line); border-left: 4px solid var(--zw-red);
+  border-radius: var(--zw-radius); --padding-top: 1.35rem; --padding-bottom: 1.35rem; --padding-left: 1.5rem; --padding-right: 1.5rem;
+}
+selector .zwl .stack-h .elementor-heading-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+selector .zwl .stack-p { font-size: 14px; color: var(--zw-grey-700); line-height: 1.6; }
+
+/* Formulier naast de inhoud, kleeft mee */
+selector .zwl .applygrid { display: grid; gap: clamp(2rem, 4vw, 3.25rem); grid-template-columns: minmax(0, 1fr) minmax(0, 460px); align-items: start; }
+@media (max-width: 980px) { selector .zwl .applygrid { grid-template-columns: 1fr; } }
+selector .zwl .applygrid__form {
+  position: sticky; top: 110px;
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line); border-top: 5px solid var(--zw-red);
+  border-radius: var(--zw-radius-card);
+  --padding-top: clamp(1.5rem, 3vw, 2rem); --padding-bottom: clamp(1.5rem, 3vw, 2rem);
+  --padding-left: clamp(1.5rem, 3vw, 2rem); --padding-right: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--zw-shadow-md);
+}
+@media (max-width: 980px) { selector .zwl .applygrid__form { position: static; } }
+selector .zwl .sub-h .elementor-heading-title { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 .85rem; }
+selector .zwl .form-h .elementor-heading-title { font-size: 1.25rem; font-weight: 700; margin-bottom: .35rem; }
+selector .zwl .form-p { font-size: 13.5px; color: var(--zw-grey-700); margin-bottom: 1.1rem; }
+selector .zwl .apply-note { margin-top: 2rem; font-size: 14px; color: var(--zw-grey-500); }
+
+/* Slot */
+selector .zwl.band4 { text-align: center; }
+selector .zwl.band4 h2.elementor-heading-title { max-width: 22ch; margin-inline: auto; }
+selector .zwl .band4-p { color: rgba(255,255,255,.78); margin-bottom: 2rem; }
+selector .zwl .band4-p p { max-width: 50ch; margin: 0 auto; }
