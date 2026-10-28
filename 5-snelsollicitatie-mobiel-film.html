@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elektricien in de regio Dendermonde? Solliciteer in 30 sec | Electro Zwijsen</title>
+<meta name="description" content="Ben je elektricien en woon je in (de buurt van) Dendermonde? Vast contract, 32 vakantiedagen, dertiende maand. Solliciteren duurt 30 seconden, zonder CV.">
+<meta name="robots" content="noindex, nofollow">
+<!-- FILMVARIANT van voorstel 5: fotofilm bij "Wat maakt deze job de moeite waard?",
+     direct onder het formulier. Zie copy/VERSLAG-film-2026-10-28.md. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/zwijsen.css">
+<link rel="stylesheet" href="assets/apply-form.css">
+<link rel="stylesheet" href="assets/photos.css">
+<link rel="stylesheet" href="assets/film.css">
+<link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
+
+<!-- Meta Pixel — vervang de ID. Pas afvuren na cookietoestemming. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '000000000000000');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+/* ==========================================================================
+   ONTWERP 5 — "Snelsollicitatie"
+   Gebouwd voor de duim, niet voor de muis. Ruim 80% van Meta-verkeer is
+   mobiel; deze pagina gaat ervan uit dat iemand hem in de rij aan de kassa
+   opent. Eén kolom, korte blokken, het formulier meteen in beeld, en om de
+   twee secties een knop. Op desktop wordt het een gecentreerde kolom.
+   ========================================================================== */
+
+.wrap { width: 100%; max-width: 640px; margin-inline: auto; padding-inline: 20px; --zp-bleed: 20px; }
+
+/* Hero: kort, met het formulier er meteen onder */
+.m-hero {
+  background: var(--zw-ink); color: var(--zw-white);
+  position: relative; overflow: hidden;
+  padding: clamp(1.75rem, 6vw, 3rem) 0 clamp(6rem, 16vw, 8rem);
+}
+.m-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("assets/img/jana/technieker-bij-bestelwagen-900.jpg") 72% 30% / cover no-repeat;
+  background-image: image-set(url("assets/img/jana/technieker-bij-bestelwagen-900.webp") type("image/webp"),
+                              url("assets/img/jana/technieker-bij-bestelwagen-900.jpg") type("image/jpeg"));
+  opacity: .34;
+}
+.m-hero::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: linear-gradient(90deg, var(--zw-red) 0 55%, var(--zw-yellow) 55% 100%);
+}
+.m-hero__inner { position: relative; }
+.m-hero h1 {
+  color: var(--zw-white);
+  font-size: clamp(1.85rem, 1.4rem + 2.6vw, 2.6rem);
+  line-height: 1.12; margin-bottom: .6rem;
+}
+.m-hero h1 span { color: var(--zw-yellow); }
+.m-hero p { color: rgba(255,255,255,.85); font-size: 1.02rem; margin-bottom: 1.35rem; }
+
+/* Vier snelle feiten als "chips" — leest in één oogopslag op mobiel */
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.chips li {
+  display: flex; align-items: center; gap: .4rem;
+  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 99px; padding: .42rem .8rem;
+  color: var(--zw-white);
+}
+.chips li::before { content: "✓"; color: var(--zw-yellow); }
+
+/* Formulierkaart die over de hero heen schuift */
+.m-form {
+  position: relative; z-index: 2;
+  margin-top: clamp(-5.5rem, -14vw, -7rem);
+  background: var(--zw-white);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.25rem, 4vw, 1.85rem);
+  box-shadow: var(--zw-shadow-lg);
+}
+.m-form__top { margin-bottom: 1rem; }
+.m-form__top h2 { font-size: 1.22rem; font-weight: 700; margin-bottom: .25rem; }
+.m-form__top p { margin: 0; font-size: 13.5px; color: var(--zw-grey-700); }
+
+/* Compacte secties */
+.m-sec { padding: clamp(2.25rem, 7vw, 3.25rem) 0; }
+.m-sec--grey { background: var(--zw-grey-50); }
+.m-sec h2 { font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem); font-weight: 700; }
+
+/* Grote, duimvriendelijke lijst */
+.m-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.m-list li {
+  display: flex; align-items: flex-start; gap: .85rem;
+  background: var(--zw-white); border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius);
+  padding: .95rem 1.05rem;
+  font-size: 15px; line-height: 1.5;
+}
+.m-list li strong { display: block; font-family: var(--zw-font-head); }
+.m-list .ico {
+  flex-shrink: 0; width: 2rem; height: 2rem;
+  display: grid; place-items: center; border-radius: var(--zw-radius);
+  background: var(--zw-red); color: var(--zw-white);
+}
+.m-list .ico svg { width: 1.05rem; height: 1.05rem; }
+
+/* Knop tussen de secties */
+.m-cta { margin-top: 1.5rem; }
+.m-cta .zw-btn { width: 100%; }
+.m-cta small { display: block; text-align: center; margin-top: .6rem; font-size: 12.5px; color: var(--zw-grey-500); }
+
+/* Stappen na sollicitatie */
+.m-steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.m-steps li { counter-increment: s; position: relative; padding-left: 3rem; }
+.m-steps li::before {
+  content: counter(s); position: absolute; left: 0; top: -.1rem;
+  width: 2.15rem; height: 2.15rem; display: grid; place-items: center;
+  border-radius: 50%; background: var(--zw-yellow); color: var(--zw-ink);
+  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700;
+}
+.m-steps strong { display: block; font-family: var(--zw-font-head); font-size: 15px; }
+.m-steps span { font-size: 14px; color: var(--zw-grey-700); }
+
+/* Vragen */
+.m-faq { display: grid; gap: .5rem; }
+.m-faq details { background: var(--zw-white); border: 1px solid var(--zw-line); border-radius: var(--zw-radius); }
+.m-faq details[open] { border-color: var(--zw-red); }
+.m-faq summary {
+  cursor: pointer; list-style: none; padding: 1rem 1.1rem;
+  font-family: var(--zw-font-head); font-size: 15px; font-weight: 700;
+  display: flex; justify-content: space-between; gap: .75rem; align-items: center;
+}
+.m-faq summary::-webkit-details-marker { display: none; }
+.m-faq summary::after { content: "+"; color: var(--zw-red); font-size: 1.3rem; font-weight: 400; transition: transform .2s var(--zw-ease); }
+.m-faq details[open] summary::after { transform: rotate(45deg); }
+.m-faq p { margin: 0; padding: 0 1.1rem 1.05rem; font-size: 14px; color: var(--zw-grey-700); }
+
+/* Bellen-blok */
+.m-call {
+  background: var(--zw-ink); color: var(--zw-grey);
+  border-radius: var(--zw-radius-card);
+  padding: 1.6rem 1.5rem; text-align: center;
+}
+.m-call h3 { color: var(--zw-white); font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
+.m-call p { font-size: 14px; margin-bottom: 1.15rem; color: rgba(255,255,255,.75); }
+
+/* ==========================================================================
+   FILMVARIANT — fotofilm bij "Wat maakt deze job de moeite waard?".
+   Het formulier bovenaan blijft onaangeroerd. De film laadt pas als hij in
+   de buurt komt. Elke shot is één van de zes punten; het punt in de lijst
+   eronder licht mee op.
+   ========================================================================== */
+.film-band {
+  margin: 1.35rem calc(-1 * var(--zp-bleed, 20px)) 0;
+  aspect-ratio: 4 / 5; max-height: 72svh; min-height: 340px;
+}
+@media (min-width: 600px) {
+  .film-band { margin-inline: 0; aspect-ratio: 3 / 2; border-radius: var(--zw-radius-card); max-height: none; }
+}
+.film-band .film__layer { padding: 14px 16px 18px; }
+.film-band .film__caption { margin-top: auto; }
+.film-band .film__line { font-size: clamp(1.12rem, 1rem + 1vw, 1.5rem); max-width: 26ch; }
+.film-band .film__kicker { font-size: 14px; }
+
+.m-list li { transition: border-color .4s var(--zw-ease), box-shadow .4s var(--zw-ease); }
+.m-list li.is-film { border-color: var(--zw-red); box-shadow: inset 3px 0 0 var(--zw-red); }
+</style>
+</head>
+<body>
+
+<div data-zw-header data-cta="#solliciteer"></div>
+
+<main>
+
+  <!-- ====================== HERO ====================== -->
+  <section class="m-hero">
+    <div class="wrap m-hero__inner">
+      <span class="zw-eyebrow" style="color:var(--zw-yellow);">Vacature elektricien · regio Dendermonde</span>
+      <h1 class="zw-rise zw-rise-1">Ben je elektricien en woon je in (de buurt van) <span>Dendermonde?</span></h1>
+      <p class="zw-rise zw-rise-2">Ontdek of jij in aanmerking komt voor een job bij Electro Zwijsen!</p>
+      <ul class="chips zw-rise zw-rise-3">
+        <li>Vast contract</li>
+        <li>32 vakantiedagen</li>
+        <li>Dertiende maand</li>
+        <li>Geen CV nodig</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Formulier meteen in beeld: op mobiel is dit het eerste wat je ziet -->
+  <div class="wrap">
+    <div class="m-form" id="solliciteer" data-za-scroll>
+      <div class="m-form__top">
+        <h2>Solliciteer in 30 seconden</h2>
+        <p>Kom je in aanmerking? Doe de test. Vier korte vragen, geen CV.</p>
+      </div>
+      <div id="apply"></div>
+    </div>
+  </div>
+
+  <!-- ====================== DE MOEITE WAARD ====================== -->
+  <section class="m-sec">
+    <div class="wrap">
+      <span class="zw-eyebrow">De job</span>
+      <h2>Wat maakt deze job de moeite waard?</h2>
+      <div class="film film-band" id="film" aria-label="De zes punten in beeld">
+        <div class="film__shots"></div>
+        <div class="film__layer">
+          <div class="film__top">
+            <div class="film__progress" aria-hidden="true"></div>
+            <button class="film__pause" type="button" aria-pressed="false" aria-label="Film pauzeren"></button>
+          </div>
+          <div class="film__caption" aria-hidden="true">
+            <span class="film__kicker"></span>
+            <span class="film__line"></span>
+          </div>
+        </div>
+      </div>
+      <ul class="m-list" id="punten" style="margin-top:1.35rem;">
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg></span>
+          <span><strong>Grote werven</strong>Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></span>
+          <span><strong>Breed takenpakket</strong>Bouw mee aan elektrische installaties van a tot z.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span>
+          <span><strong>Afwisseling</strong>Geregeld nieuwe projecten, vooral in Vlaanderen.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+          <span><strong>Vrijheid in je vak</strong>Je werkt zelfstandig en organiseert je werk zelf. Het resultaat telt.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span><strong>In duo</strong>Je rijdt samen met een ervaren collega van Dendermonde naar de werf.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span><strong>Vast contract</strong>Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.</span></li>
+      </ul>
+      <div class="m-cta">
+        <a class="zw-btn" href="#solliciteer">Solliciteer direct zonder CV</a>
+        <small>4 vragen · ±30 seconden</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== VOORDELEN ====================== -->
+  <section class="m-sec m-sec--grey">
+    <div class="wrap">
+      <span class="zw-eyebrow">Ons aanbod</span>
+      <h2>Wat zijn jouw voordelen?</h2>
+      <ul class="zw-checks" style="margin:1.25rem 0 0;font-size:15px;">
+        <li>Goed loon, volgens ervaring</li>
+        <li>32 vakantiedagen</li>
+        <li>Hospitalisatieverzekering voor jou én je gezin</li>
+        <li>Extra terugbetaling van doktersbezoeken, medicatie en andere medische kosten</li>
+        <li>Telefoon met abonnement</li>
+        <li>Groepsverzekering</li>
+        <li>Maaltijdcheques 9 euro per gewerkte dag</li>
+        <li>Dertiende maand</li>
+        <li>Kilometervergoeding tot de werf</li>
+        <li>Werkkledij</li>
+        <li>Beschermingsmateriaal</li>
+      </ul>
+      <!-- Fotoband uit het document van Jana ("FOTOBAND/REEKS") -->
+      <div class="zp-band-wrap" style="margin-top:1.75rem;">
+      <div class="zp-band zp-band--strip" aria-label="Foto's van collega's, het magazijn en het werk">
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/collega-lacht-op-de-werf.webp"><img src="assets/img/jana/collega-lacht-op-de-werf.jpg" alt="Lachende technieker in rode Zwijsen-trui met de armen gekruist, buiten op het terrein" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/ploeg-bij-de-bestelwagen.webp"><img src="assets/img/jana/ploeg-bij-de-bestelwagen.jpg" alt="Zes collega's in rode werkkledij poseren samen naast een bestelwagen" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/magazijn-overleg.webp"><img src="assets/img/jana/magazijn-overleg.jpg" alt="Drie collega's overleggen tussen de rekken in het magazijn" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kabelhaspel-buiten.webp"><img src="assets/img/jana/kabelhaspel-buiten.jpg" alt="Elektricien rolt kabel af van een oranje kabelhaspel" width="800" height="1199" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/selfie-helm-en-baksteen.webp"><img src="assets/img/jana/selfie-helm-en-baksteen.jpg" alt="Lachende elektricien met helm, veiligheidsbril en gehoorbescherming houdt een baksteen omhoog" width="800" height="819" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/verdeelbord-bekabelen.webp"><img src="assets/img/jana/verdeelbord-bekabelen.jpg" alt="Elektricien bekabelt een verdeelbord in de werkplaats" width="800" height="600" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/plannen-tekenen-werkplaats.webp"><img src="assets/img/jana/plannen-tekenen-werkplaats.jpg" alt="Lachende elektricien werkt plannen bij aan een tafel in de werkplaats" width="800" height="600" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/selfie-in-de-bestelwagen.webp"><img src="assets/img/jana/selfie-in-de-bestelwagen.jpg" alt="Selfie van een elektricien met muts bij de bestelwagen, een collega zit achter het stuur" width="800" height="1000" loading="lazy" decoding="async"></picture>
+      </div>
+      <p class="zp-swipe-hint">Veeg opzij voor meer foto’s →</p>
+      </div>
+      <div class="m-cta">
+        <a class="zw-btn" href="#solliciteer">Solliciteer direct zonder CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== WAT JE DOET ====================== -->
+  <section class="m-sec">
+    <div class="wrap">
+      <span class="zw-eyebrow">Je taken</span>
+      <h2>Wat ga je doen?</h2>
+      <p style="color:var(--zw-grey-700);margin-bottom:1.35rem;">Je bouwt nieuwe elektrische installaties van a tot z op grote werven, samen met je collega’s.</p>
+      <ul class="zw-checks" style="font-size:15px;">
+        <li>Kabelgoten plaatsen</li>
+        <li>Kabels trekken</li>
+        <li>Schakelmateriaal plaatsen</li>
+        <li>Verlichtingstoestellen aansluiten</li>
+        <li>Aansluitingen maken in verdeelborden</li>
+        <li>Zorgen dat het volledige project goed wordt opgeleverd</li>
+      </ul>
+      <!-- "De selectie van de nieuwe werven" uit het document van Jana -->
+      <div class="zp-werven-wrap">
+        <div class="zp-head"><h3>De selectie van de nieuwe werven</h3></div>
+        <div class="zp-werven zp-werven--3">
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-brussel-hoogbouw-kraan.webp"><img src="assets/img/jana/werf-brussel-hoogbouw-kraan.jpg" alt="Grote werf in de stad van bovenaf gezien, met een rode torenkraan tussen de hoogbouw" width="1200" height="751" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-klassieke-gevel.webp"><img src="assets/img/jana/werf-klassieke-gevel.jpg" alt="Zwijsen-bestelwagen voor een klassiek herenhuis op een werf" width="800" height="1067" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-ronde-hal-bestelwagens.webp"><img src="assets/img/jana/werf-ronde-hal-bestelwagens.jpg" alt="Bestelwagens en auto's in een grote ronde hal op een werf" width="1200" height="890" loading="lazy" decoding="async"></picture>
+        </div>
+        <div class="zp-cta"><div class="m-cta" style="margin-top:0;"><a class="zw-btn" href="#solliciteer">Solliciteer direct zonder CV</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PROFIEL ====================== -->
+  <section class="m-sec m-sec--grey">
+    <div class="wrap">
+      <span class="zw-eyebrow">Jouw profiel</span>
+      <h2>Ben jij dit?</h2>
+      <div class="zp-region-c"><div class="zp-region">
+        <ul class="zw-checks" style="margin:1.25rem 0 0;font-size:15px;">
+        <li>Minstens 3 jaar ervaring als elektricien</li>
+        <li>Je woont in (of vlakbij) Dendermonde</li>
+        <li>Je hebt minstens rijbewijs B</li>
+        <li>Je spreekt Nederlands</li>
+        <li>Je hebt een VCA-attest</li>
+        <li>Ervaring op werven is een plus, geen must</li>
+      </ul>
+        <figure class="zp-map">
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kaart-regio-dendermonde.webp"><img src="assets/img/jana/kaart-regio-dendermonde.jpg" alt="Kaart van Dendermonde en omgeving, met de gemeentegrens in het geel aangeduid" width="800" height="800" loading="lazy" decoding="async"></picture>
+          <figcaption>Regio Dendermonde in beeld</figcaption>
+        </figure>
+      </div></div>
+      <div class="m-cta">
+        <a class="zw-btn" href="#solliciteer">Kom je in aanmerking? Doe de test.</a>
+        <small>Solliciteer direct zonder CV</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== JE DAG ====================== -->
+  <section class="m-sec">
+    <div class="wrap">
+      <span class="zw-eyebrow">Je werkweek</span>
+      <h2>Hoe ziet je dag eruit?</h2>
+      <ol class="m-steps" style="margin-top:1.35rem;">
+        <li><strong>Samen naar de werf</strong><span>Je rijdt samen met je collega uit de regio Dendermonde naar de werf.</span></li>
+        <li><strong>Werven in heel België</strong><span>De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht bij huis, soms ligt een project verder weg.</span></li>
+        <li><strong>Kilometervergoeding</strong><span>Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.</span></li>
+        <li><strong>Maandag tot vrijdag, 40 uur</strong><span>Je werkt van maandag tot vrijdag, 40 uur per week. Overuren of zaterdagwerk zijn uitzonderlijk.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================== OVER ONS ====================== -->
+  <section class="m-sec m-sec--grey">
+    <div class="wrap zw-about">
+      <span class="zw-eyebrow">Over ons</span>
+      <h2>Wij zijn Electro Zwijsen</h2>
+      <!-- Copy Jana: "Opgericht in 1987 zijn we al veertig jaar expert" — in 2026 is dat 39 jaar.
+             Herschreven naar "Sinds 1987". Zie copy/VERSLAG-copy-2026-10-28.md. -->
+        <p>Wij zijn een hecht familiebedrijf van 150 collega’s. Het hoofdkantoor is in Duffel
+           en we hebben ook een filiaal in Zonhoven. Sinds 1987 zijn we expert in elektriciteit.
+           Naast algemene elektriciteitswerken bouwden we doorheen de jaren expertise op in
+           midden- en hoogspanning, datanetwerken, elektrische laadinstallaties en beveiliging,
+           van branddetectie tot inbraakbeveiliging. Kansen genoeg voor wie wil doorgroeien.
+           Wij zijn een werkgever die expertise naar waarde schat.</p>
+    </div>
+  </section>
+
+  <!-- ====================== GETUIGENISSEN ====================== -->
+  <section class="m-sec">
+    <div class="wrap">
+      <span class="zw-eyebrow">Collega’s aan het woord</span>
+      <h2 style="margin-bottom:1.35rem;">Waarom kies je voor Electro Zwijsen?</h2>
+      <div class="zw-quotes">
+        <figure class="zw-quote">
+          <blockquote>“Ik hou van de afwisseling in mijn job. Geen twee werven zijn hetzelfde.
+            Zelfs na al die jaren kom ik nog geregeld iets tegen waarvan ik denk: dat wist ik nog niet.”</blockquote>
+          <figcaption class="zp-who"><picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/steven-werfleider.webp"><img src="assets/img/jana/steven-werfleider.jpg" alt="Steven, werfleider bij Electro Zwijsen, op een werf met graafmachines achter hem" width="800" height="783" loading="lazy" decoding="async" class="zp-steven"></picture><span><strong>Steven</strong>Werfleider, 22 jaar bij Electro Zwijsen</span></figcaption>
+        </figure>
+        <figure class="zw-quote">
+          <blockquote>“Ik weet wat ik aan Zwijsen heb: een correcte werkgever die altijd stipt betaalt
+            en toffe collega’s met wie ik graag samenwerk. Dat is belangrijk, want je brengt veel tijd
+            met elkaar door. Doorheen de jaren heb ik ook veel opleidingen kunnen volgen: voor de
+            hoogtewerker, schaarlift, heftruck en VCA.”</blockquote>
+          <figcaption class="zp-who"><picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kurt-werfleider.webp"><img src="assets/img/jana/kurt-werfleider.jpg" alt="Kurt, werfleider bij Electro Zwijsen, aan het werk aan een stopcontact" width="800" height="600" loading="lazy" decoding="async" class="zp-kurt"></picture><span><strong>Kurt</strong>Werfleider, 30 jaar bij Electro Zwijsen</span></figcaption>
+        </figure>
+      </div>
+      <!-- Groepsfoto bij "Solliciteer in 30 seconden", zoals in het document van Jana -->
+      <picture class="zp-pic zp-group" style="margin-top:1.75rem;"><source type="image/webp" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-900.webp 900w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto.webp 1600w" sizes="(max-width: 700px) 100vw, 1100px"><img src="assets/img/jana/ploeg-electro-zwijsen-luchtfoto.jpg" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-900.jpg 900w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto.jpg 1600w" sizes="(max-width: 700px) 100vw, 1100px" alt="Luchtfoto van de hele ploeg van Electro Zwijsen die zwaait vanop het grasveld voor het hoofdkantoor, met een zwarte bestelwagen ervoor" width="1600" height="671" loading="lazy" decoding="async"></picture>
+      <div class="m-cta">
+        <a class="zw-btn" href="#solliciteer">Solliciteer in 30 seconden</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== BELLEN ====================== -->
+  <section class="m-sec m-sec--grey">
+    <div class="wrap">
+      <div class="m-call">
+        <h3>Liever gewoon bellen?</h3>
+        <p>Ook goed. Vraag naar de personeelsdienst.</p>
+        <a class="zw-btn zw-btn--yellow" href="tel:+3215305305" style="width:100%;">015 305 305</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-zw-footer></div>
+
+<div class="zw-mobilebar">
+  <a class="zw-btn zw-btn--block" href="#solliciteer">Solliciteer in 30 seconden</a>
+</div>
+
+<!-- Geen kleefbalk bovenaan in dit voorstel: het concept is "gebouwd voor de duim",
+     met de actieknop onderaan. Een tweede balk bovenaan zou op mobiel dubbel zijn. -->
+<script src="assets/site-chrome.js"></script>
+<script src="assets/apply-form.js"></script>
+<script>
+  ZwijsenApply.mount('#apply');
+</script>
+<script src="assets/film.js"></script>
+<script>
+  /* De zes punten uit de copy van Jana, in dezelfde volgorde als de lijst.
+     lazyStart: niets laden voor de film in de buurt komt — het formulier gaat voor.
+     Alle zes de foto's staan verderop op de pagina ook, dus wie doorscrolt,
+     haalt ze maar één keer binnen. soft = uit de PDF (800 px): bescheiden zoom. */
+  (function () {
+    var punten = document.querySelectorAll('#punten > li');
+    ZwijsenFilm.mount('#film', {
+      base: 'assets/img/jana/',
+      lazyStart: true,
+      still: 4,
+      onShot: function (i) {
+        for (var n = 0; n < punten.length; n++) punten[n].classList.toggle('is-film', n === i);
+      },
+      shots: [
+        { src: 'werf-brussel-hoogbouw-kraan.webp', pos: '55% 50%', from: [1.16, 3, 1], to: [1.04, -2, -1],
+          kicker: 'Grote werven', line: 'Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…' },
+        { src: 'verdeelbord-bekabelen.webp', pos: '45% 45%', from: [1.0, 0, 0], to: [1.08, -2, 1], soft: true,
+          kicker: 'Breed takenpakket', line: 'Bouw mee aan elektrische installaties van a tot z.' },
+        { src: 'werf-ronde-hal-bestelwagens.webp', pos: '50% 55%', from: [1.12, -3, 2], to: [1.03, 2, -1],
+          kicker: 'Afwisseling', line: 'Geregeld nieuwe projecten, vooral in Vlaanderen.' },
+        { src: 'selfie-helm-en-baksteen.webp', pos: '50% 30%', from: [1.0, 0, 2], to: [1.08, 0, -2], soft: true,
+          kicker: 'Vrijheid in je vak', line: 'Je werkt zelfstandig en organiseert je werk zelf. Het resultaat telt.' },
+        { src: 'ploeg-bij-de-bestelwagen.webp', pos: '50% 40%', from: [1.03, -2, 0], to: [1.12, 2, -1],
+          kicker: 'In duo', line: 'Je rijdt samen met een ervaren collega van Dendermonde naar de werf.' },
+        { src: 'ploeg-electro-zwijsen-luchtfoto.webp', pos: '50% 50%', from: [1.16, 0, 3], to: [1.02, 0, 0],
+          kicker: 'Vast contract', line: 'Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.' }
+      ]
+    });
+  })();
+</script>
+</body>
+</html>
