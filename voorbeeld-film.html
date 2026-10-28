@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electro Zwijsen — voorbeeld: foto's als film</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/zwijsen.css">
+<link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
+<style>
+  body { background: #0b0c0c; }
+
+  /* ---------------------------------------------------------------------
+     De film: elke shot is een foto die traag zoomt en pant (Ken Burns),
+     met een zachte overvloeiing naar de volgende. De bewegingen staan per
+     shot in het script, zodat elke foto naar zijn eigen onderwerp beweegt.
+     --------------------------------------------------------------------- */
+  .film {
+    position: relative;
+    height: min(100svh, 860px); min-height: 520px;
+    overflow: hidden; background: #0b0c0c; color: #fff;
+    isolation: isolate;
+  }
+  .film__shot {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s cubic-bezier(.4, 0, .2, 1);
+  }
+  .film__shot.is-on { opacity: 1; }
+  .film__shot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  /* Filmlook: vignet, lichte korrel en een donkere voet voor leesbare tekst. */
+  .film::before {
+    content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background:
+      radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,.55) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 22%, transparent 48%, rgba(0,0,0,.82) 100%);
+  }
+  .film::after {
+    content: ""; position: absolute; inset: -50%; z-index: 3; pointer-events: none;
+    opacity: .07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation: korrel .9s steps(4) infinite;
+  }
+  @keyframes korrel {
+    0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); }
+    50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); }
+  }
+
+  /* Breedbeeldbalken die bij de start open schuiven. */
+  .film__bar {
+    position: absolute; left: 0; right: 0; z-index: 4; height: 9vh; background: #0b0c0c;
+    transition: transform 1.8s cubic-bezier(.7, 0, .2, 1) .3s;
+  }
+  .film__bar--top { top: 0; }
+  .film__bar--bottom { bottom: 0; }
+  .film.is-started .film__bar--top { transform: translateY(-100%); }
+  .film.is-started .film__bar--bottom { transform: translateY(100%); }
+
+  /* Ondertitel per shot. */
+  .film__caption {
+    max-width: 1240px; margin: 0 auto clamp(1.2rem, 3vh, 2rem);
+    pointer-events: none;
+  }
+  .film__line {
+    display: block;
+    font-family: var(--zw-font-head); font-weight: 700;
+    font-size: clamp(1.6rem, 1.1rem + 2.6vw, 3.4rem); line-height: 1.08;
+    letter-spacing: -.01em; max-width: 18ch;
+    text-shadow: 0 2px 24px rgba(0,0,0,.45);
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
+  }
+  .film__line.is-on { opacity: 1; transform: none; }
+  .film__kicker {
+    display: inline-flex; align-items: center; gap: .6rem; margin-bottom: .7rem;
+    font-family: var(--zw-font-head); font-size: 12px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--zw-yellow);
+    opacity: 0; transition: opacity .9s ease .15s;
+  }
+  .film__kicker::before { content: ""; width: 2.2rem; height: 3px; background: var(--zw-yellow); }
+  .film__kicker.is-on { opacity: 1; }
+
+  /* Vaste voet: titel en knop blijven staan terwijl de film loopt. */
+  .film__foot {
+    position: absolute; z-index: 6; left: 0; right: 0; bottom: 0;
+    padding: 0 16px clamp(1.6rem, 4vh, 2.6rem);
+  }
+  .film__foot-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem;
+  }
+  .film__title { margin: 0; font-family: var(--zw-font-body); font-weight: 600; font-size: clamp(.95rem, .9rem + .3vw, 1.1rem); color: rgba(255,255,255,.88); max-width: 46ch; }
+  .film__title strong { color: #fff; }
+  .film__actions { display: flex; align-items: center; gap: .8rem; }
+
+  /* Voortgang per shot, zoals bij een verhaal op sociale media. */
+  .film__progress { position: absolute; z-index: 6; top: 1rem; left: 16px; right: 16px; display: flex; gap: 6px; max-width: 1240px; margin: 0 auto; }
+  .film__tick { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .film__tick span { display: block; height: 100%; width: 0; background: #fff; }
+
+  .film__pause {
+    width: 2.75rem; height: 2.75rem; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.4); background: rgba(0,0,0,.25); color: #fff;
+    display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(4px);
+  }
+  .film__pause:hover { background: rgba(0,0,0,.5); }
+  .film__pause svg { width: 1rem; height: 1rem; }
+
+  /* Wie "minder beweging" heeft aangezet, krijgt één stilstaand beeld. */
+  @media (prefers-reduced-motion: reduce) {
+    .film::after { animation: none; }
+    .film__bar { display: none; }
+    .film__shot { transition: none; }
+    .film__progress, .film__pause { display: none; }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Tweede voorbeeld: de fotoreeks als filmstrook die traag voorbijglijdt. */
+  .strook-sectie { background: var(--zw-white); padding: clamp(3rem, 7vw, 5rem) 0; }
+  .strook-sectie h2 { margin-bottom: .5rem; }
+  .strook-sectie p { color: var(--zw-grey-700); max-width: 60ch; }
+  .strook { overflow: hidden; margin-top: 2rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .strook__rail { display: flex; gap: 12px; width: max-content; animation: strook 70s linear infinite; }
+  .strook:hover .strook__rail { animation-play-state: paused; }
+  .strook__rail figure { margin: 0; height: clamp(180px, 26vw, 300px); border-radius: 6px; overflow: hidden; flex: none; }
+  .strook__rail img { height: 100%; width: auto; display: block; transition: transform 6s ease; }
+  .strook__rail figure:hover img { transform: scale(1.08); }
+  @keyframes strook { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .strook { overflow-x: auto; }
+    .strook__rail { animation: none; }
+  }
+
+  .uitleg { background: var(--zw-grey-50); padding: 2.5rem 0 3.5rem; font-size: 14.5px; color: var(--zw-grey-700); }
+  .uitleg ul { margin: .6rem 0 0; padding-left: 1.2rem; display: grid; gap: .35rem; max-width: 75ch; }
+</style>
+</head>
+<body>
+
+<!-- ================================================================== -->
+<section class="film" id="film" aria-roledescription="carrousel" aria-label="Sfeerbeelden van Electro Zwijsen">
+  <div class="film__shots" id="shots"></div>
+
+  <div class="film__bar film__bar--top" aria-hidden="true"></div>
+  <div class="film__bar film__bar--bottom" aria-hidden="true"></div>
+
+  <div class="film__progress" id="progress" aria-hidden="true"></div>
+
+  <div class="film__foot">
+    <div class="film__caption" aria-live="off">
+      <span class="film__kicker" id="kicker"></span>
+      <span class="film__line" id="line"></span>
+    </div>
+    <div class="film__foot-inner">
+      <p class="film__title"><strong>Ben je elektricien en woon je in (de buurt van) Dendermonde?</strong><br>
+        Ontdek of jij in aanmerking komt voor een job bij Electro Zwijsen!</p>
+      <div class="film__actions">
+        <button class="film__pause" id="pause" type="button" aria-label="Film pauzeren" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        </button>
+        <a class="zw-btn" href="2-kwalificatietest.html">Solliciteer direct zonder CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== -->
+<section class="strook-sectie">
+  <div class="zw-container">
+    <span class="zw-eyebrow">Tweede voorbeeld</span>
+    <h2>De fotoreeks als filmstrook</h2>
+    <p>Rustiger dan de film bovenaan: de foto's glijden traag voorbij. Met de muis erop staat de strook stil en zoomt de foto in.</p>
+  </div>
+  <div class="strook" aria-label="Fotoreeks Electro Zwijsen">
+    <div class="strook__rail" id="rail"></div>
+  </div>
+</section>
+
+<section class="uitleg">
+  <div class="zw-container">
+    <strong>Over dit voorbeeld</strong>
+    <ul>
+      <li>Acht shots van elk ongeveer 5,5 seconden, met een zachte overvloeiing. Elke foto zoomt of pant naar haar eigen onderwerp.</li>
+      <li>Alle teksten komen uit de copy van Jana; er is niets bijverzonnen.</li>
+      <li>Er is een pauzeknop. Wie op zijn toestel "minder beweging" heeft aangezet, ziet één stilstaand beeld.</li>
+      <li>De foto's zijn nu maximaal 800 tot 1600 px breed, en een deel komt uit de PDF. Op een groot scherm wordt dat bij het inzoomen zichtbaar zacht. Met de originele bestanden is dat opgelost.</li>
+      <li>Alleen het eerste beeld laadt meteen. De volgende laden pas vlak voordat ze in beeld komen, zodat de pagina even snel blijft openen.</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+(function () {
+  var IMG = 'assets/img/jana/';
+
+  /* Per shot: foto, focuspunt en beweging (van -> naar: schaal en verschuiving in %),
+     plus de ondertitel. Teksten letterlijk of ingekort uit de copy van Jana. */
+  var SHOTS = [
+    { src: 'hoofdkantoor-luchtfoto.webp', pos: '50% 35%', from: [1.18, 0, -4], to: [1.04, 0, 3],
+      kicker: 'Electro Zwijsen', line: 'Sinds 1987 expert in elektriciteit' },
+    { src: 'ploeg-bij-de-bestelwagen.webp', pos: '50% 40%', from: [1.05, -3, 0], to: [1.16, 2, -1],
+      kicker: 'In duo', line: 'Samen met een ervaren collega van Dendermonde naar de werf' },
+    { src: 'werf-brussel-hoogbouw-kraan.webp', pos: '50% 50%', from: [1.2, 3, 2], to: [1.05, -2, -1],
+      kicker: 'Grote werven', line: 'Ziekenhuizen, scholen, kantoorgebouwen, winkelcentra' },
+    { src: 'verdeelbord-bekabelen.webp', pos: '45% 45%', from: [1.04, 0, 0], to: [1.2, -3, 1],
+      kicker: 'Breed takenpakket', line: 'Je bouwt mee aan elektrische installaties van a tot z' },
+    { src: 'werf-ronde-hal-bestelwagens.webp', pos: '50% 55%', from: [1.15, -2, 3], to: [1.04, 2, -2],
+      kicker: 'Afwisseling', line: 'Geregeld nieuwe projecten, vooral in Vlaanderen' },
+    { src: 'selfie-helm-en-baksteen.webp', pos: '50% 30%', from: [1.06, 0, 2], to: [1.18, 0, -2],
+      kicker: 'Vrijheid in je vak', line: 'Je werkt zelfstandig. Het resultaat telt.' },
+    { src: 'werf-gang-paarse-verlichting.webp', pos: '50% 50%', from: [1.04, 3, 0], to: [1.16, -3, 0],
+      kicker: 'Vast contract', line: 'Vanaf dag één aan boord' },
+    { src: 'ploeg-electro-zwijsen-luchtfoto.webp', pos: '50% 50%', from: [1.22, 0, 3], to: [1.02, 0, 0],
+      kicker: 'Familiebedrijf', line: '150 collega’s. Kom je erbij?' }
+  ];
+  var DUUR = 5500;                       /* ms per shot */
+
+  var film = document.getElementById('film');
+  var holder = document.getElementById('shots');
+  var progress = document.getElementById('progress');
+  var kicker = document.getElementById('kicker');
+  var line = document.getElementById('line');
+  var pauseBtn = document.getElementById('pause');
+  var stil = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var els = SHOTS.map(function (s, i) {
+    var d = document.createElement('div');
+    d.className = 'film__shot';
+    var img = document.createElement('img');
+    img.alt = '';                        /* sfeerbeeld; de ondertitel draagt de inhoud */
+    img.decoding = 'async';
+    img.style.objectPosition = s.pos;
+    if (i === 0) { img.src = IMG + s.src; img.fetchPriority = 'high'; }
+    d.appendChild(img);
+    holder.appendChild(d);
+    var t = document.createElement('div'); t.className = 'film__tick'; t.appendChild(document.createElement('span'));
+    progress.appendChild(t);
+    return { wrap: d, img: img, tick: t.firstChild, anim: null, bar: null };
+  });
+
+  function laad(i) { var e = els[i % els.length]; if (!e.img.src) e.img.src = IMG + SHOTS[i % SHOTS.length].src; }
+  function tf(v) { return 'scale(' + v[0] + ') translate(' + v[1] + '%,' + v[2] + '%)'; }
+
+  var huidig = -1, timer = null, gepauzeerd = false, rest = DUUR, gestart = 0;
+
+  function toon(i) {
+    var vorige = els[huidig];
+    huidig = i % els.length;
+    var e = els[huidig], s = SHOTS[huidig];
+    laad(huidig + 1);                    /* volgende alvast laden */
+
+    if (huidig === 0) els.forEach(function (x) { x.tick.style.width = '0'; if (x.bar) x.bar.cancel(); });
+    if (vorige && vorige !== e) setTimeout(function () { vorige.wrap.classList.remove('is-on'); }, 50);
+    e.wrap.classList.add('is-on');
+
+    if (e.anim) e.anim.cancel();
+    /* De beweging loopt door tot na de overvloeiing, zodat er nooit een stilstand is. */
+    e.anim = e.img.animate([{ transform: tf(s.from) }, { transform: tf(s.to) }],
+      { duration: DUUR + 1800, easing: 'cubic-bezier(.35,.1,.35,1)', fill: 'forwards' });
+    e.bar = e.tick.animate([{ width: '0%' }, { width: '100%' }], { duration: DUUR, fill: 'forwards' });
+
+    kicker.classList.remove('is-on'); line.classList.remove('is-on');
+    setTimeout(function () {
+      kicker.textContent = s.kicker; line.textContent = s.line;
+      kicker.classList.add('is-on'); line.classList.add('is-on');
+    }, 450);
+
+    rest = DUUR; plan();
+  }
+  function plan() { clearTimeout(timer); gestart = Date.now(); timer = setTimeout(function () { toon(huidig + 1); }, rest); }
+
+  pauseBtn.addEventListener('click', function () {
+    var e = els[huidig];
+    gepauzeerd = !gepauzeerd;
+    pauseBtn.setAttribute('aria-pressed', String(gepauzeerd));
+    pauseBtn.setAttribute('aria-label', gepauzeerd ? 'Film afspelen' : 'Film pauzeren');
+    pauseBtn.innerHTML = gepauzeerd
+      ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+    if (gepauzeerd) { clearTimeout(timer); rest -= Date.now() - gestart; e.anim && e.anim.pause(); e.bar && e.bar.pause(); }
+    else { e.anim && e.anim.play(); e.bar && e.bar.play(); plan(); }
+  });
+
+  /* Niet afspelen wat niemand ziet: pauzeren als de film uit beeld of het tabblad weg is. */
+  function zichtbaarheid(zicht) {
+    if (gepauzeerd || huidig < 0) return;
+    var e = els[huidig];
+    if (!zicht) { clearTimeout(timer); rest -= Date.now() - gestart; e.anim && e.anim.pause(); e.bar && e.bar.pause(); }
+    else { e.anim && e.anim.play(); e.bar && e.bar.play(); plan(); }
+  }
+  var inBeeld = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      var nu = en[0].isIntersecting; if (nu !== inBeeld) { inBeeld = nu; zichtbaarheid(nu && !document.hidden); }
+    }, { threshold: 0.15 }).observe(film);
+  }
+  document.addEventListener('visibilitychange', function () { if (inBeeld) zichtbaarheid(!document.hidden); });
+
+  if (stil) {
+    els[0].wrap.classList.add('is-on');
+    kicker.textContent = SHOTS[0].kicker; line.textContent = SHOTS[0].line;
+    kicker.classList.add('is-on'); line.classList.add('is-on');
+  } else {
+    var start = function () { film.classList.add('is-started'); toon(0); };
+    if (els[0].img.complete) start(); else els[0].img.addEventListener('load', start, { once: true });
+  }
+
+  /* Filmstrook: de reeks twee keer achter elkaar, zodat de lus naadloos is. */
+  var BAND = ['technieker-bij-bestelwagen-900', 'ploeg-bij-de-bestelwagen', 'technieker-opent-bestelwagen',
+    'hoofdkantoor-luchtfoto', 'plannen-bekijken', 'magazijn-materiaal-klaarzetten', 'magazijn-overleg',
+    'kabelhaspel-buiten', 'kabelhaspels-magazijn', 'selfie-helm-en-baksteen', 'verdeelbord-bekabelen',
+    'plannen-tekenen-werkplaats', 'selfie-in-de-bestelwagen', 'selfie-in-de-werkplaats'];
+  var rail = document.getElementById('rail');
+  BAND.concat(BAND).forEach(function (n, i) {
+    var f = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = IMG + n + '.webp'; img.alt = i < BAND.length ? n.replace(/-900$/, '').replace(/-/g, ' ') : '';
+    if (i >= BAND.length) f.setAttribute('aria-hidden', 'true');
+    img.loading = 'lazy'; img.decoding = 'async';
+    f.appendChild(img); rail.appendChild(f);
+  });
+})();
+</script>
+</body>
+</html>
