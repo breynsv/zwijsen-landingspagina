@@ -526,3 +526,30 @@ a { color: var(--zw-red); text-decoration-thickness: 1px; text-underline-offset:
 .zw-rise-2 { animation-delay: .14s; }
 .zw-rise-3 { animation-delay: .22s; }
 .zw-rise-4 { animation-delay: .3s; }
+
+/* ==========================================================================
+   Gedeelde blokken voor de copy van Jana (28 okt 2026)
+   ========================================================================== */
+
+/* Getuigenissen — "Waarom kies je voor Electro Zwijsen?" */
+.zw-quotes { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.zw-quote {
+  margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 1.1rem;
+  background: var(--zw-white);
+  border: 1px solid var(--zw-line); border-top: 4px solid var(--zw-yellow);
+  border-radius: var(--zw-radius-card);
+  padding: clamp(1.35rem, 2.6vw, 1.8rem);
+}
+.zw-quote blockquote {
+  margin: 0; font-family: var(--zw-font-head);
+  font-size: 1.02rem; font-weight: 500; line-height: 1.55; color: var(--zw-ink);
+}
+.zw-quote figcaption { font-size: 13.5px; color: var(--zw-grey-500); }
+.zw-quote figcaption strong { display: block; color: var(--zw-ink); font-size: 15px; }
+
+/* Lijst in twee kolommen (voordelen) */
+.zw-checks--2col { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 2.5rem; }
+
+/* "Wij zijn Electro Zwijsen" */
+.zw-about { max-width: 70ch; }
+.zw-about p { color: var(--zw-grey-700); }

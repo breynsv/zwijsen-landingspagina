@@ -20,106 +20,60 @@
 
   /* ----------------------------------------------------------------------
      1. De vragen
-     Afgeleid van de echte vacature-eisen op zwijsen.be:
-     technische richting, eerste ervaring = plus, Nederlands, rijbewijs B,
-     VCA-attest, zelfstandig kunnen werken.
+     Definitieve tekst van Jana (copywriter), 28 oktober 2026: vier vragen.
+     Soorten:
+       - keuzevraag (options) — gaat na een klik meteen door;
+         een optie met `other: true` toont een tekstvak ("Een andere taal:")
+         en gaat dan pas door met de knop Volgende.
+       - tekstvraag (type: 'text') — verplicht in te vullen.
      ---------------------------------------------------------------------- */
 
   var QUESTIONS = [
     {
-      name: 'ervaring',
-      label: 'Heb je al ervaring met of kennis van elektriciteit?',
-      icon: '⚡',
+      name: 'werkervaring',
+      label: 'Hoeveel relevante werkervaring heb je?',
+      icon: '\u26A1',
       options: [
-        { value: 'werkervaring', label: 'Ja, vanuit werkervaring' },
-        { value: 'opleiding', label: 'Ja, vanuit mijn opleiding' },
-        { value: 'beide', label: 'Ja, vanuit werkervaring én opleiding' },
-        { value: 'geen', label: 'Nog niet, maar ik leer het graag' }
+        { value: '1-2', label: '1-2 jaar' },
+        { value: '3-4', label: '3-4 jaar' },
+        { value: '5-10', label: '5-10 jaar' },
+        { value: '10+', label: '+10 jaar' },
+        { value: 'geen', label: 'Geen werkervaring' }
       ]
     },
     {
-      name: 'domein',
-      label: 'Waar ligt je ervaring vooral?',
-      icon: '\u{1F3D7}️',
-      hint: 'Geen van beide? Ook prima — je leert bij ons on-the-job.',
+      name: 'moedertaal',
+      label: 'Wat is je moedertaal?',
+      icon: '\u{1F5E3}\uFE0F',
       options: [
-        { value: 'residentieel', label: 'Residentieel (woningen, appartementen)' },
-        { value: 'utiliteit', label: 'Utiliteit (scholen, ziekenhuizen, rusthuizen)' },
-        { value: 'industrieel', label: 'Industrieel' },
-        { value: 'nvt', label: 'Nog geen ervaring op de werf' }
-      ]
-    },
-    {
-      name: 'schemas',
-      label: 'Kan je elektrische schema’s en componenten lezen?',
-      icon: '\u{1F4D6}',
-      options: [
-        { value: 'ja', label: 'Ja, vlot' },
-        { value: 'basis', label: 'De basis wel' },
-        { value: 'nee', label: 'Nee, maar ik wil dat graag leren' }
-      ]
-    },
-    {
-      name: 'vca',
-      label: 'Heb je een geldig VCA-attest?',
-      icon: '\u{1F9BA}',
-      hint: 'Nog geen attest? Geen probleem — Zwijsen betaalt en plant je VCA-opleiding.',
-      options: [
-        { value: 'geldig', label: 'Ja, geldig' },
-        { value: 'vervallen', label: 'Gehad, maar vervallen' },
-        { value: 'nee', label: 'Nee, nog niet' }
+        { value: 'nederlands', label: 'Nederlands' },
+        { value: 'frans', label: 'Frans' },
+        { value: 'andere', label: 'Een andere taal:', other: true,
+          otherLabel: 'Welke taal?', otherPlaceholder: 'Vul je moedertaal in' }
       ]
     },
     {
       name: 'rijbewijs',
-      label: 'Welk rijbewijs heb je?',
+      label: 'Heb je een rijbewijs?',
       icon: '\u{1F697}',
       options: [
         { value: 'b', label: 'Rijbewijs B' },
         { value: 'be', label: 'Rijbewijs BE' },
         { value: 'ce', label: 'Rijbewijs C(E)' },
-        { value: 'geen', label: '(Nog) geen rijbewijs' }
+        { value: 'nee', label: 'Nee' }
       ]
     },
     {
-      name: 'nederlands',
-      label: 'Hoe goed is je Nederlands?',
-      icon: '\u{1F5E3}️',
-      hint: 'Frans is een pluspunt, geen vereiste.',
-      options: [
-        { value: 'moedertaal', label: 'Moedertaal' },
-        { value: 'gevorderd', label: 'Gevorderd' },
-        { value: 'basis', label: 'Basis' },
-        { value: 'geen', label: 'Ik spreek geen Nederlands' }
-      ]
-    },
-    {
-      name: 'regio',
-      label: 'Werk je graag in de regio Dendermonde?',
-      icon: '\u{1F5FA}️',
-      map: true,
-      options: [
-        { value: 'ja', label: 'Ja, dat ligt goed voor mij' },
-        { value: 'bespreekbaar', label: 'Bespreekbaar' },
-        { value: 'nee', label: 'Liever een andere regio' }
-      ]
-    },
-    {
-      name: 'start',
-      label: 'Wanneer zou je kunnen starten?',
-      icon: '\u{1F5D3}️',
-      options: [
-        { value: 'direct', label: 'Zo goed als direct' },
-        { value: 'maand', label: 'Binnen de maand' },
-        { value: 'kwartaal', label: 'Over 1 tot 3 maanden' },
-        { value: 'orienteren', label: 'Ik kijk voorlopig rond' }
-      ]
+      name: 'woonplaats',
+      type: 'text',
+      label: 'Waar woon je?',
+      icon: '\u{1F4CD}',
+      hint: 'Vul je postcode of de naam van je gemeente in.',
+      placeholder: 'bv. 9200 of Dendermonde',
+      autocomplete: 'address-level2',
+      error: 'Vul je postcode of gemeente in om verder te gaan.'
     }
   ];
-
-  /* Gemeenten in de wervingsregio — getoond bij de regiovraag. */
-  var REGIO = ['Dendermonde', 'Lebbeke', 'Buggenhout', 'Zele', 'Berlare',
-    'Waasmunster', 'Hamme', 'Wichelen', 'Laarne', 'Bornem', 'Puurs-Sint-Amands', 'Willebroek'];
 
   var LANDCODES = [
     ['BE', '\u{1F1E7}\u{1F1EA} +32'], ['NL', '\u{1F1F3}\u{1F1F1} +31'],
@@ -210,34 +164,71 @@
     fs.appendChild(el('legend', { class: 'za__legend',
       html: (q.icon ? '<span class="za__icon" aria-hidden="true">' + q.icon + '</span> ' : '') + q.label }));
 
-    if (q.hint) fs.appendChild(el('p', { class: 'za__hint', text: q.hint }));
+    if (q.hint) fs.appendChild(el('p', { class: 'za__hint', id: group + '_hint', text: q.hint }));
 
-    if (q.map) fs.appendChild(this.buildMap());
+    if (q.type === 'text') {
+      /* Tekstvraag (woonplaats): verplicht, Enter = Volgende. */
+      var wrap = el('div', { class: 'za__field za__field--full za__textq' });
+      wrap.appendChild(el('label', { class: 'zw-visually-hidden', for: 'za_' + q.name, text: q.label }));
+      wrap.appendChild(el('input', {
+        class: 'za__input', type: 'text', id: 'za_' + q.name, name: q.name,
+        autocomplete: q.autocomplete || 'on', placeholder: q.placeholder || '',
+        required: 'required', 'aria-describedby': q.hint ? group + '_hint' : null,
+        value: this.answers[q.name] || '',
+        oninput: function (e) { self.answers[q.name] = e.target.value; self.clearError(); },
+        onkeydown: function (e) { if (e.key === 'Enter') { e.preventDefault(); self.next(); } }
+      }));
+      fs.appendChild(wrap);
+    } else {
+      var list = el('div', { class: 'za__options' });
+      var otherBox = null;
+      q.options.forEach(function (o, i) {
+        var id = group + '_' + o.value;
+        var label;
+        var input = el('input', {
+          class: 'za__radio', type: 'radio', name: group, id: id, value: o.value,
+          onchange: function () {
+            self.answers[q.name] = o.value;
+            list.querySelectorAll('.za__option').forEach(function (n) { n.classList.remove('is-on'); });
+            label.classList.add('is-on');
+            self.clearError();
+            if (otherBox) otherBox.hidden = !o.other;
+            if (o.other) {
+              /* "Een andere taal:" — eerst invullen, dan pas verder. */
+              var t = otherBox.querySelector('input');
+              setTimeout(function () { t.focus(); }, 30);
+              return;
+            }
+            /* Kort uitstel zodat de selectie zichtbaar is voor we doorgaan. */
+            setTimeout(function () { self.next(); }, 260);
+          }
+        });
+        if (self.answers[q.name] === o.value) input.checked = true;
 
-    var list = el('div', { class: 'za__options' });
-    q.options.forEach(function (o, i) {
-      var id = group + '_' + o.value;
-      var input = el('input', {
-        class: 'za__radio', type: 'radio', name: group, id: id, value: o.value,
-        onchange: function () {
-          self.answers[q.name] = o.value;
-          list.querySelectorAll('.za__option').forEach(function (n) { n.classList.remove('is-on'); });
-          label.classList.add('is-on');
-          self.clearError();
-          /* Kort uitstel zodat de selectie zichtbaar is voor we doorgaan. */
-          setTimeout(function () { self.next(); }, 260);
+        label = el('label', { class: 'za__option' + (self.answers[q.name] === o.value ? ' is-on' : ''), for: id }, [
+          input,
+          el('span', { class: 'za__letter', 'aria-hidden': 'true', text: LETTERS[i] || '+' }),
+          el('span', { class: 'za__option-text', text: o.label })
+        ]);
+        list.appendChild(label);
+
+        if (o.other) {
+          var key = q.name + '_andere';
+          otherBox = el('div', { class: 'za__other' });
+          otherBox.hidden = self.answers[q.name] !== o.value;
+          otherBox.appendChild(el('label', { class: 'zw-visually-hidden', for: 'za_' + key, text: o.otherLabel || o.label }));
+          otherBox.appendChild(el('input', {
+            class: 'za__input', type: 'text', id: 'za_' + key, name: key,
+            placeholder: o.otherPlaceholder || '', autocomplete: 'off',
+            value: self.answers[key] || '',
+            oninput: function (e) { self.answers[key] = e.target.value; self.clearError(); },
+            onkeydown: function (e) { if (e.key === 'Enter') { e.preventDefault(); self.next(); } }
+          }));
+          list.appendChild(otherBox);
         }
       });
-      if (self.answers[q.name] === o.value) input.checked = true;
-
-      var label = el('label', { class: 'za__option' + (self.answers[q.name] === o.value ? ' is-on' : ''), for: id }, [
-        input,
-        el('span', { class: 'za__letter', 'aria-hidden': 'true', text: LETTERS[i] || '+' }),
-        el('span', { class: 'za__option-text', text: o.label })
-      ]);
-      list.appendChild(label);
-    });
-    fs.appendChild(list);
+      fs.appendChild(list);
+    }
     this.body.appendChild(fs);
 
     this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));
@@ -258,48 +249,27 @@
     }
   };
 
-  /* Eenvoudige regiokaart — bewust zonder externe kaartbibliotheek,
-     zodat de pagina snel blijft en er geen extra cookie-toestemming nodig is. */
-  ZwijsenApply.prototype.buildMap = function () {
-    var wrap = el('div', { class: 'za__map' });
-    wrap.appendChild(el('div', { class: 'za__map-visual', 'aria-hidden': 'true', html:
-      '<svg viewBox="0 0 320 150" role="presentation">' +
-      '<defs><radialGradient id="zaGlow" cx="50%" cy="50%" r="50%">' +
-      '<stop offset="0%" stop-color="#E60E13" stop-opacity=".28"/>' +
-      '<stop offset="100%" stop-color="#E60E13" stop-opacity="0"/></radialGradient></defs>' +
-      '<rect width="320" height="150" fill="#EFEDEE"/>' +
-      '<path d="M0 96 L52 84 L104 98 L156 76 L208 92 L262 72 L320 88 L320 150 L0 150Z" fill="#DDD9DB"/>' +
-      '<path d="M0 118 L60 110 L128 122 L196 104 L268 118 L320 108 L320 150 L0 150Z" fill="#CFCCCE"/>' +
-      '<circle cx="160" cy="72" r="58" fill="url(#zaGlow)"/>' +
-      '<circle cx="160" cy="72" r="30" fill="none" stroke="#E60E13" stroke-width="2" stroke-dasharray="5 4"/>' +
-      '<circle cx="160" cy="72" r="7" fill="#E60E13"/>' +
-      '<circle cx="160" cy="72" r="13" fill="none" stroke="#E60E13" stroke-width="2" opacity=".45"/>' +
-      '<text x="160" y="104" text-anchor="middle" font-family="Roboto,sans-serif" font-size="13" font-weight="700" fill="#121413">Dendermonde</text>' +
-      '</svg>' }));
-    wrap.appendChild(el('p', { class: 'za__map-caption',
-      text: 'Werven in en rond: ' + REGIO.join(' · ') }));
-    return wrap;
-  };
-
   ZwijsenApply.prototype.reassure = function () {
     return el('ul', { class: 'za__reassure' }, [
-      el('li', { text: 'Duurt 60 seconden' }),
-      el('li', { text: 'CV niet verplicht' }),
+      el('li', { text: '4 vragen · ±30 seconden' }),
+      el('li', { text: 'Geen CV nodig' }),
       el('li', { text: '100% vertrouwelijk' })
     ]);
   };
 
   /* ----------------------------------------------------------------------
-     Contactstap
+     Contactstap — "Je komt in aanmerking!"
      ---------------------------------------------------------------------- */
+
+  var PRIVACY_URL = 'https://zwijsen.be/privacy-policy/';
 
   ZwijsenApply.prototype.renderContact = function () {
     var self = this;
 
     var fs = el('fieldset', { class: 'za__fieldset' });
-    fs.appendChild(el('legend', { class: 'za__legend', text: 'Waar mogen we je bereiken?' }));
+    fs.appendChild(el('legend', { class: 'za__legend', text: 'Je komt in aanmerking!' }));
     fs.appendChild(el('p', { class: 'za__hint',
-      text: 'Je krijgt binnen 1 werkdag antwoord van Katrien, rechtstreeks. Geen wachtrij, geen tussenpersoon.' }));
+      text: 'Laat zeker je gegevens na en wij nemen contact.' }));
 
     /* Honeypot — echte bezoekers zien dit veld niet. */
     fs.appendChild(el('div', { class: 'za__hp', 'aria-hidden': 'true' }, [
@@ -308,13 +278,11 @@
     ]));
 
     var grid = el('div', { class: 'za__grid' });
-    grid.appendChild(this.field('voornaam', 'Voornaam', 'text', { autocomplete: 'given-name', required: true }));
-    grid.appendChild(this.field('achternaam', 'Achternaam', 'text', { autocomplete: 'family-name', required: true }));
-    grid.appendChild(this.field('email', 'E-mailadres', 'email', { autocomplete: 'email', required: true, full: true }));
+    grid.appendChild(this.field('naam', 'Je naam *', 'text', { autocomplete: 'name', required: true, full: true }));
 
     /* Telefoon met landcode */
     var telWrap = el('div', { class: 'za__field za__field--full' });
-    telWrap.appendChild(el('label', { class: 'za__label', for: 'za_tel', text: 'Telefoon' }));
+    telWrap.appendChild(el('label', { class: 'za__label', for: 'za_tel', text: 'Telefoonnummer *' }));
     var telRow = el('div', { class: 'za__telrow' });
     var sel = el('select', { class: 'za__select', id: 'za_landcode', name: 'landcode',
       'aria-label': 'Landcode' });
@@ -326,30 +294,21 @@
     telWrap.appendChild(el('p', { class: 'za__field-error', 'aria-live': 'polite' }));
     grid.appendChild(telWrap);
 
+    grid.appendChild(this.field('email', 'E-mailadres *', 'email', { autocomplete: 'email', required: true, full: true }));
+
     fs.appendChild(grid);
 
-    /* CV — optioneel, precies zoals in de referentie */
-    var fileWrap = el('div', { class: 'za__file' });
-    fileWrap.appendChild(el('input', { type: 'file', id: 'za_cv', name: 'cv',
-      accept: '.pdf,.doc,.docx,.jpg,.png', class: 'zw-visually-hidden',
-      onchange: function (e) {
-        var f = e.target.files && e.target.files[0];
-        fileLabel.querySelector('.za__file-text').textContent = f ? f.name : 'CV toevoegen (optioneel)';
-        fileWrap.classList.toggle('is-set', !!f);
-      } }));
-    var fileLabel = el('label', { class: 'za__file-label', for: 'za_cv' }, [
-      el('span', { class: 'za__file-icon', 'aria-hidden': 'true', text: '\u{1F4CE}' }),
-      el('span', { class: 'za__file-text', text: 'CV toevoegen (optioneel)' })
-    ]);
-    fileWrap.appendChild(fileLabel);
-    fs.appendChild(fileWrap);
-
-    /* GDPR — expliciete, niet vooraf aangevinkte toestemming */
+    /* Toestemming — LET OP: staat op vraag van de klant standaard AAN.
+       Onder de AVG moet toestemming een actieve handeling zijn (een vooraf
+       aangevinkt vakje geldt niet als toestemming). Voor contact over een
+       sollicitatie kan "precontractuele maatregelen" (art. 6.1.b) volstaan,
+       maar dit moet met de klant besproken worden vóór livegang. */
     var consentWrap = el('div', { class: 'za__consent' });
-    consentWrap.appendChild(el('input', { type: 'checkbox', id: 'za_consent', name: 'consent', required: 'required' }));
+    consentWrap.appendChild(el('input', { type: 'checkbox', id: 'za_consent', name: 'consent',
+      required: 'required', checked: 'checked' }));
     consentWrap.appendChild(el('label', { for: 'za_consent', html:
-      'Ik ga ermee akkoord dat Electro Zwijsen mijn gegevens bijhoudt om deze sollicitatie te behandelen. ' +
-      '<a href="https://zwijsen.be/privacy-verklaring/" target="_blank" rel="noopener">Privacyverklaring</a>.' }));
+      'Door mijn gegevens te versturen, geef ik Electro Zwijsen toestemming om contact met mij op te nemen ' +
+      'over deze vacature. <a href="' + PRIVACY_URL + '" target="_blank" rel="noopener">Privacyverklaring</a>' }));
     fs.appendChild(consentWrap);
     fs.appendChild(el('p', { class: 'za__field-error za__consent-error', 'aria-live': 'polite' }));
 
@@ -360,7 +319,7 @@
       el('button', { class: 'za__back', type: 'button', text: '← Terug',
         onclick: function () { self.prev(); } }),
       el('button', { class: 'zw-btn za__next za__submit', type: 'button',
-        text: 'Verstuur mijn sollicitatie',
+        text: 'Neem contact met mij op',
         onclick: function (e) { self.submit(e.currentTarget); } })
     ]));
 
@@ -398,9 +357,32 @@
   ZwijsenApply.prototype.next = function () {
     if (this.step < QUESTIONS.length) {
       var q = QUESTIONS[this.step];
-      if (!this.answers[q.name]) { this.showError('Kies een antwoord om verder te gaan.'); return; }
+      if (q.type === 'text') {
+        if (!(this.answers[q.name] || '').trim()) {
+          this.showError(q.error || 'Vul dit in om verder te gaan.');
+          var ti = this.body.querySelector('#za_' + q.name);
+          if (ti) ti.focus();
+          return;
+        }
+        this.answers[q.name] = this.answers[q.name].trim();
+      } else {
+        if (!this.answers[q.name]) { this.showError('Kies een antwoord om verder te gaan.'); return; }
+        var chosen = q.options.filter(function (o) { return o.value === this.answers[q.name]; }, this)[0];
+        if (chosen && chosen.other) {
+          var key = q.name + '_andere';
+          if (!(this.answers[key] || '').trim()) {
+            this.showError('Vul in welke taal je moedertaal is.');
+            var oi = this.body.querySelector('#za_' + key);
+            if (oi) oi.focus();
+            return;
+          }
+          this.answers[key] = this.answers[key].trim();
+        } else {
+          delete this.answers[q.name + '_andere'];
+        }
+      }
       /* Bewust ALLEEN het stapnummer en de vraagnaam naar Meta/Analytics.
-         Het gegeven antwoord (rijbewijs, taalniveau, opleiding) gaat NIET mee:
+         Het gegeven antwoord (rijbewijs, moedertaal, woonplaats) gaat NIET mee:
          dat is persoonlijke informatie over een sollicitant, en die hoort bij
          Zwijsen thuis — niet bij een advertentieplatform. Voor het meten van
          afhaakpunten volstaat het stapnummer. De antwoorden zitten wel in de
@@ -436,8 +418,7 @@
 
     var get = function (id) { var n = self.body.querySelector('#' + id); return n ? n.value.trim() : ''; };
     var data = {
-      voornaam: get('za_voornaam'),
-      achternaam: get('za_achternaam'),
+      naam: get('za_naam'),
       email: get('za_email'),
       landcode: get('za_landcode'),
       telefoon: get('za_tel')
@@ -455,12 +436,11 @@
       if (!bad) input.focus();
       bad = true;
     }
-    if (!data.voornaam) fail('za_voornaam', 'Vul je voornaam in.');
-    if (!data.achternaam) fail('za_achternaam', 'Vul je achternaam in.');
+    if (!data.naam) fail('za_naam', 'Vul je naam in.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) fail('za_email', 'Vul een geldig e-mailadres in.');
     if (data.telefoon.replace(/\D/g, '').length < 8) fail('za_tel', 'Vul een geldig telefoonnummer in.');
     if (!consent) {
-      this.body.querySelector('.za__consent-error').textContent = 'Je moet akkoord gaan om te kunnen versturen.';
+      this.body.querySelector('.za__consent-error').textContent = 'Zonder je toestemming kunnen we je niet contacteren.';
       bad = true;
     }
     if (bad) { this.showError('Even nakijken — er ontbreekt nog iets.'); return; }
@@ -504,7 +484,7 @@
       body: JSON.stringify(payload)
     }).then(finish).catch(function () {
       btn.disabled = false;
-      btn.textContent = 'Verstuur mijn sollicitatie';
+      btn.textContent = 'Neem contact met mij op';
       self.showError('Versturen lukte niet. Probeer opnieuw of bel 015 305 305.');
     });
   };
@@ -514,7 +494,8 @@
      ---------------------------------------------------------------------- */
 
   ZwijsenApply.prototype.renderDone = function () {
-    var naam = (this.payload && this.payload.voornaam) || '';
+    /* Alleen de voornaam in de aanspreking: eerste woord van het naamveld. */
+    var naam = ((this.payload && this.payload.naam) || '').split(/\s+/)[0];
     this.body.appendChild(el('div', { class: 'za__done' }, [
       el('div', { class: 'za__done-mark', 'aria-hidden': 'true', html:
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" ' +
@@ -591,6 +572,55 @@
       });
 
       return { open: open, close: shut, app: app };
+    },
+
+    /* Kleefbalk bovenaan — Jana: "formulier als pop-up en bij scrollen
+       bovenaan vast". Verschijnt net onder de (kleverige) sitehoofding zodra
+       het element `after` uit beeld is, en verdwijnt weer zolang het element
+       `hideWhen` (het formulier zelf) in beeld is.
+         opts.after       selector — balk pas tonen als dit voorbij is
+         opts.hideWhen    selector — balk verbergen als dit in beeld is
+         opts.modal       true: knop opent het pop-upformulier ([data-za-open])
+         opts.href        anders: knop springt naar dit anker
+         opts.desktopOnly true: enkel boven 860px (op mobiel is er de onderbalk) */
+    stickyBar: function (opts) {
+      opts = opts || {};
+      var label = opts.button || 'Solliciteer in 30 seconden';
+      var btn = opts.modal
+        ? el('button', { class: 'zw-btn za-topbar__btn', type: 'button', 'data-za-open': '', text: label })
+        : el('a', { class: 'zw-btn za-topbar__btn', href: opts.href || '#solliciteer', text: label });
+      var bar = el('div', { class: 'za-topbar' + (opts.desktopOnly ? ' za-topbar--desktop' : ''),
+        role: 'region', 'aria-label': 'Snel solliciteren' }, [
+        el('div', { class: 'zw-container za-topbar__inner' }, [
+          el('p', { class: 'za-topbar__text', html:
+            '<strong>Kom je in aanmerking?</strong> <span>Doe de test.</span>' }),
+          btn
+        ])
+      ]);
+      document.body.appendChild(bar);
+
+      /* De hoofding wordt door site-chrome.js pas bij DOMContentLoaded gebouwd
+         (en op WordPress door het thema) — dus telkens opnieuw opzoeken. */
+      var after = opts.after ? document.querySelector(opts.after) : null;
+      var hideWhen = opts.hideWhen ? document.querySelector(opts.hideWhen) : null;
+
+      function update() {
+        var header = document.querySelector('.zw-header');
+        var top = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+        bar.style.top = top + 'px';
+        var past = after ? after.getBoundingClientRect().bottom < top : global.scrollY > 400;
+        var formVisible = false;
+        if (hideWhen) {
+          var r = hideWhen.getBoundingClientRect();
+          formVisible = r.top < global.innerHeight && r.bottom > top;
+        }
+        bar.classList.toggle('is-on', past && !formVisible);
+      }
+      global.addEventListener('scroll', update, { passive: true });
+      global.addEventListener('resize', update);
+      update();
+      document.addEventListener('DOMContentLoaded', update);
+      return bar;
     }
   };
 

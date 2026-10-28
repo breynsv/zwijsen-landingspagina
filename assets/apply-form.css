@@ -197,7 +197,7 @@
   left: -9999px; width: 1px; height: 1px; overflow: hidden;
 }
 
-.za__file { margin-top: 1rem; }
+.za__file { margin-top: 1rem; }  /* niet meer in gebruik sinds copy Jana (geen CV-veld) */
 .za__file-label {
   display: flex; align-items: center; gap: .65rem;
   padding: .85rem 1rem;
@@ -305,3 +305,41 @@
   transition: background-color .16s var(--zw-ease), color .16s var(--zw-ease);
 }
 .za-modal__close:hover { background: var(--zw-ink); color: var(--zw-white); }
+
+/* --- Vrije tekst: "Een andere taal:" en de woonplaatsvraag --------------- */
+
+.za__other { margin: .1rem 0 0 2.6rem; }
+.za__other[hidden] { display: none; }
+.za__textq { margin-top: 1.15rem; }
+.za__textq .za__input { font-size: 16px; }   /* 16px: geen automatische zoom op iOS */
+.za__other .za__input { font-size: 16px; }
+
+/* --- Kleefbalk bovenaan (Jana: "bij scrollen bovenaan vast") ------------- */
+
+.za-topbar {
+  position: fixed; left: 0; right: 0; top: 0; z-index: 90;
+  background: var(--zw-ink); color: var(--zw-white);
+  box-shadow: 0 6px 18px rgba(18, 20, 19, .18);
+  transform: translateY(-110%); visibility: hidden;
+  transition: transform .25s var(--zw-ease), visibility 0s linear .25s;
+}
+.za-topbar.is-on {
+  transform: none; visibility: visible;
+  transition: transform .25s var(--zw-ease), visibility 0s;
+}
+.za-topbar__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding-block: .6rem;
+}
+.za-topbar__text {
+  margin: 0; font-family: var(--zw-font-head); font-size: 15.5px; line-height: 1.3;
+}
+.za-topbar__text strong { color: var(--zw-yellow); font-weight: 700; }
+.za-topbar__btn { flex-shrink: 0; padding: .7em 1.3em; font-size: 15px; }
+@media (max-width: 520px) {
+  .za-topbar__text { font-size: 13.5px; }
+  .za-topbar__text span { display: block; }
+  .za-topbar__btn { font-size: 13.5px; padding: .65em .9em; }
+}
+@media (max-width: 860px) { .za-topbar--desktop { display: none; } }
+@media (prefers-reduced-motion: reduce) { .za-topbar { transition: none; } }
