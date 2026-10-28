@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Foto's uit het document van Jana (28 okt 2026) — gedeeld door de vijf voorstellen.
+   Bestanden: assets/img/jana/ (WebP + JPEG-terugval). Herkomst per foto:
+   copy/VERSLAG-fotos-2026-10-28.md.
+   ========================================================================== */
+
+.zp-pic { display: block; }
+.zp-pic img { display: block; width: 100%; height: auto; }
+
+/* --- Sectietitel boven een fotoblok -------------------------------------- */
+.zp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem; margin-bottom: 1.1rem; }
+.zp-head h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+.zp-head p { margin: 0; font-size: 14px; color: var(--zw-grey-500); }
+
+/* --- Fotoband: metselwerk op groot scherm, veegstrook op mobiel ---------- */
+.zp-band { columns: 5 200px; column-gap: 8px; }
+.zp-band .zp-pic { break-inside: avoid; margin-bottom: 8px; }
+.zp-band img { border-radius: var(--zw-radius); background: var(--zw-grey-100); }
+
+@media (max-width: 700px) {
+  .zp-band {
+    columns: auto;
+    display: flex; gap: 8px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(-1 * var(--zp-bleed, var(--zw-gutter, 20px)));
+    padding: 0 var(--zp-bleed, var(--zw-gutter, 20px)) 6px;
+    scrollbar-width: thin;
+  }
+  .zp-band .zp-pic { flex: 0 0 auto; margin: 0; scroll-snap-align: start; }
+  .zp-band img { height: 240px; width: auto; max-width: none; }
+}
+.zp-swipe-hint { display: none; margin: .5rem 0 0; font-size: 12.5px; color: var(--zw-grey-500); }
+@media (max-width: 700px) { .zp-swipe-hint { display: block; } }
+
+/* --- "De selectie van de nieuwe werven": kleine galerij ------------------- */
+.zp-werven {
+  display: grid; gap: 8px;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(2, clamp(150px, 16vw, 230px));
+}
+.zp-werven .zp-pic:first-child { grid-row: span 2; }
+.zp-werven .zp-pic, .zp-werven picture, .zp-werven img { height: 100%; }
+.zp-werven img { object-fit: cover; border-radius: var(--zw-radius); background: var(--zw-grey-100); }
+@media (max-width: 700px) {
+  .zp-werven { grid-template-columns: 1fr 1fr; grid-template-rows: 190px repeat(2, 130px); }
+  .zp-werven .zp-pic:first-child { grid-row: auto; grid-column: span 2; }
+}
+.zp-werven-wrap { margin-top: 2.5rem; }
+.zp-werven-wrap .zp-cta { margin-top: 1.25rem; }
+
+/* --- "Regio Dendermonde in beeld" naast "Ben jij dit?" -------------------- */
+.zp-region { display: grid; gap: 1.25rem 2rem; grid-template-columns: minmax(0, 1fr) clamp(170px, 30%, 250px); align-items: start; }
+
+.zp-map { margin: 0; }
+.zp-map img { border-radius: var(--zw-radius-card); border: 1px solid var(--zw-line); background: var(--zw-grey-100); }
+.zp-map figcaption {
+  margin-top: .45rem; font-family: var(--zw-font-head);
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--zw-grey-500);
+}
+@media (max-width: 560px) { .zp-map { max-width: 240px; } }
+
+/* --- Portret bij een getuigenis ------------------------------------------ */
+.zw-quote figcaption.zp-who { display: flex; align-items: center; gap: .85rem; }
+.zp-who .zp-pic { flex: 0 0 auto; width: 76px; height: 76px; }
+.zp-who img { width: 76px; height: 76px; object-fit: cover; border-radius: 50%; border: 3px solid var(--zw-yellow); }
+.zp-who img.zp-kurt { object-position: 62% 30%; }
+.zp-who img.zp-steven { object-position: 50% 45%; }
+
+/* --- Groepsfoto bij "Solliciteer in 30 seconden" -------------------------- */
+.zp-group { margin: 0 auto; max-width: 1100px; }
+.zp-group img { border-radius: var(--zw-radius-card); aspect-ratio: 1600 / 671; object-fit: cover; }
+@media (max-width: 700px) { .zp-group img { aspect-ratio: 4 / 3; object-position: 55% 50%; } }
+
+/* --- Herofoto als zichtbaar beeld (voorstellen 1, 2 en 4) ----------------- */
+.zp-hero-photo img {
+  border-radius: var(--zw-radius-card);
+  aspect-ratio: 16 / 10; object-fit: cover; object-position: 72% 40%;
+}
+
+/* --- Voorstel 5 (één kolom): altijd een veegstrook, en een kleinere galerij */
+.zp-band.zp-band--strip {
+  columns: auto;
+  display: flex; gap: 8px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  margin-inline: calc(-1 * var(--zp-bleed, var(--zw-gutter, 20px)));
+  padding: 0 var(--zp-bleed, var(--zw-gutter, 20px)) 6px;
+  scrollbar-width: thin;
+}
+.zp-band--strip .zp-pic { flex: 0 0 auto; margin: 0; scroll-snap-align: start; }
+.zp-band--strip img { height: 240px; width: auto; max-width: none; }
+.zp-band--strip + .zp-swipe-hint { display: block; }
+.zp-werven.zp-werven--3 { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px; }
+.zp-werven.zp-werven--3 .zp-pic:first-child { grid-row: auto; grid-column: span 2; }
+
+/* "Ben jij dit?" in een smalle kolom (bv. de profielkaart van voorstel 1):
+   kaart boven de lijst, zoals in het document van Jana. */
+.zp-region-c { container-type: inline-size; }
+@container (max-width: 520px) {
+  .zp-region { grid-template-columns: 1fr; }
+  .zp-region .zp-map { order: -1; max-width: 220px; }
+}

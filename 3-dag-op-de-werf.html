@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/zwijsen.css">
 <link rel="stylesheet" href="assets/apply-form.css">
+<link rel="stylesheet" href="assets/photos.css">
 <link rel="icon" href="https://zwijsen.be/wp-content/uploads/2022/05/cropped-PNG-LOGOTIPO-ELECTRO-ZWIJSEN-19-32x32.png">
 
 <!-- Meta Pixel — vervang de ID. Pas afvuren na cookietoestemming. -->
@@ -40,9 +41,21 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
   min-height: min(78vh, 660px);
   display: flex; align-items: flex-end;
   background:
-    linear-gradient(180deg, rgba(18,20,19,.35) 0%, rgba(18,20,19,.55) 45%, rgba(18,20,19,.96) 100%),
-    url("https://zwijsen.be/wp-content/uploads/2022/01/worker-is-cutting-wires-with-linemans-pliers-scaled.jpg")
-    center 35% / cover no-repeat;
+    linear-gradient(180deg, rgba(18,20,19,.25) 0%, rgba(18,20,19,.45) 45%, rgba(18,20,19,.96) 100%),
+    url("assets/img/jana/technieker-bij-bestelwagen.jpg")
+    72% 35% / cover no-repeat;
+  background-image:
+    linear-gradient(180deg, rgba(18,20,19,.25) 0%, rgba(18,20,19,.45) 45%, rgba(18,20,19,.96) 100%),
+    image-set(url("assets/img/jana/technieker-bij-bestelwagen.webp") type("image/webp"),
+              url("assets/img/jana/technieker-bij-bestelwagen.jpg") type("image/jpeg"));
+}
+@media (max-width: 900px) {
+  .hero3 {
+    background-image:
+      linear-gradient(180deg, rgba(18,20,19,.25) 0%, rgba(18,20,19,.5) 40%, rgba(18,20,19,.96) 100%),
+      image-set(url("assets/img/jana/technieker-bij-bestelwagen-900.webp") type("image/webp"),
+                url("assets/img/jana/technieker-bij-bestelwagen-900.jpg") type("image/jpeg"));
+  }
 }
 .hero3__inner { padding-block: clamp(3rem, 8vw, 6rem) clamp(2.5rem, 5vw, 3.5rem); width: 100%; }
 .hero3 h1 { color: var(--zw-white); max-width: 18ch; }
@@ -251,7 +264,19 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
         </article>
       </div>
 
-      <div style="text-align:center;margin-top:1rem;">
+      <!-- "De selectie van de nieuwe werven" uit het document van Jana -->
+      <div class="zp-werven-wrap">
+        <div class="zp-head"><h3>De selectie van de nieuwe werven</h3></div>
+        <div class="zp-werven">
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-brussel-hoogbouw-kraan.webp"><img src="assets/img/jana/werf-brussel-hoogbouw-kraan.jpg" alt="Grote werf in de stad van bovenaf gezien, met een rode torenkraan tussen de hoogbouw" width="1200" height="751" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-glazen-dak-toren.webp"><img src="assets/img/jana/werf-glazen-dak-toren.jpg" alt="Nieuw glazen dak boven een oud bakstenen gebouw, met een toren erachter" width="800" height="1070" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-ronde-hal-bestelwagens.webp"><img src="assets/img/jana/werf-ronde-hal-bestelwagens.jpg" alt="Bestelwagens en auto's in een grote ronde hal op een werf" width="1200" height="890" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-klassieke-gevel.webp"><img src="assets/img/jana/werf-klassieke-gevel.jpg" alt="Zwijsen-bestelwagen voor een klassiek herenhuis op een werf" width="800" height="1067" loading="lazy" decoding="async"></picture>
+          <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/werf-gang-paarse-verlichting.webp"><img src="assets/img/jana/werf-gang-paarse-verlichting.jpg" alt="Afgewerkte gang met paarse en blauwe ledverlichting" width="1200" height="675" loading="lazy" decoding="async"></picture>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1.5rem;">
         <a class="zw-btn zw-btn--lg" href="#solliciteer">Solliciteer direct zonder CV</a>
       </div>
     </div>
@@ -329,6 +354,26 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
           </ul>
         </div>
       </div>
+      <!-- Fotoband uit het document van Jana ("FOTOBAND/REEKS") -->
+      <div class="zp-band-wrap" style="margin-top:2.5rem;">
+      <div class="zp-band" aria-label="Foto's van collega's, het magazijn en het werk">
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/collega-lacht-op-de-werf.webp"><img src="assets/img/jana/collega-lacht-op-de-werf.jpg" alt="Lachende technieker in rode Zwijsen-trui met de armen gekruist, buiten op het terrein" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/ploeg-bij-de-bestelwagen.webp"><img src="assets/img/jana/ploeg-bij-de-bestelwagen.jpg" alt="Zes collega's in rode werkkledij poseren samen naast een bestelwagen" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/technieker-opent-bestelwagen.webp"><img src="assets/img/jana/technieker-opent-bestelwagen.jpg" alt="Technieker in rode trui opent de deur van een zwarte Electro Zwijsen-bestelwagen" width="800" height="1000" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/hoofdkantoor-luchtfoto.webp"><img src="assets/img/jana/hoofdkantoor-luchtfoto.jpg" alt="Luchtfoto van het hoofdkantoor van Electro Zwijsen, met zonnepanelen op het dak" width="800" height="1000" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/plannen-bekijken.webp"><img src="assets/img/jana/plannen-bekijken.jpg" alt="Twee elektriciens bekijken samen een elektrisch plan aan de muur" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/magazijn-materiaal-klaarzetten.webp"><img src="assets/img/jana/magazijn-materiaal-klaarzetten.jpg" alt="Collega zet materiaal klaar in het magazijn" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/magazijn-overleg.webp"><img src="assets/img/jana/magazijn-overleg.jpg" alt="Drie collega's overleggen tussen de rekken in het magazijn" width="800" height="534" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kabelhaspel-buiten.webp"><img src="assets/img/jana/kabelhaspel-buiten.jpg" alt="Elektricien rolt kabel af van een oranje kabelhaspel" width="800" height="1199" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kabelhaspels-magazijn.webp"><img src="assets/img/jana/kabelhaspels-magazijn.jpg" alt="Collega tussen de kabelhaspels in het magazijn" width="800" height="1000" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/selfie-helm-en-baksteen.webp"><img src="assets/img/jana/selfie-helm-en-baksteen.jpg" alt="Lachende elektricien met helm, veiligheidsbril en gehoorbescherming houdt een baksteen omhoog" width="800" height="819" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/verdeelbord-bekabelen.webp"><img src="assets/img/jana/verdeelbord-bekabelen.jpg" alt="Elektricien bekabelt een verdeelbord in de werkplaats" width="800" height="600" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/plannen-tekenen-werkplaats.webp"><img src="assets/img/jana/plannen-tekenen-werkplaats.jpg" alt="Lachende elektricien werkt plannen bij aan een tafel in de werkplaats" width="800" height="600" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/selfie-in-de-bestelwagen.webp"><img src="assets/img/jana/selfie-in-de-bestelwagen.jpg" alt="Selfie van een elektricien met muts bij de bestelwagen, een collega zit achter het stuur" width="800" height="1000" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/selfie-in-de-werkplaats.webp"><img src="assets/img/jana/selfie-in-de-werkplaats.jpg" alt="Selfie van een elektricien in de werkplaats, een collega zwaait op de achtergrond" width="800" height="1067" loading="lazy" decoding="async"></picture>
+      </div>
+      <p class="zp-swipe-hint">Veeg opzij voor meer foto’s →</p>
+      </div>
     </div>
   </section>
 
@@ -338,7 +383,8 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
       <div class="plus" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
         <div>
           <h3>Ben jij dit?</h3>
-          <ul class="zw-checks">
+          <div class="zp-region-c"><div class="zp-region">
+            <ul class="zw-checks">
             <li>Minstens 3 jaar ervaring als elektricien</li>
             <li>Je woont in (of vlakbij) Dendermonde</li>
             <li>Je hebt minstens rijbewijs B</li>
@@ -346,6 +392,11 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
             <li>Je hebt een VCA-attest</li>
             <li>Ervaring op werven is een plus, geen must</li>
           </ul>
+            <figure class="zp-map">
+              <picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kaart-regio-dendermonde.webp"><img src="assets/img/jana/kaart-regio-dendermonde.jpg" alt="Kaart van Dendermonde en omgeving, met de gemeentegrens in het geel aangeduid" width="800" height="800" loading="lazy" decoding="async"></picture>
+              <figcaption>Regio Dendermonde in beeld</figcaption>
+            </figure>
+          </div></div>
         </div>
         <div class="zw-about">
           <h3>Wij zijn Electro Zwijsen</h3>
@@ -373,7 +424,7 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
         <figure class="zw-quote">
           <blockquote>“Ik hou van de afwisseling in mijn job. Geen twee werven zijn hetzelfde.
             Zelfs na al die jaren kom ik nog geregeld iets tegen waarvan ik denk: dat wist ik nog niet.”</blockquote>
-          <figcaption><strong>Steven</strong>Werfleider, 22 jaar bij Electro Zwijsen</figcaption>
+          <figcaption class="zp-who"><picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/steven-werfleider.webp"><img src="assets/img/jana/steven-werfleider.jpg" alt="Steven, werfleider bij Electro Zwijsen, op een werf met graafmachines achter hem" width="800" height="783" loading="lazy" decoding="async" class="zp-steven"></picture><span><strong>Steven</strong>Werfleider, 22 jaar bij Electro Zwijsen</span></figcaption>
         </figure>
         <!-- OPEN VRAAG KLANT: in de copy van Jana staat dit tweede citaat OOK op naam van
              "Werfleider Steven, 22 jaar bij Electro Zwijsen" — vermoedelijk een kopieerfout.
@@ -389,9 +440,11 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
             en toffe collega’s met wie ik graag samenwerk. Dat is belangrijk, want je brengt veel tijd
             met elkaar door. Doorheen de jaren heb ik ook veel opleidingen kunnen volgen: voor de
             hoogtewerker, schaarlift, heftruck en VCA.”</blockquote>
-          <figcaption><strong>Kurt</strong>Werfleider, 30 jaar bij Electro Zwijsen</figcaption>
+          <figcaption class="zp-who"><picture class="zp-pic"><source type="image/webp" srcset="assets/img/jana/kurt-werfleider.webp"><img src="assets/img/jana/kurt-werfleider.jpg" alt="Kurt, werfleider bij Electro Zwijsen, aan het werk aan een stopcontact" width="800" height="600" loading="lazy" decoding="async" class="zp-kurt"></picture><span><strong>Kurt</strong>Werfleider, 30 jaar bij Electro Zwijsen</span></figcaption>
         </figure>
       </div>
+      <!-- Groepsfoto bij "Solliciteer in 30 seconden", zoals in het document van Jana -->
+      <picture class="zp-pic zp-group" style="margin-top:3.5rem;"><source type="image/webp" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-900.webp 900w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto.webp 1600w" sizes="(max-width: 700px) 100vw, 1100px"><img src="assets/img/jana/ploeg-electro-zwijsen-luchtfoto.jpg" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-900.jpg 900w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto.jpg 1600w" sizes="(max-width: 700px) 100vw, 1100px" alt="Luchtfoto van de hele ploeg van Electro Zwijsen die zwaait vanop het grasveld voor het hoofdkantoor, met een zwarte bestelwagen ervoor" width="1600" height="671" loading="lazy" decoding="async"></picture>
     </div>
   </section>
 
