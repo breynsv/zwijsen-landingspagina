@@ -292,7 +292,7 @@
     var fs = el('fieldset', { class: 'za__fieldset' });
     fs.appendChild(el('legend', { class: 'za__legend', text: 'Bedankt voor je antwoorden! We horen graag meer van je' }));
     fs.appendChild(el('p', { class: 'za__hint',
-      text: 'Laat zeker je gegevens na en wij nemen contact.' }));
+      text: 'Laat zeker je gegevens na en wij nemen contact met je op.' }));
 
     /* Honeypot — echte bezoekers zien dit veld niet. */
     fs.appendChild(el('div', { class: 'za__hp', 'aria-hidden': 'true' }, [
@@ -520,10 +520,7 @@
       el('p', { class: 'za__done-lead', html:
         'We hebben je gegevens goed ontvangen.<br>' +
         'Je krijgt nog een mail van ons ter bevestiging.<br>' +
-        'We nemen gauw contact met je op.' }),
-      el('p', { class: 'za__legal za__done-call', html:
-        'Liever gewoon bellen? <a href="tel:+3215305305">015 305 305</a> of mailen ' +
-        '<a href="mailto:' + CONTACT_MAIL + '">' + CONTACT_MAIL + '</a>' })
+        'We nemen gauw contact met je op.' })
     ]));
   };
 

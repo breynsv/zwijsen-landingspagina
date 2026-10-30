@@ -101,6 +101,8 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
 .m-form__top { margin-bottom: 1rem; }
 .m-form__top h2 { font-size: 1.22rem; font-weight: 700; margin-bottom: .25rem; }
 .m-form__top p { margin: 0; font-size: 13.5px; color: var(--zw-grey-700); }
+/* Op het bedanktscherm is de oproep "Solliciteer… / Doe de test" niet meer nodig. */
+.m-form:has(.za__done) .m-form__top { display: none; }
 
 /* Compacte secties */
 .m-sec { padding: clamp(2.25rem, 7vw, 3.25rem) 0; }
@@ -342,7 +344,7 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
            NOG TE ONTVANGEN: Katrien stuurt foto's van installaties. Zodra die er zijn,
            vervangen ze bij voorkeur de gang met verlichting en/of de werf. -->
       <div class="zp-werk">
-        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/werf-brussel-ruwbouw-kraan-480.avif 480w, assets/img/jana/werf-brussel-ruwbouw-kraan-800.avif 800w, assets/img/jana/werf-brussel-ruwbouw-kraan-1200.avif 1200w, assets/img/jana/werf-brussel-ruwbouw-kraan-1600.avif 1600w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><source type="image/webp" srcset="assets/img/jana/werf-brussel-ruwbouw-kraan-480.webp 480w, assets/img/jana/werf-brussel-ruwbouw-kraan-800.webp 800w, assets/img/jana/werf-brussel-ruwbouw-kraan-1200.webp 1200w, assets/img/jana/werf-brussel-ruwbouw-kraan-1600.webp 1600w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><img src="assets/img/jana/werf-brussel-ruwbouw-kraan-800.jpg" width="800" height="600" alt="Ruwbouw van een groot kantoorgebouw in Brussel, van bovenaf gezien, met een rode torenkraan ervoor" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.avif 480w, assets/img/jana/plannen-tekenen-werkplaats-800.avif 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.avif 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.avif 1448w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><source type="image/webp" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.webp 480w, assets/img/jana/plannen-tekenen-werkplaats-800.webp 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.webp 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.webp 1448w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><img src="assets/img/jana/plannen-tekenen-werkplaats-800.jpg" width="800" height="600" alt="Een technieker van Electro Zwijsen tekent glimlachend plannen uit aan een werktafel" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/werf-gang-paarse-verlichting-480.avif 480w, assets/img/jana/werf-gang-paarse-verlichting-800.avif 800w, assets/img/jana/werf-gang-paarse-verlichting-1200.avif 1200w, assets/img/jana/werf-gang-paarse-verlichting-1494.avif 1494w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/werf-gang-paarse-verlichting-480.webp 480w, assets/img/jana/werf-gang-paarse-verlichting-800.webp 800w, assets/img/jana/werf-gang-paarse-verlichting-1200.webp 1200w, assets/img/jana/werf-gang-paarse-verlichting-1494.webp 1494w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img src="assets/img/jana/werf-gang-paarse-verlichting-800.jpg" width="800" height="450" alt="Gang in een kantoorgebouw met lijnverlichting in het plafond en blauwe ledverlichting langs de muur" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/verdeelbord-bekabelen-480.avif 480w, assets/img/jana/verdeelbord-bekabelen-800.avif 800w, assets/img/jana/verdeelbord-bekabelen-1200.avif 1200w, assets/img/jana/verdeelbord-bekabelen-1448.avif 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/verdeelbord-bekabelen-480.webp 480w, assets/img/jana/verdeelbord-bekabelen-800.webp 800w, assets/img/jana/verdeelbord-bekabelen-1200.webp 1200w, assets/img/jana/verdeelbord-bekabelen-1448.webp 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img src="assets/img/jana/verdeelbord-bekabelen-800.jpg" width="800" height="600" alt="Elektricien bekabelt een verdeelbord in de werkplaats" loading="lazy" decoding="async"></picture>
       </div>
@@ -511,9 +513,9 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
         for (var n = 0; n < punten.length; n++) punten[n].classList.toggle('is-film', n === i);
       },
       shots: [
-        /* Feedback 30 okt 2026: minder "bouwbedrijf". Eén werfbeeld (nieuwe uitsnede uit
-           Jana's origineel), de rest installaties, plannen en de ploeg. */
-        { img: 'werf-brussel-ruwbouw-kraan', w: [480, 800, 1200, 1600], sizes: '(max-width: 599px) 167vw, 640px', pos: '58% 45%', from: [1.12, 2, 1], to: [1.02, -1, -1],
+        /* Feedback 30 okt 2026: minder "bouwbedrijf". Het werfbeeld is een afgewerkt
+           project (gevel met onze bestelwagen), geen ruwbouw; de rest installaties, plannen en de ploeg. */
+        { img: 'werf-klassieke-gevel', w: [480, 800, 1200, 1536], sizes: '(max-width: 599px) 100vw, 640px', pos: '50% 62%', from: [1.10, 0, 2], to: [1.02, 0, -1],
           kicker: 'Grote werven', line: 'Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…' },
         { img: 'verdeelbord-bekabelen', w: [480, 800, 1200, 1448], sizes: '(max-width: 599px) 167vw, 600px', pos: '45% 45%', from: [1.0, 0, 0], to: [1.08, -2, 1],
           kicker: 'Breed takenpakket', line: 'Bouw mee aan elektrische installaties van a tot z.' },
