@@ -47,3 +47,10 @@ Katrien kiest **voorstel 5, met animatie** (`5-snelsollicitatie-mobiel-film.html
 
 ## Sven
 - Foto met de baksteen weghalen (te bouwbedrijf).
+
+## Antwoorden Jana — 30 oktober 2026 (later)
+
+- E-mailadres: **personeel@zwijsen.be** (niet personeelsdienst@). Verwerkt.
+- Webadres: akkoord met zwijsen.be/elektricien-dendermonde/. Vraag terug: "Idem voor regio Antwerpen?" — open.
+- Google-vacatures (JobPosting): werkplaats **Duffel (hoofdkantoor)**.
+- Loonvork: **nog even niet**.

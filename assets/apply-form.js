@@ -524,9 +524,9 @@
     ]));
   };
 
-  /* Katrien schreef personeelsdienst@zwijsen.be. De bestaande formulieren op
-     zwijsen.be sturen naar personeel@zwijsen.be: te bevestigen voor livegang. */
-  var CONTACT_MAIL = 'personeelsdienst@zwijsen.be';
+  /* Bevestigd door Jana (30 okt 2026): personeel@zwijsen.be, hetzelfde adres als de
+     bestaande formulieren op zwijsen.be. */
+  var CONTACT_MAIL = 'personeel@zwijsen.be';
 
   /* ----------------------------------------------------------------------
      4. Publieke API
