@@ -29,6 +29,7 @@
   transition: opacity 1.6s cubic-bezier(.4, 0, .2, 1);
 }
 .film__shot.is-on { opacity: 1; }
+.film__shot picture { display: block; width: 100%; height: 100%; }
 .film__shot img {
   display: block;
   width: 100%; height: 100%;

@@ -3,8 +3,11 @@
 
    ZwijsenFilm.mount(sectie, {
      base:      'assets/img/jana/',
-     shots:     [{ src, srcset?, sizes?, pos, from:[schaal, x%, y%], to:[...],
+     shots:     [{ img, w:[480, 800, …], sizes, pos, from:[schaal, x%, y%], to:[...],
                    soft?: true, kicker, line }],
+                img: bestandsnaam zonder breedte; er bestaan <img>-<w>.avif en .webp
+                (zie copy/VERSLAG-originelen-2026-10-30.md). De oude vorm
+                { src, srcset? } werkt nog.
      duration:  5500,        ms per shot
      still:     0,           welke shot bij "minder beweging"
      lazyStart: false,       true: pas laden als de film in de buurt komt
@@ -18,7 +21,9 @@
    - Pauzeknop (WCAG 2.2.2). De film staat ook stil zolang hij uit beeld is,
      het tabblad verborgen is, of de pagina een reden doorgeeft via hold().
    - "Minder beweging": één stilstaand beeld met zijn ondertitel.
-   - soft: foto's uit de PDF (800 px). Hun zoom blijft binnen 8%.
+   - soft: foto's die op groot scherm al uitvergroot worden. Hun zoom blijft binnen 8%.
+   - Elke shot krijgt AVIF met WebP als terugval, op de breedte die het scherm
+     nodig heeft (srcset + sizes).
    - De verschuiving wordt begrensd, zodat er nooit een rand zichtbaar wordt.
    ========================================================================== */
 (function (global) {
@@ -64,7 +69,15 @@
         img = document.createElement('img');
         img.alt = '';                       /* sfeerbeeld; de ondertitel draagt de inhoud */
         img.decoding = 'async';
-        wrap.appendChild(img);
+        if (s.img) {
+          var pic = document.createElement('picture');
+          var bron = document.createElement('source');
+          bron.type = 'image/avif';
+          pic.appendChild(bron); pic.appendChild(img);
+          wrap.appendChild(pic);
+        } else {
+          wrap.appendChild(img);
+        }
         holder.appendChild(wrap);
       }
       img.style.objectPosition = s.pos || '50% 50%';
@@ -82,6 +95,17 @@
     function laad(i) {
       var e = els[i], s = SHOTS[i];
       if (e.img.getAttribute('src')) return;
+      if (s.img) {
+        var lijst = function (ext) {
+          return s.w.map(function (w) { return base + s.img + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', ');
+        };
+        var bron = e.img.parentNode.querySelector('source');
+        if (bron) { bron.sizes = s.sizes || '100vw'; bron.srcset = lijst('avif'); }
+        e.img.sizes = s.sizes || '100vw';
+        e.img.srcset = lijst('webp');
+        e.img.src = base + s.img + '-' + (s.w.indexOf(800) > -1 ? 800 : s.w[s.w.length - 1]) + '.webp';
+        return;
+      }
       if (s.srcset) { e.img.sizes = s.sizes || '100vw'; e.img.srcset = s.srcset; }
       e.img.src = base + s.src;
     }

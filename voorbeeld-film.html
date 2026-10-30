@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Electro Zwijsen — voorbeeld: foto's als film</title>
+<link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/jana/hoofdkantoor-luchtfoto-480.avif 480w, assets/img/jana/hoofdkantoor-luchtfoto-800.avif 800w, assets/img/jana/hoofdkantoor-luchtfoto-1080.avif 1080w" imagesizes="(max-width: 920px) 672px, 100vw" fetchpriority="high">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +31,7 @@
     transition: opacity 1.6s cubic-bezier(.4, 0, .2, 1);
   }
   .film__shot.is-on { opacity: 1; }
+  .film__shot picture { display: block; width: 100%; height: 100%; }
   .film__shot img {
     width: 100%; height: 100%;
     object-fit: cover;
@@ -132,6 +134,7 @@
   .strook__rail { display: flex; gap: 12px; width: max-content; animation: strook 70s linear infinite; }
   .strook:hover .strook__rail { animation-play-state: paused; }
   .strook__rail figure { margin: 0; height: clamp(180px, 26vw, 300px); border-radius: 6px; overflow: hidden; flex: none; }
+  .strook__rail picture { display: block; height: 100%; }
   .strook__rail img { height: 100%; width: auto; display: block; transition: transform 6s ease; }
   .strook__rail figure:hover img { transform: scale(1.08); }
   @keyframes strook { to { transform: translateX(-50%); } }
@@ -192,7 +195,7 @@
       <li>Acht shots van elk ongeveer 5,5 seconden, met een zachte overvloeiing. Elke foto zoomt of pant naar haar eigen onderwerp.</li>
       <li>Alle teksten komen uit de copy van Jana; er is niets bijverzonnen.</li>
       <li>Er is een pauzeknop. Wie op zijn toestel "minder beweging" heeft aangezet, ziet één stilstaand beeld.</li>
-      <li>De foto's zijn nu maximaal 800 tot 1600 px breed, en een deel komt uit de PDF. Op een groot scherm wordt dat bij het inzoomen zichtbaar zacht. Met de originele bestanden is dat opgelost.</li>
+      <li>Negen foto's komen nu uit de originele bestanden van Jana. Elk beeld bestaat in meerdere breedtes (tot 1600 px) als AVIF en WebP; het toestel haalt alleen de breedte die het nodig heeft.</li>
       <li>Alleen het eerste beeld laadt meteen. De volgende laden pas vlak voordat ze in beeld komen, zodat de pagina even snel blijft openen.</li>
     </ul>
   </div>
@@ -202,24 +205,46 @@
 (function () {
   var IMG = 'assets/img/jana/';
 
+  /* Beschikbare breedtes per foto (AVIF + WebP, zie copy/VERSLAG-originelen-2026-10-30.md)
+     en de beeldverhouding, om per scherm de juiste breedte te laten kiezen. */
+  var W = {"hoofdkantoor-luchtfoto": [480, 800, 1080], "kabelhaspel-buiten": [480, 800, 1200, 1600], "kabelhaspels-magazijn": [480, 800, 1080], "magazijn-materiaal-klaarzetten": [480, 800, 1200, 1600], "magazijn-overleg": [480, 800, 1200, 1600], "plannen-bekijken": [480, 800, 1200, 1600], "plannen-tekenen-werkplaats": [480, 800, 1200, 1448], "ploeg-bij-de-bestelwagen": [480, 800, 1200, 1600], "ploeg-electro-zwijsen-luchtfoto": [480, 800, 1200, 1600], "selfie-helm-en-baksteen": [480, 800, 1200], "selfie-in-de-bestelwagen": [480, 800, 1122], "selfie-in-de-werkplaats": [480, 800, 1086], "technieker-bij-bestelwagen": [480, 800, 1200, 1600], "technieker-opent-bestelwagen": [480, 800, 1080], "verdeelbord-bekabelen": [480, 800, 1200, 1448], "werf-brussel-hoogbouw-kraan": [480, 800, 1200, 1600], "werf-gang-paarse-verlichting": [480, 800, 1200, 1494], "werf-ronde-hal-bestelwagens": [480, 800, 1200, 1599]};
+  var AR = {"hoofdkantoor-luchtfoto": 0.8, "kabelhaspel-buiten": 0.667, "kabelhaspels-magazijn": 0.8, "magazijn-materiaal-klaarzetten": 1.499, "magazijn-overleg": 1.499, "plannen-bekijken": 1.499, "plannen-tekenen-werkplaats": 1.333, "ploeg-bij-de-bestelwagen": 1.499, "ploeg-electro-zwijsen-luchtfoto": 2.384, "selfie-helm-en-baksteen": 0.976, "selfie-in-de-bestelwagen": 0.8, "selfie-in-de-werkplaats": 0.75, "technieker-bij-bestelwagen": 1.499, "technieker-opent-bestelwagen": 0.8, "verdeelbord-bekabelen": 1.333, "werf-brussel-hoogbouw-kraan": 1.599, "werf-gang-paarse-verlichting": 1.779, "werf-ronde-hal-bestelwagens": 1.348};
+  function lijst(n, ext) { return W[n].map(function (w) { return IMG + n + '-' + w + '.' + ext + ' ' + w + 'w'; }).join(', '); }
+  /* Maakt <picture> met AVIF en WebP; laadt pas wanneer vul() wordt aangeroepen. */
+  function beeld(img) {
+    var pic = document.createElement('picture');
+    var bron = document.createElement('source'); bron.type = 'image/avif';
+    pic.appendChild(bron); pic.appendChild(img);
+    return pic;
+  }
+  function vul(img, n, sizes) {
+    var bron = img.parentNode.querySelector('source');
+    bron.sizes = sizes; bron.srcset = lijst(n, 'avif');
+    img.sizes = sizes; img.srcset = lijst(n, 'webp');
+    img.src = IMG + n + '-' + (W[n].indexOf(800) > -1 ? 800 : W[n][W[n].length - 1]) + '.webp';
+  }
+  /* De film is schermbreed en (op gsm) bijna schermhoog: met object-fit: cover
+     bepaalt de hoogte hoe breed een liggende foto getoond wordt. */
+  function filmSizes(n) { return '(max-width: 920px) ' + Math.max(400, Math.round(840 * AR[n])) + 'px, 100vw'; }
+
   /* Per shot: foto, focuspunt en beweging (van -> naar: schaal en verschuiving in %),
      plus de ondertitel. Teksten letterlijk of ingekort uit de copy van Jana. */
   var SHOTS = [
-    { src: 'hoofdkantoor-luchtfoto.webp', pos: '50% 35%', from: [1.18, 0, -4], to: [1.04, 0, 3],
+    { img: 'hoofdkantoor-luchtfoto', pos: '50% 35%', from: [1.18, 0, -4], to: [1.04, 0, 3],
       kicker: 'Electro Zwijsen', line: 'Sinds 1987 expert in elektriciteit' },
-    { src: 'ploeg-bij-de-bestelwagen.webp', pos: '50% 40%', from: [1.05, -3, 0], to: [1.16, 2, -1],
+    { img: 'ploeg-bij-de-bestelwagen', pos: '50% 40%', from: [1.05, -3, 0], to: [1.16, 2, -1],
       kicker: 'In duo', line: 'Samen met een ervaren collega van Dendermonde naar de werf' },
-    { src: 'werf-brussel-hoogbouw-kraan.webp', pos: '50% 50%', from: [1.2, 3, 2], to: [1.05, -2, -1],
+    { img: 'werf-brussel-hoogbouw-kraan', pos: '50% 50%', from: [1.2, 3, 2], to: [1.05, -2, -1],
       kicker: 'Grote werven', line: 'Ziekenhuizen, scholen, kantoorgebouwen, winkelcentra' },
-    { src: 'verdeelbord-bekabelen.webp', pos: '45% 45%', from: [1.04, 0, 0], to: [1.2, -3, 1],
+    { img: 'verdeelbord-bekabelen', pos: '45% 45%', from: [1.04, 0, 0], to: [1.2, -3, 1],
       kicker: 'Breed takenpakket', line: 'Je bouwt mee aan elektrische installaties van a tot z' },
-    { src: 'werf-ronde-hal-bestelwagens.webp', pos: '50% 55%', from: [1.15, -2, 3], to: [1.04, 2, -2],
+    { img: 'werf-ronde-hal-bestelwagens', pos: '50% 55%', from: [1.15, -2, 3], to: [1.04, 2, -2],
       kicker: 'Afwisseling', line: 'Geregeld nieuwe projecten, vooral in Vlaanderen' },
-    { src: 'selfie-helm-en-baksteen.webp', pos: '50% 30%', from: [1.06, 0, 2], to: [1.18, 0, -2],
+    { img: 'selfie-helm-en-baksteen', pos: '50% 30%', from: [1.06, 0, 2], to: [1.18, 0, -2],
       kicker: 'Vrijheid in je vak', line: 'Je werkt zelfstandig. Het resultaat telt.' },
-    { src: 'werf-gang-paarse-verlichting.webp', pos: '50% 50%', from: [1.04, 3, 0], to: [1.16, -3, 0],
+    { img: 'werf-gang-paarse-verlichting', pos: '50% 50%', from: [1.04, 3, 0], to: [1.16, -3, 0],
       kicker: 'Vast contract', line: 'Vanaf dag één aan boord' },
-    { src: 'ploeg-electro-zwijsen-luchtfoto.webp', pos: '50% 50%', from: [1.22, 0, 3], to: [1.02, 0, 0],
+    { img: 'ploeg-electro-zwijsen-luchtfoto', pos: '50% 50%', from: [1.22, 0, 3], to: [1.02, 0, 0],
       kicker: 'Familiebedrijf', line: '150 collega’s. Kom je erbij?' }
   ];
   var DUUR = 5500;                       /* ms per shot */
@@ -239,15 +264,15 @@
     img.alt = '';                        /* sfeerbeeld; de ondertitel draagt de inhoud */
     img.decoding = 'async';
     img.style.objectPosition = s.pos;
-    if (i === 0) { img.src = IMG + s.src; img.fetchPriority = 'high'; }
-    d.appendChild(img);
+    d.appendChild(beeld(img));
+    if (i === 0) { img.fetchPriority = 'high'; vul(img, s.img, filmSizes(s.img)); }
     holder.appendChild(d);
     var t = document.createElement('div'); t.className = 'film__tick'; t.appendChild(document.createElement('span'));
     progress.appendChild(t);
     return { wrap: d, img: img, tick: t.firstChild, anim: null, bar: null };
   });
 
-  function laad(i) { var e = els[i % els.length]; if (!e.img.src) e.img.src = IMG + SHOTS[i % SHOTS.length].src; }
+  function laad(i) { var e = els[i % els.length], s = SHOTS[i % SHOTS.length]; if (!e.img.getAttribute('src')) vul(e.img, s.img, filmSizes(s.img)); }
   function tf(v) { return 'scale(' + v[0] + ') translate(' + v[1] + '%,' + v[2] + '%)'; }
 
   var huidig = -1, timer = null, gepauzeerd = false, rest = DUUR, gestart = 0;
@@ -315,7 +340,7 @@
   }
 
   /* Filmstrook: de reeks twee keer achter elkaar, zodat de lus naadloos is. */
-  var BAND = ['technieker-bij-bestelwagen-900', 'ploeg-bij-de-bestelwagen', 'technieker-opent-bestelwagen',
+  var BAND = ['technieker-bij-bestelwagen', 'ploeg-bij-de-bestelwagen', 'technieker-opent-bestelwagen',
     'hoofdkantoor-luchtfoto', 'plannen-bekijken', 'magazijn-materiaal-klaarzetten', 'magazijn-overleg',
     'kabelhaspel-buiten', 'kabelhaspels-magazijn', 'selfie-helm-en-baksteen', 'verdeelbord-bekabelen',
     'plannen-tekenen-werkplaats', 'selfie-in-de-bestelwagen', 'selfie-in-de-werkplaats'];
@@ -323,10 +348,14 @@
   BAND.concat(BAND).forEach(function (n, i) {
     var f = document.createElement('figure');
     var img = document.createElement('img');
-    img.src = IMG + n + '.webp'; img.alt = i < BAND.length ? n.replace(/-900$/, '').replace(/-/g, ' ') : '';
+    img.alt = i < BAND.length ? n.replace(/-/g, ' ') : '';
     if (i >= BAND.length) f.setAttribute('aria-hidden', 'true');
     img.loading = 'lazy'; img.decoding = 'async';
-    f.appendChild(img); rail.appendChild(f);
+    f.appendChild(beeld(img)); rail.appendChild(f);
+    /* hoogte clamp(180px, 26vw, 300px) -> breedte = hoogte x beeldverhouding */
+    var a = AR[n];
+    img.width = Math.round(300 * a); img.height = 300;   /* beeldverhouding vooraf bekend: geen verspringen */
+    vul(img, n, '(max-width: 692px) ' + Math.round(180 * a) + 'px, (max-width: 1153px) ' + Math.round(26 * a) + 'vw, ' + Math.round(300 * a) + 'px');
   });
 })();
 </script>
