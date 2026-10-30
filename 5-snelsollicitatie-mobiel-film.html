@@ -194,10 +194,12 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
    ========================================================================== */
 .film-band {
   margin: 1.35rem calc(-1 * var(--zp-bleed, 20px)) 0;
-  aspect-ratio: 4 / 5; max-height: 72svh; min-height: 340px;
+  /* Hoogte rechtstreeks, geen aspect-ratio + max-height: die combinatie maakte de film
+     op een lage iPhone-viewport (Safari-balken) smaller dan het scherm. */
+  height: max(340px, min(125vw, 72svh));
 }
 @media (min-width: 600px) {
-  .film-band { margin-inline: 0; aspect-ratio: 3 / 2; border-radius: var(--zw-radius-card); max-height: none; }
+  .film-band { margin-inline: 0; height: auto; aspect-ratio: 3 / 2; border-radius: var(--zw-radius-card); }
 }
 .film-band .film__layer { padding: 14px 16px 18px; }
 .film-band .film__caption { margin-top: auto; }
@@ -313,7 +315,6 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/kabelhaspel-buiten-480.avif 480w, assets/img/jana/kabelhaspel-buiten-800.avif 800w, assets/img/jana/kabelhaspel-buiten-1200.avif 1200w, assets/img/jana/kabelhaspel-buiten-1600.avif 1600w" sizes="160px"><source type="image/webp" srcset="assets/img/jana/kabelhaspel-buiten-480.webp 480w, assets/img/jana/kabelhaspel-buiten-800.webp 800w, assets/img/jana/kabelhaspel-buiten-1200.webp 1200w, assets/img/jana/kabelhaspel-buiten-1600.webp 1600w" sizes="160px"><img src="assets/img/jana/kabelhaspel-buiten-800.jpg" width="800" height="1199" alt="Elektricien rolt kabel af van een oranje kabelhaspel" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/magazijn-materiaal-klaarzetten-480.avif 480w, assets/img/jana/magazijn-materiaal-klaarzetten-800.avif 800w, assets/img/jana/magazijn-materiaal-klaarzetten-1200.avif 1200w, assets/img/jana/magazijn-materiaal-klaarzetten-1600.avif 1600w" sizes="360px"><source type="image/webp" srcset="assets/img/jana/magazijn-materiaal-klaarzetten-480.webp 480w, assets/img/jana/magazijn-materiaal-klaarzetten-800.webp 800w, assets/img/jana/magazijn-materiaal-klaarzetten-1200.webp 1200w, assets/img/jana/magazijn-materiaal-klaarzetten-1600.webp 1600w" sizes="360px"><img src="assets/img/jana/magazijn-materiaal-klaarzetten-800.jpg" width="800" height="534" alt="Collega zet materiaal klaar in een bak tussen de rekken van het magazijn" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/plannen-bekijken-480.avif 480w, assets/img/jana/plannen-bekijken-800.avif 800w, assets/img/jana/plannen-bekijken-1200.avif 1200w, assets/img/jana/plannen-bekijken-1600.avif 1600w" sizes="360px"><source type="image/webp" srcset="assets/img/jana/plannen-bekijken-480.webp 480w, assets/img/jana/plannen-bekijken-800.webp 800w, assets/img/jana/plannen-bekijken-1200.webp 1200w, assets/img/jana/plannen-bekijken-1600.webp 1600w" sizes="360px"><img src="assets/img/jana/plannen-bekijken-800.jpg" width="800" height="534" alt="Twee collega’s bekijken samen een elektriciteitsplan aan de muur" loading="lazy" decoding="async"></picture>
-        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.avif 480w, assets/img/jana/plannen-tekenen-werkplaats-800.avif 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.avif 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.avif 1448w" sizes="320px"><source type="image/webp" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.webp 480w, assets/img/jana/plannen-tekenen-werkplaats-800.webp 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.webp 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.webp 1448w" sizes="320px"><img src="assets/img/jana/plannen-tekenen-werkplaats-800.jpg" width="800" height="600" alt="Lachende elektricien werkt plannen bij aan een tafel in de werkplaats" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/selfie-in-de-werkplaats-480.avif 480w, assets/img/jana/selfie-in-de-werkplaats-800.avif 800w, assets/img/jana/selfie-in-de-werkplaats-1086.avif 1086w" sizes="180px"><source type="image/webp" srcset="assets/img/jana/selfie-in-de-werkplaats-480.webp 480w, assets/img/jana/selfie-in-de-werkplaats-800.webp 800w, assets/img/jana/selfie-in-de-werkplaats-1086.webp 1086w" sizes="180px"><img src="assets/img/jana/selfie-in-de-werkplaats-800.jpg" width="800" height="1067" alt="Selfie van een lachende elektricien in de werkplaats, een collega zwaait op de achtergrond" loading="lazy" decoding="async"></picture>
       </div>
       <p class="zp-swipe-hint">Veeg opzij voor meer foto’s →</p>
@@ -344,9 +345,9 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
            NOG TE ONTVANGEN: Katrien stuurt foto's van installaties. Zodra die er zijn,
            vervangen ze bij voorkeur de gang met verlichting en/of de werf. -->
       <div class="zp-werk">
-        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.avif 480w, assets/img/jana/plannen-tekenen-werkplaats-800.avif 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.avif 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.avif 1448w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><source type="image/webp" srcset="assets/img/jana/plannen-tekenen-werkplaats-480.webp 480w, assets/img/jana/plannen-tekenen-werkplaats-800.webp 800w, assets/img/jana/plannen-tekenen-werkplaats-1200.webp 1200w, assets/img/jana/plannen-tekenen-werkplaats-1448.webp 1448w" sizes="(max-width: 640px) calc(100vw - 40px), 600px"><img src="assets/img/jana/plannen-tekenen-werkplaats-800.jpg" width="800" height="600" alt="Een technieker van Electro Zwijsen tekent glimlachend plannen uit aan een werktafel" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/verdeelbord-bekabelen-480.avif 480w, assets/img/jana/verdeelbord-bekabelen-800.avif 800w, assets/img/jana/verdeelbord-bekabelen-1200.avif 1200w, assets/img/jana/verdeelbord-bekabelen-1448.avif 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/verdeelbord-bekabelen-480.webp 480w, assets/img/jana/verdeelbord-bekabelen-800.webp 800w, assets/img/jana/verdeelbord-bekabelen-1200.webp 1200w, assets/img/jana/verdeelbord-bekabelen-1448.webp 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img style="object-position:50% 40%" src="assets/img/jana/verdeelbord-bekabelen-800.jpg" width="800" height="600" alt="Elektricien bekabelt een verdeelbord in de werkplaats" loading="lazy" decoding="async"></picture>
         <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/werf-gang-paarse-verlichting-480.avif 480w, assets/img/jana/werf-gang-paarse-verlichting-800.avif 800w, assets/img/jana/werf-gang-paarse-verlichting-1200.avif 1200w, assets/img/jana/werf-gang-paarse-verlichting-1494.avif 1494w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/werf-gang-paarse-verlichting-480.webp 480w, assets/img/jana/werf-gang-paarse-verlichting-800.webp 800w, assets/img/jana/werf-gang-paarse-verlichting-1200.webp 1200w, assets/img/jana/werf-gang-paarse-verlichting-1494.webp 1494w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img src="assets/img/jana/werf-gang-paarse-verlichting-800.jpg" width="800" height="450" alt="Gang in een kantoorgebouw met lijnverlichting in het plafond en blauwe ledverlichting langs de muur" loading="lazy" decoding="async"></picture>
-        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/verdeelbord-bekabelen-480.avif 480w, assets/img/jana/verdeelbord-bekabelen-800.avif 800w, assets/img/jana/verdeelbord-bekabelen-1200.avif 1200w, assets/img/jana/verdeelbord-bekabelen-1448.avif 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/verdeelbord-bekabelen-480.webp 480w, assets/img/jana/verdeelbord-bekabelen-800.webp 800w, assets/img/jana/verdeelbord-bekabelen-1200.webp 1200w, assets/img/jana/verdeelbord-bekabelen-1448.webp 1448w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img src="assets/img/jana/verdeelbord-bekabelen-800.jpg" width="800" height="600" alt="Elektricien bekabelt een verdeelbord in de werkplaats" loading="lazy" decoding="async"></picture>
+        <picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/magazijn-materiaal-klaarzetten-480.avif 480w, assets/img/jana/magazijn-materiaal-klaarzetten-800.avif 800w, assets/img/jana/magazijn-materiaal-klaarzetten-1200.avif 1200w, assets/img/jana/magazijn-materiaal-klaarzetten-1600.avif 1600w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><source type="image/webp" srcset="assets/img/jana/magazijn-materiaal-klaarzetten-480.webp 480w, assets/img/jana/magazijn-materiaal-klaarzetten-800.webp 800w, assets/img/jana/magazijn-materiaal-klaarzetten-1200.webp 1200w, assets/img/jana/magazijn-materiaal-klaarzetten-1600.webp 1600w" sizes="(max-width: 640px) calc(50vw - 24px), 296px"><img src="assets/img/jana/magazijn-materiaal-klaarzetten-800.jpg" width="800" height="534" alt="Een collega van Electro Zwijsen zet materiaal klaar in het magazijn" loading="lazy" decoding="async"></picture>
       </div>
       <div class="m-cta"><a class="zw-btn" href="#solliciteer">Solliciteer direct zonder CV</a></div>
     </div>
@@ -368,38 +369,23 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
       </ul>
       <!-- Eigen schematische kaart (feedback 30 okt 2026: de oude kaart was dezelfde als
            in andere campagnes). Inline SVG, geen beeldbestand. Plaatsen: echte lat/lon
-           van de gemeentecentra, equirectangulaire projectie rond Dendermonde, 7 px per km;
-           cirkel = 20 km. Schelde en Dender bij benadering, via de dorpen aan de oever.
+           van Dendermonde, equirectangulaire projectie, 7 px per km. Op vraag van Jana
+           (30 okt 2026) enkel Dendermonde: geen cirkel en geen buurgemeenten. Schelde en Dender bij benadering, via de dorpen aan de oever.
            Bron: copy/VERSLAG-feedback-v5-2026-10-30.md -->
       <figure class="zk-fig">
         <svg class="zk" viewBox="0 0 320 320" role="img" aria-labelledby="zk-t zk-d" xmlns="http://www.w3.org/2000/svg">
-          <title id="zk-t">Dendermonde en omgeving</title>
-          <desc id="zk-d">Schematische kaart met Dendermonde in het midden en een cirkel van ongeveer 20 kilometer eromheen. Binnen de cirkel liggen Aalst, Sint-Niklaas, Lokeren, Wetteren, Zele, Hamme, Buggenhout, Lebbeke, Berlare, Temse, Puurs, Wichelen. De Schelde en de Dender zijn bij benadering getekend.</desc>
+          <title id="zk-t">Dendermonde</title>
+          <desc id="zk-d">Schematische kaart van Dendermonde, waar de Dender in de Schelde uitmondt.</desc>
           <defs><clipPath id="zk-c"><rect width="320" height="320" rx="6"/></clipPath></defs>
           <g clip-path="url(#zk-c)">
           <rect width="320" height="320" fill="#F7F6F6"/>
-          <circle cx="160" cy="160" r="140" fill="#FFFFFF"/>
-          <circle cx="160" cy="160" r="70" fill="none" stroke="#E8E6E7" stroke-width="1"/>
           <path d="M-36.3 155.0 C-24.9 159.4 17.4 176.7 32.3 181.0 C47.1 185.3 45.6 182.5 52.9 181.0 C60.1 179.6 69.6 174.5 75.8 172.4 C81.9 170.2 85.7 168.2 89.6 168.3 C93.6 168.3 95.7 173.8 99.4 172.9 C103.2 172.0 104.9 165.1 112.2 162.8 C119.4 160.5 134.8 160.8 142.7 159.4 C150.7 158.0 151.7 155.1 159.7 154.2 C167.7 153.4 181.7 155.7 190.8 154.3 C199.8 153.0 211.9 149.7 214.1 146.1 C216.4 142.6 204.8 138.9 204.3 133.2 C203.8 127.6 209.3 120.3 211.2 112.2 C213.0 104.1 209.9 92.4 215.2 84.7 C220.5 76.9 234.3 75.2 243.0 65.5 C251.7 55.8 263.4 33.1 267.5 26.6" fill="none" stroke="#C9D4DC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M145.0 291.2 C143.4 285.4 137.6 266.3 135.2 256.2 C132.8 246.1 130.2 241.0 130.4 230.7 C130.7 220.3 132.9 202.4 136.4 194.2 C140.0 185.9 148.3 186.2 151.9 181.3 C155.4 176.3 156.4 168.9 157.7 164.4 C159.1 159.9 159.4 155.9 159.7 154.2" fill="none" stroke="#C9D4DC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="160" cy="160" r="140" fill="none" stroke="#121413" stroke-width="1.25" stroke-dasharray="3 5" stroke-linecap="round"/>
           <text x="247" y="67" class="zk-river">Schelde</text>
           <text x="141" y="220" class="zk-river">Dender</text>
-          <circle cx="130.4" cy="230.7" r="3" fill="#121413"/><text x="130.4" y="249.7" text-anchor="middle" class="zk-town">Aalst</text>
-          <circle cx="179.1" cy="54.1" r="3" fill="#121413"/><text x="179.1" y="45.1" text-anchor="middle" class="zk-town">Sint-Niklaas</text>
-          <circle cx="105.7" cy="101.0" r="3" fill="#121413"/><text x="105.7" y="92.0" text-anchor="middle" class="zk-town">Lokeren</text>
-          <circle cx="52.9" cy="181.0" r="3" fill="#121413"/><text x="52.9" y="172.0" text-anchor="middle" class="zk-town">Wetteren</text>
-          <circle cx="129.6" cy="129.0" r="3" fill="#121413"/><text x="136.6" y="133.0" text-anchor="start" class="zk-town">Zele</text>
-          <circle cx="178.2" cy="106.1" r="3" fill="#121413"/><text x="171.2" y="110.1" text-anchor="end" class="zk-town">Hamme</text>
-          <circle cx="209.8" cy="170.4" r="3" fill="#121413"/><text x="216.8" y="174.4" text-anchor="start" class="zk-town">Buggenhout</text>
-          <circle cx="176.7" cy="183.1" r="3" fill="#121413"/><text x="176.7" y="202.1" text-anchor="middle" class="zk-town">Lebbeke</text>
-          <circle cx="112.2" cy="158.1" r="3" fill="#121413"/><text x="112.2" y="149.1" text-anchor="middle" class="zk-town">Berlare</text>
-          <circle cx="215.2" cy="84.7" r="3" fill="#121413"/><text x="222.2" y="88.7" text-anchor="start" class="zk-town">Temse</text>
-          <circle cx="248.8" cy="122.9" r="3" fill="#121413"/><text x="248.8" y="113.9" text-anchor="middle" class="zk-town">Puurs</text>
-          <circle cx="99.4" cy="179.1" r="3" fill="#121413"/><text x="99.4" y="198.1" text-anchor="middle" class="zk-town">Wichelen</text>
-          <circle cx="160" cy="160" r="14" fill="#FCC715"/>
-          <circle cx="160" cy="160" r="6.5" fill="#E60E13" stroke="#FFFFFF" stroke-width="2"/>
-          <text x="178" y="148" class="zk-main">Dendermonde</text>
+          <circle cx="160" cy="160" r="18" fill="#FCC715"/>
+          <circle cx="160" cy="160" r="8" fill="#E60E13" stroke="#FFFFFF" stroke-width="2"/>
+          <text x="160" y="196" text-anchor="middle" class="zk-main">Dendermonde</text>
           <g transform="translate(14 300)"><path d="M0 0h70" stroke="#121413" stroke-width="2"/><path d="M0 -4v8M70 -4v8" stroke="#121413" stroke-width="1.5"/><text x="35" y="-7" text-anchor="middle" class="zk-scale">10 km</text></g>
           <g transform="translate(298 24)"><path d="M0 -12 L5 2 L0 -1 L-5 2 Z" fill="#121413"/><text x="0" y="14" text-anchor="middle" class="zk-scale">N</text></g>
           </g>
@@ -439,6 +425,8 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
            midden- en hoogspanning, datanetwerken, elektrische laadinstallaties en beveiliging,
            van branddetectie tot inbraakbeveiliging. Kansen genoeg voor wie wil doorgroeien.
            Wij zijn een werkgever die expertise naar waarde schat.</p>
+      <!-- Luchtfoto van de ploeg hoort bij "Wij zijn Electro Zwijsen" (Jana, 30 okt 2026). -->
+      <picture class="zp-pic zp-group" style="margin-top:1.75rem;"><source type="image/avif" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-480.avif 480w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.avif 800w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1200.avif 1200w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1600.avif 1600w" sizes="(max-width: 640px) calc(179vw - 72px), (max-width: 700px) 1073px, 601px"><source type="image/webp" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-480.webp 480w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.webp 800w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1200.webp 1200w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1600.webp 1600w" sizes="(max-width: 640px) calc(179vw - 72px), (max-width: 700px) 1073px, 601px"><img src="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.jpg" width="800" height="336" alt="Luchtfoto van de hele ploeg van Electro Zwijsen die zwaait vanop het grasveld voor het hoofdkantoor, met een zwarte bestelwagen ervoor" loading="lazy" decoding="async"></picture>
     </div>
   </section>
 
@@ -461,8 +449,6 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
           <figcaption class="zp-who"><picture class="zp-pic"><source type="image/avif" srcset="assets/img/jana/kurt-werfleider-240.avif 240w, assets/img/jana/kurt-werfleider-480.avif 480w, assets/img/jana/kurt-werfleider-800.avif 800w, assets/img/jana/kurt-werfleider-1200.avif 1200w, assets/img/jana/kurt-werfleider-1448.avif 1448w" sizes="101px"><source type="image/webp" srcset="assets/img/jana/kurt-werfleider-240.webp 240w, assets/img/jana/kurt-werfleider-480.webp 480w, assets/img/jana/kurt-werfleider-800.webp 800w, assets/img/jana/kurt-werfleider-1200.webp 1200w, assets/img/jana/kurt-werfleider-1448.webp 1448w" sizes="101px"><img src="assets/img/jana/kurt-werfleider-800.jpg" width="800" height="600" alt="Kurt, werfleider bij Electro Zwijsen, aan het werk aan een stopcontact" loading="lazy" decoding="async" class="zp-kurt"></picture><span><strong>Kurt</strong>Werfleider, 30 jaar bij Electro Zwijsen</span></figcaption>
         </figure>
       </div>
-      <!-- Groepsfoto bij "Solliciteer in 30 seconden", zoals in het document van Jana -->
-      <picture class="zp-pic zp-group" style="margin-top:1.75rem;"><source type="image/avif" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-480.avif 480w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.avif 800w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1200.avif 1200w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1600.avif 1600w" sizes="(max-width: 640px) calc(179vw - 72px), (max-width: 700px) 1073px, 601px"><source type="image/webp" srcset="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-480.webp 480w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.webp 800w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1200.webp 1200w, assets/img/jana/ploeg-electro-zwijsen-luchtfoto-1600.webp 1600w" sizes="(max-width: 640px) calc(179vw - 72px), (max-width: 700px) 1073px, 601px"><img src="assets/img/jana/ploeg-electro-zwijsen-luchtfoto-800.jpg" width="800" height="336" alt="Luchtfoto van de hele ploeg van Electro Zwijsen die zwaait vanop het grasveld voor het hoofdkantoor, met een zwarte bestelwagen ervoor" loading="lazy" decoding="async"></picture>
       <div class="m-cta">
         <a class="zw-btn" href="#solliciteer">Solliciteer in 30 seconden</a>
       </div>
