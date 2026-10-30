@@ -204,6 +204,10 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
 
 .m-list li { transition: border-color .4s var(--zw-ease), box-shadow .4s var(--zw-ease); }
 .m-list li.is-film { border-color: var(--zw-red); box-shadow: inset 3px 0 0 var(--zw-red); }
+/* De actiebalk onderaan verdwijnt zolang het formulier zelf in beeld is,
+   anders bedekt hij op gsm de knop "Volgende". */
+.zw-mobilebar { transition: transform .3s var(--zw-ease); }
+.zw-mobilebar.is-weg { transform: translateY(110%); }
 </style>
 </head>
 <body>
@@ -523,6 +527,17 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
           kicker: 'Vast contract', line: 'Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.' }
       ]
     });
+  })();
+</script>
+<script>
+  /* Actiebalk weg zolang het formulier zichtbaar is. */
+  (function () {
+    var bar = document.querySelector('.zw-mobilebar');
+    var form = document.getElementById('solliciteer');
+    if (!bar || !form || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (en) {
+      bar.classList.toggle('is-weg', en[0].isIntersecting);
+    }, { threshold: 0.05 }).observe(form);
   })();
 </script>
 </body>
