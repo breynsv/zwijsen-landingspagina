@@ -10,30 +10,28 @@
   container-type: inline-size;
 }
 
-/* --- Kop met voortgang --------------------------------------------------- */
+/* --- Kop met voortgang --------------------------------------------------
+   Bewust stil (feedback Jana 30 okt 2026: minder "Personeelsmagneet"):
+   gewone tekst "Vraag 2 van 4" en een haarlijn, geen pil, geen hoofdletters. */
 
 .za__head {
-  display: flex; align-items: center; gap: .9rem;
-  padding: 0 0 1.15rem;
+  display: grid; gap: .5rem;
+  padding: 0 0 1.25rem;
+}
+.za__head.is-done { display: none; }
+.za__step {
+  font-family: var(--zw-font-body);
+  font-size: 13px; font-weight: 600;
+  color: var(--zw-grey-700);
 }
 .za__bar {
-  flex: 1; height: 5px; border-radius: 99px;
+  height: 2px;
   background: var(--zw-grey-100); overflow: hidden;
 }
 .za__bar-fill {
-  display: block; height: 100%; border-radius: 99px;
-  background: linear-gradient(90deg, var(--zw-red), #FF4B4F);
+  display: block; height: 100%;
+  background: var(--zw-ink);
   transition: width .45s var(--zw-ease);
-}
-.za__step {
-  flex-shrink: 0;
-  font-family: var(--zw-font-head);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--zw-grey-500);
-  background: var(--zw-grey-50);
-  border-radius: 99px;
-  padding: .38rem .78rem;
 }
 
 /* --- Vraag --------------------------------------------------------------- */
@@ -49,47 +47,59 @@
   display: block; width: 100%;
 }
 .za__legend:focus { outline: none; }
-.za__icon { font-size: .95em; }
-
 .za__hint {
-  margin: 0 0 1.1rem;
+  margin: 0;
   font-size: 13.5px; line-height: 1.6;
   color: var(--zw-grey-700);
-  border-left: 3px solid var(--zw-yellow);
-  padding-left: .8rem;
 }
 
-.za__options { display: grid; gap: .55rem; margin-top: 1.15rem; }
+/* Antwoorden: één rustige lijst met haarlijnen ertussen, in de taal van
+   Zwijsen (3px hoeken, inkt, gele accentlijn bij een keuze). Het rood blijft
+   voor de knop. Echte radio's/selectievakjes, alleen visueel vervangen. */
+.za__options {
+  display: grid; margin-top: 1.1rem;
+  border: 1px solid var(--zw-line);
+  border-radius: var(--zw-radius);
+  background: var(--zw-white);
+}
 
 .za__option {
   position: relative;
-  display: flex; align-items: center; gap: .85rem;
-  padding: .95rem 1.05rem;
-  border: 2px solid var(--zw-line);
-  border-radius: var(--zw-radius);
-  background: var(--zw-white);
+  display: flex; align-items: center; gap: .9rem;
+  min-height: 3.1rem;
+  padding: .8rem 1rem .8rem .95rem;
+  border-top: 1px solid var(--zw-line);
   cursor: pointer;
-  font-size: 15px; line-height: 1.45;
-  transition: border-color .16s var(--zw-ease), background-color .16s var(--zw-ease),
-              transform .16s var(--zw-ease), box-shadow .16s var(--zw-ease);
-}
-.za__option:hover { border-color: var(--zw-grey-300); background: var(--zw-grey-50); transform: translateX(3px); }
-.za__option.is-on { border-color: var(--zw-red); background: var(--zw-red-tint); }
-.za__option:focus-within { outline: 3px solid var(--zw-red); outline-offset: 2px; }
-
-.za__radio { position: absolute; opacity: 0; width: 1px; height: 1px; }
-
-.za__letter {
-  flex-shrink: 0;
-  width: 1.75rem; height: 1.75rem;
-  display: grid; place-items: center;
-  border-radius: var(--zw-radius);
-  background: var(--zw-ink); color: var(--zw-white);
   font-family: var(--zw-font-head);
-  font-size: 12px; font-weight: 700;
-  transition: background-color .16s var(--zw-ease);
+  font-size: 16px; font-weight: 500; line-height: 1.35;
+  color: var(--zw-ink);
+  transition: background-color .14s var(--zw-ease), box-shadow .14s var(--zw-ease);
 }
-.za__option.is-on .za__letter { background: var(--zw-red); }
+.za__options > .za__option:first-child { border-top: 0; }
+.za__option:hover { background: var(--zw-grey-50); }
+.za__option.is-on { background: #FFFAE6; box-shadow: inset 3px 0 0 var(--zw-yellow); }
+.za__option:has(.za__radio:focus-visible) { outline: 2px solid var(--zw-ink); outline-offset: -2px; z-index: 1; }
+
+.za__radio { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+
+/* Keuzevakje: rond voor één antwoord, vierkant (3px) voor meerdere. */
+.za__tick {
+  flex-shrink: 0; position: relative;
+  width: 20px; height: 20px;
+  border: 2px solid var(--zw-grey-300);
+  border-radius: 50%;
+  background: var(--zw-white);
+  transition: border-color .14s var(--zw-ease), background-color .14s var(--zw-ease);
+}
+.za__options--multi .za__tick { border-radius: var(--zw-radius); }
+.za__option:hover .za__tick { border-color: var(--zw-grey-500); }
+.za__option.is-on .za__tick { border-color: var(--zw-ink); background: var(--zw-ink); }
+.za__option.is-on .za__tick::after {
+  content: ""; position: absolute; left: 5px; top: 1.5px;
+  width: 5px; height: 9px;
+  border: solid var(--zw-yellow); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 .za__option-text { flex: 1; }
 
 /* --- Regiokaart ---------------------------------------------------------- */
@@ -118,11 +128,13 @@
   background: none; border: 0;
   font-family: var(--zw-font-head);
   font-size: 14px; font-weight: 500;
-  color: var(--zw-grey-500);
+  color: var(--zw-grey-700);
   cursor: pointer; padding: .6rem .2rem;
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: var(--zw-grey-300);
   transition: color .16s var(--zw-ease);
 }
-.za__back:hover { color: var(--zw-ink); text-decoration: underline; }
+.za__back:hover { color: var(--zw-ink); text-decoration-color: currentColor; }
 
 .za__error {
   margin: .8rem 0 0; min-height: 0;
@@ -132,18 +144,9 @@
 .za__error.is-on::before { content: "⚠ "; }
 
 .za__reassure {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: .35rem 1rem; list-style: none;
-  margin: 1.15rem 0 0; padding: 0;
-  font-family: var(--zw-font-head);
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--zw-grey-500);
-}
-.za__reassure li { display: flex; align-items: center; gap: .5rem; }
-.za__reassure li + li::before {
-  content: ""; width: 4px; height: 4px; border-radius: 50%;
-  background: var(--zw-grey-300); margin-right: .5rem;
+  margin: 1rem 0 0;
+  font-size: 12.5px; color: var(--zw-grey-500);
+  text-align: center;
 }
 
 /* --- Contactstap --------------------------------------------------------- */
@@ -159,10 +162,9 @@
 .za__label {
   display: block;
   font-family: var(--zw-font-head);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .11em; text-transform: uppercase;
-  color: var(--zw-grey-700);
-  margin-bottom: .38rem;
+  font-size: 14px; font-weight: 500;
+  color: var(--zw-ink);
+  margin-bottom: .35rem;
 }
 .za__input, .za__select {
   width: 100%;
@@ -223,14 +225,17 @@
 
 .za__done { text-align: center; padding: .5rem 0 0; animation: zw-rise .5s var(--zw-ease) both; }
 .za__done-mark {
-  width: 3.75rem; height: 3.75rem; margin: 0 auto 1.1rem;
+  width: 3.25rem; height: 3.25rem; margin: 0 auto 1rem;
   display: grid; place-items: center;
   border-radius: 50%;
-  background: var(--zw-red); color: var(--zw-white);
+  background: var(--zw-ink); color: var(--zw-yellow);
 }
-.za__done-mark svg { width: 1.8rem; height: 1.8rem; }
-.za__done h3 { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); font-weight: 700; margin-bottom: .4rem; }
-.za__done-lead { color: var(--zw-grey-700); margin-bottom: 1.75rem; }
+.za__done-mark svg { width: 1.6rem; height: 1.6rem; }
+.za__done h3 { font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); font-weight: 700; margin-bottom: .6rem; }
+.za__done h3:focus { outline: none; }
+.za__done-lead { color: var(--zw-grey-700); line-height: 1.7; margin-bottom: 1.25rem; }
+.za__done-call { border-top: 1px solid var(--zw-line); padding-top: 1rem; }
+.za__done-call a { white-space: nowrap; }
 
 .za__steps {
   list-style: none; counter-reset: za; margin: 0; padding: 0;
@@ -298,7 +303,7 @@
 
 /* --- Vrije tekst: "Een andere taal:" en de woonplaatsvraag --------------- */
 
-.za__other { margin: .1rem 0 0 2.6rem; }
+.za__other { padding: 0 1rem .85rem 3.05rem; background: #FFFAE6; box-shadow: inset 3px 0 0 var(--zw-yellow); }
 .za__other[hidden] { display: none; }
 .za__textq { margin-top: 1.15rem; }
 .za__textq .za__input { font-size: 16px; }   /* 16px: geen automatische zoom op iOS */

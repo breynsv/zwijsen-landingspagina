@@ -23,8 +23,12 @@
      Definitieve tekst van Jana (copywriter), 28 oktober 2026: vier vragen.
      Soorten:
        - keuzevraag (options) — gaat na een klik meteen door;
-         een optie met `other: true` toont een tekstvak ("Een andere taal:")
-         en gaat dan pas door met de knop Volgende.
+       - meerkeuzevraag (multi: true) — selectievakjes, minstens één verplicht,
+         door met de knop Volgende. Een optie met `other: true` toont een
+         tekstvak ("Een andere taal:") dat dan ook ingevuld moet zijn.
+     Feedback Jana + Katrien 30 okt 2026: geen icoontjes en geen A/B/C-letters
+     meer (te dicht bij bestaande campagnes); de taalvraag is niet langer
+     de eerste taal maar "in welke talen kun je overleggen", meerdere antwoorden.
        - tekstvraag (type: 'text') — verplicht in te vullen.
      ---------------------------------------------------------------------- */
 
@@ -32,7 +36,6 @@
     {
       name: 'werkervaring',
       label: 'Hoeveel relevante werkervaring heb je?',
-      icon: '\u26A1',
       options: [
         { value: '1-2', label: '1-2 jaar' },
         { value: '3-4', label: '3-4 jaar' },
@@ -42,20 +45,23 @@
       ]
     },
     {
-      name: 'moedertaal',
-      label: 'Wat is je moedertaal?',
-      icon: '\u{1F5E3}\uFE0F',
+      name: 'talen',
+      multi: true,
+      label: 'In welke talen kun je overleggen met collega\u2019s en veiligheidsinstructies begrijpen?',
+      hint: 'Je mag meerdere talen aanduiden.',
+      error: 'Duid minstens \u00E9\u00E9n taal aan om verder te gaan.',
+      otherError: 'Vul in welke andere taal je spreekt.',
       options: [
         { value: 'nederlands', label: 'Nederlands' },
         { value: 'frans', label: 'Frans' },
+        { value: 'engels', label: 'Engels' },
         { value: 'andere', label: 'Een andere taal:', other: true,
-          otherLabel: 'Welke taal?', otherPlaceholder: 'Vul je moedertaal in' }
+          otherLabel: 'Welke andere taal?', otherPlaceholder: 'Welke taal?' }
       ]
     },
     {
       name: 'rijbewijs',
       label: 'Heb je een rijbewijs?',
-      icon: '\u{1F697}',
       options: [
         { value: 'b', label: 'Rijbewijs B' },
         { value: 'be', label: 'Rijbewijs BE' },
@@ -67,7 +73,6 @@
       name: 'woonplaats',
       type: 'text',
       label: 'Waar woon je?',
-      icon: '\u{1F4CD}',
       hint: 'Vul je postcode of de naam van je gemeente in.',
       placeholder: 'bv. 9200 of Dendermonde',
       autocomplete: 'address-level2',
@@ -99,8 +104,6 @@
     (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
     return n;
   }
-
-  var LETTERS = 'ABCDEF';
 
   /* Meta Pixel / GA4 — faalt stil als er (nog) geen pixel geladen is. */
   function track(event, params) {
@@ -135,15 +138,17 @@
     this.root.innerHTML = '';
     this.root.classList.add('za');
 
-    var head = el('div', { class: 'za__head' }, [
+    /* Rustige voortgang: een dunne lijn en "Vraag 2 van 4" in gewone tekst. */
+    var stepText = this.done ? '' : this.step < QUESTIONS.length
+      ? 'Vraag ' + (this.step + 1) + ' van ' + QUESTIONS.length
+      : 'Laatste stap';
+    var head = el('div', { class: 'za__head' + (this.done ? ' is-done' : '') }, [
+      el('span', { class: 'za__step', text: stepText }),
       el('div', { class: 'za__bar', role: 'progressbar', 'aria-valuemin': '0',
-        'aria-valuemax': '100', 'aria-valuenow': String(this.progress()),
+        'aria-valuemax': '100', 'aria-valuenow': String(this.done ? 100 : this.progress()),
         'aria-label': 'Voortgang sollicitatie' }, [
-        el('span', { class: 'za__bar-fill', style: 'width:' + Math.max(this.progress(), 4) + '%' })
-      ]),
-      el('span', { class: 'za__step', text: this.step >= this.total
-        ? 'Laatste stap'
-        : 'Stap ' + (this.step + 1) + ' van ' + this.total })
+        el('span', { class: 'za__bar-fill', style: 'width:' + (this.done ? 100 : Math.max(this.progress(), 3)) + '%' })
+      ])
     ]);
     this.root.appendChild(head);
 
@@ -161,8 +166,7 @@
     var group = 'q_' + q.name;
 
     var fs = el('fieldset', { class: 'za__fieldset' });
-    fs.appendChild(el('legend', { class: 'za__legend',
-      html: (q.icon ? '<span class="za__icon" aria-hidden="true">' + q.icon + '</span> ' : '') + q.label }));
+    fs.appendChild(el('legend', { class: 'za__legend', text: q.label }));
 
     if (q.hint) fs.appendChild(el('p', { class: 'za__hint', id: group + '_hint', text: q.hint }));
 
@@ -180,21 +184,42 @@
       }));
       fs.appendChild(wrap);
     } else {
-      var list = el('div', { class: 'za__options' });
+      var multi = !!q.multi;
+      var list = el('div', { class: 'za__options' + (multi ? ' za__options--multi' : ''),
+        role: multi ? 'group' : 'radiogroup' });
       var otherBox = null;
-      q.options.forEach(function (o, i) {
+      var isOn = function (v) {
+        var a = self.answers[q.name];
+        return multi ? (a || []).indexOf(v) > -1 : a === v;
+      };
+      q.options.forEach(function (o) {
         var id = group + '_' + o.value;
         var label;
         var input = el('input', {
-          class: 'za__radio', type: 'radio', name: group, id: id, value: o.value,
+          class: 'za__radio', type: multi ? 'checkbox' : 'radio', name: group, id: id, value: o.value,
+          'aria-describedby': q.hint ? group + '_hint' : null,
           onchange: function () {
+            self.clearError();
+            if (multi) {
+              /* Meerkeuze: aan/uit, en pas door met de knop Volgende. */
+              var a = (self.answers[q.name] || []).filter(function (v) { return v !== o.value; });
+              if (input.checked) a.push(o.value);
+              self.answers[q.name] = a;
+              label.classList.toggle('is-on', input.checked);
+              if (o.other) {
+                otherBox.hidden = !input.checked;
+                if (input.checked) {
+                  var t0 = otherBox.querySelector('input');
+                  setTimeout(function () { t0.focus(); }, 30);
+                }
+              }
+              return;
+            }
             self.answers[q.name] = o.value;
             list.querySelectorAll('.za__option').forEach(function (n) { n.classList.remove('is-on'); });
             label.classList.add('is-on');
-            self.clearError();
             if (otherBox) otherBox.hidden = !o.other;
             if (o.other) {
-              /* "Een andere taal:" — eerst invullen, dan pas verder. */
               var t = otherBox.querySelector('input');
               setTimeout(function () { t.focus(); }, 30);
               return;
@@ -203,11 +228,11 @@
             setTimeout(function () { self.next(); }, 260);
           }
         });
-        if (self.answers[q.name] === o.value) input.checked = true;
+        if (isOn(o.value)) input.checked = true;
 
-        label = el('label', { class: 'za__option' + (self.answers[q.name] === o.value ? ' is-on' : ''), for: id }, [
+        label = el('label', { class: 'za__option' + (isOn(o.value) ? ' is-on' : ''), for: id }, [
           input,
-          el('span', { class: 'za__letter', 'aria-hidden': 'true', text: LETTERS[i] || '+' }),
+          el('span', { class: 'za__tick', 'aria-hidden': 'true' }),
           el('span', { class: 'za__option-text', text: o.label })
         ]);
         list.appendChild(label);
@@ -215,7 +240,7 @@
         if (o.other) {
           var key = q.name + '_andere';
           otherBox = el('div', { class: 'za__other' });
-          otherBox.hidden = self.answers[q.name] !== o.value;
+          otherBox.hidden = !isOn(o.value);
           otherBox.appendChild(el('label', { class: 'zw-visually-hidden', for: 'za_' + key, text: o.otherLabel || o.label }));
           otherBox.appendChild(el('input', {
             class: 'za__input', type: 'text', id: 'za_' + key, name: key,
@@ -234,10 +259,10 @@
     this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));
 
     var nav = el('div', { class: 'za__nav' }, [
-      this.step > 0 ? el('button', { class: 'za__back', type: 'button', text: '← Terug',
+      this.step > 0 ? el('button', { class: 'za__back', type: 'button', text: 'Terug',
         onclick: function () { self.prev(); } }) : null,
       el('button', { class: 'zw-btn za__next', type: 'button',
-        html: 'Volgende <span aria-hidden="true">→</span>',
+        text: 'Volgende',
         onclick: function () { self.next(); } })
     ]);
     this.body.appendChild(nav);
@@ -250,15 +275,13 @@
   };
 
   ZwijsenApply.prototype.reassure = function () {
-    return el('ul', { class: 'za__reassure' }, [
-      el('li', { text: '4 vragen · ±30 seconden' }),
-      el('li', { text: 'Geen CV nodig' }),
-      el('li', { text: '100% vertrouwelijk' })
-    ]);
+    /* Jana: onderaan in de grijze letters enkel nog "100% vertrouwelijk". */
+    return el('p', { class: 'za__reassure', text: '100% vertrouwelijk' });
   };
 
   /* ----------------------------------------------------------------------
-     Contactstap — "Je komt in aanmerking!"
+     Contactstap. De oude kop (dat je "in aanmerking" komt) is weg: de test laat iedereen
+     door, en dat sprak "Jouw profiel" tegen (feedback Jana, 30 okt 2026).
      ---------------------------------------------------------------------- */
 
   var PRIVACY_URL = 'https://zwijsen.be/privacy-policy/';
@@ -267,7 +290,7 @@
     var self = this;
 
     var fs = el('fieldset', { class: 'za__fieldset' });
-    fs.appendChild(el('legend', { class: 'za__legend', text: 'Je komt in aanmerking!' }));
+    fs.appendChild(el('legend', { class: 'za__legend', text: 'Bedankt voor je antwoorden! We horen graag meer van je' }));
     fs.appendChild(el('p', { class: 'za__hint',
       text: 'Laat zeker je gegevens na en wij nemen contact.' }));
 
@@ -302,7 +325,7 @@
     this.body.appendChild(el('p', { class: 'za__error', role: 'alert', 'aria-live': 'polite' }));
 
     this.body.appendChild(el('div', { class: 'za__nav' }, [
-      el('button', { class: 'za__back', type: 'button', text: '← Terug',
+      el('button', { class: 'za__back', type: 'button', text: 'Terug',
         onclick: function () { self.prev(); } }),
       el('button', { class: 'zw-btn za__next za__submit', type: 'button',
         text: 'Neem contact met mij op',
@@ -355,12 +378,18 @@
         }
         this.answers[q.name] = this.answers[q.name].trim();
       } else {
-        if (!this.answers[q.name]) { this.showError('Kies een antwoord om verder te gaan.'); return; }
-        var chosen = q.options.filter(function (o) { return o.value === this.answers[q.name]; }, this)[0];
-        if (chosen && chosen.other) {
+        var picked = q.multi ? (this.answers[q.name] || []) : (this.answers[q.name] ? [this.answers[q.name]] : []);
+        if (!picked.length) {
+          this.showError(q.error || 'Kies een antwoord om verder te gaan.');
+          var first = this.body.querySelector('.za__radio');
+          if (first && q.multi) first.focus();
+          return;
+        }
+        var chosen = q.options.filter(function (o) { return o.other && picked.indexOf(o.value) > -1; })[0];
+        if (chosen) {
           var key = q.name + '_andere';
           if (!(this.answers[key] || '').trim()) {
-            this.showError('Vul in welke taal je moedertaal is.');
+            this.showError(q.otherError || 'Vul dit in om verder te gaan.');
             var oi = this.body.querySelector('#za_' + key);
             if (oi) oi.focus();
             return;
@@ -371,7 +400,7 @@
         }
       }
       /* Bewust ALLEEN het stapnummer en de vraagnaam naar Meta/Analytics.
-         Het gegeven antwoord (rijbewijs, moedertaal, woonplaats) gaat NIET mee:
+         Het gegeven antwoord (rijbewijs, talen, woonplaats) gaat NIET mee:
          dat is persoonlijke informatie over een sollicitant, en die hoort bij
          Zwijsen thuis — niet bij een advertentieplatform. Voor het meten van
          afhaakpunten volstaat het stapnummer. De antwoorden zitten wel in de
@@ -390,7 +419,7 @@
   };
 
   ZwijsenApply.prototype.focusFirst = function () {
-    var n = this.body.querySelector('.za__legend');
+    var n = this.body.querySelector('.za__legend, .za__done h3');
     if (n) { n.setAttribute('tabindex', '-1'); n.focus({ preventScroll: true }); }
     var box = this.root.closest('[data-za-scroll]') || this.root;
     if (box.scrollIntoView) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
@@ -478,29 +507,29 @@
      ---------------------------------------------------------------------- */
 
   ZwijsenApply.prototype.renderDone = function () {
-    /* Alleen de voornaam in de aanspreking: eerste woord van het naamveld. */
-    var naam = ((this.payload && this.payload.naam) || '').split(/\s+/)[0];
+    /* Tekst van Jana (30 okt 2026), zonder stappen of opsomming.
+       Alleen de voornaam in de aanspreking: eerste woord van het naamveld.
+       LET OP: de bevestigingsmail die hier beloofd wordt, bestaat nog niet.
+       Die wordt gebouwd bij de overzetting naar WordPress. */
+    var naam = ((this.payload && this.payload.naam) || '').trim().split(/\s+/)[0];
     this.body.appendChild(el('div', { class: 'za__done' }, [
       el('div', { class: 'za__done-mark', 'aria-hidden': 'true', html:
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" ' +
         'stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' }),
-      el('h3', { text: naam ? 'Bedankt, ' + naam + '!' : 'Bedankt voor je sollicitatie!' }),
-      el('p', { class: 'za__done-lead',
-        text: 'We hebben je sollicitatie goed ontvangen. Er is net een bevestigingsmail naar je onderweg.' }),
-      el('ol', { class: 'za__steps' }, [
-        el('li', {}, [el('strong', { text: 'Bevestiging per mail' }),
-          el('span', { text: 'Meteen in je inbox, met wie je contacteert en wanneer.' })]),
-        el('li', {}, [el('strong', { text: 'We bellen je zo snel mogelijk' }),
-          el('span', { text: 'Een gesprek van 10 minuten. Geen druk, gewoon kennismaken.' })]),
-        el('li', {}, [el('strong', { text: 'Langskomen in Duffel' }),
-          el('span', { text: 'Je ziet het atelier, het materiaal en je toekomstige ploeg.' })]),
-        el('li', {}, [el('strong', { text: 'Duidelijk antwoord' }),
-          el('span', { text: 'Altijd een antwoord — ook als het geen match is.' })])
-      ]),
-      el('p', { class: 'za__legal',
-        text: 'Liever meteen bellen? 015 305 305 — vraag naar de personeelsdienst.' })
+      el('h3', { tabindex: '-1', text: naam ? 'Bedankt, ' + naam + '!' : 'Bedankt!' }),
+      el('p', { class: 'za__done-lead', html:
+        'We hebben je gegevens goed ontvangen.<br>' +
+        'Je krijgt nog een mail van ons ter bevestiging.<br>' +
+        'We nemen gauw contact met je op.' }),
+      el('p', { class: 'za__legal za__done-call', html:
+        'Liever gewoon bellen? <a href="tel:+3215305305">015 305 305</a> of mailen ' +
+        '<a href="mailto:' + CONTACT_MAIL + '">' + CONTACT_MAIL + '</a>' })
     ]));
   };
+
+  /* Katrien schreef personeelsdienst@zwijsen.be. De bestaande formulieren op
+     zwijsen.be sturen naar personeel@zwijsen.be: te bevestigen voor livegang. */
+  var CONTACT_MAIL = 'personeelsdienst@zwijsen.be';
 
   /* ----------------------------------------------------------------------
      4. Publieke API
