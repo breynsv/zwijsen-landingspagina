@@ -1,29 +1,60 @@
 #!/usr/bin/env python3
-"""Bouwt de landingspagina's als Elementor-data (containers + native widgets).
+"""Bouwt de twee goedgekeurde regiopagina's als Elementor-data (containers + native widgets).
 
-Sinds 28 okt 2026 (v2) staan alleen voorstel 2 en 5 nog op staging; 1, 3 en 4
-zijn weggehaald (zie VERSLAG-staging-v2.md, de vorige versie zit in git).
-Inhoud = de lokale HTML-drafts 2-kwalificatietest.html en
-5-snelsollicitatie-mobiel.html (copy en foto's van Jana).
+Sinds 31 okt 2026 (definitief) staan op staging enkel nog de twee
+regiopagina's van voorstel 5 met film:
 
-Uitvoer: elementor/bron/build/pagina-N.json met titel, slug, elements en
-page settings. bron/plaats.php zet ze op staging; het eindresultaat wordt
-daarna als importeerbare Elementor-sjabloon in elementor/ bewaard.
+    5-snelsollicitatie-mobiel-film.html                        -> elektricien-dendermonde (post 3292)
+    5-snelsollicitatie-mobiel-film-lier-antwerpen-zuidrand.html -> elektricien-lier-antwerpen-zuidrand (nieuw)
+
+De lokale HTML is de bron: alle teksten, de lijst met foto's, de kaart (SVG),
+de film (shots), de vragen onderaan en de JSON-LD worden er met bs4 uit
+gelezen. Een tekstwijziging = de HTML aanpassen en opnieuw bouwen.
+(Voorstel 2 en de oude versie van 5 zitten in de git-geschiedenis.)
+
+Uitvoer in elementor/bron/build/:
+    pagina-dendermonde.json, pagina-lier.json   titel, slug, (id), elements, page settings, yoast
+    static/js/apply-form.js                      formulier ZONDER meting (geen pixel/gtag/dataLayer)
+    static/js/film.js                            ongewijzigd
+    static/*.avif|webp                           de foto's die de film via JS laadt
+bron/plaats.php zet een pagina op de site; bron/herplaats.sh doet het geheel.
 
     python3 elementor/bron/bouw.py
 """
+import hashlib
 import json
 import os
 import random
 import re
+import shutil
+
+from bs4 import BeautifulSoup, Comment
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HIER))
 BUILD = os.path.join(HIER, 'build')
+STATIC = os.path.join(BUILD, 'static')
+JANA = os.path.join(ROOT, 'assets', 'img', 'jana')
 
-# Foto's van Jana, in de mediabibliotheek van staging gezet met `wp media import`
-# (id + url + Nederlandse alt-tekst). Zie media.json.
+# Vaste map op de site voor wat JS laadt (film-foto's, scripts). Buiten de mediabibliotheek.
+STATIC_URL = '/wp-content/uploads/zwijsen-landing/'
+
+# Foto's in de mediabibliotheek van staging (id + url + alt). Zie media.json.
 MEDIA = json.load(open(os.path.join(HIER, 'media.json'), encoding='utf-8'))
+
+PAGINAS = {
+    'dendermonde': {
+        'bron': '5-snelsollicitatie-mobiel-film.html',
+        'title': 'Vacature elektricien Dendermonde',
+        'slug': 'elektricien-dendermonde',
+        'id': 3292,  # de oude "vacature-technieker-5", in place bijgewerkt
+    },
+    'lier': {
+        'bron': '5-snelsollicitatie-mobiel-film-lier-antwerpen-zuidrand.html',
+        'title': 'Vacature elektricien Lier en Antwerpen-Zuidrand',
+        'slug': 'elektricien-lier-antwerpen-zuidrand',
+    },
+}
 
 G = lambda c: 'globals/colors?id=' + c
 INK, RED, YELLOW, GREY, WHITE = 'primary', 'accent', '78f9a77', '9b6502c', '2c5975e'
@@ -99,20 +130,12 @@ def B(text, href, variant='red', cls=''):
     return W('button', s)
 
 
-def FOTO(naam):
-    m = MEDIA[naam]
-    return {'id': m['id'], 'url': m['url']}
-
-
-def IMG(naam, cls='', size='large', caption=None):
-    """Native afbeelding uit de mediabibliotheek. De alt-tekst staat op de bijlage zelf."""
+def IMG(naam, cls='', size='medium_large'):
+    """Native afbeelding uit de mediabibliotheek. WordPress maakt zelf srcset en lazy loading;
+    de alt-tekst staat op de bijlage zelf (Elementor neemt die over)."""
     m = MEDIA[naam]
     s = {'image': {'id': m['id'], 'url': m['url'], 'alt': m['alt'], 'source': 'library'},
-         'image_size': size, 'align': 'left'}
-    if caption:
-        s['caption_source'] = 'custom'
-        s['caption'] = caption
-    s['_css_classes'] = ('zp-pic ' + cls).strip()
+         'image_size': size, 'align': 'left', '_css_classes': ('zp-pic ' + cls).strip()}
     return W('image', s)
 
 
@@ -144,10 +167,30 @@ def HTML(html, cls=''):
     return W('html', s)
 
 
-def BG(foto, overlay, pos='center center', xy=None):
-    """Achtergrondfoto met een kleurlaag erover, als native containerinstelling."""
-    s = {'background_background': 'classic', 'background_image': dict(foto, source='library', alt=''),
-         'background_position': pos, 'background_repeat': 'no-repeat', 'background_size': 'cover',
+def FAQ(items, cls='zw-faq zw-faq--sm m-faq-w'):
+    """Native Elementor-accordeon (nested accordion = <details>/<summary>): het antwoord
+    staat in de HTML, ook dichtgeklapt, dus zonder JS leesbaar voor zoekmachines."""
+    rep, kids = [], []
+    for q, a in items:
+        rep.append({'item_title': q, '_id': _id(), 'element_css_id': ''})
+        kids.append(C('', T('<p>%s</p>' % a)))
+    w = W('nested-accordion', {
+        'items': rep, 'default_state': 'all_collapsed', 'max_items_expended': 'multiple', 'title_tag': 'h3',
+        'accordion_item_title_icon': {'value': 'fas fa-plus', 'library': 'fa-solid'},
+        'accordion_item_title_icon_active': {'value': 'fas fa-times', 'library': 'fa-solid'},
+        '_css_classes': cls,
+    })
+    w['elements'] = kids
+    return w
+
+
+def BG(naam, overlay, xy=None):
+    """Achtergrondfoto met een kleurlaag erover, als native containerinstelling.
+    Elementor gebruikt het volle bestand (1600 px, 50 kB na Imagify) op elke breedte."""
+    m = MEDIA[naam]
+    s = {'background_background': 'classic',
+         'background_image': {'id': m['id'], 'url': m['url'], 'source': 'library', 'alt': ''},
+         'background_repeat': 'no-repeat', 'background_size': 'cover',
          'background_color': '#121413',
          'background_overlay_opacity': {'unit': 'px', 'size': 1, 'sizes': []}}
     if xy:
@@ -158,97 +201,102 @@ def BG(foto, overlay, pos='center center', xy=None):
     return s
 
 
-def MOBILEBAR(text, href):
-    return C('zwl zw-mobilebar', B(text, href, cls='zw-btn--block'))
+# ---------------------------------------------------------------- statische bestanden
 
+def versie(path):
+    return hashlib.sha1(open(path, 'rb').read()).hexdigest()[:10]
 
-# ---------------------------------------------------------------- gedeelde copy (Jana, 28 okt 2026)
-
-MOEITE = [
-    ('fas fa-building', 'Grote werven', 'Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…'),
-    ('fas fa-bolt', 'Breed takenpakket', 'Bouw mee aan elektrische installaties van a tot z.'),
-    ('fas fa-sync-alt', 'Afwisseling', 'Geregeld nieuwe projecten, vooral in Vlaanderen.'),
-    ('fas fa-compass', 'Vrijheid in je vak', 'Je werkt zelfstandig en organiseert je werk zelf. Het resultaat telt.'),
-    ('fas fa-users', 'In duo', 'Je rijdt samen met een ervaren collega van Dendermonde naar de werf.'),
-    ('fas fa-shield-alt', 'Vast contract', 'Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.'),
-]
-VOORDELEN = [
-    'Goed loon, volgens ervaring', '32 vakantiedagen', 'Hospitalisatieverzekering voor jou én je gezin',
-    'Extra terugbetaling van doktersbezoeken, medicatie en andere medische kosten', 'Telefoon met abonnement',
-    'Groepsverzekering', 'Maaltijdcheques 9 euro per gewerkte dag', 'Dertiende maand',
-    'Kilometervergoeding tot de werf', 'Werkkledij', 'Beschermingsmateriaal',
-]
-TAKEN_INTRO = '<p>Je bouwt nieuwe elektrische installaties van a tot z op grote werven, samen met je collega’s.</p>'
-TAKEN = ['Kabelgoten plaatsen', 'Kabels trekken', 'Schakelmateriaal plaatsen', 'Verlichtingstoestellen aansluiten',
-         'Aansluitingen maken in verdeelborden', 'Zorgen dat het volledige project goed wordt opgeleverd']
-PROFIEL = ['Minstens 3 jaar ervaring als elektricien', 'Je woont in (of vlakbij) Dendermonde',
-           'Je hebt minstens rijbewijs B', 'Je spreekt Nederlands', 'Je hebt een VCA-attest',
-           'Ervaring op werven is een plus, geen must']
-OVER_ONS = ('<p>Wij zijn een hecht familiebedrijf van 150 collega’s. Het hoofdkantoor is in Duffel en we hebben '
-            'ook een filiaal in Zonhoven. Sinds 1987 zijn we expert in elektriciteit. Naast algemene '
-            'elektriciteitswerken bouwden we doorheen de jaren expertise op in midden- en hoogspanning, '
-            'datanetwerken, elektrische laadinstallaties en beveiliging, van branddetectie tot inbraakbeveiliging. '
-            'Kansen genoeg voor wie wil doorgroeien. Wij zijn een werkgever die expertise naar waarde schat.</p>')
-SWIPE = '<p>Veeg opzij voor meer foto’s →</p>'
-
-
-def getuigenissen():
-    return C('zw-quotes',
-        QUOTE('“Ik hou van de afwisseling in mijn job. Geen twee werven zijn hetzelfde. Zelfs na al die jaren kom '
-              'ik nog geregeld iets tegen waarvan ik denk: dat wist ik nog niet.”',
-              'Steven', 'Werfleider, 22 jaar bij Electro Zwijsen', 'steven-werfleider', 'zp-steven'),
-        QUOTE('“Ik weet wat ik aan Zwijsen heb: een correcte werkgever die altijd stipt betaalt en toffe collega’s '
-              'met wie ik graag samenwerk. Dat is belangrijk, want je brengt veel tijd met elkaar door. Doorheen de '
-              'jaren heb ik ook veel opleidingen kunnen volgen: voor de hoogtewerker, schaarlift, heftruck en VCA.”',
-              'Kurt', 'Werfleider, 30 jaar bij Electro Zwijsen', 'kurt-werfleider', 'zp-kurt'))
-
-
-def regio(lijstcls):
-    """'Ben jij dit?' met de kaart 'Regio Dendermonde in beeld' ernaast (of erboven in een smalle kolom)."""
-    return C('zp-region-c',
-        C('zp-region',
-          UL(PROFIEL, lijstcls),
-          IMG('kaart-regio-dendermonde', 'zp-map', 'medium_large', caption='Regio Dendermonde in beeld')))
-
-
-# ---------------------------------------------------------------- formulier
 
 def formulier_js():
+    """apply-form.js zonder meting: geen pixel, geen gtag, geen dataLayer op staging."""
     js = open(os.path.join(ROOT, 'assets', 'apply-form.js'), encoding='utf-8').read()
     start = js.index('  /* Meta Pixel / GA4')
     end = js.index('  /* ----------------------------------------------------------------------\n     3. De motor')
     stub = ("  /* Meting staat UIT op staging: er is nog geen echte pixel-ID en geen\n"
-            "     toestemmingslaag. Zie README, hoofdstuk \"Meta Pixel en events\". */\n"
+            "     toestemmingslaag. Zie README, hoofdstuk \"Meta Pixel en events\".\n"
+            "     (Gebouwd door elementor/bron/bouw.py uit assets/apply-form.js.) */\n"
             "  function track() {}\n  function trackStandard() {}\n\n")
     js = js[:start] + stub + js[end:]
-    # De kleefbalk legt zich onder de sitehoofding. In de draft is dat .zw-header;
-    # op WordPress is het de kleverige sectie van het Elementor-hoofdingsjabloon.
     oud = "var header = document.querySelector('.zw-header');"
     assert oud in js, 'kleefbalk: hoofdingselector niet gevonden'
     js = js.replace(oud, "var header = document.querySelector('.zw-header')"
                          " || document.querySelector('.elementor-location-header .elementor-sticky--active:not(.elementor-sticky__spacer)')"
                          " || document.querySelector('.elementor-location-header');")
     assert 'fbq' not in js and 'gtag' not in js and 'dataLayer' not in js, 'meetcode niet volledig verwijderd'
-    assert '</script' not in js
     return js
 
 
-def formulier(mount):
-    """HTML-widget: het stapsgewijze formulier uit de draft, ongewijzigd behalve de meting."""
-    if mount == 'modal':
-        init = ("var m = ZwijsenApply.mountModal();\n"
-                "  /* Elke Elementor-knop met link #check opent het venster */\n"
-                "  document.addEventListener('click', function (e) {\n"
-                "    var a = e.target.closest('a[href$=\"#check\"]');\n"
-                "    if (a) { e.preventDefault(); m.open(a); }\n"
-                "  });\n"
-                "  /* Kleefbalk bovenaan (Jana: \"bij scrollen bovenaan vast\"), opent het venster */\n"
-                "  ZwijsenApply.stickyBar({ after: '.hero2', modal: true });")
-        host = ''
-    else:
-        init = "ZwijsenApply.mount('#zw-apply');"
-        host = '<div id="zw-apply"></div>\n'
-    return host + '<script>\n' + formulier_js() + '\n(function () {\n  ' + init + '\n})();\n</script>'
+def bouw_static(shots):
+    """Scripts + de film-foto's (AVIF/WebP, alle breedtes die de film opvraagt)."""
+    if os.path.isdir(STATIC):
+        shutil.rmtree(STATIC)
+    os.makedirs(os.path.join(STATIC, 'js'))
+    open(os.path.join(STATIC, 'js', 'apply-form.js'), 'w', encoding='utf-8').write(formulier_js())
+    shutil.copy(os.path.join(ROOT, 'assets', 'film.js'), os.path.join(STATIC, 'js', 'film.js'))
+    n = 0
+    for img, widths in sorted(shots.items()):
+        for w in sorted(widths):
+            for ext in ('avif', 'webp'):
+                f = '%s-%d.%s' % (img, w, ext)
+                src = os.path.join(JANA, f)
+                assert os.path.exists(src), f
+                shutil.copy(src, os.path.join(STATIC, f))
+                n += 1
+    return n
+
+
+# ---------------------------------------------------------------- uit de lokale HTML lezen
+
+def tekst(el):
+    s = re.sub(r'\s+', ' ', el.get_text(' ', strip=True))
+    return re.sub(r' ([,.?!:])', r'\1', s)
+
+
+def inner(el):
+    """Inhoud van een element als HTML, witruimte samengevouwen."""
+    return re.sub(r'\s+', ' ', ''.join(str(c) for c in el.contents)).strip()
+
+
+class Bron:
+    def __init__(self, naam):
+        self.html = open(os.path.join(ROOT, naam), encoding='utf-8').read()
+        self.soup = BeautifulSoup(self.html, 'html.parser')
+        for c in self.soup.find_all(string=lambda s: isinstance(s, Comment)):
+            c.extract()
+
+    def sectie(self, eyebrow):
+        for s in self.soup.select('main section'):
+            e = s.select_one('.zw-eyebrow')
+            if e and tekst(e) == eyebrow:
+                return s
+        raise KeyError(eyebrow)
+
+    def lijst(self, ul):
+        return [inner(li) for li in ul.find_all('li', recursive=False)]
+
+    def fotos(self, scope):
+        """Namen van de foto's (zonder breedte/extensie), in volgorde, voor elke <picture> in scope."""
+        return [re.sub(r'-\d+\.jpg$', '', os.path.basename(img['src'])) for img in scope.select('picture img')]
+
+    def meta(self, name):
+        return self.soup.find('meta', attrs={'name': name})['content']
+
+    def jsonld(self):
+        return [s.string.strip() for s in self.soup.find_all('script', type='application/ld+json')]
+
+    def mount_opts(self):
+        m = re.search(r"ZwijsenApply\.mount\('#apply'(.*?)\);", self.html, re.S)
+        return m.group(1)  # '' of ", { ... }"
+
+    def film_shots(self):
+        """De letterlijke shots-array uit de pagina (de filmteksten staan in de pagina, niet in film.js)."""
+        m = re.search(r"ZwijsenFilm\.mount\('#film', \{(.*?)\n    \}\);", self.html, re.S)
+        body = m.group(1)
+        shots = body[body.index('shots:'):].rstrip()
+        imgs = {}
+        for img, ws in re.findall(r"img: '([^']+)', w: \[([^\]]+)\]", shots):
+            imgs.setdefault(img, set()).update(int(w) for w in ws.split(','))
+        return shots, imgs
 
 
 # ---------------------------------------------------------------- css
@@ -292,200 +340,207 @@ def lees(naam):
     return open(os.path.join(HIER, naam), encoding='utf-8').read()
 
 
-def pagina_css(n, form=True):
-    parts = [lees('basis.css'), lees('fotos.css'), lees('pagina-%d.css' % n)]
-    if form:
-        parts.append(prefix_css(lees('formulier-extra.css')))
-        parts.append(prefix_css(open(os.path.join(ROOT, 'assets', 'apply-form.css'), encoding='utf-8').read()))
+def pagina_css():
+    parts = [lees('basis.css'), lees('fotos.css'), lees('pagina-5.css'), lees('pagina-film.css'),
+             prefix_css(open(os.path.join(ROOT, 'assets', 'film.css'), encoding='utf-8').read()),
+             prefix_css(lees('formulier-extra.css')),
+             prefix_css(open(os.path.join(ROOT, 'assets', 'apply-form.css'), encoding='utf-8').read())]
     css = '\n\n'.join(parts)
     # het woord dat Elementor vervangt, mag alleen als voorvoegsel voorkomen
     assert 'selectors' not in css
     return css
 
 
-# ---------------------------------------------------------------- pagina's
+# ---------------------------------------------------------------- de pagina
 
-def page(n, title, slug, elements):
-    return {'title': title, 'slug': slug, 'elements': elements,
-            'settings': {'hide_title': 'yes', 'template': 'default', 'custom_css': pagina_css(n)}}
-
-
-def pagina_2():
-    """Voorstel 2 — Kwalificatietest: elke knop opent het formulier in een venster."""
-    knop = lambda: B('Solliciteer direct zonder CV', '#check', cls='zw-after')
-
-    hero = SEC('hero2',
-        C('hero2__inner',
-          C('zw-rise',
-            EYE('Vacature elektricien · regio Dendermonde'),
-            H('Ben je <em>elektricien</em> en woon je in (de buurt van) Dendermonde?', 'h1', color=INK),
-            T('<p>Ontdek of jij in aanmerking komt voor een job bij Electro Zwijsen!</p>', 'hero2__sub'),
-            B('Doe de test', '#check', cls='zw-btn--lg hero2__btn'),
-            UL(['4 vragen · ±30 seconden', 'Geen CV nodig', 'Volledig vertrouwelijk'], 'zw-trust')),
-          C('starter zw-rise zw-rise-2',
-            IMG('technieker-bij-bestelwagen', 'zp-hero-photo', 'large'),
-            H('Kom je in aanmerking?', 'h2', 'starter-h', INK),
-            T('<p>Vooraf weten wat komt, scheelt een drempel. Dit is de volledige lijst:</p>', 'starter-p'),
-            T('<p>De vier vragen</p><ol>' + ''.join('<li>%s</li>' % q for q in [
-                'Hoeveel relevante werkervaring heb je?', 'Wat is je moedertaal?', 'Heb je een rijbewijs?',
-                'Waar woon je?']) + '</ol>', 'starter__preview'),
-            T('<p>Ongeveer 30 sec</p>', 'meter'),
-            B('Begin met vraag 1', '#check', cls='zw-btn--block'))))
-
-    moeite = SEC('zw-section',
-        C('zw-intro', EYE('De job'), H('Wat maakt deze job de moeite waard?', 'h2', color=INK)),
-        C('how', *[C('', H(t, 'h3', 'how-h', INK), T('<p>%s</p>' % d, 'how-p')) for _, t, d in MOEITE]),
-        knop())
-
-    band = ['collega-lacht-op-de-werf', 'ploeg-bij-de-bestelwagen', 'technieker-opent-bestelwagen',
-            'hoofdkantoor-luchtfoto', 'plannen-bekijken', 'magazijn-materiaal-klaarzetten', 'magazijn-overleg',
-            'kabelhaspel-buiten', 'kabelhaspels-magazijn', 'selfie-helm-en-baksteen', 'verdeelbord-bekabelen',
-            'plannen-tekenen-werkplaats', 'selfie-in-de-werkplaats']
-    voordelen = SEC('zw-section zw-section--grey',
-        C('zw-intro', EYE('Ons aanbod'), H('Wat zijn jouw voordelen?', 'h2', color=INK)),
-        UL(VOORDELEN, 'zw-checks zw-checks--2col'),
-        C('zp-band-wrap',
-          C('zp-band', *[IMG(f, '', 'medium_large') for f in band]),
-          T(SWIPE, 'zp-swipe-hint')),
-        knop())
-
-    werven = ['werf-brussel-hoogbouw-kraan', 'werf-glazen-dak-toren', 'werf-ronde-hal-bestelwagens',
-              'werf-klassieke-gevel', 'werf-gang-paarse-verlichting']
-    taken = SEC('zw-section',
-        C('benefits',
-          C('', H('Wat ga je doen?', 'h3', 'benefits-h', INK), T(TAKEN_INTRO, 'benefits-intro'), UL(TAKEN)),
-          C('', H('Ben jij dit?', 'h3', 'benefits-h', INK), regio('zw-checks'))),
-        C('zp-werven-wrap',
-          H('De selectie van de nieuwe werven', 'h3', 'zp-head', INK),
-          C('zp-werven', *[IMG(f, '', 'large') for f in werven])),
-        knop())
-
-    dag = SEC('zw-section zw-section--grey',
-        C('region',
-          C('',
-            EYE('Je werkweek'),
-            H('Hoe ziet je dag eruit?', 'h2', color=INK),
-            UL(['Je rijdt samen met je collega uit de regio Dendermonde naar de werf.',
-                'De werven zijn in heel België, met focus op Vlaanderen.',
-                'Soms werk je dicht bij huis, soms ligt een project verder weg.',
-                'Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.',
-                'Je werkt van maandag tot vrijdag, 40 uur per week.',
-                'Overuren of zaterdagwerk zijn uitzonderlijk.'], 'zw-checks dag-list')),
-          C('', IMG('selfie-in-de-bestelwagen', 'zp-day', 'large'))))
-
-    over = SEC('zw-section',
-        C('zw-about', EYE('Over ons'), H('Wij zijn Electro Zwijsen', 'h2', color=INK), T(OVER_ONS)),
-        C('zw-intro', H('Waarom kies je voor Electro Zwijsen?', 'h2', color=INK)),
-        getuigenissen())
-
-    slot = SEC('zw-section zw-slot2',
-        IMG('ploeg-electro-zwijsen-luchtfoto', 'zp-group', '1536x1536'),
-        C('cta-strip',
-          C('', H('Kom je in aanmerking? Doe de test.', 'h3', 'cta-strip-h', WHITE),
-            T('<p>Vier korte vragen, ongeveer 30 seconden. Solliciteer direct zonder CV.</p>', 'cta-strip-p')),
-          B('Solliciteer in 30 seconden', '#check', 'light', 'zw-btn--lg')),
-        T('<p>Liever gewoon bellen? <a href="tel:+3215305305">015 305 305</a> — vraag naar de personeelsdienst.</p>',
-          'call-note'))
-
-    host = C('zwl zw-formhost', HTML(formulier('modal'), 'zw-form'))
-    return page(2, 'Vacature technieker — voorstel 2 (Kwalificatietest)', 'vacature-technieker-2',
-                [hero, moeite, voordelen, taken, dag, over, slot, host])
+ICONEN = {  # Font Awesome in plaats van de lijntekeningen van de draft (zelfde betekenis)
+    'Grote werven': 'fas fa-building', 'Breed takenpakket': 'fas fa-bolt', 'Afwisseling': 'fas fa-sync-alt',
+    'Vrijheid in je vak': 'fas fa-compass', 'In duo': 'fas fa-users', 'Vast contract': 'fas fa-shield-alt',
+}
 
 
-def pagina_5():
-    """Voorstel 5 — Snelsollicitatie: één kolom, formulier bovenaan, knop onderaan voor de duim."""
-    def M(cls, *kids, **kw):
-        return SEC('m-col ' + cls, *kids, **kw)
+def pagina(cfg, versies):
+    src = Bron(cfg['bron'])
+    M = lambda cls, *kids, **kw: SEC('m-col ' + cls, *kids, **kw)
 
     def cta(text, note=None):
         return C('m-cta', B(text, '#solliciteer', cls='zw-btn--block'),
                  T('<p>%s</p>' % note, 'm-cta-note') if note else None)
 
+    def ctas(sec):
+        """De knop onderaan een sectie, met de kleine regel eronder als die er is."""
+        box = sec.select('.m-cta')[-1]
+        small = box.select_one('small')
+        return cta(tekst(box.a), tekst(small) if small else None)
+
+    # Hero
+    hero_s = src.soup.select_one('.m-hero')
     hero = M('m-hero',
-        EYE('Vacature elektricien · regio Dendermonde', YELLOW),
-        H('Ben je elektricien en woon je in (de buurt van) <span>Dendermonde?</span>', 'h1', 'zw-rise', WHITE),
-        T('<p>Ontdek of jij in aanmerking komt voor een job bij Electro Zwijsen!</p>', 'm-hero-p zw-rise zw-rise-2'),
-        UL(['Vast contract', '32 vakantiedagen', 'Dertiende maand', 'Geen CV nodig'], 'chips'),
-        **BG(FOTO('technieker-bij-bestelwagen'),
+        EYE(tekst(hero_s.select_one('.zw-eyebrow')), YELLOW),
+        H(inner(hero_s.h1), 'h1', 'zw-rise', WHITE),
+        T('<p>%s</p>' % inner(hero_s.p), 'm-hero-p zw-rise zw-rise-2'),
+        UL(src.lijst(hero_s.select_one('ul.chips')), 'chips'),
+        **BG('technieker-bij-bestelwagen',
              {'background_overlay_background': 'classic', 'background_overlay_color': 'rgba(18,20,19,0.66)'},
              xy=(72, 30)))
 
+    # Formulier
+    form_s = src.soup.select_one('#solliciteer')
+    form_html = (
+        '<div id="apply"></div>\n'
+        '<!-- HIER KOMT DE VERZENDING (nog te bouwen in de WordPress-fase). Nu verstuurt het formulier\n'
+        '     niets, net als de lokale drafts (demomodus). Koppelen = een endpoint meegeven:\n'
+        '     ZwijsenApply.mount(\'#apply\', { endpoint: \'...\', regio: ..., placeholders: ... }).\n'
+        '     Ook nog te bouwen: de bevestigingsmail die het bedankscherm belooft. -->\n'
+        '<script src="%sjs/apply-form.js?v=%s" defer></script>\n'
+        '<script>\n'
+        'document.addEventListener(\'DOMContentLoaded\', function () {\n'
+        '  ZwijsenApply.mount(\'#apply\'%s);\n'
+        '  /* Actiebalk onderaan weg zolang het formulier zelf in beeld is (anders bedekt\n'
+        '     hij op gsm de knop "Volgende"). */\n'
+        '  var bar = document.querySelector(\'.zw-mobilebar\');\n'
+        '  var form = document.getElementById(\'solliciteer\');\n'
+        '  if (bar && form && \'IntersectionObserver\' in window) {\n'
+        '    new IntersectionObserver(function (en) { bar.classList.toggle(\'is-weg\', en[0].isIntersecting); },\n'
+        '      { threshold: 0.05 }).observe(form);\n'
+        '  }\n'
+        '});\n'
+        '</script>') % (STATIC_URL, versies['apply-form.js'], src.mount_opts())
     form = M('m-formsec',
         C('m-form',
-          H('Solliciteer in 30 seconden', 'h2', 'm-form-h', INK),
-          T('<p>Kom je in aanmerking? Doe de test. Vier korte vragen, geen CV.</p>', 'm-form-p'),
-          HTML(formulier('inline'), 'zw-form'),
+          C('m-form__top',
+            H(tekst(form_s.select_one('.m-form__top h2')), 'h2', 'm-form-h', INK),
+            T('<p>%s</p>' % inner(form_s.select_one('.m-form__top p')), 'm-form-p')),
+          HTML(form_html, 'zw-form'),
           id='solliciteer', _attributes='data-za-scroll|1'))
 
+    # De job + film
+    job_s = src.sectie('De job')
+    shots, _ = src.film_shots()
+    film_html = (
+        str(job_s.select_one('#film')) + '\n'
+        '<script src="%sjs/film.js?v=%s" defer></script>\n'
+        '<script>\n'
+        '/* De zes punten uit de copy van Jana, in dezelfde volgorde als de lijst eronder.\n'
+        '   De foto\'s staan als vaste bestanden in %s (AVIF/WebP, meerdere breedtes);\n'
+        '   lazyStart: niets laden voor de film in de buurt komt. */\n'
+        'document.addEventListener(\'DOMContentLoaded\', function () {\n'
+        '  var punten = document.querySelectorAll(\'#punten > .elementor-widget\');\n'
+        '  ZwijsenFilm.mount(\'#film\', {\n'
+        '    base: \'%s\',\n'
+        '    lazyStart: true,\n'
+        '    still: 4,\n'
+        '    onShot: function (i) {\n'
+        '      for (var n = 0; n < punten.length; n++) punten[n].classList.toggle(\'is-film\', n === i);\n'
+        '    },\n'
+        '    %s\n'
+        '  });\n'
+        '});\n'
+        '</script>') % (STATIC_URL, versies['film.js'], STATIC_URL, STATIC_URL, shots)
+    punten = []
+    for li in job_s.select('#punten > li'):
+        t = tekst(li.strong)
+        d = inner(li.select('span')[-1]).split('</strong>', 1)[1].strip()
+        punten.append(IB(ICONEN[t], t, d, 'm-item'))
     job = M('m-sec',
         EYE('De job'),
-        H('Wat maakt deze job de moeite waard?', 'h2', color=INK),
-        C('m-list', *[IB(i, t, d, 'm-item') for i, t, d in MOEITE]),
-        cta('Solliciteer direct zonder CV', '4 vragen · ±30 seconden'))
+        H(tekst(job_s.h2), 'h2', color=INK),
+        HTML(film_html, 'zw-film'),
+        C('m-list', *punten, id='punten'),
+        ctas(job_s))
 
-    band = ['collega-lacht-op-de-werf', 'ploeg-bij-de-bestelwagen', 'magazijn-overleg', 'kabelhaspel-buiten',
-            'selfie-helm-en-baksteen', 'verdeelbord-bekabelen', 'plannen-tekenen-werkplaats',
-            'selfie-in-de-bestelwagen']
+    # Voordelen + fotostrook
+    aanbod_s = src.sectie('Ons aanbod')
     voordelen = M('m-sec m-sec--grey',
         EYE('Ons aanbod'),
-        H('Wat zijn jouw voordelen?', 'h2', color=INK),
-        UL(VOORDELEN, 'zw-checks m-gap m-15'),
+        H(tekst(aanbod_s.h2), 'h2', color=INK),
+        UL(src.lijst(aanbod_s.select_one('ul.zw-checks')), 'zw-checks m-gap m-15'),
         C('zp-band-wrap',
-          C('zp-band zp-band--strip', *[IMG(f, '', 'medium_large') for f in band]),
-          T(SWIPE, 'zp-swipe-hint')),
-        cta('Solliciteer direct zonder CV'))
+          C('zp-band zp-band--strip', *[IMG(f) for f in src.fotos(aanbod_s.select_one('.zp-band'))]),
+          T('<p>%s</p>' % tekst(aanbod_s.select_one('.zp-swipe-hint')), 'zp-swipe-hint')),
+        ctas(aanbod_s))
 
+    # Taken + fotoblok
+    taken_s = src.sectie('Je taken')
     taken = M('m-sec',
         EYE('Je taken'),
-        H('Wat ga je doen?', 'h2', color=INK),
-        T(TAKEN_INTRO, 'm-intro'),
-        UL(TAKEN, 'zw-checks m-15'),
-        C('zp-werven-wrap',
-          H('De selectie van de nieuwe werven', 'h3', 'zp-head', INK),
-          C('zp-werven zp-werven--3', *[IMG(f, '', 'large') for f in
-                                        ['werf-brussel-hoogbouw-kraan', 'werf-klassieke-gevel',
-                                         'werf-ronde-hal-bestelwagens']])),
-        cta('Solliciteer direct zonder CV'))
+        H(tekst(taken_s.h2), 'h2', color=INK),
+        T('<p>%s</p>' % inner(taken_s.p), 'm-intro'),
+        UL(src.lijst(taken_s.select_one('ul.zw-checks')), 'zw-checks m-15'),
+        C('zp-werk', *[IMG(f) for f in src.fotos(taken_s.select_one('.zp-werk'))]),
+        ctas(taken_s))
 
+    # Profiel + kaart (inline SVG in een HTML-widget)
+    profiel_s = src.sectie('Jouw profiel')
     profiel = M('m-sec m-sec--grey',
         EYE('Jouw profiel'),
-        H('Ben jij dit?', 'h2', color=INK),
-        regio('zw-checks m-gap m-15'),
-        cta('Kom je in aanmerking? Doe de test.', 'Solliciteer direct zonder CV'))
+        H(tekst(profiel_s.h2), 'h2', color=INK),
+        UL(src.lijst(profiel_s.select_one('ul.zw-checks')), 'zw-checks m-gap m-15'),
+        HTML(re.sub(r'>\s+<', '><', str(profiel_s.select_one('figure.zk-fig'))), 'zw-kaart'),
+        ctas(profiel_s))
 
+    # Je dag
+    dag_s = src.sectie('Je werkweek')
+    stappen = ''.join('<li><strong>%s</strong><span>%s</span></li>' % (tekst(li.strong), inner(li.span))
+                      for li in dag_s.select('.m-steps > li'))
     dag = M('m-sec',
         EYE('Je werkweek'),
-        H('Hoe ziet je dag eruit?', 'h2', color=INK),
-        T('<ol>' + ''.join('<li><strong>%s</strong><span>%s</span></li>' % s for s in [
-            ('Samen naar de werf', 'Je rijdt samen met je collega uit de regio Dendermonde naar de werf.'),
-            ('Werven in heel België', 'De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht '
-                                      'bij huis, soms ligt een project verder weg.'),
-            ('Kilometervergoeding', 'Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.'),
-            ('Maandag tot vrijdag, 40 uur', 'Je werkt van maandag tot vrijdag, 40 uur per week. Overuren of '
-                                            'zaterdagwerk zijn uitzonderlijk.')]) + '</ol>', 'm-steps'))
+        H(tekst(dag_s.h2), 'h2', color=INK),
+        T('<ol>%s</ol>' % stappen, 'm-steps'))
 
+    # Over ons + luchtfoto
+    over_s = src.sectie('Over ons')
     over = M('m-sec m-sec--grey',
-        C('zw-about', EYE('Over ons'), H('Wij zijn Electro Zwijsen', 'h2', color=INK), T(OVER_ONS)))
+        C('zw-about',
+          EYE('Over ons'), H(tekst(over_s.h2), 'h2', color=INK), T('<p>%s</p>' % inner(over_s.p)),
+          IMG(src.fotos(over_s)[0], 'zp-group m-group', '1536x1536')))
 
+    # Getuigenissen
+    g_s = src.sectie('Collega’s aan het woord')
+    quotes = []
+    for fig in g_s.select('figure.zw-quote'):
+        who = fig.select_one('.zp-who > span')
+        naam = tekst(who.strong)
+        functie = tekst(who).replace(naam, '', 1).strip()
+        quotes.append(QUOTE(tekst(fig.blockquote), naam, functie, src.fotos(fig)[0], 'zp-' + naam.lower()))
     getuigen = M('m-sec',
         EYE('Collega’s aan het woord'),
-        H('Waarom kies je voor Electro Zwijsen?', 'h2', 'm-quotes-h', INK),
-        getuigenissen(),
-        IMG('ploeg-electro-zwijsen-luchtfoto', 'zp-group m-group', '1536x1536'),
-        cta('Solliciteer in 30 seconden'))
+        H(tekst(g_s.h2), 'h2', 'm-quotes-h', INK),
+        C('zw-quotes', *quotes),
+        ctas(g_s))
 
+    # Veelgestelde vragen + JSON-LD (JobPosting + FAQPage, letterlijk uit de lokale HTML)
+    faq_s = src.sectie('Vragen')
+    items = [(tekst(d.summary), inner(d.p)) for d in faq_s.select('.m-faq details')]
+    ld = '\n'.join('<script type="application/ld+json">\n%s\n</script>' % j for j in src.jsonld())
+    faq = M('m-sec m-sec--grey m-faqsec',
+        EYE('Vragen'),
+        H(tekst(faq_s.h2), 'h2', color=INK),
+        FAQ(items),
+        HTML('<!-- Gestructureerde gegevens: vacature (JobPosting) en de vragen hierboven (FAQPage).\n'
+             '     Wijzig je een vraag of antwoord, pas dan ook de FAQPage hieronder aan, anders\n'
+             '     verschilt de zichtbare tekst van wat Google leest. Bron: elementor/bron/faq_jsonld.py -->\n'
+             + ld, 'zw-jsonld'))
+
+    # Bellen of mailen
+    call_s = src.soup.select_one('.m-call')
     bellen = M('m-sec m-sec--grey',
         C('m-call',
-          H('Liever gewoon bellen?', 'h3', 'm-call-h', WHITE),
-          T('<p>Ook goed. Vraag naar de personeelsdienst.</p>', 'm-call-p'),
-          B('015 305 305', 'tel:+3215305305', 'yellow', 'zw-btn--block')))
+          H(tekst(call_s.h3), 'h3', 'm-call-h', WHITE),
+          B(tekst(call_s.a), call_s.a['href'], 'yellow', 'zw-btn--block'),
+          T('<p>%s</p>' % inner(call_s.select_one('.m-call__mail')), 'm-call-mail')))
 
-    return page(5, 'Vacature technieker — voorstel 5 (Snelsollicitatie mobiel)', 'vacature-technieker-5',
-                [hero, form, job, voordelen, taken, profiel, dag, over, getuigen, bellen,
-                 MOBILEBAR('Solliciteer in 30 seconden', '#solliciteer')])
+    bar_s = src.soup.select_one('.zw-mobilebar a')
+    mobilebar = C('zwl zw-mobilebar', B(tekst(bar_s), bar_s['href'], cls='zw-btn--block'))
 
-
-PAGINAS = {2: pagina_2, 5: pagina_5}
+    page = {'title': cfg['title'], 'slug': cfg['slug'],
+            'elements': [hero, form, job, voordelen, taken, profiel, dag, over, getuigen, faq, bellen, mobilebar],
+            'settings': {'hide_title': 'yes', 'template': 'default', 'custom_css': pagina_css()},
+            'yoast': {'title': tekst(src.soup.title), 'metadesc': src.meta('description')},
+            'controle': {'faq': items, 'jsonld': src.jsonld()}}
+    if cfg.get('id'):
+        page['id'] = cfg['id']
+    return page
 
 
 def nest(elements, top=True):
@@ -495,19 +550,25 @@ def nest(elements, top=True):
         nest(e['elements'], top=False)
 
 
-def main(which=None):
+def main():
     os.makedirs(BUILD, exist_ok=True)
-    for n, fn in sorted(PAGINAS.items()):
-        if which and n not in which:
-            continue
-        _rng.seed(1000 + n)  # vaste id's: opnieuw bouwen geeft dezelfde elementen
-        p = fn()
+    alle = {}
+    for cfg in PAGINAS.values():
+        _, imgs = Bron(cfg['bron']).film_shots()
+        for k, v in imgs.items():
+            alle.setdefault(k, set()).update(v)
+    n = bouw_static(alle)
+    versies = {f: versie(os.path.join(STATIC, 'js', f)) for f in ('apply-form.js', 'film.js')}
+    print('static:', n, "foto's,", versies)
+    for i, (sleutel, cfg) in enumerate(sorted(PAGINAS.items())):
+        _rng.seed(5000 + i)  # vaste id's: opnieuw bouwen geeft dezelfde elementen
+        p = pagina(cfg, versies)
         nest(p['elements'])
-        with open(os.path.join(BUILD, 'pagina-%d.json' % n), 'w', encoding='utf-8') as f:
+        uit = os.path.join(BUILD, 'pagina-%s.json' % sleutel)
+        with open(uit, 'w', encoding='utf-8') as f:
             json.dump(p, f, ensure_ascii=False, indent=1)
-        print('pagina-%d.json' % n, len(json.dumps(p)), 'bytes')
+        print(os.path.basename(uit), len(json.dumps(p)), 'bytes')
 
 
 if __name__ == '__main__':
-    import sys
-    main({int(a) for a in sys.argv[1:]} or None)
+    main()

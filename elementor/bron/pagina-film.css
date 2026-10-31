@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Voorstel 5 MET FILM — de twee regiopagina's (Dendermonde, Lier en
+   Antwerpen-Zuidrand), 31 okt 2026. Bovenop basis.css + fotos.css +
+   pagina-5.css. Overgenomen uit de <style> van
+   5-snelsollicitatie-mobiel-film*.html, op de markup van de Elementor-widgets.
+   ========================================================================== */
+
+/* Op het bedankscherm is de oproep "Solliciteer… / Doe de test" niet meer nodig. */
+selector .zwl .m-form:has(.za__done) .m-form__top { display: none; }
+selector .zwl .m-form__top { margin-bottom: 0; }
+
+/* --- De film, van rand tot rand op gsm --------------------------------- */
+selector .zwl .zw-film { width: 100%; }
+selector .zwl .film-band {
+  margin: 1.35rem calc(-1 * var(--zp-bleed, 20px)) 0;
+  height: max(340px, min(125vw, 72svh));
+}
+@media (min-width: 600px) {
+  selector .zwl .film-band { margin-inline: 0; height: auto; aspect-ratio: 3 / 2; border-radius: var(--zw-radius-card); }
+}
+selector .zwl .film-band .film__layer { padding: 14px 16px 18px; }
+selector .zwl .film-band .film__caption { margin-top: auto; }
+selector .zwl .film-band .film__line { font-size: clamp(1.12rem, 1rem + 1vw, 1.5rem); max-width: 26ch; }
+selector .zwl .film-band .film__kicker { font-size: 14px; }
+
+/* Het punt in de lijst dat bij de huidige shot hoort, licht mee op */
+selector .zwl .m-item { transition: border-color .4s var(--zw-ease), box-shadow .4s var(--zw-ease); }
+selector .zwl .m-item.is-film { border-color: var(--zw-red); box-shadow: inset 3px 0 0 var(--zw-red); }
+
+/* --- Fotoblok bij "Wat ga je doen?": 3:2 boven, twee keer 4:3 eronder ---- */
+selector .zwl .zp-werk.e-con {
+  --display: grid; display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin-top: 1.75rem;
+}
+selector .zwl .zp-werk > .elementor-widget { width: 100%; min-width: 0; }
+selector .zwl .zp-werk > .elementor-widget:first-child { grid-column: 1 / -1; }
+selector .zwl .zp-werk img {
+  width: 100%; height: auto; object-fit: cover; border-radius: var(--zw-radius);
+  background: var(--zw-grey-100); aspect-ratio: 4 / 3;
+}
+selector .zwl .zp-werk > .elementor-widget:first-child img { aspect-ratio: 3 / 2; object-position: 50% 40%; }
+selector .zwl .zp-werk > .elementor-widget:nth-child(2) img { object-position: 30% 50%; }
+
+/* --- Eigen regiokaart (inline SVG) -------------------------------------- */
+selector .zwl .zk-fig { margin: 1.5rem 0 0; }
+selector .zwl .zk { display: block; width: 100%; height: auto; border: 1px solid var(--zw-line); border-radius: var(--zw-radius-card); }
+selector .zwl .zk-town { font: 600 12.5px var(--zw-font-body); fill: var(--zw-ink); paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+selector .zwl .zk-main { font: 700 16px var(--zw-font-head); fill: var(--zw-ink); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+selector .zwl .zk-river { font: italic 500 11px var(--zw-font-body); fill: #6E8494; }
+selector .zwl .zk-scale { font: 500 10.5px var(--zw-font-body); fill: var(--zw-grey-700); }
+selector .zwl .zk-ref { font: 500 11px var(--zw-font-body); fill: var(--zw-grey-700); paint-order: stroke; stroke: #F7F6F6; stroke-width: 3px; stroke-linejoin: round; }
+selector .zwl .zk-hq { font-weight: 700; }
+
+/* --- Veelgestelde vragen: één grijze band met het bel-blok eronder ------- */
+selector .zwl.m-faqsec { --padding-bottom: 0px; }
+selector .zwl .zw-faq .e-n-accordion-item-title-text { margin: 0; }
+
+/* --- Bellen of mailen ---------------------------------------------------- */
+selector .zwl .m-call-mail { margin-top: .9rem; font-size: 14px; color: rgba(255,255,255,.75); }
+selector .zwl .m-call-mail a { color: var(--zw-yellow); }
+
+/* --- Actiebalk onderaan: weg zolang het formulier zelf in beeld is -------- */
+selector .zwl.zw-mobilebar { transition: transform .3s var(--zw-ease); }
+selector .zwl.zw-mobilebar.is-weg { transform: translateY(110%); }
+
+/* --- Correcties na de eerste test op staging (31 okt) --------------------- */
+/* Een HTML-widget in een flexkolom werd gemeten alsof de SVG 300 px breed was:
+   de widget was dan lager dan de kaart en de knop eronder schoof erover. */
+selector .zwl .elementor-widget-html { width: 100%; }
+/* Elementor zet figure-marges op 0 met een sterkere selector. */
+selector .zwl .zw-kaart .zk-fig { margin: 1.5rem 0 0; }
+selector .zwl .m-hero-p { margin-bottom: 1.35rem; }
+selector .zwl .zp-band-wrap { margin-top: 1.75rem; }

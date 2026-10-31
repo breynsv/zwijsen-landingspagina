@@ -1,0 +1,1464 @@
+{
+    "content": [
+        {
+            "id": "748ee08",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-hero",
+                "background_background": "classic",
+                "background_image": {
+                    "id": 3323,
+                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/technieker-bij-bestelwagen.jpg",
+                    "source": "library",
+                    "alt": ""
+                },
+                "background_repeat": "no-repeat",
+                "background_size": "cover",
+                "background_color": "#121413",
+                "background_overlay_opacity": {
+                    "unit": "px",
+                    "size": 1,
+                    "sizes": []
+                },
+                "background_position": "initial",
+                "background_xpos": {
+                    "unit": "%",
+                    "size": 72,
+                    "sizes": []
+                },
+                "background_ypos": {
+                    "unit": "%",
+                    "size": 30,
+                    "sizes": []
+                },
+                "background_overlay_background": "classic",
+                "background_overlay_color": "rgba(18,20,19,0.66)"
+            },
+            "elements": [
+                {
+                    "id": "3baa2dd",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Vacature elektricien · regio Dendermonde",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=78f9a77"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "5dafaea",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Ben je elektricien en woon je in (de buurt van) <span>Dendermonde?</span>",
+                        "header_size": "h1",
+                        "_css_classes": "zw-rise",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=2c5975e"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "c873a2c",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<p>Ontdek of jij in aanmerking komt voor een job als technieker bij Electro Zwijsen!</p>",
+                        "_css_classes": "m-hero-p zw-rise zw-rise-2"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                },
+                {
+                    "id": "6590efa",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<ul><li>Vast contract</li><li>Dertiende maand</li><li>Geen CV nodig</li></ul>",
+                        "_css_classes": "chips"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "8144e91",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-formsec"
+            },
+            "elements": [
+                {
+                    "id": "0b6ba79",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-form",
+                        "_element_id": "solliciteer",
+                        "_attributes": "data-za-scroll|1"
+                    },
+                    "elements": [
+                        {
+                            "id": "669f051",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full",
+                                "css_classes": "m-form__top"
+                            },
+                            "elements": [
+                                {
+                                    "id": "1c5efea",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "title": "Solliciteer in 30 seconden",
+                                        "header_size": "h2",
+                                        "_css_classes": "m-form-h",
+                                        "__globals__": {
+                                            "title_color": "globals/colors?id=primary"
+                                        }
+                                    },
+                                    "elements": [],
+                                    "widgetType": "heading"
+                                },
+                                {
+                                    "id": "806f114",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Doe de test. Beantwoord 4 korte vragen.</p>",
+                                        "_css_classes": "m-form-p"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "d6e53aa",
+                            "elType": "widget",
+                            "settings": {
+                                "html": "<div id=\"apply\"></div>\n<!-- HIER KOMT DE VERZENDING (nog te bouwen in de WordPress-fase). Nu verstuurt het formulier\n     niets, net als de lokale drafts (demomodus). Koppelen = een endpoint meegeven:\n     ZwijsenApply.mount('#apply', { endpoint: '...', regio: ..., placeholders: ... }).\n     Ook nog te bouwen: de bevestigingsmail die het bedankscherm belooft. -->\n<script src=\"/wp-content/uploads/zwijsen-landing/js/apply-form.js?v=db44fd3fe8\" defer></script>\n<script>\ndocument.addEventListener('DOMContentLoaded', function () {\n  ZwijsenApply.mount('#apply');\n  /* Actiebalk onderaan weg zolang het formulier zelf in beeld is (anders bedekt\n     hij op gsm de knop \"Volgende\"). */\n  var bar = document.querySelector('.zw-mobilebar');\n  var form = document.getElementById('solliciteer');\n  if (bar && form && 'IntersectionObserver' in window) {\n    new IntersectionObserver(function (en) { bar.classList.toggle('is-weg', en[0].isIntersecting); },\n      { threshold: 0.05 }).observe(form);\n  }\n});\n</script>",
+                                "_css_classes": "zw-form"
+                            },
+                            "elements": [],
+                            "widgetType": "html"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "9572d70",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec"
+            },
+            "elements": [
+                {
+                    "id": "105b3ed",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "De job",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "10916e6",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Wat maakt deze job de moeite waard?",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "f618c18",
+                    "elType": "widget",
+                    "settings": {
+                        "html": "<div aria-label=\"De zes punten in beeld\" class=\"film film-band\" id=\"film\">\n<div class=\"film__shots\"></div>\n<div class=\"film__layer\">\n<div class=\"film__top\">\n<div aria-hidden=\"true\" class=\"film__progress\"></div>\n<button aria-label=\"Film pauzeren\" aria-pressed=\"false\" class=\"film__pause\" type=\"button\"></button>\n</div>\n<div aria-hidden=\"true\" class=\"film__caption\">\n<span class=\"film__kicker\"></span>\n<span class=\"film__line\"></span>\n</div>\n</div>\n</div>\n<script src=\"/wp-content/uploads/zwijsen-landing/js/film.js?v=06f940f25e\" defer></script>\n<script>\n/* De zes punten uit de copy van Jana, in dezelfde volgorde als de lijst eronder.\n   De foto's staan als vaste bestanden in /wp-content/uploads/zwijsen-landing/ (AVIF/WebP, meerdere breedtes);\n   lazyStart: niets laden voor de film in de buurt komt. */\ndocument.addEventListener('DOMContentLoaded', function () {\n  var punten = document.querySelectorAll('#punten > .elementor-widget');\n  ZwijsenFilm.mount('#film', {\n    base: '/wp-content/uploads/zwijsen-landing/',\n    lazyStart: true,\n    still: 4,\n    onShot: function (i) {\n      for (var n = 0; n < punten.length; n++) punten[n].classList.toggle('is-film', n === i);\n    },\n    shots: [\n        /* Feedback 30 okt 2026: minder \"bouwbedrijf\". Het werfbeeld is een afgewerkt\n           project (gevel met onze bestelwagen), geen ruwbouw; de rest installaties, plannen en de ploeg. */\n        { img: 'werf-klassieke-gevel', w: [480, 800, 1200, 1536], sizes: '(max-width: 599px) 100vw, 640px', pos: '50% 62%', from: [1.10, 0, 2], to: [1.02, 0, -1],\n          kicker: 'Grote werven', line: 'Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…' },\n        { img: 'verdeelbord-bekabelen', w: [480, 800, 1200, 1448], sizes: '(max-width: 599px) 167vw, 600px', pos: '45% 45%', from: [1.0, 0, 0], to: [1.08, -2, 1],\n          kicker: 'Breed takenpakket', line: 'Bouw mee aan elektrische installaties van a tot z.' },\n        { img: 'werf-gang-paarse-verlichting', w: [480, 800, 1200, 1494], sizes: '(max-width: 599px) 222vw, 640px', pos: '40% 50%', from: [1.10, -2, 0], to: [1.02, 2, 0],\n          kicker: 'Afwisseling', line: 'Geregeld nieuwe projecten, verspreid over heel België met zwaartepunt in Vlaanderen.' },\n        { img: 'plannen-bekijken', w: [480, 800, 1200, 1600], sizes: '(max-width: 599px) 187vw, 600px', pos: '50% 40%', from: [1.02, 0, 0], to: [1.10, 0, -2],\n          kicker: 'Vrijheid in je vak', line: 'Je werkt zelfstandig in team. Het resultaat telt.' },\n        { img: 'ploeg-bij-de-bestelwagen', w: [480, 800, 1200, 1600], sizes: '(max-width: 599px) 187vw, 600px', pos: '50% 40%', from: [1.03, -2, 0], to: [1.12, 2, -1],\n          kicker: 'In duo', line: 'Je rijdt samen met een ervaren collega van Dendermonde naar de werf.' },\n        { img: 'ploeg-electro-zwijsen-luchtfoto', w: [480, 800, 1200, 1600], sizes: '(max-width: 599px) 298vw, 953px', pos: '50% 50%', from: [1.16, 0, 3], to: [1.02, 0, 0],\n          kicker: 'Vast contract', line: 'Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.' }\n      ]\n  });\n});\n</script>",
+                        "_css_classes": "zw-film"
+                    },
+                    "elements": [],
+                    "widgetType": "html"
+                },
+                {
+                    "id": "7d1ed4c",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-list",
+                        "_element_id": "punten"
+                    },
+                    "elements": [
+                        {
+                            "id": "f8f753c",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-building",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "Grote werven",
+                                "description_text": "Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        },
+                        {
+                            "id": "57dac5a",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-bolt",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "Breed takenpakket",
+                                "description_text": "Bouw mee aan elektrische installaties van a tot z.",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        },
+                        {
+                            "id": "655e743",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-sync-alt",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "Afwisseling",
+                                "description_text": "Geregeld nieuwe projecten, verspreid over heel België met zwaartepunt in Vlaanderen.",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        },
+                        {
+                            "id": "855ccf3",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-compass",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "Vrijheid in je vak",
+                                "description_text": "Je werkt zelfstandig in team. Het resultaat telt.",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        },
+                        {
+                            "id": "41c1494",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-users",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "In duo",
+                                "description_text": "Je rijdt samen met een ervaren collega van Dendermonde naar de werf.",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        },
+                        {
+                            "id": "9739a30",
+                            "elType": "widget",
+                            "settings": {
+                                "selected_icon": {
+                                    "value": "fas fa-shield-alt",
+                                    "library": "fa-solid"
+                                },
+                                "title_text": "Vast contract",
+                                "description_text": "Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.",
+                                "title_size": "h3",
+                                "_css_classes": "m-item"
+                            },
+                            "elements": [],
+                            "widgetType": "icon-box"
+                        }
+                    ],
+                    "isInner": true
+                },
+                {
+                    "id": "67fbdd2",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-cta"
+                    },
+                    "elements": [
+                        {
+                            "id": "c025cd1",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Solliciteer direct zonder CV",
+                                "link": {
+                                    "url": "#solliciteer",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=accent",
+                                    "button_text_color": "globals/colors?id=2c5975e"
+                                },
+                                "button_background_hover_color": "#B60A0E",
+                                "hover_color": "#FFFFFF",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        },
+                        {
+                            "id": "a858b10",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p>4 vragen · ±30 seconden</p>",
+                                "_css_classes": "m-cta-note"
+                            },
+                            "elements": [],
+                            "widgetType": "text-editor"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "a06566c",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec m-sec--grey"
+            },
+            "elements": [
+                {
+                    "id": "ce9539c",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Ons aanbod",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "06de2c0",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Wat zijn jouw voordelen?",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "9ff1344",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<ul><li>Goed loon, volgens ervaring</li><li>20 vakantiedagen en 12 ADV</li><li>Vakantiegeld</li><li>Uitgebreide hospitalisatieverzekering voor jou én je gezin, inclusief tandzorg en ambulante medische kosten</li><li>Telefoon met abonnement</li><li>Groepsverzekering</li><li>Maaltijdcheques 9 euro per gewerkte dag</li><li>Dertiende maand</li><li>Kilometervergoeding tot de werf</li><li>Werkkledij</li><li>Beschermingsmateriaal</li></ul>",
+                        "_css_classes": "zw-checks m-gap m-15"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                },
+                {
+                    "id": "59e24ec",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "zp-band-wrap"
+                    },
+                    "elements": [
+                        {
+                            "id": "ec68fe5",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full",
+                                "css_classes": "zp-band zp-band--strip"
+                            },
+                            "elements": [
+                                {
+                                    "id": "a8b1ebe",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3307,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/collega-lacht-op-de-werf.jpg",
+                                            "alt": "Lachende technieker in rode Zwijsen-trui met de armen gekruist, buiten op het terrein",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "d9770b0",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3317,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/ploeg-bij-de-bestelwagen.jpg",
+                                            "alt": "Zes collega's in rode werkkledij poseren samen naast een bestelwagen",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "df87e0f",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3314,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/magazijn-overleg.jpg",
+                                            "alt": "Drie collega's overleggen tussen de rekken in het magazijn",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "3383d99",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3310,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/kabelhaspel-buiten.jpg",
+                                            "alt": "Elektricien rolt kabel af van een oranje kabelhaspel",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "b1ca6bb",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3313,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/magazijn-materiaal-klaarzetten.jpg",
+                                            "alt": "Collega zet materiaal klaar in het magazijn",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "ae12e6b",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3315,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/plannen-bekijken.jpg",
+                                            "alt": "Twee elektriciens bekijken samen een elektrisch plan aan de muur",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                },
+                                {
+                                    "id": "4c680b4",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "image": {
+                                            "id": 3321,
+                                            "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/selfie-in-de-werkplaats.jpg",
+                                            "alt": "Selfie van een elektricien in de werkplaats, een collega zwaait op de achtergrond",
+                                            "source": "library"
+                                        },
+                                        "image_size": "medium_large",
+                                        "align": "left",
+                                        "_css_classes": "zp-pic"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "image"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "f2b3885",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p>Veeg opzij voor meer foto’s →</p>",
+                                "_css_classes": "zp-swipe-hint"
+                            },
+                            "elements": [],
+                            "widgetType": "text-editor"
+                        }
+                    ],
+                    "isInner": true
+                },
+                {
+                    "id": "6970152",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-cta"
+                    },
+                    "elements": [
+                        {
+                            "id": "c3f9951",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Solliciteer direct zonder CV",
+                                "link": {
+                                    "url": "#solliciteer",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=accent",
+                                    "button_text_color": "globals/colors?id=2c5975e"
+                                },
+                                "button_background_hover_color": "#B60A0E",
+                                "hover_color": "#FFFFFF",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "3f706b9",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec"
+            },
+            "elements": [
+                {
+                    "id": "37cb931",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Je taken",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "83a9653",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Wat ga je doen?",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "c1fe4a5",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<p>Je bouwt nieuwe elektrische installaties van a tot z op grote werven, samen met je collega’s.</p>",
+                        "_css_classes": "m-intro"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                },
+                {
+                    "id": "b615492",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<ul><li>Kabelgoten plaatsen</li><li>Kabels trekken</li><li>Schakelmateriaal plaatsen</li><li>Verlichtingstoestellen aansluiten</li><li>Aansluitingen maken in verdeelborden</li><li>Zorgen dat het volledige project goed wordt opgeleverd</li></ul>",
+                        "_css_classes": "zw-checks m-15"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                },
+                {
+                    "id": "ae07701",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "zp-werk"
+                    },
+                    "elements": [
+                        {
+                            "id": "b286171",
+                            "elType": "widget",
+                            "settings": {
+                                "image": {
+                                    "id": 3325,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/verdeelbord-bekabelen.jpg",
+                                    "alt": "Elektricien bekabelt een verdeelbord in de werkplaats",
+                                    "source": "library"
+                                },
+                                "image_size": "medium_large",
+                                "align": "left",
+                                "_css_classes": "zp-pic"
+                            },
+                            "elements": [],
+                            "widgetType": "image"
+                        },
+                        {
+                            "id": "d578706",
+                            "elType": "widget",
+                            "settings": {
+                                "image": {
+                                    "id": 3327,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/werf-gang-paarse-verlichting.jpg",
+                                    "alt": "Afgewerkte gang met paarse en blauwe ledverlichting",
+                                    "source": "library"
+                                },
+                                "image_size": "medium_large",
+                                "align": "left",
+                                "_css_classes": "zp-pic"
+                            },
+                            "elements": [],
+                            "widgetType": "image"
+                        },
+                        {
+                            "id": "1119480",
+                            "elType": "widget",
+                            "settings": {
+                                "image": {
+                                    "id": 3313,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/magazijn-materiaal-klaarzetten.jpg",
+                                    "alt": "Collega zet materiaal klaar in het magazijn",
+                                    "source": "library"
+                                },
+                                "image_size": "medium_large",
+                                "align": "left",
+                                "_css_classes": "zp-pic"
+                            },
+                            "elements": [],
+                            "widgetType": "image"
+                        }
+                    ],
+                    "isInner": true
+                },
+                {
+                    "id": "09f1eda",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-cta"
+                    },
+                    "elements": [
+                        {
+                            "id": "a5e7dea",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Solliciteer direct zonder CV",
+                                "link": {
+                                    "url": "#solliciteer",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=accent",
+                                    "button_text_color": "globals/colors?id=2c5975e"
+                                },
+                                "button_background_hover_color": "#B60A0E",
+                                "hover_color": "#FFFFFF",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "a6ac60e",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec m-sec--grey"
+            },
+            "elements": [
+                {
+                    "id": "41e153d",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Jouw profiel",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "de6a557",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Word jij onze nieuwe technieker?",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "c8bb195",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<ul><li>Minstens 3 jaar ervaring als elektricien</li><li>Je woont in (of vlakbij) Dendermonde</li><li>Je hebt minstens rijbewijs B</li><li>Taal is geen barrière. Je begrijpt en spreekt voldoende Nederlands, Frans of Engels om veilig samen te werken.</li><li>In het bezit zijn van een VCA-attest is een plus. Heb je het niet, dan voorzien wij een opleiding.</li><li>Ervaring op werven is mooi meegenomen.</li></ul>",
+                        "_css_classes": "zw-checks m-gap m-15"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                },
+                {
+                    "id": "e0cfaae",
+                    "elType": "widget",
+                    "settings": {
+                        "html": "<figure class=\"zk-fig\"><svg aria-labelledby=\"zk-t zk-d\" class=\"zk\" role=\"img\" viewbox=\"0 53 320 214\" xmlns=\"http://www.w3.org/2000/svg\"><title id=\"zk-t\">Dendermonde</title><desc id=\"zk-d\">Schematische kaart van Dendermonde, waar de Dender in de Schelde uitmondt.</desc><defs><clippath id=\"zk-c\"><rect height=\"214\" rx=\"6\" width=\"320\" y=\"53\"></rect></clippath></defs><g clip-path=\"url(#zk-c)\"><rect fill=\"#F7F6F6\" height=\"320\" width=\"320\"></rect><path d=\"M-36.3 155.0 C-24.9 159.4 17.4 176.7 32.3 181.0 C47.1 185.3 45.6 182.5 52.9 181.0 C60.1 179.6 69.6 174.5 75.8 172.4 C81.9 170.2 85.7 168.2 89.6 168.3 C93.6 168.3 95.7 173.8 99.4 172.9 C103.2 172.0 104.9 165.1 112.2 162.8 C119.4 160.5 134.8 160.8 142.7 159.4 C150.7 158.0 151.7 155.1 159.7 154.2 C167.7 153.4 181.7 155.7 190.8 154.3 C199.8 153.0 211.9 149.7 214.1 146.1 C216.4 142.6 204.8 138.9 204.3 133.2 C203.8 127.6 209.3 120.3 211.2 112.2 C213.0 104.1 209.9 92.4 215.2 84.7 C220.5 76.9 234.3 75.2 243.0 65.5 C251.7 55.8 263.4 33.1 267.5 26.6\" fill=\"none\" stroke=\"#C9D4DC\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"5\"></path><path d=\"M145.0 291.2 C143.4 285.4 137.6 266.3 135.2 256.2 C132.8 246.1 130.2 241.0 130.4 230.7 C130.7 220.3 132.9 202.4 136.4 194.2 C140.0 185.9 148.3 186.2 151.9 181.3 C155.4 176.3 156.4 168.9 157.7 164.4 C159.1 159.9 159.4 155.9 159.7 154.2\" fill=\"none\" stroke=\"#C9D4DC\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\"></path><text class=\"zk-river\" x=\"222\" y=\"114\">Schelde</text><text class=\"zk-river\" x=\"141\" y=\"220\">Dender</text><circle cx=\"160\" cy=\"160\" fill=\"#FCC715\" r=\"18\"></circle><circle cx=\"160\" cy=\"160\" fill=\"#E60E13\" r=\"8\" stroke=\"#FFFFFF\" stroke-width=\"2\"></circle><text class=\"zk-main\" text-anchor=\"middle\" x=\"160\" y=\"196\">Dendermonde</text><g transform=\"translate(14 254)\"><path d=\"M0 0h70\" stroke=\"#121413\" stroke-width=\"2\"></path><path d=\"M0 -4v8M70 -4v8\" stroke=\"#121413\" stroke-width=\"1.5\"></path><text class=\"zk-scale\" text-anchor=\"middle\" x=\"35\" y=\"-7\">10 km</text></g><g transform=\"translate(298 78)\"><path d=\"M0 -12 L5 2 L0 -1 L-5 2 Z\" fill=\"#121413\"></path><text class=\"zk-scale\" text-anchor=\"middle\" x=\"0\" y=\"14\">N</text></g></g></svg></figure>",
+                        "_css_classes": "zw-kaart"
+                    },
+                    "elements": [],
+                    "widgetType": "html"
+                },
+                {
+                    "id": "cd0addf",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-cta"
+                    },
+                    "elements": [
+                        {
+                            "id": "d5b70d1",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Kom je in aanmerking? Doe de test.",
+                                "link": {
+                                    "url": "#solliciteer",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=accent",
+                                    "button_text_color": "globals/colors?id=2c5975e"
+                                },
+                                "button_background_hover_color": "#B60A0E",
+                                "hover_color": "#FFFFFF",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        },
+                        {
+                            "id": "31d658e",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p>Solliciteer direct zonder CV</p>",
+                                "_css_classes": "m-cta-note"
+                            },
+                            "elements": [],
+                            "widgetType": "text-editor"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "27d0c68",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec"
+            },
+            "elements": [
+                {
+                    "id": "3891269",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Je werkweek",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "c68a424",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Hoe ziet je dag eruit?",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "f088545",
+                    "elType": "widget",
+                    "settings": {
+                        "editor": "<ol><li><strong>Samen naar de werf</strong><span>Je rijdt samen met je collega uit de regio Dendermonde naar de werf.</span></li><li><strong>Werven in heel België</strong><span>De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht bij huis, soms ligt een project verder weg.</span></li><li><strong>Kilometervergoeding</strong><span>Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.</span></li><li><strong>Maandag tot vrijdag, 40 uur</strong><span>Je werkt van maandag tot vrijdag, 40 uur per week. Overuren of zaterdagwerk zijn uitzonderlijk.</span></li></ol>",
+                        "_css_classes": "m-steps"
+                    },
+                    "elements": [],
+                    "widgetType": "text-editor"
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "69d1819",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec m-sec--grey"
+            },
+            "elements": [
+                {
+                    "id": "d2e9ab9",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "zw-about"
+                    },
+                    "elements": [
+                        {
+                            "id": "04c2169",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "Over ons",
+                                "header_size": "div",
+                                "_css_classes": "zw-eyebrow",
+                                "__globals__": {
+                                    "title_color": "globals/colors?id=accent"
+                                }
+                            },
+                            "elements": [],
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "c038b59",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "Wij zijn Electro Zwijsen",
+                                "header_size": "h2",
+                                "__globals__": {
+                                    "title_color": "globals/colors?id=primary"
+                                }
+                            },
+                            "elements": [],
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "9920555",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p>Wij zijn een hecht familiebedrijf van 150 collega’s. Het hoofdkantoor is in Duffel en we hebben ook een filiaal in Zonhoven. Sinds 1987 zijn we expert in elektriciteit. Naast algemene elektriciteitswerken bouwden we doorheen de jaren expertise op in midden- en hoogspanning, datanetwerken, elektrische laadinstallaties en beveiliging, van branddetectie tot inbraakbeveiliging. Kansen genoeg voor wie wil doorgroeien. Wij zijn een werkgever die expertise naar waarde schat.</p>"
+                            },
+                            "elements": [],
+                            "widgetType": "text-editor"
+                        },
+                        {
+                            "id": "a456893",
+                            "elType": "widget",
+                            "settings": {
+                                "image": {
+                                    "id": 3318,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/ploeg-electro-zwijsen-luchtfoto.jpg",
+                                    "alt": "Luchtfoto van de hele ploeg van Electro Zwijsen die zwaait vanop het grasveld voor het hoofdkantoor, met een zwarte bestelwagen ervoor",
+                                    "source": "library"
+                                },
+                                "image_size": "1536x1536",
+                                "align": "left",
+                                "_css_classes": "zp-pic zp-group m-group"
+                            },
+                            "elements": [],
+                            "widgetType": "image"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "a29454b",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec"
+            },
+            "elements": [
+                {
+                    "id": "5921094",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Collega’s aan het woord",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "997bd0d",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Waarom kies je voor Electro Zwijsen?",
+                        "header_size": "h2",
+                        "_css_classes": "m-quotes-h",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "2eb5859",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "zw-quotes"
+                    },
+                    "elements": [
+                        {
+                            "id": "05c4291",
+                            "elType": "widget",
+                            "settings": {
+                                "testimonial_content": "“Ik hou van de afwisseling in mijn job. Geen twee werven zijn hetzelfde. Zelfs na al die jaren kom ik nog geregeld iets tegen waarvan ik denk: dat wist ik nog niet.”",
+                                "testimonial_image": {
+                                    "id": 3322,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/steven-werfleider.jpg",
+                                    "alt": "Steven, werfleider bij Electro Zwijsen, op een werf met graafmachines achter hem",
+                                    "source": "library"
+                                },
+                                "testimonial_image_size": "medium",
+                                "testimonial_name": "Steven",
+                                "testimonial_job": "Werfleider, 22 jaar bij Electro Zwijsen",
+                                "testimonial_image_position": "aside",
+                                "testimonial_alignment": "left",
+                                "_css_classes": "zw-quote zp-steven"
+                            },
+                            "elements": [],
+                            "widgetType": "testimonial"
+                        },
+                        {
+                            "id": "19b21a4",
+                            "elType": "widget",
+                            "settings": {
+                                "testimonial_content": "“Ik weet wat ik aan Zwijsen heb: een correcte werkgever die altijd stipt betaalt en toffe collega’s met wie ik graag samenwerk. Dat is belangrijk, want je brengt veel tijd met elkaar door. Doorheen de jaren heb ik ook veel opleidingen kunnen volgen: voor de hoogtewerker, schaarlift, heftruck en VCA.”",
+                                "testimonial_image": {
+                                    "id": 3312,
+                                    "url": "https://staging.zwijsen.be/wp-content/uploads/2026/10/kurt-werfleider.jpg",
+                                    "alt": "Kurt, werfleider bij Electro Zwijsen, aan het werk aan een stopcontact",
+                                    "source": "library"
+                                },
+                                "testimonial_image_size": "medium",
+                                "testimonial_name": "Kurt",
+                                "testimonial_job": "Werfleider, 30 jaar bij Electro Zwijsen",
+                                "testimonial_image_position": "aside",
+                                "testimonial_alignment": "left",
+                                "_css_classes": "zw-quote zp-kurt"
+                            },
+                            "elements": [],
+                            "widgetType": "testimonial"
+                        }
+                    ],
+                    "isInner": true
+                },
+                {
+                    "id": "543ae97",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-cta"
+                    },
+                    "elements": [
+                        {
+                            "id": "f8361d0",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Solliciteer in 30 seconden",
+                                "link": {
+                                    "url": "#solliciteer",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=accent",
+                                    "button_text_color": "globals/colors?id=2c5975e"
+                                },
+                                "button_background_hover_color": "#B60A0E",
+                                "hover_color": "#FFFFFF",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "4074c7e",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec m-sec--grey m-faqsec"
+            },
+            "elements": [
+                {
+                    "id": "e9cf3db",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Vragen",
+                        "header_size": "div",
+                        "_css_classes": "zw-eyebrow",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=accent"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "7f00a86",
+                    "elType": "widget",
+                    "settings": {
+                        "title": "Veelgestelde vragen",
+                        "header_size": "h2",
+                        "__globals__": {
+                            "title_color": "globals/colors?id=primary"
+                        }
+                    },
+                    "elements": [],
+                    "widgetType": "heading"
+                },
+                {
+                    "id": "b4f7175",
+                    "elType": "widget",
+                    "widgetType": "nested-accordion",
+                    "settings": {
+                        "items": [
+                            {
+                                "item_title": "Heb ik een cv nodig?",
+                                "_id": "7eafdde",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Hoe lang duurt solliciteren?",
+                                "_id": "4bb0c49",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Hoeveel ervaring vraagt Electro Zwijsen?",
+                                "_id": "3158aa2",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Moet ik een VCA-attest hebben?",
+                                "_id": "fa443b2",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Welke talen moet ik spreken?",
+                                "_id": "13492f9",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Welk contract krijg ik?",
+                                "_id": "5cc47ca",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Hoe kom ik op de werf?",
+                                "_id": "8306ee1",
+                                "element_css_id": ""
+                            },
+                            {
+                                "item_title": "Waar liggen de werven?",
+                                "_id": "ee7d246",
+                                "element_css_id": ""
+                            }
+                        ],
+                        "default_state": "all_collapsed",
+                        "max_items_expended": "multiple",
+                        "title_tag": "h3",
+                        "accordion_item_title_icon": {
+                            "value": "fas fa-plus",
+                            "library": "fa-solid"
+                        },
+                        "accordion_item_title_icon_active": {
+                            "value": "fas fa-times",
+                            "library": "fa-solid"
+                        },
+                        "_css_classes": "zw-faq zw-faq--sm m-faq-w"
+                    },
+                    "elements": [
+                        {
+                            "id": "05f9a0a",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "6514c6f",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Nee, geen CV nodig. Beantwoord 4 korte vragen.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "5636b8a",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "3f9bb9e",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Ongeveer 30 seconden. Beantwoord 4 korte vragen.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "abf9f25",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "648d83e",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Minstens 3 jaar ervaring als elektricien. Ervaring op werven is mooi meegenomen.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "4bc2ec9",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "1f3322f",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Nee. In het bezit zijn van een VCA-attest is een plus. Heb je het niet, dan voorzien wij een opleiding.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "44465fa",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "8736859",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Taal is geen barrière. Je begrijpt en spreekt voldoende Nederlands, Frans of Engels om veilig samen te werken.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "cb8f30b",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "173b81b",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Een vast contract. Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "6d70f6b",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "c1efa92",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>Je rijdt samen met een ervaren collega van Dendermonde naar de werf. Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "74ce9ae",
+                            "elType": "container",
+                            "settings": {
+                                "content_width": "full"
+                            },
+                            "elements": [
+                                {
+                                    "id": "e54c220",
+                                    "elType": "widget",
+                                    "settings": {
+                                        "editor": "<p>De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht bij huis, soms ligt een project verder weg.</p>"
+                                    },
+                                    "elements": [],
+                                    "widgetType": "text-editor"
+                                }
+                            ],
+                            "isInner": true
+                        }
+                    ]
+                },
+                {
+                    "id": "8841884",
+                    "elType": "widget",
+                    "settings": {
+                        "html": "<!-- Gestructureerde gegevens: vacature (JobPosting) en de vragen hierboven (FAQPage).\n     Wijzig je een vraag of antwoord, pas dan ook de FAQPage hieronder aan, anders\n     verschilt de zichtbare tekst van wat Google leest. Bron: elementor/bron/faq_jsonld.py -->\n<script type=\"application/ld+json\">\n{\n \"@context\": \"https://schema.org\",\n \"@type\": \"JobPosting\",\n \"title\": \"Elektricien – technieker algemene elektriciteit\",\n \"description\": \"<p><strong>Ben je elektricien en woon je in (de buurt van) Dendermonde?<\\/strong><\\/p><p>Ontdek of jij in aanmerking komt voor een job als technieker bij Electro Zwijsen!<\\/p><p><strong>Wat maakt deze job de moeite waard?<\\/strong><\\/p><ul><li>Grote werven: Werk aan ziekenhuizen, scholen, kantoorgebouwen, winkelcentra,…<\\/li><li>Breed takenpakket: Bouw mee aan elektrische installaties van a tot z.<\\/li><li>Afwisseling: Geregeld nieuwe projecten, verspreid over heel België met zwaartepunt in Vlaanderen.<\\/li><li>Vrijheid in je vak: Je werkt zelfstandig in team. Het resultaat telt.<\\/li><li>In duo: Je rijdt samen met een ervaren collega van Dendermonde naar de werf.<\\/li><li>Vast contract: Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.<\\/li><\\/ul><p><strong>Wat ga je doen?<\\/strong><\\/p><p>Je bouwt nieuwe elektrische installaties van a tot z op grote werven, samen met je collega’s.<\\/p><ul><li>Kabelgoten plaatsen<\\/li><li>Kabels trekken<\\/li><li>Schakelmateriaal plaatsen<\\/li><li>Verlichtingstoestellen aansluiten<\\/li><li>Aansluitingen maken in verdeelborden<\\/li><li>Zorgen dat het volledige project goed wordt opgeleverd<\\/li><\\/ul><p><strong>Jouw profiel<\\/strong><\\/p><ul><li>Minstens 3 jaar ervaring als elektricien<\\/li><li>Je woont in (of vlakbij) Dendermonde<\\/li><li>Je hebt minstens rijbewijs B<\\/li><li>Taal is geen barrière. Je begrijpt en spreekt voldoende Nederlands, Frans of Engels om veilig samen te werken.<\\/li><li>In het bezit zijn van een VCA-attest is een plus. Heb je het niet, dan voorzien wij een opleiding.<\\/li><li>Ervaring op werven is mooi meegenomen.<\\/li><\\/ul><p><strong>Wat zijn jouw voordelen?<\\/strong><\\/p><ul><li>Goed loon, volgens ervaring<\\/li><li>20 vakantiedagen en 12 ADV<\\/li><li>Vakantiegeld<\\/li><li>Uitgebreide hospitalisatieverzekering voor jou én je gezin, inclusief tandzorg en ambulante medische kosten<\\/li><li>Telefoon met abonnement<\\/li><li>Groepsverzekering<\\/li><li>Maaltijdcheques 9 euro per gewerkte dag<\\/li><li>Dertiende maand<\\/li><li>Kilometervergoeding tot de werf<\\/li><li>Werkkledij<\\/li><li>Beschermingsmateriaal<\\/li><\\/ul><p><strong>Je werkweek<\\/strong><\\/p><ul><li>Je rijdt samen met je collega uit de regio Dendermonde naar de werf.<\\/li><li>De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht bij huis, soms ligt een project verder weg.<\\/li><li>Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.<\\/li><li>Je werkt van maandag tot vrijdag, 40 uur per week. Overuren of zaterdagwerk zijn uitzonderlijk.<\\/li><\\/ul><p><strong>Wij zijn Electro Zwijsen<\\/strong><\\/p><p>Wij zijn een hecht familiebedrijf van 150 collega’s. Het hoofdkantoor is in Duffel en we hebben ook een filiaal in Zonhoven. Sinds 1987 zijn we expert in elektriciteit. Naast algemene elektriciteitswerken bouwden we doorheen de jaren expertise op in midden- en hoogspanning, datanetwerken, elektrische laadinstallaties en beveiliging, van branddetectie tot inbraakbeveiliging. Kansen genoeg voor wie wil doorgroeien. Wij zijn een werkgever die expertise naar waarde schat.<\\/p>\",\n \"datePosted\": \"2026-10-31\",\n \"employmentType\": \"FULL_TIME\",\n \"directApply\": true,\n \"hiringOrganization\": {\n  \"@type\": \"Organization\",\n  \"name\": \"Electro Zwijsen NV\",\n  \"sameAs\": \"https://zwijsen.be\",\n  \"logo\": \"https://zwijsen.be/wp-content/uploads/2023/09/cropped-cropped-FRONNT-Combinatielogo-Elektro-Zwijsen-Kleur.png\"\n },\n \"jobLocation\": {\n  \"@type\": \"Place\",\n  \"address\": {\n   \"@type\": \"PostalAddress\",\n   \"addressLocality\": \"Dendermonde\",\n   \"postalCode\": \"9200\",\n   \"addressRegion\": \"Oost-Vlaanderen\",\n   \"addressCountry\": \"BE\"\n  }\n }\n}\n</script>\n<script type=\"application/ld+json\">\n{\n \"@context\": \"https://schema.org\",\n \"@type\": \"FAQPage\",\n \"mainEntity\": [\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Heb ik een cv nodig?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Nee, geen CV nodig. Beantwoord 4 korte vragen.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Hoe lang duurt solliciteren?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Ongeveer 30 seconden. Beantwoord 4 korte vragen.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Hoeveel ervaring vraagt Electro Zwijsen?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Minstens 3 jaar ervaring als elektricien. Ervaring op werven is mooi meegenomen.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Moet ik een VCA-attest hebben?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Nee. In het bezit zijn van een VCA-attest is een plus. Heb je het niet, dan voorzien wij een opleiding.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Welke talen moet ik spreken?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Taal is geen barrière. Je begrijpt en spreekt voldoende Nederlands, Frans of Engels om veilig samen te werken.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Welk contract krijg ik?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Een vast contract. Vanaf dag één ben je aan boord bij ons familiebedrijf met 150 collega’s.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Hoe kom ik op de werf?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"Je rijdt samen met een ervaren collega van Dendermonde naar de werf. Voor de verplaatsing krijg je een kilometervergoeding als chauffeur of bijrijder.\"\n   }\n  },\n  {\n   \"@type\": \"Question\",\n   \"name\": \"Waar liggen de werven?\",\n   \"acceptedAnswer\": {\n    \"@type\": \"Answer\",\n    \"text\": \"De werven zijn in heel België, met focus op Vlaanderen. Soms werk je dicht bij huis, soms ligt een project verder weg.\"\n   }\n  }\n ]\n}\n</script>",
+                        "_css_classes": "zw-jsonld"
+                    },
+                    "elements": [],
+                    "widgetType": "html"
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "c7e9a22",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "css_classes": "zwl zw-sec m-col m-sec m-sec--grey"
+            },
+            "elements": [
+                {
+                    "id": "bc99745",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "css_classes": "m-call"
+                    },
+                    "elements": [
+                        {
+                            "id": "ccd69c8",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "Liever gewoon bellen?",
+                                "header_size": "h3",
+                                "_css_classes": "m-call-h",
+                                "__globals__": {
+                                    "title_color": "globals/colors?id=2c5975e"
+                                }
+                            },
+                            "elements": [],
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "46dfa4c",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "015 305 305",
+                                "link": {
+                                    "url": "tel:+3215305305",
+                                    "is_external": "",
+                                    "nofollow": "",
+                                    "custom_attributes": ""
+                                },
+                                "__globals__": {
+                                    "background_color": "globals/colors?id=78f9a77",
+                                    "button_text_color": "globals/colors?id=primary"
+                                },
+                                "button_background_hover_color": "#E0AC00",
+                                "hover_color": "#121413",
+                                "_css_classes": "zw-btn--block"
+                            },
+                            "elements": [],
+                            "widgetType": "button"
+                        },
+                        {
+                            "id": "f4391f8",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p>of mailen <a href=\"mailto:personeel@zwijsen.be\">personeel@zwijsen.be</a></p>",
+                                "_css_classes": "m-call-mail"
+                            },
+                            "elements": [],
+                            "widgetType": "text-editor"
+                        }
+                    ],
+                    "isInner": true
+                }
+            ],
+            "isInner": false
+        },
+        {
+            "id": "d48838f",
+            "elType": "container",
+            "settings": {
+                "content_width": "full",
+                "css_classes": "zwl zw-mobilebar"
+            },
+            "elements": [
+                {
+                    "id": "3ce2188",
+                    "elType": "widget",
+                    "settings": {
+                        "text": "Solliciteer in 30 seconden",
+                        "link": {
+                            "url": "#solliciteer",
+                            "is_external": "",
+                            "nofollow": "",
+                            "custom_attributes": ""
+                        },
+                        "__globals__": {
+                            "background_color": "globals/colors?id=accent",
+                            "button_text_color": "globals/colors?id=2c5975e"
+                        },
+                        "button_background_hover_color": "#B60A0E",
+                        "hover_color": "#FFFFFF",
+                        "_css_classes": "zw-btn--block"
+                    },
+                    "elements": [],
+                    "widgetType": "button"
+                }
+            ],
+            "isInner": false
+        }
+    ],
+    "page_settings": {
+        "hide_title": "yes",
+        "custom_css": "/* ==========================================================================\n   Electro Zwijsen — landingspagina vacature, basisstijl voor Elementor\n   Gedeeld door de vijf voorstellen. Wordt in de pagina-instelling\n   \"Aangepaste CSS\" gezet. Het woord dat Elementor vervangt door\n   body.elementor-page-<id> staat vooraan elke regel: zo geldt alles\n   enkel op deze pagina en raakt niets de sitehoofding of voettekst.\n   Alle inhoud zit bovendien in containers met de klasse .zwl.\n   ========================================================================== */\n\nselector {\n  --zw-ink: #121413;\n  --zw-red: #E60E13;\n  --zw-red-dark: #B60A0E;\n  --zw-red-tint: #FDECEC;\n  --zw-yellow: #FCC715;\n  --zw-yellow-dk: #E0AC00;\n  --zw-white: #FFFFFF;\n  --zw-grey: #E8E6E7;\n  --zw-grey-50: #F7F6F6;\n  --zw-grey-100: #EFEDEE;\n  --zw-grey-300: #CFCCCE;\n  --zw-grey-500: #8C8788;\n  --zw-grey-700: #4A4647;\n  --zw-line: #DDD9DB;\n  --zw-font-head: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  --zw-font-body: \"Open Sans\", \"Helvetica Neue\", Arial, sans-serif;\n  --zw-h1: clamp(2.05rem, 1.35rem + 2.6vw, 3.125rem);\n  --zw-h2: clamp(1.7rem, 1.2rem + 1.9vw, 2.5rem);\n  --zw-h3: clamp(1.4rem, 1.1rem + 1.3vw, 2.1875rem);\n  --zw-radius: 3px;\n  --zw-radius-card: 6px;\n  --zw-shadow-sm: 0 1px 2px rgba(18,20,19,.06), 0 2px 8px rgba(18,20,19,.05);\n  --zw-shadow-md: 0 4px 12px rgba(18,20,19,.08), 0 12px 32px rgba(18,20,19,.07);\n  --zw-shadow-lg: 0 10px 24px rgba(18,20,19,.10), 0 28px 60px rgba(18,20,19,.12);\n  --zw-gutter: clamp(1rem, 0.6rem + 1.8vw, 2.25rem);\n  --zw-ease: cubic-bezier(.22,.61,.36,1);\n}\n\n/* --- Containers: alle Elementor-standaardruimte op nul, de opmaak hieronder\n       bepaalt de afstanden zoals in het HTML-voorstel. ------------------- */\nselector .zwl.e-con,\nselector .zwl .e-con {\n  --padding-top: 0px; --padding-right: 0px; --padding-bottom: 0px; --padding-left: 0px;\n  --gap: 0px; --row-gap: 0px; --column-gap: 0px;\n  --container-default-padding-top: 0px; --container-default-padding-right: 0px;\n  --container-default-padding-bottom: 0px; --container-default-padding-left: 0px;\n  --widgets-spacing: 0px; --widgets-spacing-row: 0px; --widgets-spacing-column: 0px;\n  --kit-widget-spacing: 0px;\n}\nselector .zwl .elementor-widget { margin-block-end: 0; }\nselector .zwl.e-con {\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500; line-height: 1.72;\n  color: var(--zw-ink);\n  -webkit-font-smoothing: antialiased;\n}\n\n/* Sectie = één band over de volle breedte, inhoud max 1180px zoals het voorstel */\nselector .zwl.zw-sec {\n  --content-width: 1180px;\n  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);\n}\nselector .zwl.zw-sec > .e-con-inner { max-width: min(100%, calc(1180px - 2 * var(--zw-gutter))); }\nselector .zwl.zw-section { --padding-top: clamp(3.25rem, 7vw, 6rem); --padding-bottom: clamp(3.25rem, 7vw, 6rem); }\nselector .zwl.zw-section--grey { background-color: var(--zw-grey-50); }\nselector .zwl.zw-section--ink { background-color: var(--zw-ink); color: var(--zw-grey); }\nselector .zwl .zw-narrow { max-width: 860px; margin-inline: auto; width: 100%; }\nselector .zwl .zw-intro { max-width: 60ch; margin-bottom: 2.5rem; }\nselector .zwl .zw-intro--center { max-width: 56ch; margin: 0 auto 3rem; text-align: center; }\nselector .zwl .zw-center { text-align: center; }\n\n/* --- Typografie -------------------------------------------------------- */\nselector .zwl .elementor-heading-title {\n  font-family: var(--zw-font-head);\n  margin: 0 0 .5em; letter-spacing: 0;\n  text-wrap: balance;\n}\nselector .zwl h1.elementor-heading-title { font-size: var(--zw-h1); font-weight: 700; line-height: 1.1; }\nselector .zwl h2.elementor-heading-title { font-size: var(--zw-h2); font-weight: 700; line-height: 1.16; }\nselector .zwl h3.elementor-heading-title { font-size: var(--zw-h3); font-weight: 500; line-height: 1.24; }\nselector .zwl .elementor-widget-text-editor {\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500; line-height: 1.72;\n  color: inherit;\n}\nselector .zwl .elementor-widget-text-editor p { margin: 0 0 1.15em; text-wrap: pretty; }\nselector .zwl .elementor-widget-text-editor a { color: var(--zw-red); text-underline-offset: 2px; }\nselector .zwl .elementor-widget-text-editor > :last-child,\nselector .zwl .elementor-widget-text-editor > .elementor-widget-container > :last-child { margin-bottom: 0; }\nselector .zwl .zw-lead { font-size: clamp(1rem, .95rem + .3vw, 1.175rem); line-height: 1.7; color: var(--zw-grey-700); }\nselector .zwl .zw-lead p { margin-bottom: 1.15em; }\nselector .zwl .zw-muted { color: var(--zw-grey-500); font-size: 13.5px; }\n\n/* Bovenschrift met streepje */\nselector .zwl .zw-eyebrow .elementor-heading-title {\n  display: inline-flex; align-items: center; gap: .55em;\n  font-family: var(--zw-font-head);\n  font-size: 12px; font-weight: 700; line-height: 1.4;\n  letter-spacing: .18em; text-transform: uppercase;\n  margin: 0 0 1rem;\n}\nselector .zwl .zw-eyebrow .elementor-heading-title::before {\n  content: \"\"; width: 28px; height: 3px; flex-shrink: 0;\n  background: var(--zw-yellow); border-radius: 2px;\n}\nselector .zwl .zw-eyebrow--redbar .elementor-heading-title::before { background: var(--zw-red); }\nselector .zwl .zw-eyebrow--center .elementor-heading-title { justify-content: center; }\n\n/* --- Knoppen (kleuren staan in de knop zelf, via de globale kleuren) --- */\nselector .zwl .elementor-button {\n  display: inline-flex; align-items: center; justify-content: center; gap: .6em;\n  font-family: var(--zw-font-head);\n  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;\n  padding: 1.05em 1.9em;\n  border-radius: var(--zw-radius);\n  box-shadow: var(--zw-shadow-sm);\n  text-align: center;\n  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),\n              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);\n}\nselector .zwl .elementor-button:hover { transform: translateY(-2px); box-shadow: var(--zw-shadow-md); }\nselector .zwl .zw-btn--lg .elementor-button { font-size: 17px; padding: 1.2em 2.3em; }\nselector .zwl .zw-btn--block, selector .zwl .zw-btn--block .elementor-button-wrapper { width: 100%; }\nselector .zwl .zw-btn--block .elementor-button { width: 100%; }\nselector .zwl .zw-btn--ghost .elementor-button { box-shadow: none; }\nselector .zwl .zw-btnrow { display: flex; --flex-direction: row; flex-direction: row; flex-wrap: wrap; gap: .85rem; align-items: center; justify-content: flex-start; }\nselector .zwl .zw-btnrow.zw-center { justify-content: center; }\nselector .zwl .zw-btnrow > .elementor-widget { width: auto; }\n\n/* --- Vinkjeslijst ------------------------------------------------------ */\nselector .zwl .zw-checks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }\nselector .zwl .zw-checks li { position: relative; padding-left: 2.15rem; }\nselector .zwl .zw-checks li::before {\n  content: \"\"; position: absolute; left: 0; top: .2em;\n  width: 1.35rem; height: 1.35rem; border-radius: 50%;\n  background: var(--zw-red) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E\") center / .8rem no-repeat;\n}\nselector .zwl .zw-checks--sm { font-size: 14.5px; }\n\n/* Vertrouwensrij */\nselector .zwl .zw-trust ul {\n  display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;\n  list-style: none; margin: 0; padding: 0;\n  font-family: var(--zw-font-head);\n  font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;\n  color: var(--zw-grey-500);\n}\nselector .zwl .zw-trust li { display: flex; align-items: center; gap: .45em; }\nselector .zwl .zw-trust li::before { content: \"\"; width: 6px; height: 6px; border-radius: 50%; background: var(--zw-yellow); }\n\n/* Kaart */\nselector .zwl .zw-card {\n  background: var(--zw-white);\n  border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius-card);\n  --padding-top: clamp(1.35rem, 2.5vw, 2rem); --padding-bottom: clamp(1.35rem, 2.5vw, 2rem);\n  --padding-left: clamp(1.35rem, 2.5vw, 2rem); --padding-right: clamp(1.35rem, 2.5vw, 2rem);\n  box-shadow: var(--zw-shadow-sm);\n}\nselector .zwl .zw-card--accent { border-top: 4px solid var(--zw-red); }\n\n/* Veelgestelde vragen — Elementor-accordeon in de stijl van het voorstel */\nselector .zwl .zw-faq { max-width: 760px; margin-inline: auto; width: 100%; }\nselector .zwl .zw-faq .e-n-accordion { display: grid; gap: .6rem; }\nselector .zwl .zw-faq .e-n-accordion-item {\n  background: var(--zw-white); border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius); overflow: hidden;\n}\nselector .zwl .zw-faq .e-n-accordion-item[open] { border-color: var(--zw-red); }\nselector .zwl .zw-faq .e-n-accordion-item-title {\n  padding: 1.05rem 1.25rem; border: 0; background: transparent;\n  justify-content: space-between; gap: 1rem;\n}\nselector .zwl .zw-faq .e-n-accordion-item-title-header { flex: 1 1 auto; justify-content: flex-start; text-align: left; }\nselector .zwl .zw-faq .e-n-accordion-item-title-icon { order: 2; flex-shrink: 0; }\nselector .zwl .zw-faq .e-n-accordion-item-title-text {\n  font-family: var(--zw-font-head); font-size: 15.5px; font-weight: 700; line-height: 1.4;\n  color: var(--zw-ink);\n}\nselector .zwl .zw-faq .e-n-accordion-item-title-icon svg { fill: var(--zw-red); width: .9rem; height: .9rem; }\nselector .zwl .zw-faq .e-n-accordion-item > .e-con {\n  --padding-top: 0px; --padding-left: 1.25rem; --padding-right: 1.25rem; --padding-bottom: 1.15rem;\n  border: 0;\n}\nselector .zwl .zw-faq .e-n-accordion-item .elementor-widget-text-editor { font-size: 14.5px; color: var(--zw-grey-700); }\nselector .zwl .zw-faq--sm .e-n-accordion-item-title { padding: 1rem 1.1rem; }\nselector .zwl .zw-faq--sm .e-n-accordion-item-title-text { font-size: 15px; }\nselector .zwl .zw-faq--sm .e-n-accordion-item > .e-con { --padding-left: 1.1rem; --padding-right: 1.1rem; --padding-bottom: 1.05rem; }\nselector .zwl .zw-faq--sm .e-n-accordion-item .elementor-widget-text-editor { font-size: 14px; }\n\n/* Afbeelding met ronde hoeken in 4:3 */\nselector .zwl .zw-photo img { border-radius: var(--zw-radius-card); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; height: auto; }\n\n/* Kleefbare actiebalk op mobiel */\nselector .zwl.zw-mobilebar {\n  position: fixed; inset: auto 0 0 0; z-index: 70;\n  display: none;\n  --padding-top: .7rem; --padding-bottom: calc(.7rem + env(safe-area-inset-bottom));\n  --padding-left: var(--zw-gutter); --padding-right: var(--zw-gutter);\n  background: rgba(255,255,255,.97);\n  backdrop-filter: blur(8px);\n  border-top: 1px solid var(--zw-line);\n  box-shadow: 0 -4px 20px rgba(18,20,19,.1);\n}\n@media (max-width: 860px) {\n  selector .zwl.zw-mobilebar { display: flex; }\n}\n/* In de Elementor-editor de balk gewoon onderaan tonen, niet zwevend */\nselector.elementor-editor-active .zwl.zw-mobilebar { position: static; display: flex; }\n\n/* Instapanimatie */\n@keyframes zw-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }\nselector .zwl .zw-rise { animation: zw-rise .7s var(--zw-ease) both; }\nselector .zwl .zw-rise-2 { animation-delay: .14s; }\n@media (prefers-reduced-motion: reduce) {\n  selector .zwl *, selector .zwl *::before, selector .zwl *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }\n}\n\n/* Ankers niet onder de sitehoofding laten verdwijnen */\nselector .zwl [id] { scroll-margin-top: 110px; }\n\n\n/* ==========================================================================\n   Foto's van Jana en de gedeelde blokken van haar copy (28 okt 2026), voor\n   Elementor. Zelfde opmaak als assets/photos.css + het slot van\n   assets/zwijsen.css, maar op de markup van de native widgets:\n   Afbeelding (.zp-pic img), Testimonial (.zw-quote) en Tekst.\n   ========================================================================== */\n\nselector .zwl .zp-pic { text-align: left; }\nselector .zwl .zp-pic img { display: block; width: 100%; max-width: 100%; height: auto; }\nselector .zwl .zp-pic figure { margin: 0; }\n\n/* --- Lijst in twee kolommen (voordelen) --------------------------------- */\nselector .zwl .zw-checks--2col ul { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 2.5rem; }\n\n/* --- \"Wij zijn Electro Zwijsen\" ----------------------------------------- */\nselector .zwl .zw-about { max-width: 70ch; margin-bottom: 3rem; }\nselector .zwl .zw-about .elementor-widget-text-editor { color: var(--zw-grey-700); }\n\n/* --- Sectietitel boven een fotoblok -------------------------------------- */\nselector .zwl .zp-head .elementor-heading-title { font-size: 1.15rem; font-weight: 700; line-height: 1.3; margin: 0 0 1.1rem; }\n\n/* --- Fotoband: metselwerk op groot scherm, veegstrook op mobiel ---------- */\nselector .zwl .zp-band-wrap { margin-top: 2.5rem; }\nselector .zwl .zp-band.e-con { --display: block; display: block; columns: 5 200px; column-gap: 8px; }\nselector .zwl .zp-band > .elementor-widget { break-inside: avoid; margin: 0 0 8px; width: 100%; display: block; }\nselector .zwl .zp-band img { border-radius: var(--zw-radius); background: var(--zw-grey-100); }\n@media (max-width: 700px) {\n  selector .zwl .zp-band.e-con {\n    columns: auto;\n    --display: flex; display: flex; --flex-direction: row; flex-direction: row; --flex-wrap: nowrap; flex-wrap: nowrap;\n    gap: 8px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;\n    margin-inline: calc(-1 * var(--zp-bleed, var(--zw-gutter)));\n    --padding-left: var(--zp-bleed, var(--zw-gutter)); --padding-right: var(--zp-bleed, var(--zw-gutter)); --padding-bottom: 6px;\n    width: calc(100% + 2 * var(--zp-bleed, var(--zw-gutter))); max-width: none; min-width: 0; align-self: auto;\n    scrollbar-width: thin;\n  }\n  selector .zwl .zp-band > .elementor-widget { flex: 0 0 auto; width: auto; margin: 0; scroll-snap-align: start; }\n  selector .zwl .zp-band img { height: 240px; width: auto; max-width: none; }\n}\nselector .zwl .zp-swipe-hint { display: none; margin-top: .5rem; font-size: 12.5px; color: var(--zw-grey-500); }\n@media (max-width: 700px) { selector .zwl .zp-swipe-hint { display: block; } }\n\n/* --- \"De selectie van de nieuwe werven\": kleine galerij ------------------- */\nselector .zwl .zp-werven-wrap { margin-top: 2.5rem; }\nselector .zwl .zp-werven.e-con {\n  --display: grid; display: grid; gap: 8px;\n  grid-template-columns: 2fr 1fr 1fr;\n  grid-template-rows: repeat(2, clamp(150px, 16vw, 230px));\n}\nselector .zwl .zp-werven > .elementor-widget { width: 100%; height: 100%; min-height: 0; }\nselector .zwl .zp-werven > .elementor-widget:first-child { grid-row: span 2; }\nselector .zwl .zp-werven > .elementor-widget > .elementor-widget-container { height: 100%; }\nselector .zwl .zp-werven img { height: 100%; object-fit: cover; border-radius: var(--zw-radius); background: var(--zw-grey-100); }\n@media (max-width: 700px) {\n  selector .zwl .zp-werven.e-con { grid-template-columns: 1fr 1fr; grid-template-rows: 190px repeat(2, 130px); }\n  selector .zwl .zp-werven > .elementor-widget:first-child { grid-row: auto; grid-column: span 2; }\n}\n\n/* --- \"Regio Dendermonde in beeld\" naast \"Ben jij dit?\" -------------------- */\nselector .zwl .zp-region-c { container-type: inline-size; }\nselector .zwl .zp-region.e-con {\n  --display: grid; display: grid; gap: 1.25rem 2rem;\n  grid-template-columns: minmax(0, 1fr) clamp(170px, 30%, 250px); align-items: start;\n}\nselector .zwl .zp-region > .elementor-widget { width: 100%; }\nselector .zwl .zp-map img { border-radius: var(--zw-radius-card); border: 1px solid var(--zw-line); background: var(--zw-grey-100); }\nselector .zwl .zp-map figcaption {\n  margin-top: .45rem; text-align: left; font-family: var(--zw-font-head);\n  font-size: 11px; font-weight: 700; line-height: 1.4; letter-spacing: .12em; text-transform: uppercase; color: var(--zw-grey-500);\n}\n@media (max-width: 560px) { selector .zwl .zp-map { max-width: 240px; } }\n@container (max-width: 520px) {\n  selector .zwl .zp-region.e-con { grid-template-columns: 1fr; }\n  selector .zwl .zp-region .zp-map { order: -1; max-width: 220px; }\n}\n\n/* --- Getuigenissen (Elementor Testimonial) -------------------------------- */\nselector .zwl .zw-quotes.e-con { --display: grid; display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }\nselector .zwl .zw-quote {\n  width: 100%;\n  background: var(--zw-white);\n  border: 1px solid var(--zw-line); border-top: 4px solid var(--zw-yellow);\n  border-radius: var(--zw-radius-card);\n  padding: clamp(1.35rem, 2.6vw, 1.8rem);\n}\nselector .zwl .zw-quote .elementor-testimonial-wrapper {\n  display: flex; flex-direction: column; justify-content: space-between; gap: 1.1rem;\n  height: 100%; text-align: left;\n}\nselector .zwl .zw-quote .elementor-testimonial-content {\n  margin: 0; font-family: var(--zw-font-head);\n  font-size: 1.02rem; font-weight: 500; line-height: 1.55; color: var(--zw-ink);\n}\nselector .zwl .zw-quote .elementor-testimonial-meta { margin: 0; }\nselector .zwl .zw-quote .elementor-testimonial-meta-inner { display: flex; align-items: center; gap: .85rem; }\nselector .zwl .zw-quote .elementor-testimonial-image { display: block; padding: 0; flex: 0 0 auto; }\nselector .zwl .zw-quote .elementor-testimonial-image img {\n  width: 76px; height: 76px; max-width: none; object-fit: cover;\n  border-radius: 50%; border: 3px solid var(--zw-yellow);\n}\nselector .zwl .zw-quote.zp-kurt .elementor-testimonial-image img { object-position: 62% 30%; }\nselector .zwl .zw-quote.zp-steven .elementor-testimonial-image img { object-position: 50% 45%; }\nselector .zwl .zw-quote .elementor-testimonial-details { display: block; text-align: left; }\nselector .zwl .zw-quote .elementor-testimonial-name {\n  display: block; font-family: var(--zw-font-body); font-size: 15px; font-weight: 700; line-height: 1.5; color: var(--zw-ink);\n}\nselector .zwl .zw-quote .elementor-testimonial-job {\n  display: block; font-family: var(--zw-font-body); font-size: 13.5px; font-weight: 500; line-height: 1.5; color: var(--zw-grey-500);\n}\n\n/* --- Groepsfoto bij \"Solliciteer in 30 seconden\" -------------------------- */\nselector .zwl .zp-group { max-width: 1100px; margin: 0 auto 1.25rem; }\nselector .zwl .zp-group img { border-radius: var(--zw-radius-card); aspect-ratio: 1600 / 671; object-fit: cover; }\n@media (max-width: 700px) { selector .zwl .zp-group img { aspect-ratio: 4 / 3; object-position: 55% 50%; } }\n\n/* --- Herofoto als zichtbaar beeld ----------------------------------------- */\nselector .zwl .zp-hero-photo { margin-bottom: 1.25rem; }\nselector .zwl .zp-hero-photo img { border-radius: var(--zw-radius-card); aspect-ratio: 16 / 10; object-fit: cover; object-position: 72% 40%; }\n\n/* --- Foto bij \"Hoe ziet je dag eruit?\" ------------------------------------ */\nselector .zwl .zp-day img { border-radius: var(--zw-radius-card); aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 35%; }\n\n/* --- Voorstel 5 (één kolom): altijd een veegstrook, en een kleinere galerij */\nselector .zwl .zp-band.zp-band--strip.e-con {\n  columns: auto;\n  --display: flex; display: flex; --flex-direction: row; flex-direction: row; --flex-wrap: nowrap; flex-wrap: nowrap;\n  gap: 8px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;\n  margin-inline: calc(-1 * var(--zp-bleed, var(--zw-gutter)));\n  --padding-left: var(--zp-bleed, var(--zw-gutter)); --padding-right: var(--zp-bleed, var(--zw-gutter)); --padding-bottom: 6px;\n  width: calc(100% + 2 * var(--zp-bleed, var(--zw-gutter))); max-width: none; min-width: 0; align-self: auto;\n  scrollbar-width: thin;\n}\nselector .zwl .zp-band--strip > .elementor-widget { flex: 0 0 auto; width: auto; margin: 0; scroll-snap-align: start; }\nselector .zwl .zp-band--strip img { height: 240px; width: auto; max-width: none; }\nselector .zwl .zp-band--strip + .zp-swipe-hint { display: block; }\nselector .zwl .zp-werven.zp-werven--3.e-con { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px; }\nselector .zwl .zp-werven--3 > .elementor-widget:first-child { grid-row: auto; grid-column: span 2; }\n\n\n/* ONTWERP 5 — \"Snelsollicitatie\": één kolom, gebouwd voor de duim */\n\nselector .zwl.m-col { --padding-left: 20px; --padding-right: 20px; }\nselector .zwl.m-col > .e-con-inner { max-width: min(100%, 600px); }\n\nselector .zwl.m-hero { color: var(--zw-white); position: relative; overflow: hidden;\n  --padding-top: clamp(1.75rem, 6vw, 3rem); --padding-bottom: clamp(6rem, 16vw, 8rem); }\nselector .zwl.m-hero::after {\n  content: \"\"; position: absolute; left: 0; right: 0; bottom: 0; top: auto; height: 5px; width: auto;\n  background: linear-gradient(90deg, var(--zw-red) 0 55%, var(--zw-yellow) 55% 100%);\n  opacity: 1; z-index: 2;\n}\nselector .zwl.m-hero h1.elementor-heading-title { font-size: clamp(1.85rem, 1.4rem + 2.6vw, 2.6rem); line-height: 1.12; margin-bottom: .6rem; }\nselector .zwl.m-hero h1.elementor-heading-title span { color: var(--zw-yellow); }\nselector .zwl .m-hero-p { color: rgba(255,255,255,.85); font-size: 1.02rem; }\nselector .zwl .m-hero-p p { margin-bottom: 1.35rem; }\nselector .zwl .chips ul { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: 0 0 1.5rem; padding: 0; }\nselector .zwl .chips li {\n  display: flex; align-items: center; gap: .4rem;\n  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700; line-height: 1.5;\n  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);\n  border-radius: 99px; padding: .42rem .8rem; color: var(--zw-white);\n}\nselector .zwl .chips li::before { content: \"✓\"; color: var(--zw-yellow); }\n\n/* Formulierkaart die over de hero schuift */\nselector .zwl.m-formsec { position: relative; z-index: 3; }\nselector .zwl .m-form {\n  margin-top: clamp(-5.5rem, -14vw, -7rem);\n  background: var(--zw-white); border-radius: var(--zw-radius-card);\n  --padding-top: clamp(1.25rem, 4vw, 1.85rem); --padding-bottom: clamp(1.25rem, 4vw, 1.85rem);\n  --padding-left: clamp(1.25rem, 4vw, 1.85rem); --padding-right: clamp(1.25rem, 4vw, 1.85rem);\n  box-shadow: var(--zw-shadow-lg);\n}\nselector .zwl .m-form-h .elementor-heading-title { font-size: 1.22rem; font-weight: 700; margin-bottom: .25rem; }\nselector .zwl .m-form-p { font-size: 13.5px; color: var(--zw-grey-700); margin-bottom: 1rem; }\n\n/* Compacte secties */\nselector .zwl.m-sec { --padding-top: clamp(2.25rem, 7vw, 3.25rem); --padding-bottom: clamp(2.25rem, 7vw, 3.25rem); }\nselector .zwl.m-sec--grey { background-color: var(--zw-grey-50); }\nselector .zwl.m-sec h2.elementor-heading-title { font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem); font-weight: 700; }\nselector .zwl .m-intro { color: var(--zw-grey-700); margin-bottom: 1.35rem; }\nselector .zwl .m-gap { margin-top: 1.25rem; }\n\n/* Duimvriendelijke lijst (Elementor-pictogramvakken) */\nselector .zwl .m-list { display: grid; gap: .55rem; }\nselector .zwl .m-item {\n  background: var(--zw-white); border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius); padding: .95rem 1.05rem;\n}\nselector .zwl .m-item .elementor-icon-box-wrapper { display: flex; flex-direction: row; align-items: flex-start; gap: .85rem; text-align: left; }\nselector .zwl .m-item .elementor-icon-box-icon { margin: 0; flex-shrink: 0; display: block; }\nselector .zwl .m-item .elementor-icon {\n  width: 2rem; height: 2rem; display: grid; place-items: center;\n  border-radius: var(--zw-radius); background: var(--zw-red); font-size: 1rem;\n}\nselector .zwl .m-item .elementor-icon svg { width: 1rem; height: 1rem; fill: var(--zw-white); }\nselector .zwl .m-item .elementor-icon-box-content { flex: 1; }\nselector .zwl .m-item .elementor-icon-box-title { font-family: var(--zw-font-head); font-size: 15px; font-weight: 700; line-height: 1.5; margin: 0; color: var(--zw-ink); }\nselector .zwl .m-item .elementor-icon-box-description { margin: 0; font-family: var(--zw-font-body); font-size: 15px; font-weight: 500; line-height: 1.5; color: var(--zw-ink); }\n\nselector .zwl .m-cta { margin-top: 1.5rem; }\nselector .zwl .m-cta-note { margin-top: .6rem; text-align: center; font-size: 12.5px; color: var(--zw-grey-500); }\n\n/* Stappen */\nselector .zwl .m-steps ol { list-style: none; counter-reset: s; margin: 1.35rem 0 0; padding: 0; display: grid; gap: .75rem; }\nselector .zwl .m-steps li { counter-increment: s; position: relative; padding-left: 3rem; }\nselector .zwl .m-steps li::before {\n  content: counter(s); position: absolute; left: 0; top: -.1rem;\n  width: 2.15rem; height: 2.15rem; display: grid; place-items: center;\n  border-radius: 50%; background: var(--zw-yellow); color: var(--zw-ink);\n  font-family: var(--zw-font-head); font-size: 13px; font-weight: 700;\n}\nselector .zwl .m-steps strong { display: block; font-family: var(--zw-font-head); font-size: 15px; }\nselector .zwl .m-steps span { font-size: 14px; color: var(--zw-grey-700); }\nselector .zwl .zw-faq.m-faq-w { margin-top: 1.35rem; max-width: none; }\n\n/* Bellen */\nselector .zwl .m-call {\n  background: var(--zw-ink); color: var(--zw-grey); border-radius: var(--zw-radius-card);\n  --padding-top: 1.6rem; --padding-bottom: 1.6rem; --padding-left: 1.5rem; --padding-right: 1.5rem; text-align: center;\n}\nselector .zwl .m-call-h .elementor-heading-title { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }\nselector .zwl .m-call-p { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 1.15rem; }\n\nselector .zwl .m-list { margin-top: 1.35rem; }\nselector .zwl .m-15 { font-size: 15px; }\nselector .zwl .m-quotes-h .elementor-heading-title { margin-bottom: 1.35rem; }\nselector .zwl .m-group { margin-top: 1.75rem; margin-bottom: 0; }\nselector .zwl.m-col { --zp-bleed: 20px; }\nselector .zwl.m-col .zw-about { margin-bottom: 0; }\n\n/* Onderbalk op mobiel: ruimte onderaan zodat hij niets bedekt */\n@media (max-width: 860px) { selector { padding-bottom: 5.5rem; } }\n\n\n/* ==========================================================================\n   Voorstel 5 MET FILM — de twee regiopagina's (Dendermonde, Lier en\n   Antwerpen-Zuidrand), 31 okt 2026. Bovenop basis.css + fotos.css +\n   pagina-5.css. Overgenomen uit de <style> van\n   5-snelsollicitatie-mobiel-film*.html, op de markup van de Elementor-widgets.\n   ========================================================================== */\n\n/* Op het bedankscherm is de oproep \"Solliciteer… / Doe de test\" niet meer nodig. */\nselector .zwl .m-form:has(.za__done) .m-form__top { display: none; }\nselector .zwl .m-form__top { margin-bottom: 0; }\n\n/* --- De film, van rand tot rand op gsm --------------------------------- */\nselector .zwl .zw-film { width: 100%; }\nselector .zwl .film-band {\n  margin: 1.35rem calc(-1 * var(--zp-bleed, 20px)) 0;\n  height: max(340px, min(125vw, 72svh));\n}\n@media (min-width: 600px) {\n  selector .zwl .film-band { margin-inline: 0; height: auto; aspect-ratio: 3 / 2; border-radius: var(--zw-radius-card); }\n}\nselector .zwl .film-band .film__layer { padding: 14px 16px 18px; }\nselector .zwl .film-band .film__caption { margin-top: auto; }\nselector .zwl .film-band .film__line { font-size: clamp(1.12rem, 1rem + 1vw, 1.5rem); max-width: 26ch; }\nselector .zwl .film-band .film__kicker { font-size: 14px; }\n\n/* Het punt in de lijst dat bij de huidige shot hoort, licht mee op */\nselector .zwl .m-item { transition: border-color .4s var(--zw-ease), box-shadow .4s var(--zw-ease); }\nselector .zwl .m-item.is-film { border-color: var(--zw-red); box-shadow: inset 3px 0 0 var(--zw-red); }\n\n/* --- Fotoblok bij \"Wat ga je doen?\": 3:2 boven, twee keer 4:3 eronder ---- */\nselector .zwl .zp-werk.e-con {\n  --display: grid; display: grid; gap: 8px; grid-template-columns: 1fr 1fr; margin-top: 1.75rem;\n}\nselector .zwl .zp-werk > .elementor-widget { width: 100%; min-width: 0; }\nselector .zwl .zp-werk > .elementor-widget:first-child { grid-column: 1 / -1; }\nselector .zwl .zp-werk img {\n  width: 100%; height: auto; object-fit: cover; border-radius: var(--zw-radius);\n  background: var(--zw-grey-100); aspect-ratio: 4 / 3;\n}\nselector .zwl .zp-werk > .elementor-widget:first-child img { aspect-ratio: 3 / 2; object-position: 50% 40%; }\nselector .zwl .zp-werk > .elementor-widget:nth-child(2) img { object-position: 30% 50%; }\n\n/* --- Eigen regiokaart (inline SVG) -------------------------------------- */\nselector .zwl .zk-fig { margin: 1.5rem 0 0; }\nselector .zwl .zk { display: block; width: 100%; height: auto; border: 1px solid var(--zw-line); border-radius: var(--zw-radius-card); }\nselector .zwl .zk-town { font: 600 12.5px var(--zw-font-body); fill: var(--zw-ink); paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }\nselector .zwl .zk-main { font: 700 16px var(--zw-font-head); fill: var(--zw-ink); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }\nselector .zwl .zk-river { font: italic 500 11px var(--zw-font-body); fill: #6E8494; }\nselector .zwl .zk-scale { font: 500 10.5px var(--zw-font-body); fill: var(--zw-grey-700); }\nselector .zwl .zk-ref { font: 500 11px var(--zw-font-body); fill: var(--zw-grey-700); paint-order: stroke; stroke: #F7F6F6; stroke-width: 3px; stroke-linejoin: round; }\nselector .zwl .zk-hq { font-weight: 700; }\n\n/* --- Veelgestelde vragen: één grijze band met het bel-blok eronder ------- */\nselector .zwl.m-faqsec { --padding-bottom: 0px; }\nselector .zwl .zw-faq .e-n-accordion-item-title-text { margin: 0; }\n\n/* --- Bellen of mailen ---------------------------------------------------- */\nselector .zwl .m-call-mail { margin-top: .9rem; font-size: 14px; color: rgba(255,255,255,.75); }\nselector .zwl .m-call-mail a { color: var(--zw-yellow); }\n\n/* --- Actiebalk onderaan: weg zolang het formulier zelf in beeld is -------- */\nselector .zwl.zw-mobilebar { transition: transform .3s var(--zw-ease); }\nselector .zwl.zw-mobilebar.is-weg { transform: translateY(110%); }\n\n/* --- Correcties na de eerste test op staging (31 okt) --------------------- */\n/* Een HTML-widget in een flexkolom werd gemeten alsof de SVG 300 px breed was:\n   de widget was dan lager dan de kaart en de knop eronder schoof erover. */\nselector .zwl .elementor-widget-html { width: 100%; }\n/* Elementor zet figure-marges op 0 met een sterkere selector. */\nselector .zwl .zw-kaart .zk-fig { margin: 1.5rem 0 0; }\nselector .zwl .m-hero-p { margin-bottom: 1.35rem; }\nselector .zwl .zp-band-wrap { margin-top: 1.75rem; }\n\n\nselector .film {position: relative;\n  overflow: hidden;\n  background: #0b0c0c;\n  color: #fff;\n  isolation: isolate;}\nselector .film__shots {position: absolute; inset: 0;}\nselector .film__shot {position: absolute; inset: 0;\n  opacity: 0;\n  transition: opacity 1.6s cubic-bezier(.4, 0, .2, 1);}\nselector .film__shot.is-on {opacity: 1;}\nselector .film__shot picture {display: block; width: 100%; height: 100%;}\nselector .film__shot img {display: block;\n  width: 100%; height: 100%;\n  object-fit: cover;\n  transform-origin: center;\n  will-change: transform;}\nselector .film::before {content: \"\"; position: absolute; inset: 0; z-index: 2; pointer-events: none;\n  background:\n    radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,.5) 100%),\n    linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.25) 26%, transparent 42%, transparent 50%, rgba(0,0,0,.84) 100%);}\nselector .film::after {content: \"\"; position: absolute; inset: -50%; z-index: 3; pointer-events: none;\n  opacity: .07; mix-blend-mode: overlay;\n  background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\");\n  animation: film-korrel .9s steps(4) infinite;}\nselector .film.is-paused::after {animation-play-state: paused;}\n@keyframes film-korrel{\n  0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); }\n  50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); }\n}\nselector .film__bar {position: absolute; left: 0; right: 0; z-index: 4; height: 9%;\n  background: #0b0c0c; pointer-events: none;\n  transition: transform 1.8s cubic-bezier(.7, 0, .2, 1) .3s;}\nselector .film__bar--top {top: 0;}\nselector .film__bar--bottom {bottom: 0;}\nselector .film.is-started .film__bar--top {transform: translateY(-100%);}\nselector .film.is-started .film__bar--bottom {transform: translateY(100%);}\nselector .film__layer {position: relative; z-index: 6;\n  min-height: inherit; height: 100%;\n  display: flex; flex-direction: column;\n  padding: 14px 16px 18px;}\nselector .film__top {display: flex; align-items: center; gap: 12px;}\nselector .film__progress {flex: 1; display: flex; gap: 5px;}\nselector .film__tick {flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.28); overflow: hidden;}\nselector .film__tick span {display: block; height: 100%; background: #fff; transform-origin: left; transform: scaleX(0);}\nselector .film__tick.is-done span {transform: scaleX(1);}\nselector .film__pause {flex: none;\n  width: 2.75rem; height: 2.75rem; border-radius: 50%;\n  border: 1px solid rgba(255,255,255,.45); background: rgba(0,0,0,.3); color: #fff;\n  display: grid; place-items: center; cursor: pointer;\n  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);}\nselector .film__pause:hover {background: rgba(0,0,0,.55);}\nselector .film__pause:focus-visible {outline: 3px solid var(--zw-yellow, #FCC715); outline-offset: 2px;}\nselector .film__pause svg {width: 1rem; height: 1rem;}\nselector .film__caption {margin-top: 1rem; pointer-events: none;}\nselector .film__kicker {display: flex; align-items: center; gap: .6rem; margin-bottom: .45rem;\n  font-family: var(--zw-font-head, Roboto, sans-serif); font-weight: 700;\n  font-size: 15px; line-height: 1.2; color: var(--zw-yellow, #FCC715);\n  opacity: 0; transition: opacity .9s ease .1s;}\nselector .film__kicker::before {content: \"\"; flex: none; width: 1.8rem; height: 3px; background: currentColor;}\nselector .film__line {display: block;\n  font-family: var(--zw-font-head, Roboto, sans-serif); font-weight: 700;\n  font-size: clamp(1.2rem, 1rem + 1.3vw, 2rem); line-height: 1.15;\n  letter-spacing: -.005em; max-width: 24ch;\n  text-shadow: 0 2px 18px rgba(0,0,0,.5);\n  opacity: 0; transform: translateY(10px);\n  transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);}\nselector .film__kicker.is-on {opacity: 1;}\nselector .film__line.is-on {opacity: 1; transform: none;}\nselector .film__foot {margin-top: auto; padding-top: 1.25rem;}\n@media (prefers-reduced-motion: reduce){selector .film::after {animation: none;}\nselector .film__bar {display: none;}\nselector .film__shot, selector .film__kicker, selector .film__line {transition: none;}\nselector .film__progress, selector .film__pause {visibility: hidden;}}\n\nselector .zw-btn {--_bg: var(--zw-red);\n  --_fg: var(--zw-white);\n  display: inline-flex; align-items: center; justify-content: center; gap: .6em;\n  font-family: var(--zw-font-head);\n  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .02em;\n  text-transform: none;\n  padding: 1.05em 1.9em;\n  border: 2px solid transparent;\n  border-radius: var(--zw-radius);\n  background: var(--_bg);\n  color: var(--_fg);\n  text-decoration: none;\n  cursor: pointer;\n  transition: transform .18s var(--zw-ease), background-color .18s var(--zw-ease),\n              box-shadow .18s var(--zw-ease), color .18s var(--zw-ease);\n  box-shadow: var(--zw-shadow-sm);\n  text-align: center;}\nselector .zw-btn:hover, selector .zw-btn:focus {--_bg: var(--zw-red-dark); background: var(--_bg); color: var(--_fg); transform: translateY(-2px); box-shadow: var(--zw-shadow-md);}\nselector .zw-btn:active {transform: translateY(0);}\nselector .zw-btn[disabled] {opacity: .5; cursor: not-allowed; transform: none;}\nselector .zw-visually-hidden {position: absolute !important;\n  width: 1px; height: 1px; margin: -1px; padding: 0;\n  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;}\nselector .za, selector .za-modal {font-family: var(--zw-font-body); font-size: 15px; font-weight: 500; line-height: 1.72; color: var(--zw-ink);}\nselector .za *, selector .za *::before, selector .za *::after, selector .za-modal *, selector .za-modal *::before, selector .za-modal *::after {box-sizing: border-box;}\nselector .za h3 {font-family: var(--zw-font-head); color: var(--zw-ink); margin: 0 0 .5em; line-height: 1.24;}\nselector .za p {margin: 0 0 1.15em;}\nselector .za a {color: var(--zw-red);}\nselector .za :focus-visible {outline: 3px solid var(--zw-red); outline-offset: 2px; border-radius: 2px;}\nselector .za-topbar .zw-container {width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--zw-gutter); box-sizing: border-box;}\nselector .za-topbar .za-topbar__text {color: var(--zw-white);}\n\nselector .za {background: var(--zw-white);\n  border-radius: var(--zw-radius-card);\n  color: var(--zw-ink);\n  container-type: inline-size;}\nselector .za__head {display: grid; gap: .5rem;\n  padding: 0 0 1.25rem;}\nselector .za__head.is-done {display: none;}\nselector .za__step {font-family: var(--zw-font-body);\n  font-size: 13px; font-weight: 600;\n  color: var(--zw-grey-700);}\nselector .za__bar {height: 2px;\n  background: var(--zw-grey-100); overflow: hidden;}\nselector .za__bar-fill {display: block; height: 100%;\n  background: var(--zw-ink);\n  transition: width .45s var(--zw-ease);}\nselector .za__fieldset {border: 0; margin: 0; padding: 0; min-width: 0;}\nselector .za__legend {font-family: var(--zw-font-head);\n  font-size: clamp(1.08rem, 1rem + .45vw, 1.4rem);\n  font-weight: 700; line-height: 1.32;\n  color: var(--zw-ink);\n  padding: 0; margin: 0 0 .5rem;\n  display: block; width: 100%;}\nselector .za__legend:focus {outline: none;}\nselector .za__hint {margin: 0;\n  font-size: 13.5px; line-height: 1.6;\n  color: var(--zw-grey-700);}\nselector .za__options {display: grid; margin-top: 1.1rem;\n  border: 1px solid var(--zw-line);\n  border-radius: var(--zw-radius);\n  background: var(--zw-white);}\nselector .za__option {position: relative;\n  display: flex; align-items: center; gap: .9rem;\n  min-height: 3.1rem;\n  padding: .8rem 1rem .8rem .95rem;\n  border-top: 1px solid var(--zw-line);\n  cursor: pointer;\n  font-family: var(--zw-font-head);\n  font-size: 16px; font-weight: 500; line-height: 1.35;\n  color: var(--zw-ink);\n  transition: background-color .14s var(--zw-ease), box-shadow .14s var(--zw-ease);}\nselector .za__options > .za__option:first-child {border-top: 0;}\nselector .za__option:hover {background: var(--zw-grey-50);}\nselector .za__option.is-on {background: #FFFAE6; box-shadow: inset 3px 0 0 var(--zw-yellow);}\nselector .za__option:has(.za__radio:focus-visible) {outline: 2px solid var(--zw-ink); outline-offset: -2px; z-index: 1;}\nselector .za__radio {position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0;}\nselector .za__tick {flex-shrink: 0; position: relative;\n  width: 20px; height: 20px;\n  border: 2px solid var(--zw-grey-300);\n  border-radius: 50%;\n  background: var(--zw-white);\n  transition: border-color .14s var(--zw-ease), background-color .14s var(--zw-ease);}\nselector .za__options--multi .za__tick {border-radius: var(--zw-radius);}\nselector .za__option:hover .za__tick {border-color: var(--zw-grey-500);}\nselector .za__option.is-on .za__tick {border-color: var(--zw-ink); background: var(--zw-ink);}\nselector .za__option.is-on .za__tick::after {content: \"\"; position: absolute; left: 5px; top: 1.5px;\n  width: 5px; height: 9px;\n  border: solid var(--zw-yellow); border-width: 0 2px 2px 0;\n  transform: rotate(45deg);}\nselector .za__option-text {flex: 1;}\nselector .za__map {margin: 0 0 1.1rem;}\nselector .za__map-visual {border-radius: var(--zw-radius); overflow: hidden;\n  border: 1px solid var(--zw-line);}\nselector .za__map-visual svg {width: 100%; height: auto; display: block;}\nselector .za__map-caption {margin: .55rem 0 0;\n  font-size: 12px; line-height: 1.55;\n  color: var(--zw-grey-500);}\nselector .za__nav {display: flex; align-items: center; gap: 1rem;\n  margin-top: 1.35rem;}\nselector .za__next {flex: 1;}\nselector .za__back {order: -1;\n  background: none; border: 0;\n  font-family: var(--zw-font-head);\n  font-size: 14px; font-weight: 500;\n  color: var(--zw-grey-700);\n  cursor: pointer; padding: .6rem .2rem;\n  text-decoration: underline; text-underline-offset: 3px;\n  text-decoration-color: var(--zw-grey-300);\n  transition: color .16s var(--zw-ease);}\nselector .za__back:hover {color: var(--zw-ink); text-decoration-color: currentColor;}\nselector .za__error {margin: .8rem 0 0; min-height: 0;\n  font-size: 13.5px; font-weight: 600; color: var(--zw-red);}\nselector .za__error:empty {margin: 0;}\nselector .za__error.is-on::before {content: \"⚠ \";}\nselector .za__reassure {margin: 1rem 0 0;\n  font-size: 12.5px; color: var(--zw-grey-500);\n  text-align: center;}\nselector .za__grid {display: grid; gap: .9rem;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  margin-top: 1.1rem;}\nselector .za__field--full {grid-column: 1 / -1;}\n@container (max-width: 420px){selector .za__grid {grid-template-columns: 1fr;}}\nselector .za__label {display: block;\n  font-family: var(--zw-font-head);\n  font-size: 14px; font-weight: 500;\n  color: var(--zw-ink);\n  margin-bottom: .35rem;}\nselector .za__input, selector .za__select {width: 100%;\n  padding: .82rem .9rem;\n  font-family: var(--zw-font-body);\n  font-size: 15px; font-weight: 500;\n  color: var(--zw-ink);\n  background: var(--zw-white);\n  border: 2px solid var(--zw-line);\n  border-radius: var(--zw-radius);\n  transition: border-color .16s var(--zw-ease), box-shadow .16s var(--zw-ease);}\nselector .za__input:hover, selector .za__select:hover {border-color: var(--zw-grey-300);}\nselector .za__input:focus, selector .za__select:focus {outline: none; border-color: var(--zw-red);\n  box-shadow: 0 0 0 3px var(--zw-red-tint);}\nselector .za__input.is-bad {border-color: var(--zw-red); background: var(--zw-red-tint);}\nselector .za__telrow {display: flex; gap: .5rem;}\nselector .za__select {width: auto; flex-shrink: 0; padding-inline: .6rem;}\nselector .za__field-error {margin: .3rem 0 0;\n  font-size: 12.5px; font-weight: 600; color: var(--zw-red);}\nselector .za__field-error:empty {display: none;}\nselector .za__hp {position: absolute !important;\n  left: -9999px; width: 1px; height: 1px; overflow: hidden;}\nselector .za__file {margin-top: 1rem;}\nselector .za__file-label {display: flex; align-items: center; gap: .65rem;\n  padding: .85rem 1rem;\n  border: 2px dashed var(--zw-grey-300);\n  border-radius: var(--zw-radius);\n  font-size: 14px; color: var(--zw-grey-700);\n  cursor: pointer;\n  transition: border-color .16s var(--zw-ease), background-color .16s var(--zw-ease);}\nselector .za__file-label:hover {border-color: var(--zw-red); background: var(--zw-grey-50);}\nselector .za__file.is-set .za__file-label {border-style: solid; border-color: var(--zw-red);\n  background: var(--zw-red-tint); color: var(--zw-ink); font-weight: 600;}\nselector .za__legal {margin: 1rem 0 0;\n  font-size: 12px; line-height: 1.55;\n  color: var(--zw-grey-500); text-align: center;}\nselector .za__done {text-align: center; padding: .5rem 0 0; animation: zw-rise .5s var(--zw-ease) both;}\nselector .za__done-mark {width: 3.25rem; height: 3.25rem; margin: 0 auto 1rem;\n  display: grid; place-items: center;\n  border-radius: 50%;\n  background: var(--zw-ink); color: var(--zw-yellow);}\nselector .za__done-mark svg {width: 1.6rem; height: 1.6rem;}\nselector .za__done h3 {font-size: clamp(1.3rem, 1.1rem + .8vw, 1.8rem); font-weight: 700; margin-bottom: .6rem;}\nselector .za__done h3:focus {outline: none;}\nselector .za__done-lead {color: var(--zw-grey-700); line-height: 1.7; margin-bottom: 1.25rem;}\nselector .za__done-call {border-top: 1px solid var(--zw-line); padding-top: 1rem;}\nselector .za__done-call a {white-space: nowrap;}\nselector .za__steps {list-style: none; counter-reset: za; margin: 0; padding: 0;\n  display: grid; gap: .85rem; text-align: left;}\nselector .za__steps li {counter-increment: za;\n  position: relative; padding-left: 3rem; min-height: 2.1rem;}\nselector .za__steps li::before {content: counter(za);\n  position: absolute; left: 0; top: 0;\n  width: 2.1rem; height: 2.1rem;\n  display: grid; place-items: center;\n  border-radius: 50%;\n  background: var(--zw-grey-50);\n  border: 2px solid var(--zw-red);\n  color: var(--zw-red);\n  font-family: var(--zw-font-head);\n  font-size: 13px; font-weight: 700;}\nselector .za__steps strong {display: block; font-family: var(--zw-font-head); font-size: 15px;}\nselector .za__steps span {font-size: 13.5px; color: var(--zw-grey-700); line-height: 1.5;}\nselector .za-modal {position: fixed; inset: 0; z-index: 200;\n  display: grid; place-items: center;\n  padding: 1rem;\n  background: rgba(18, 20, 19, .68);\n  backdrop-filter: blur(3px);\n  opacity: 0; transition: opacity .22s var(--zw-ease);\n  overflow-y: auto;}\nselector .za-modal.is-on {opacity: 1;}\nselector .za-modal[hidden] {display: none;}\nselector .za-modal__panel {position: relative;\n  width: min(560px, 100%);\n  max-height: min(92vh, 900px);\n  overflow-y: auto;\n  background: var(--zw-white);\n  border-radius: var(--zw-radius-card);\n  padding: clamp(1.5rem, 4vw, 2.4rem);\n  box-shadow: var(--zw-shadow-lg);\n  transform: translateY(14px) scale(.985);\n  transition: transform .28s var(--zw-ease);}\nselector .za-modal.is-on .za-modal__panel {transform: none;}\nselector .za-modal__close {position: absolute; top: .7rem; right: .8rem;\n  width: 2.2rem; height: 2.2rem;\n  display: grid; place-items: center;\n  border: 0; border-radius: 50%;\n  background: var(--zw-grey-50); color: var(--zw-grey-700);\n  font-size: 1.5rem; line-height: 1; cursor: pointer;\n  transition: background-color .16s var(--zw-ease), color .16s var(--zw-ease);}\nselector .za-modal__close:hover {background: var(--zw-ink); color: var(--zw-white);}\nselector .za-modal__panel .za__head {padding-right: 2.75rem;}\nselector .za__other {padding: 0 1rem .85rem 3.05rem; background: #FFFAE6; box-shadow: inset 3px 0 0 var(--zw-yellow);}\nselector .za__other[hidden] {display: none;}\nselector .za__textq {margin-top: 1.15rem;}\nselector .za__textq .za__input {font-size: 16px;}\nselector .za__other .za__input {font-size: 16px;}\nselector .za-topbar {position: fixed; left: 0; right: 0; top: 0; z-index: 90;\n  background: var(--zw-ink); color: var(--zw-white);\n  box-shadow: 0 6px 18px rgba(18, 20, 19, .18);\n  transform: translateY(-110%); visibility: hidden;\n  transition: transform .25s var(--zw-ease), visibility 0s linear .25s;}\nselector .za-topbar.is-on {transform: none; visibility: visible;\n  transition: transform .25s var(--zw-ease), visibility 0s;}\nselector .za-topbar__inner {display: flex; align-items: center; justify-content: space-between; gap: 1rem;\n  padding-block: .6rem;}\nselector .za-topbar__text {margin: 0; font-family: var(--zw-font-head); font-size: 15.5px; line-height: 1.3;}\nselector .za-topbar__text strong {color: var(--zw-yellow); font-weight: 700;}\nselector .za-topbar__btn {flex-shrink: 0; padding: .7em 1.3em; font-size: 15px;}\n@media (max-width: 520px){selector .za-topbar__text {font-size: 13.5px;}\nselector .za-topbar__text span {display: block;}\nselector .za-topbar__btn {font-size: 13.5px; padding: .65em .9em;}}\n@media (max-width: 860px){selector .za-topbar--desktop {display: none;}}\n@media (prefers-reduced-motion: reduce){selector .za-topbar {transition: none;}}"
+    },
+    "version": "0.4",
+    "title": "Vacature elektricien Dendermonde",
+    "type": "page"
+}

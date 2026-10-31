@@ -6,6 +6,9 @@
  * Maakt de pagina aan als ze nog niet bestaat. Bestaat ze al, dan wordt ze
  * alleen bijgewerkt als ze door dit script gemaakt is (meta _zwl_landing),
  * zodat een bestaande pagina met dezelfde slug nooit overschreven wordt.
+ * Met "id" in het bestand wordt precies die pagina bijgewerkt (ook titel en
+ * slug), weer alleen als ze van dit script is. Drukt op het einde het id af
+ * als laatste regel ("ID=<n>").
  */
 if ( ! defined( 'ABSPATH' ) ) { exit( 1 ); }
 
@@ -15,8 +18,22 @@ if ( ! is_array( $p ) || empty( $p['slug'] ) || empty( $p['elements'] ) ) {
 	WP_CLI::error( "Ongeldig bestand: $file" );
 }
 
-$existing = get_page_by_path( $p['slug'], OBJECT, 'page' );
-if ( $existing ) {
+if ( ! empty( $p['id'] ) ) {
+	// Bestaande pagina van dit script in place bijwerken, ook als de slug verandert.
+	$id = (int) $p['id'];
+	$post = get_post( $id );
+	if ( ! $post || 'page' !== $post->post_type || ! get_post_meta( $id, '_zwl_landing', true ) ) {
+		WP_CLI::error( "Post $id bestaat niet, is geen pagina of is niet van dit script — niets aangeraakt." );
+	}
+	$other = get_page_by_path( $p['slug'], OBJECT, 'page' );
+	if ( $other && (int) $other->ID !== $id ) {
+		WP_CLI::error( "Slug {$p['slug']} is al in gebruik door post {$other->ID} — niets aangeraakt." );
+	}
+	// wp_update_post bewaart de oude slug in _wp_old_slug: de oude link stuurt dan door.
+	$r = wp_update_post( [ 'ID' => $id, 'post_title' => $p['title'], 'post_name' => $p['slug'] ], true );
+	if ( is_wp_error( $r ) ) { WP_CLI::error( $r->get_error_message() ); }
+	if ( get_post_field( 'post_name', $id ) !== $p['slug'] ) { WP_CLI::error( "Slug van post $id niet aangepast" ); }
+} elseif ( $existing = get_page_by_path( $p['slug'], OBJECT, 'page' ) ) {
 	if ( ! get_post_meta( $existing->ID, '_zwl_landing', true ) ) {
 		WP_CLI::error( "Slug {$p['slug']} bestaat al (post {$existing->ID}) en is niet van dit script — niets aangeraakt." );
 	}
@@ -54,5 +71,6 @@ if ( empty( $settings['custom_css'] ) || ( $settings['hide_title'] ?? '' ) !== '
 	WP_CLI::error( "Pagina-instellingen niet bewaard voor post $id" );
 }
 
+WP_CLI::log( "ID=$id" );
 WP_CLI::success( sprintf( '%d %s %s (%d elementen, versie %s)', $id, get_permalink( $id ), $p['title'], $got,
 	get_post_meta( $id, '_elementor_version', true ) ) );
