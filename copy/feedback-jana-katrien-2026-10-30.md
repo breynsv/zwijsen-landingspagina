@@ -54,3 +54,21 @@ Katrien kiest **voorstel 5, met animatie** (`5-snelsollicitatie-mobiel-film.html
 - Webadres: akkoord met zwijsen.be/elektricien-dendermonde/. Vraag terug: "Idem voor regio Antwerpen?" — open.
 - Google-vacatures (JobPosting): werkplaats **Duffel (hoofdkantoor)**.
 - Loonvork: **nog even niet**.
+
+## Jana — 31 oktober 2026: tweede pagina "Lier en Antwerpen-Zuidrand"
+
+- Regio is niet Antwerpen-stad maar ten zuiden ervan, een samengestelde regio. Naam: "Antwerpen-Zuidrand en Lier".
+- Gebied (besproken met Katrien): Hoboken, Wilrijk, Edegem, Mortsel, Hove, Boechout, Lint, Kontich, Lier, Duffel. (Lint stond dubbel in de mail.)
+- Het kaartje moet zeker anders.
+- Tekstwijzigingen:
+  - Hero: "Ben je elektricien en woon je in Lier of de Antwerpse Zuidrand?"
+  - In duo: "je rijdt samen met een ervaren collega uit jouw regio naar de werf."
+  - Profiel: "Je woont in (of vlakbij) Hoboken, Wilrijk, Edegem, Mortsel, Hove, Boechout, Lint, Kontich, Duffel of Lier"
+  - Dag: "Je rijdt samen met je collega uit de regio naar de werf."
+- Formulier: postcodesuggestie aanpassen, bv. "2640 Mortsel".
+- In de animatie zit ook een passage over Dendermonde: aanpassen.
+- URL (voorstel Sven): zwijsen.be/elektricien-lier-antwerpen-zuidrand/ — zoekvolume: "vacatures lier" 1.300/m, "vacatures mortsel" 720, "vacatures kontich" 390, "vacature elektricien antwerpen" 50.
+
+## Jana — 31 oktober 2026: Dendermonde-pagina
+- Vakantiedagen-blokje uit de header (ADV leidt af). Verwerkt.
+- Punt na "We horen graag meer van je." Verwerkt.
