@@ -11,6 +11,9 @@
 
    Gebruik:
      ZwijsenApply.mount('#doelelement', { variant: 'inline' | 'modal' });
+     Regiopagina's (optioneel, standaard Dendermonde):
+     ZwijsenApply.mount('#apply', { regio: 'Lier en Antwerpen-Zuidrand',
+                                    placeholders: { woonplaats: 'bv. 2640 Mortsel' } });
 
    Koppelen aan een echte backend: zie onSubmit() onderaan.
    ========================================================================== */
@@ -176,7 +179,10 @@
       wrap.appendChild(el('label', { class: 'zw-visually-hidden', for: 'za_' + q.name, text: q.label }));
       wrap.appendChild(el('input', {
         class: 'za__input', type: 'text', id: 'za_' + q.name, name: q.name,
-        autocomplete: q.autocomplete || 'on', placeholder: q.placeholder || '',
+        autocomplete: q.autocomplete || 'on',
+        /* Per pagina te overschrijven: mount('#apply', { placeholders: { woonplaats: 'bv. 2640 Mortsel' } }).
+           Zonder optie blijft de standaardtekst uit QUESTIONS staan (Dendermonde). */
+        placeholder: (this.opts.placeholders && this.opts.placeholders[q.name]) || q.placeholder || '',
         required: 'required', 'aria-describedby': q.hint ? group + '_hint' : null,
         value: this.answers[q.name] || '',
         oninput: function (e) { self.answers[q.name] = e.target.value; self.clearError(); },
@@ -463,7 +469,8 @@
 
     var payload = Object.assign({}, this.answers, data, {
       vacature: 'Technieker Algemene Elektriciteit',
-      regio_campagne: 'Dendermonde',
+      /* Per pagina: mount('#apply', { regio: 'Lier en Antwerpen-Zuidrand' }). Standaard Dendermonde. */
+      regio_campagne: this.opts.regio || 'Dendermonde',
       bron: (global.location && global.location.search) || '',
       tijdstip: new Date().toISOString()
     });
