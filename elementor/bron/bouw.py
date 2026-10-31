@@ -38,6 +38,9 @@ JANA = os.path.join(ROOT, 'assets', 'img', 'jana')
 
 # Vaste map op de site voor wat JS laadt (film-foto's, scripts). Buiten de mediabibliotheek.
 STATIC_URL = '/wp-content/uploads/zwijsen-landing/'
+# Verzending van het formulier: REST-route van de mu-plugin elementor/server/zwijsen-snelsollicitatie.php.
+# De lokale HTML-drafts geven geen endpoint mee en blijven dus in demomodus.
+FORM_ENDPOINT = '/wp-json/zwijsen/v1/sollicitatie'
 
 # Foto's in de mediabibliotheek van staging (id + url + alt). Zie media.json.
 MEDIA = json.load(open(os.path.join(HIER, 'media.json'), encoding='utf-8'))
@@ -48,11 +51,13 @@ PAGINAS = {
         'title': 'Vacature elektricien Dendermonde',
         'slug': 'elektricien-dendermonde',
         'id': 3292,  # de oude "vacature-technieker-5", in place bijgewerkt
+        'formulier': 'dendermonde',  # sleutel in mu-plugin zwijsen-snelsollicitatie (formuliernaam + regio)
     },
     'lier': {
         'bron': '5-snelsollicitatie-mobiel-film-lier-antwerpen-zuidrand.html',
         'title': 'Vacature elektricien Lier en Antwerpen-Zuidrand',
         'slug': 'elektricien-lier-antwerpen-zuidrand',
+        'formulier': 'lier',
     },
 }
 
@@ -387,11 +392,10 @@ def pagina(cfg, versies):
     # Formulier
     form_s = src.soup.select_one('#solliciteer')
     form_html = (
-        '<div id="apply"></div>\n'
-        '<!-- HIER KOMT DE VERZENDING (nog te bouwen in de WordPress-fase). Nu verstuurt het formulier\n'
-        '     niets, net als de lokale drafts (demomodus). Koppelen = een endpoint meegeven:\n'
-        '     ZwijsenApply.mount(\'#apply\', { endpoint: \'...\', regio: ..., placeholders: ... }).\n'
-        '     Ook nog te bouwen: de bevestigingsmail die het bedankscherm belooft. -->\n'
+        '<div id="apply" data-za-endpoint="%s" data-za-formulier="%s"></div>\n'
+        '<!-- Verzending: POST naar data-za-endpoint (mu-plugin zwijsen-snelsollicitatie):\n'
+        '     bewaren bij Elementor > Inzendingen, mail aan personeel@zwijsen.be, bevestiging\n'
+        '     aan de sollicitant. Zonder data-za-endpoint verstuurt het formulier niets. -->\n'
         '<script src="%sjs/apply-form.js?v=%s" defer></script>\n'
         '<script>\n'
         'document.addEventListener(\'DOMContentLoaded\', function () {\n'
@@ -405,7 +409,7 @@ def pagina(cfg, versies):
         '      { threshold: 0.05 }).observe(form);\n'
         '  }\n'
         '});\n'
-        '</script>') % (STATIC_URL, versies['apply-form.js'], src.mount_opts())
+        '</script>') % (FORM_ENDPOINT, cfg['formulier'], STATIC_URL, versies['apply-form.js'], src.mount_opts())
     form = M('m-formsec',
         C('m-form',
           C('m-form__top',

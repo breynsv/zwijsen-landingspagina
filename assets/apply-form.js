@@ -15,7 +15,14 @@
      ZwijsenApply.mount('#apply', { regio: 'Lier en Antwerpen-Zuidrand',
                                     placeholders: { woonplaats: 'bv. 2640 Mortsel' } });
 
-   Koppelen aan een echte backend: zie onSubmit() onderaan.
+   Koppelen aan een echte backend: geef de pagina een endpoint mee, als optie
+     ZwijsenApply.mount('#apply', { endpoint: '/wp-json/zwijsen/v1/sollicitatie',
+                                    formulier: 'dendermonde' });
+   of als data-attribuut op het doelelement:
+     <div id="apply" data-za-endpoint="/wp-json/zwijsen/v1/sollicitatie"
+          data-za-formulier="dendermonde"></div>
+   Zonder endpoint (de lokale drafts) verstuurt het formulier niets: demomodus,
+   geen enkel netwerkverzoek. Zie submit() onderaan.
    ========================================================================== */
 
 (function (global) {
@@ -126,6 +133,9 @@
   function ZwijsenApply(root, opts) {
     this.root = root;
     this.opts = opts || {};
+    /* Endpoint en formuliersleutel mogen ook als data-attribuut op het doelelement staan. */
+    if (!this.opts.endpoint && root.getAttribute('data-za-endpoint')) this.opts.endpoint = root.getAttribute('data-za-endpoint');
+    if (!this.opts.formulier && root.getAttribute('data-za-formulier')) this.opts.formulier = root.getAttribute('data-za-formulier');
     this.answers = {};
     this.step = 0;
     this.total = QUESTIONS.length + 1;   /* vragen + contactstap */
@@ -468,6 +478,9 @@
     if (honeypot) { this.done = true; this.render(); return; }
 
     var payload = Object.assign({}, this.answers, data, {
+      /* Welke pagina: de server kiest daarmee formuliernaam en regio (whitelist). */
+      formulier: this.opts.formulier || '',
+      company_website: honeypot,
       vacature: 'Technieker Algemene Elektriciteit',
       /* Per pagina: mount('#apply', { regio: 'Lier en Antwerpen-Zuidrand' }). Standaard Dendermonde. */
       regio_campagne: this.opts.regio || 'Dendermonde',
@@ -480,8 +493,11 @@
 
     /* --------------------------------------------------------------
        KOPPELPUNT — hier gaat de inzending naar de backend.
-       Zie README: WP Forms / Fluent Forms / Make / n8n / eigen endpoint.
-       De Lead-event blijft hoe dan ook vuren zodat Meta kan optimaliseren.
+       Met endpoint: POST als JSON (WordPress: mu-plugin zwijsen-snelsollicitatie,
+       route /wp-json/zwijsen/v1/sollicitatie). Antwoord { ok: true } of
+       { ok: false, message }. Zonder endpoint: demomodus, geen netwerkverzoek.
+       finish() is de plek waar het Meta-event "Lead" vuurt: alleen na een
+       geslaagde inzending (of in demomodus), nooit bij een fout.
        -------------------------------------------------------------- */
     var endpoint = self.opts.endpoint;
     var finish = function () {
@@ -498,14 +514,30 @@
 
     if (!endpoint) { setTimeout(finish, 550); return; }   /* demo-modus */
 
-    fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(finish).catch(function () {
+    /* Mislukt: knop terug, alle ingevulde gegevens blijven staan. */
+    var failed = function (msg) {
       btn.disabled = false;
       btn.textContent = 'Neem contact met mij op';
-      self.showError('Versturen lukte niet. Probeer opnieuw of bel 015 305 305.');
+      self.showError(msg || 'Versturen lukte niet. Probeer opnieuw of bel ons op 015 305 305.');
+    };
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 20000) : null;
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      return res.json().catch(function () { return null; }).then(function (json) {
+        if (timer) clearTimeout(timer);
+        if (res.ok && json && json.ok === true) finish();
+        else failed(json && typeof json.message === 'string' ? json.message : '');
+      });
+    }).catch(function () {
+      if (timer) clearTimeout(timer);
+      failed('');
     });
   };
 
@@ -516,8 +548,8 @@
   ZwijsenApply.prototype.renderDone = function () {
     /* Tekst van Jana (30 okt 2026), zonder stappen of opsomming.
        Alleen de voornaam in de aanspreking: eerste woord van het naamveld.
-       LET OP: de bevestigingsmail die hier beloofd wordt, bestaat nog niet.
-       Die wordt gebouwd bij de overzetting naar WordPress. */
+       De bevestigingsmail die hier beloofd wordt, verstuurt de WordPress-backend
+       (mu-plugin zwijsen-snelsollicitatie). In demomodus (geen endpoint) komt er geen mail. */
     var naam = ((this.payload && this.payload.naam) || '').trim().split(/\s+/)[0];
     this.body.appendChild(el('div', { class: 'za__done' }, [
       el('div', { class: 'za__done-mark', 'aria-hidden': 'true', html:
