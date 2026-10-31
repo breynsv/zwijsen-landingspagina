@@ -61,6 +61,21 @@ PAGINAS = {
     },
 }
 
+# Interne links tussen de drafts: lokaal (GitHub Pages) wijzen ze naar het andere
+# HTML-bestand, op WordPress naar de echte slug van die pagina.
+WP_LINKS = {cfg['bron']: '/%s/' % cfg['slug'] for cfg in PAGINAS.values()}
+
+
+def wp_links(html):
+    """Zet href="<draft>.html" om naar de WordPress-slug; elke andere .html-link is een fout."""
+    def sub(m):
+        assert m.group(1) in WP_LINKS, 'onbekende draft-link: ' + m.group(1)
+        return 'href="%s"' % WP_LINKS[m.group(1)]
+    uit = re.sub(r'href="([^"#?:/]+\.html)"', sub, html)
+    assert '.html"' not in uit, uit
+    return uit
+
+
 G = lambda c: 'globals/colors?id=' + c
 INK, RED, YELLOW, GREY, WHITE = 'primary', 'accent', '78f9a77', '9b6502c', '2c5975e'
 
@@ -528,7 +543,17 @@ def pagina(cfg, versies):
 
     # Bellen of mailen
     call_s = src.soup.select_one('.m-call')
+    regio_s = src.soup.select_one('.m-regio-link')  # verwijzing naar de andere regiopagina
+    regio = None
+    if regio_s:
+        # Eigen vast id, buiten de reeks: zo houden alle bestaande elementen hun id
+        # (en hun per-element-CSS) en verschilt de pagina enkel in deze ene widget.
+        staat = _rng.getstate()
+        regio = T('<p>%s</p>' % wp_links(inner(regio_s)), 'm-regio-link')
+        _rng.setstate(staat)
+        regio['id'] = hashlib.sha1(('regio-link:' + cfg['slug']).encode()).hexdigest()[:7]
     bellen = M('m-sec m-sec--grey',
+        regio,
         C('m-call',
           H(tekst(call_s.h3), 'h3', 'm-call-h', WHITE),
           B(tekst(call_s.a), call_s.a['href'], 'yellow', 'zw-btn--block'),

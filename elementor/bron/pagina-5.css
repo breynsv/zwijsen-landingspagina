@@ -74,6 +74,7 @@ selector .zwl .m-steps li::before {
 selector .zwl .m-steps strong { display: block; font-family: var(--zw-font-head); font-size: 15px; }
 selector .zwl .m-steps span { font-size: 14px; color: var(--zw-grey-700); }
 selector .zwl .zw-faq.m-faq-w { margin-top: 1.35rem; max-width: none; }
+selector .zwl .m-regio-link { margin-bottom: 1.35rem; color: var(--zw-grey-700); }
 
 /* Bellen */
 selector .zwl .m-call {

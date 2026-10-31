@@ -263,6 +263,8 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
 .m-faq summary::after { content: "+"; color: var(--zw-red); font-size: 1.3rem; font-weight: 400; transition: transform .2s var(--zw-ease); }
 .m-faq details[open] summary::after { transform: rotate(45deg); }
 .m-faq p { margin: 0; padding: 0 1.1rem 1.05rem; font-size: 14px; color: var(--zw-grey-700); }
+/* Verwijzing naar de andere regiopagina (onder de vragen, boven het bel-blok) */
+.m-regio-link { margin: 0 0 1.35rem; color: var(--zw-grey-700); }
 
 /* Bellen-blok */
 .m-call {
@@ -622,6 +624,8 @@ src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" alt=
   <!-- ====================== BELLEN ====================== -->
   <section class="m-sec m-sec--grey">
     <div class="wrap">
+      <!-- Interne link naar de andere regiopagina (31 okt 2026). bouw.py zet de href om naar de WordPress-slug. -->
+      <p class="m-regio-link">Woon je eerder in de regio Dendermonde? <a href="5-snelsollicitatie-mobiel-film.html">Bekijk dan onze vacature voor die regio</a>.</p>
       <div class="m-call">
         <h3>Liever gewoon bellen?</h3>
         <a class="zw-btn zw-btn--yellow" href="tel:+3215305305" style="width:100%;">015 305 305</a>
