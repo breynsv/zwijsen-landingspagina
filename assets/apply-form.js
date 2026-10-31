@@ -290,7 +290,7 @@
     var self = this;
 
     var fs = el('fieldset', { class: 'za__fieldset' });
-    fs.appendChild(el('legend', { class: 'za__legend', text: 'Bedankt voor je antwoorden! We horen graag meer van je' }));
+    fs.appendChild(el('legend', { class: 'za__legend', text: 'Bedankt voor je antwoorden! We horen graag meer van je.' }));
     fs.appendChild(el('p', { class: 'za__hint',
       text: 'Laat zeker je gegevens na en wij nemen contact met je op.' }));
 
