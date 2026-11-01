@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Zwijsen — snelsollicitatie regiopagina's
  * Description: Ontvangt het korte sollicitatieformulier (4 vragen + contact) van de regiopagina's elektricien. Bewaart elke inzending bij Elementor → Inzendingen, mailt personeel@zwijsen.be en stuurt de sollicitant een bevestiging. Niets gaat naar Meta of een andere derde partij.
- * Version:     1.0.0
+ * Version:     1.1.0
  *
  * Route: POST /wp-json/zwijsen/v1/sollicitatie  (JSON)
  * Antwoord: { "ok": true }  of  { "ok": false, "message": "..." }
@@ -14,13 +14,18 @@
  * Bescherming: honeypot (gevuld = "gelukt", niets bewaard of gemaild),
  * maximaal 5 inzendingen per IP per 10 minuten, maximaal 8 kB, alleen JSON,
  * geen bestanden. Elk antwoord wordt getoetst aan de gekende keuzes.
+ *
+ * Sinds 1.1.0 ook: een beheerpagina "Sollicitaties" (rapport zonder
+ * persoonsgegevens) met CSV-download, en de rol "Rapportage sollicitaties"
+ * (zwijsen_rapport) die alleen die pagina en het eigen profiel ziet.
+ * Zie elementor/VERSLAG-rapportpagina.md.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const ZWIJSEN_SNEL_VERSIE     = '1.0.0';
+const ZWIJSEN_SNEL_VERSIE     = '1.1.0';
 const ZWIJSEN_SNEL_ELEMENT_ID = 'zwsnelsol';   // vaste "formulier-id" in e_submissions
 const ZWIJSEN_SNEL_PERSONEEL  = 'personeel@zwijsen.be';
 const ZWIJSEN_SNEL_AFZENDER   = 'website@zwijsen.be';   // de M365-postbus van FluentSMTP
@@ -402,3 +407,519 @@ function zwijsen_snel_html_bevestiging( $voornaam ) {
 		. '<p>Met vriendelijke groeten,<br>Het team van Electro Zwijsen</p>'
 		. '</body></html>';
 }
+
+/* ===========================================================================
+ * Rapport "Sollicitaties" (sinds 1.1.0)
+ *
+ * Een beheerpagina met de snelsollicitaties ZONDER persoonsgegevens, voor de
+ * marketeer (vergelijken met Meta-advertenties) en HR. Plus een CSV-download.
+ *
+ * Privacy, zo gebouwd dat het niet kan mislopen:
+ *   - Uit de databank worden alleen de sleutels in zwijsen_snel_rapport_sleutels()
+ *     gelezen. naam, email en telefoon worden dus nooit opgehaald, ook niet per
+ *     ongeluk; user_ip, user_agent en referer evenmin.
+ *   - Van "bron" (de querystring van de pagina) blijven alleen de vijf utm_-velden
+ *     over. fbclid, gclid en alle andere parameters vallen weg.
+ *   - Er is geen REST-route voor deze gegevens. De CSV loopt via admin-post.php,
+ *     met nonce en capability.
+ *
+ * Toegang: capability zwijsen_bekijk_sollicitaties. Die hebben de beheerders en
+ * de rol zwijsen_rapport ("Rapportage sollicitaties"), die verder alleen "read"
+ * heeft. Wie alleen die rol heeft, ziet uitsluitend deze pagina en het eigen
+ * profiel (wachtwoord wijzigen); elk ander beheerscherm stuurt terug hierheen.
+ * De rol krijgt nooit beheerdersrechten, dus de automatische uitschakeling van
+ * Hack Guard is niet van toepassing.
+ * ======================================================================== */
+
+const ZWIJSEN_SNEL_CAP        = 'zwijsen_bekijk_sollicitaties';
+const ZWIJSEN_SNEL_ROL        = 'zwijsen_rapport';
+const ZWIJSEN_SNEL_ROL_NAAM   = 'Rapportage sollicitaties';
+const ZWIJSEN_SNEL_PAGINA     = 'zwijsen-sollicitaties';
+const ZWIJSEN_SNEL_CSV_ACTIE  = 'zwijsen_sollicitaties_csv';
+const ZWIJSEN_SNEL_TIJDZONE   = 'Europe/Brussels';
+const ZWIJSEN_SNEL_MAX_RIJEN  = 1000;   // op het scherm; de CSV heeft ze allemaal
+
+/** De enige velden die het rapport uit e_submissions_values leest. */
+function zwijsen_snel_rapport_sleutels() {
+	return array( 'werkervaring', 'talen', 'rijbewijs', 'woonplaats', 'regio', 'bron' );
+}
+
+function zwijsen_snel_utm_sleutels() {
+	return array( 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term' );
+}
+
+/* --- Rol en capability (idempotent) --------------------------------------- */
+
+add_action(
+	'init',
+	function () {
+		$caps = array(
+			'read'            => true,
+			ZWIJSEN_SNEL_CAP  => true,
+		);
+		$rol = get_role( ZWIJSEN_SNEL_ROL );
+		if ( ! $rol ) {
+			add_role( ZWIJSEN_SNEL_ROL, ZWIJSEN_SNEL_ROL_NAAM, $caps );
+		} else {
+			// Precies deze twee, niets meer: iets dat erbij gekomen is, gaat eraf.
+			foreach ( array_keys( (array) $rol->capabilities ) as $cap ) {
+				if ( ! isset( $caps[ $cap ] ) ) {
+					$rol->remove_cap( $cap );
+				}
+			}
+			foreach ( array_keys( $caps ) as $cap ) {
+				if ( empty( $rol->capabilities[ $cap ] ) ) {
+					$rol->add_cap( $cap );
+				}
+			}
+		}
+		$admin = get_role( 'administrator' );
+		if ( $admin && empty( $admin->capabilities[ ZWIJSEN_SNEL_CAP ] ) ) {
+			$admin->add_cap( ZWIJSEN_SNEL_CAP );
+		}
+	},
+	5
+);
+
+/** Heeft deze gebruiker uitsluitend de rapportrol? Dan krijgt hij de afgeschermde beheeromgeving. */
+function zwijsen_snel_alleen_rapport( $user = null ) {
+	$user = $user instanceof WP_User ? $user : wp_get_current_user();
+	return $user instanceof WP_User && $user->exists()
+		&& array( ZWIJSEN_SNEL_ROL ) === array_values( (array) $user->roles );
+}
+
+function zwijsen_snel_rapport_url( $args = array() ) {
+	return add_query_arg( array_merge( array( 'page' => ZWIJSEN_SNEL_PAGINA ), $args ), admin_url( 'admin.php' ) );
+}
+
+/* --- Afgeschermde beheeromgeving voor de rapportrol ------------------------ */
+
+add_filter(
+	'login_redirect',
+	function ( $redirect_to, $requested, $user ) {
+		return ( $user instanceof WP_User && zwijsen_snel_alleen_rapport( $user ) ) ? zwijsen_snel_rapport_url() : $redirect_to;
+	},
+	99,
+	3
+);
+
+/** Elk beheerscherm behalve het rapport en het eigen profiel stuurt terug naar het rapport. */
+add_action(
+	'admin_init',
+	function () {
+		if ( wp_doing_ajax() || ! zwijsen_snel_alleen_rapport() ) {
+			return;
+		}
+		global $pagenow;
+		$page   = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+
+		$toegelaten = ( 'profile.php' === $pagenow && ( '' === $page || 'wfls' === $page ) )
+			|| ( 'admin.php' === $pagenow && in_array( $page, array( ZWIJSEN_SNEL_PAGINA, 'wfls' ), true ) )   // WFLS = tweestapsverificatie van Wordfence
+			|| ( 'admin-post.php' === $pagenow && ZWIJSEN_SNEL_CSV_ACTIE === $action );
+
+		if ( ! $toegelaten ) {
+			wp_safe_redirect( zwijsen_snel_rapport_url() );
+			exit;
+		}
+	},
+	1
+);
+
+/**
+ * Schermen met een menu-item dat deze rol niet mag zien, stopt WordPress al in
+ * menu.php met een 403, nog vóór admin_init. Ook die sturen we naar het rapport.
+ */
+add_action(
+	'admin_page_access_denied',
+	function () {
+		if ( zwijsen_snel_alleen_rapport() ) {
+			wp_safe_redirect( zwijsen_snel_rapport_url() );
+			exit;
+		}
+	}
+);
+
+add_action(
+	'admin_menu',
+	function () {
+		if ( ! zwijsen_snel_alleen_rapport() ) {
+			return;
+		}
+		global $menu;
+		foreach ( (array) $menu as $item ) {
+			$slug = isset( $item[2] ) ? (string) $item[2] : '';
+			if ( ! in_array( $slug, array( ZWIJSEN_SNEL_PAGINA, 'profile.php', 'WFLS' ), true ) ) {
+				remove_menu_page( $slug );
+			}
+		}
+	},
+	9999
+);
+
+add_action(
+	'wp_before_admin_bar_render',
+	function () {
+		if ( ! zwijsen_snel_alleen_rapport() ) {
+			return;
+		}
+		global $wp_admin_bar;
+		if ( ! $wp_admin_bar instanceof WP_Admin_Bar ) {
+			return;
+		}
+		$houden = array( 'top-secondary', 'my-account', 'user-actions', 'user-info', 'edit-profile', 'logout', 'menu-toggle' );
+		foreach ( array_keys( (array) $wp_admin_bar->get_nodes() ) as $id ) {
+			if ( ! in_array( $id, $houden, true ) ) {
+				$wp_admin_bar->remove_node( $id );
+			}
+		}
+	},
+	9999
+);
+
+add_filter(
+	'show_admin_bar',
+	function ( $tonen ) {
+		return zwijsen_snel_alleen_rapport() ? false : $tonen;
+	},
+	99
+);
+
+/** Meldingen van andere plugins horen niet op dit scherm voor de rapportrol. */
+add_action(
+	'in_admin_header',
+	function () {
+		if ( zwijsen_snel_alleen_rapport() ) {
+			remove_all_actions( 'admin_notices' );
+			remove_all_actions( 'all_admin_notices' );
+		}
+	},
+	9999
+);
+
+/** Applicatiewachtwoorden omzeilen tweestapsverificatie; deze rol heeft ze niet nodig. */
+add_filter(
+	'wp_is_application_passwords_available_for_user',
+	function ( $beschikbaar, $user ) {
+		return zwijsen_snel_alleen_rapport( $user ) ? false : $beschikbaar;
+	},
+	10,
+	2
+);
+
+/* --- Gegevens ---------------------------------------------------------------- */
+
+/** Datum (J-M-D) uit de invoer, of '' als ze ongeldig is. */
+function zwijsen_snel_datum( $v ) {
+	$v = is_string( $v ) ? trim( $v ) : '';
+	if ( ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $v, $m ) || ! checkdate( (int) $m[2], (int) $m[3], (int) $m[1] ) ) {
+		return '';
+	}
+	return $v;
+}
+
+function zwijsen_snel_regios() {
+	return array_values( wp_list_pluck( zwijsen_snel_paginas(), 'regio' ) );
+}
+
+/** De filter uit $_GET (of een array): van, tot (beide inclusief, Brusselse tijd) en regio. */
+function zwijsen_snel_filter( $bron = null ) {
+	$bron  = is_array( $bron ) ? $bron : wp_unslash( $_GET );
+	$van   = zwijsen_snel_datum( $bron['van'] ?? '' );
+	$tot   = zwijsen_snel_datum( $bron['tot'] ?? '' );
+	if ( '' !== $van && '' !== $tot && $van > $tot ) {
+		list( $van, $tot ) = array( $tot, $van );
+	}
+	$regio = isset( $bron['regio'] ) && is_string( $bron['regio'] ) && in_array( $bron['regio'], zwijsen_snel_regios(), true ) ? $bron['regio'] : '';
+	return array( 'van' => $van, 'tot' => $tot, 'regio' => $regio );
+}
+
+/** "?utm_source=facebook&fbclid=..." -> alleen de vijf utm_-velden. Al het andere valt weg. */
+function zwijsen_snel_utm( $bron ) {
+	$uit = array_fill_keys( zwijsen_snel_utm_sleutels(), '' );
+	$bron = is_string( $bron ) ? trim( $bron ) : '';
+	if ( '' === $bron || '(geen)' === $bron ) {
+		return $uit;
+	}
+	foreach ( explode( '&', ltrim( $bron, '?' ) ) as $paar ) {
+		$kv  = explode( '=', $paar, 2 );
+		$key = strtolower( trim( $kv[0] ) );
+		if ( array_key_exists( $key, $uit ) && '' === $uit[ $key ] ) {
+			$uit[ $key ] = zwijsen_snel_regel( $kv[1] ?? '', 150 );
+		}
+	}
+	return $uit;
+}
+
+/**
+ * De rijen voor het rapport, nieuwste eerst. Elke rij bevat uitsluitend:
+ * datum, uur, regio, de vijf utm-velden, werkervaring, talen, rijbewijs, woonplaats.
+ */
+function zwijsen_snel_rapport_rijen( $filter ) {
+	global $wpdb;
+	$t_sub = $wpdb->prefix . 'e_submissions';
+	$t_val = $wpdb->prefix . 'e_submissions_values';
+	$tz    = new DateTimeZone( ZWIJSEN_SNEL_TIJDZONE );
+	$utc   = new DateTimeZone( 'UTC' );
+
+	$waar = array( 's.element_id = %s', "s.status <> 'trash'", 's.form_name LIKE %s' );
+	$args = array( ZWIJSEN_SNEL_ELEMENT_ID, $wpdb->esc_like( 'Snelsollicitatie' ) . '%' );
+	if ( '' !== $filter['van'] ) {
+		$waar[] = 's.created_at_gmt >= %s';
+		$args[] = ( new DateTimeImmutable( $filter['van'] . ' 00:00:00', $tz ) )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
+	}
+	if ( '' !== $filter['tot'] ) {
+		$waar[] = 's.created_at_gmt < %s';
+		$args[] = ( new DateTimeImmutable( $filter['tot'] . ' 00:00:00', $tz ) )->modify( '+1 day' )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
+	}
+
+	// Bewust geen user_ip, user_agent, referer of meta in de SELECT.
+	$subs = $wpdb->get_results(
+		$wpdb->prepare( "SELECT s.id, s.form_name, s.created_at_gmt FROM {$t_sub} s WHERE " . implode( ' AND ', $waar ) . ' ORDER BY s.created_at_gmt DESC, s.id DESC', $args ),
+		ARRAY_A
+	);
+	if ( ! $subs ) {
+		return array();
+	}
+
+	$waarden = array();
+	$sleutels = zwijsen_snel_rapport_sleutels();
+	foreach ( array_chunk( array_map( 'intval', wp_list_pluck( $subs, 'id' ) ), 500 ) as $ids ) {
+		$ph = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+		$ks = implode( ',', array_fill( 0, count( $sleutels ), '%s' ) );
+		$res = $wpdb->get_results(
+			$wpdb->prepare( "SELECT submission_id, `key`, value FROM {$t_val} WHERE submission_id IN ({$ph}) AND `key` IN ({$ks})", array_merge( $ids, $sleutels ) ),
+			ARRAY_A
+		);
+		foreach ( (array) $res as $r ) {
+			$waarden[ (int) $r['submission_id'] ][ $r['key'] ] = (string) $r['value'];
+		}
+	}
+
+	$per_naam = array();
+	foreach ( zwijsen_snel_paginas() as $p ) {
+		$per_naam[ $p['naam'] ] = $p['regio'];
+	}
+
+	$rijen = array();
+	foreach ( $subs as $s ) {
+		$v     = $waarden[ (int) $s['id'] ] ?? array();
+		$regio = '' !== ( $v['regio'] ?? '' ) ? $v['regio'] : ( $per_naam[ $s['form_name'] ] ?? '' );
+		if ( '' !== $filter['regio'] && $regio !== $filter['regio'] ) {
+			continue;
+		}
+		$moment = ( new DateTimeImmutable( $s['created_at_gmt'], $utc ) )->setTimezone( $tz );
+		$rijen[] = array_merge(
+			array(
+				'datum' => $moment->format( 'Y-m-d' ),
+				'uur'   => $moment->format( 'H:i' ),
+				'regio' => $regio,
+			),
+			zwijsen_snel_utm( $v['bron'] ?? '' ),
+			array(
+				'werkervaring' => $v['werkervaring'] ?? '',
+				'talen'        => $v['talen'] ?? '',
+				'rijbewijs'    => $v['rijbewijs'] ?? '',
+				'woonplaats'   => $v['woonplaats'] ?? '',
+			)
+		);
+	}
+	return $rijen;
+}
+
+/** Kolommen van tabel en CSV: sleutel => Nederlandse kop. */
+function zwijsen_snel_rapport_kolommen() {
+	return array(
+		'datum'        => 'Datum',
+		'uur'          => 'Uur',
+		'regio'        => 'Regio',
+		'utm_source'   => 'Bron (utm_source)',
+		'utm_medium'   => 'Medium (utm_medium)',
+		'utm_campaign' => 'Campagne (utm_campaign)',
+		'utm_content'  => 'Advertentie (utm_content)',
+		'utm_term'     => 'Term (utm_term)',
+		'werkervaring' => 'Werkervaring',
+		'talen'        => 'Talen',
+		'rijbewijs'    => 'Rijbewijs',
+		'woonplaats'   => 'Woonplaats of postcode',
+	);
+}
+
+function zwijsen_snel_tel( $rijen, $veld ) {
+	$n = array();
+	foreach ( $rijen as $r ) {
+		$k       = '' !== $r[ $veld ] ? $r[ $veld ] : '(geen)';
+		$n[ $k ] = ( $n[ $k ] ?? 0 ) + 1;
+	}
+	arsort( $n );
+	return $n;
+}
+
+/* --- De beheerpagina -------------------------------------------------------- */
+
+add_action(
+	'admin_menu',
+	function () {
+		add_menu_page( 'Sollicitaties', 'Sollicitaties', ZWIJSEN_SNEL_CAP, ZWIJSEN_SNEL_PAGINA, 'zwijsen_snel_rapport_pagina', 'dashicons-groups', 26 );
+	}
+);
+
+function zwijsen_snel_rapport_pagina() {
+	if ( ! current_user_can( ZWIJSEN_SNEL_CAP ) ) {
+		wp_die( 'Geen toegang.', 403 );
+	}
+	$f     = zwijsen_snel_filter();
+	$rijen = zwijsen_snel_rapport_rijen( $f );
+	$kol   = zwijsen_snel_rapport_kolommen();
+
+	// utm_medium en utm_term alleen tonen als ze ergens ingevuld zijn (de CSV heeft ze altijd).
+	foreach ( array( 'utm_medium', 'utm_term' ) as $optioneel ) {
+		if ( ! array_filter( wp_list_pluck( $rijen, $optioneel ) ) ) {
+			unset( $kol[ $optioneel ] );
+		}
+	}
+
+	$csv = wp_nonce_url(
+		add_query_arg( array_merge( array( 'action' => ZWIJSEN_SNEL_CSV_ACTIE ), array_filter( $f ) ), admin_url( 'admin-post.php' ) ),
+		ZWIJSEN_SNEL_CSV_ACTIE
+	);
+	?>
+	<div class="wrap zwijsen-sollicitaties">
+		<h1 class="wp-heading-inline">Sollicitaties</h1>
+		<a href="<?php echo esc_url( $csv ); ?>" class="page-title-action">Download CSV</a>
+		<hr class="wp-header-end">
+		<p>Snelsollicitaties van de regiopagina’s, nieuwste eerst. Datum en uur in Belgische tijd.
+			Naam, e-mailadres en telefoon staan hier bewust niet in; die staan alleen in de mail aan personeel@zwijsen.be.</p>
+
+		<form method="get" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>" style="margin:1em 0;display:flex;flex-wrap:wrap;gap:.75em;align-items:flex-end">
+			<input type="hidden" name="page" value="<?php echo esc_attr( ZWIJSEN_SNEL_PAGINA ); ?>">
+			<label>Van<br><input type="date" name="van" value="<?php echo esc_attr( $f['van'] ); ?>"></label>
+			<label>Tot en met<br><input type="date" name="tot" value="<?php echo esc_attr( $f['tot'] ); ?>"></label>
+			<label>Regio<br>
+				<select name="regio">
+					<option value="">Alle regio’s</option>
+					<?php foreach ( zwijsen_snel_regios() as $r ) : ?>
+						<option value="<?php echo esc_attr( $r ); ?>" <?php selected( $f['regio'], $r ); ?>><?php echo esc_html( $r ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</label>
+			<button type="submit" class="button">Filteren</button>
+			<a class="button-link" href="<?php echo esc_url( zwijsen_snel_rapport_url() ); ?>">Alles tonen</a>
+		</form>
+
+		<p><strong><?php echo esc_html( count( $rijen ) ); ?></strong> <?php echo 1 === count( $rijen ) ? 'sollicitatie' : 'sollicitaties'; ?>
+			<?php echo esc_html( zwijsen_snel_periode_tekst( $f ) ); ?>.</p>
+
+		<?php if ( $rijen ) : ?>
+			<div style="display:flex;flex-wrap:wrap;gap:2em;margin-bottom:1.5em">
+				<?php foreach ( array( 'regio' => 'Per regio', 'utm_content' => 'Per advertentie (utm_content)' ) as $veld => $titel ) : ?>
+					<table class="widefat striped" style="width:auto;min-width:18em">
+						<thead><tr><th><?php echo esc_html( $titel ); ?></th><th style="text-align:right">Aantal</th></tr></thead>
+						<tbody>
+						<?php foreach ( zwijsen_snel_tel( $rijen, $veld ) as $waarde => $aantal ) : ?>
+							<tr><td><?php echo esc_html( $waarde ); ?></td><td style="text-align:right"><?php echo esc_html( $aantal ); ?></td></tr>
+						<?php endforeach; ?>
+						</tbody>
+					</table>
+				<?php endforeach; ?>
+			</div>
+
+			<table class="widefat striped">
+				<thead><tr>
+					<?php foreach ( $kol as $kop ) : ?>
+						<th scope="col"><?php echo esc_html( $kop ); ?></th>
+					<?php endforeach; ?>
+				</tr></thead>
+				<tbody>
+				<?php foreach ( array_slice( $rijen, 0, ZWIJSEN_SNEL_MAX_RIJEN ) as $rij ) : ?>
+					<tr>
+						<?php foreach ( array_keys( $kol ) as $k ) : ?>
+							<td><?php echo esc_html( $rij[ $k ] ); ?></td>
+						<?php endforeach; ?>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+			<?php if ( count( $rijen ) > ZWIJSEN_SNEL_MAX_RIJEN ) : ?>
+				<p>Op het scherm staan de nieuwste <?php echo esc_html( ZWIJSEN_SNEL_MAX_RIJEN ); ?>. De CSV bevat ze allemaal.</p>
+			<?php endif; ?>
+		<?php else : ?>
+			<p>Geen sollicitaties voor deze filter.</p>
+		<?php endif; ?>
+	</div>
+	<?php
+}
+
+function zwijsen_snel_periode_tekst( $f ) {
+	$d = function ( $v ) {
+		return DateTimeImmutable::createFromFormat( '!Y-m-d', $v )->format( 'd-m-Y' );
+	};
+	$t = '';
+	if ( '' !== $f['van'] && '' !== $f['tot'] ) {
+		$t = 'van ' . $d( $f['van'] ) . ' tot en met ' . $d( $f['tot'] );
+	} elseif ( '' !== $f['van'] ) {
+		$t = 'vanaf ' . $d( $f['van'] );
+	} elseif ( '' !== $f['tot'] ) {
+		$t = 'tot en met ' . $d( $f['tot'] );
+	} else {
+		$t = 'in totaal';
+	}
+	return $t . ( '' !== $f['regio'] ? ', regio ' . $f['regio'] : '' );
+}
+
+/* --- CSV ---------------------------------------------------------------------- */
+
+/** Een cel die met = + - @ begint, zou Excel als formule uitvoeren (utm-waarden komen van buiten). */
+function zwijsen_snel_csv_cel( $v ) {
+	$v = (string) $v;
+	return ( '' !== $v && false !== strpbrk( $v[0], "=+-@\t\r" ) ) ? "'" . $v : $v;
+}
+
+function zwijsen_snel_csv_bestandsnaam( $f ) {
+	$vandaag = ( new DateTimeImmutable( 'now', new DateTimeZone( ZWIJSEN_SNEL_TIJDZONE ) ) )->format( 'Y-m-d' );
+	$naam    = 'sollicitaties-' . ( '' !== $f['van'] ? $f['van'] : 'begin' ) . '-tot-' . ( '' !== $f['tot'] ? $f['tot'] : $vandaag );
+	return $naam . ( '' !== $f['regio'] ? '-' . sanitize_title( $f['regio'] ) : '' ) . '.csv';
+}
+
+/** Schrijft de CSV naar $uit (een stream). Los van de headers, zodat het te testen is. */
+function zwijsen_snel_csv_schrijf( $uit, $rijen ) {
+	fwrite( $uit, "\xEF\xBB\xBF" );
+	$kol = zwijsen_snel_rapport_kolommen();
+	fputcsv( $uit, array_values( $kol ), ',', '"', '' );
+	foreach ( $rijen as $rij ) {
+		$regel = array();
+		foreach ( array_keys( $kol ) as $k ) {
+			$regel[] = zwijsen_snel_csv_cel( $rij[ $k ] );
+		}
+		fputcsv( $uit, $regel, ',', '"', '' );
+	}
+}
+
+add_action(
+	'admin_post_' . ZWIJSEN_SNEL_CSV_ACTIE,
+	function () {
+		if ( ! current_user_can( ZWIJSEN_SNEL_CAP ) ) {
+			wp_die( 'Geen toegang.', 403 );
+		}
+		check_admin_referer( ZWIJSEN_SNEL_CSV_ACTIE );
+
+		$f = zwijsen_snel_filter();
+		nocache_headers();
+		header( 'Content-Type: text/csv; charset=UTF-8' );
+		header( 'Content-Disposition: attachment; filename="' . zwijsen_snel_csv_bestandsnaam( $f ) . '"' );
+		header( 'X-Content-Type-Options: nosniff' );
+		header( 'X-Robots-Tag: noindex' );
+		$uit = fopen( 'php://output', 'w' );
+		zwijsen_snel_csv_schrijf( $uit, zwijsen_snel_rapport_rijen( $f ) );
+		fclose( $uit );
+		exit;
+	}
+);
+
+/** Niet ingelogd: uitdrukkelijk weigeren in plaats van een lege 200. */
+add_action(
+	'admin_post_nopriv_' . ZWIJSEN_SNEL_CSV_ACTIE,
+	function () {
+		wp_die( 'Geen toegang.', 403 );
+	}
+);
