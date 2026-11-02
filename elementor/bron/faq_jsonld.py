@@ -39,15 +39,26 @@ PAGINAS = {
 }
 
 
+# Zinnen die niet letterlijk elders op de pagina staan maar door de copywriter gevraagd zijn.
+# Alleen hier toevoegen met bron; al de rest moet paginatekst blijven.
+GOEDGEKEURD = {
+    # Jana, mail 2 nov 2026: "Beantwoord.. via dit formulier op de site. Dan nemen we contact."
+    'Beantwoord 4 korte vragen via het formulier op deze pagina, dat duurt ongeveer 30 seconden.',
+    'Daarna nemen we gauw contact met je op.',  # = bedankscherm van het formulier
+}
+
+
 def vragen(p):
-    """(vraag, antwoord, bron op de pagina). Antwoorden = paginatekst, niets nieuws."""
+    """(vraag, antwoord, bron op de pagina). Antwoorden = paginatekst, niets nieuws (behalve GOEDGEKEURD)."""
     return [
-        ('Heb ik een cv nodig?',
-         'Nee, geen CV nodig. Beantwoord 4 korte vragen.',
-         'chip "Geen CV nodig", knop "Solliciteer direct zonder CV", "Beantwoord 4 korte vragen."'),
-        ('Hoe lang duurt solliciteren?',
-         'Ongeveer 30 seconden. Beantwoord 4 korte vragen.',
-         '"Solliciteer in 30 seconden", "4 vragen · ±30 seconden"'),
+        # Samengevoegd op vraag van Jana (mail 2 nov 2026): wie alleen deze vraag openklikt,
+        # moet meteen weten waar en hoe solliciteren.
+        ('Hoe solliciteer ik, en heb ik een cv nodig?',
+         'Geen CV nodig. Beantwoord 4 korte vragen via het formulier op deze pagina, dat duurt ongeveer '
+         '30 seconden. Daarna nemen we gauw contact met je op. '
+         'Liever gewoon bellen? 015 305 305 of mailen personeel@zwijsen.be',
+         '"Geen CV nodig", "4 vragen · ±30 seconden", bedankscherm "We nemen gauw contact met je op", '
+         'blok "Liever gewoon bellen?"'),
         ('Hoeveel ervaring vraagt Electro Zwijsen?',
          'Minstens 3 jaar ervaring als elektricien. Ervaring op werven is mooi meegenomen.',
          'Jouw profiel, punt 1 en 6'),
@@ -171,7 +182,7 @@ def main(check=False):
         for q, a, _ in items:
             for zin in re.split(r'(?<=[.:]) ', a):
                 kern = re.sub(r'^(Nee,? ?|Ongeveer |Een )', '', zin).strip(' .:')
-                if kern and kern.lower() not in body.lower():
+                if kern and kern.lower() not in body.lower() and zin.strip() not in GOEDGEKEURD:
                     raise SystemExit('%s: "%s" staat niet op de pagina' % (naam, kern))
         html = vervang(html, 'faq', 'faq', faq_html(items),
                        '  <!-- ====================== BELLEN ====================== -->')

@@ -51,14 +51,17 @@ FORM_ENDPOINT = '/wp-json/zwijsen/v1/sollicitatie'
 
 # Foto's in de mediabibliotheek (id + url + alt): media.json voor staging,
 # media-prod.json voor productie (zelfde sleutels, andere id's).
-MEDIA = json.load(open(os.path.join(HIER, 'media.json' if DOEL == 'staging' else 'media-prod.json'), encoding='utf-8'))
+# Sinds 2 nov 2026 (verhuis naar Combell) is staging een kopie van productie: zelfde media-id's en
+# zelfde pagina-id's. Daarom gebruiken beide doelen media-prod.json; media.json is historisch.
+MEDIA = json.load(open(os.path.join(HIER, 'media-prod.json'), encoding='utf-8'))
 
 PAGINAS = {
     'dendermonde': {
         'bron': '5-snelsollicitatie-mobiel-film.html',
         'title': 'Vacature elektricien Dendermonde',
         'slug': 'elektricien-dendermonde',
-        'id': 3292,  # de oude "vacature-technieker-5", in place bijgewerkt
+        # Geen vaste id meer: staging is sinds 2 nov 2026 een kopie van productie (post 3292
+        # bestaat daar niet). plaats.php zoekt de pagina op slug, zoals op productie.
         'formulier': 'dendermonde',  # sleutel in mu-plugin zwijsen-snelsollicitatie (formuliernaam + regio)
     },
     'lier': {
