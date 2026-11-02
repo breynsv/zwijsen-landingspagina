@@ -81,10 +81,7 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       <button type="button" data-v="Dendermonde">Dendermonde</button>
       <button type="button" data-v="Lier en Antwerpen-Zuidrand">Lier en Antwerpen-Zuidrand</button>
     </div>
-    <button type="button" class="knop" id="kopieer">Kopieer voor Claude</button>
-    <span class="uitleg" id="kopieer-status" aria-live="polite"></span>
   </div>
-  <textarea id="kopieer-tekst" readonly hidden aria-label="Gegevens om te kopiëren" style="width:100%;min-height:140px;font:12px monospace;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px"></textarea>
 
   <div id="leeg" class="leeg" hidden></div>
 
@@ -108,6 +105,30 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       <thead><tr><th>Advertentie</th><th>Campagne</th><th>Bron</th><th class="n">Aantal</th><th class="n">Aandeel</th></tr></thead>
       <tbody id="t-adv"></tbody>
     </table></div>
+  </section>
+
+  <section id="meta-sectie">
+    <h2>Meta-advertenties naast de echte sollicitaties</h2>
+    <p class="uitleg" id="meta-stand">Meta-cijfers laden…</p>
+    <div class="cijfers" id="meta-cijfers" hidden>
+      <div class="cijfer"><b id="m-uitgaven">—</b><span>uitgegeven op Meta</span></div>
+      <div class="cijfer"><b id="m-klikken">—</b><span>linkklikken</span></div>
+      <div class="cijfer"><b id="m-lpv">—</b><span>landingspaginaweergaven</span></div>
+      <div class="cijfer"><b id="m-sol">—</b><span>sollicitaties via een advertentie</span></div>
+      <div class="cijfer"><b id="m-kost">—</b><span>kost per sollicitatie</span></div>
+    </div>
+    <div class="scroll" id="meta-tabel" hidden><table>
+      <thead><tr><th>Advertentie</th><th>Campagne</th><th class="n">Uitgaven</th><th class="n">Vertoningen</th><th class="n">Linkklikken</th><th class="n">LP-weergaven</th><th class="n">Leads volgens Meta</th><th class="n">Sollicitaties (site)</th><th class="n">Kost per sollicitatie</th></tr></thead>
+      <tbody id="t-meta"></tbody>
+    </table></div>
+    <p class="uitleg">Kost per sollicitatie rekent op de echte sollicitaties van zwijsen.be, niet op Meta's eigen lead-schatting. Koppeling: de advertentienaam in Meta moet gelijk zijn aan utm_content in de link.</p>
+    <details>
+      <summary class="uitleg">Meta-cijfers plakken (alleen als Claude ze niet zelf kon bewaren)</summary>
+      <form id="meta-plak-form" style="display:grid;gap:8px;margin-top:8px">
+        <textarea id="meta-plak" rows="6" aria-label="Meta-blok van Claude" style="width:100%;font:12px monospace;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:8px"></textarea>
+        <div><button class="knop" type="submit">Bewaar Meta-cijfers</button> <span class="uitleg" id="meta-plak-status" aria-live="polite"></span></div>
+      </form>
+    </details>
   </section>
 
   <section>
@@ -142,6 +163,21 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       <tbody id="t-rijen"></tbody>
     </table></div>
     <p class="uitleg" id="rijen-noot"></p>
+  </section>
+
+  <section id="voor-claude">
+    <h2>Voor Claude</h2>
+    <div class="uitleg" style="display:grid;gap:8px;max-width:75ch">
+      <p style="margin:0">Deze pagina is gemaakt om samen met de Meta-connector gelezen te worden. Wordt je gevraagd deze pagina te analyseren met Meta-resultaten, doe dan het volgende.</p>
+      <p style="margin:0"><b>1. Sollicitaties lezen.</b> Ze staan in de database van deze pagina: collectie <code>maanden</code>, één document per maand (<code>2026-11</code>, …) met een lijst <code>rijen</code>. Velden: datum (JJJJ-MM-DD), uur, regio (Dendermonde of Lier en Antwerpen-Zuidrand), utm_source, utm_medium, utm_campaign, utm_content (= de advertentie), utm_term, werkervaring (1-2, 3-4, 5-10, 10+ jaar of geen), talen, rijbewijs (b, be, ce, nee), woonplaats (postcode en gemeente). Document <code>rapport/stand</code> zegt wanneer ze bijgewerkt zijn. Geen persoonsgegevens.</p>
+      <p style="margin:0"><b>2. Meta ophalen.</b> Met de Meta-connector van de gebruiker, het advertentieaccount van Electro Zwijsen, dezelfde periode: per advertentie uitgaven, vertoningen, bereik, linkklikken, landingspaginaweergaven en leads volgens Meta. Wijzig niets in Meta.</p>
+      <p style="margin:0"><b>3. Analyseren.</b> Koppel op advertentienaam = utm_content. Reken kost per sollicitatie op de echte sollicitaties, toon Meta's leads alleen ter vergelijking. Kijk ook naar de kwaliteit (ervaring 3 jaar of meer, rijbewijs) per advertentie, de evolutie per week en het verschil tussen de twee regio's. Hoogstens drie aanbevelingen, met cijfers; zeg het als de aantallen te klein zijn. Meld advertenties zonder utm_content in hun link; de aanbevolen URL-parameters zijn <code>utm_source=facebook&amp;utm_medium=paid_social&amp;utm_campaign={{campaign.name}}&amp;utm_content={{ad.name}}</code>.</p>
+      <p style="margin:0"><b>4. Meta-cijfers bewaren op deze pagina.</b> Schrijf één document in collectie <code>meta</code>, id <code>&lt;periode_van&gt;_&lt;periode_tot&gt;</code>, met deze vorm (bedragen in euro, getallen zonder opmaak):</p>
+      <pre style="margin:0;overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px;font-size:12px">{"periode_van":"2026-11-01","periode_tot":"2026-11-30","opgehaald":"2026-11-30T09:00:00+01:00","door":"Jana","advertentie_account":"…",
+ "advertenties":[{"campagne":"…","advertentie":"…","uitgaven":0,"vertoningen":0,"bereik":0,"linkklikken":0,"landingspaginaweergaven":0,"leads_meta":0}],
+ "analyse":"korte samenvatting van de analyse, max. 4000 tekens"}</pre>
+      <p style="margin:0">Kan je niet in de database schrijven, geef dan dit blok als JSON in een codeblok met de titel "Meta-cijfers voor de pagina", zodat de gebruiker het hierboven kan plakken bij "Meta-cijfers plakken".</p>
+    </div>
   </section>
 
   <footer>Zonder namen, e-mailadressen of telefoonnummers: die staan alleen in WordPress. Woonplaats is ingekort tot postcode en gemeente. De gegevens komen van zwijsen.be en worden op aanvraag bijgewerkt; bovenaan staat van wanneer ze zijn.</footer>
@@ -253,6 +289,7 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       tb.append(tr);
     });
     $('rijen-noot').textContent = r.length > 300 ? 'De nieuwste 300 van ' + r.length + ' getoond.' : '';
+    if (typeof renderMeta === 'function') renderMeta();
   }
 
   function knoppen(id, sleutel) {
@@ -265,26 +302,61 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
   }
   knoppen('periode', 'periode'); knoppen('regio', 'regio');
 
-  var KOL = ['datum', 'uur', 'regio', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'werkervaring', 'talen', 'rijbewijs', 'woonplaats'];
-  function alsTekst() {
-    var r = gefilterd();
-    var kop = 'SOLLICITATIES ELECTRO ZWIJSEN (snelsollicitatie via zwijsen.be, zonder persoonsgegevens)\n'
-      + 'Periode: ' + (f.periode === 'alles' ? 'alles' : 'voorbije ' + f.periode + ' dagen, van ' + dagenTerug(+f.periode) + ' tot en met ' + isoDag(new Date())) + '\n'
-      + 'Regio: ' + (f.regio || 'beide') + '\n'
-      + 'Gegevens bijgewerkt: ' + (stand && stand.bijgewerkt ? stand.bijgewerkt : 'onbekend') + '\n'
-      + 'Aantal: ' + r.length + '\n\n';
-    var per = tel(r, function (x) { return [x.utm_campaign || '(geen)', x.utm_content || '(geen)'].join(' | '); })
-      .map(function (p) { return p[0] + ' | ' + p[1]; }).join('\n');
-    var csv = [KOL.join(';')].concat(r.map(function (x) { return KOL.map(function (k) { return String(x[k] || '').replace(/[;\n]/g, ' '); }).join(';'); })).join('\n');
-    return kop + 'PER CAMPAGNE | ADVERTENTIE (utm_content) | AANTAL\n' + (per || '(geen)') + '\n\nALLE RIJEN\n' + csv + '\n';
+  /* --- Meta-cijfers: Jana's Claude bewaart ze in collectie "meta", één document per ophaling --- */
+  var metaDocs = [], dbRef = null;
+  function getal(v) { var n = Number(v); return isFinite(n) && n >= 0 ? n : 0; }
+  function sleutel(s) { return String(s || '').trim().toLowerCase(); }
+  function euro(n) { return n.toLocaleString('nl-BE', { style: 'currency', currency: 'EUR', maximumFractionDigits: n < 100 ? 2 : 0 }); }
+  function geheel(n) { return Math.round(n).toLocaleString('nl-BE'); }
+  function laatsteMeta() {
+    return metaDocs.slice().sort(function (a, b) { return String(b.opgehaald || '').localeCompare(String(a.opgehaald || '')); })[0] || null;
   }
-  $('kopieer').addEventListener('click', function () {
-    var t = alsTekst(), ta = $('kopieer-tekst'), st = $('kopieer-status');
-    ta.value = t;
-    function toon() { ta.hidden = false; ta.focus(); ta.select(); st.textContent = 'Kopiëren lukte niet automatisch: de tekst is geselecteerd, druk Ctrl+C of Cmd+C.'; }
-    try {
-      navigator.clipboard.writeText(t).then(function () { ta.hidden = true; st.textContent = 'Gekopieerd: ' + gefilterd().length + ' sollicitaties. Plak het in je gesprek met Claude.'; }, toon);
-    } catch (e) { toon(); }
+  function renderMeta() {
+    var m = laatsteMeta(), tb = $('t-meta'); tb.replaceChildren();
+    $('meta-cijfers').hidden = !m; $('meta-tabel').hidden = !m;
+    if (!m) { $('meta-stand').textContent = 'Nog geen Meta-cijfers. Vraag in Claude: "check artifact https://claude.ai/artifact/J3EzNE5Qcd8C4ghmuvqP93 en analyseer met de Meta-resultaten". Claude zet ze dan hier.'; return; }
+    var van = String(m.periode_van || ''), tot = String(m.periode_tot || '');
+    $('meta-stand').textContent = 'Periode ' + van.split('-').reverse().join('/') + ' tot en met ' + tot.split('-').reverse().join('/') + ', opgehaald ' + new Date(m.opgehaald).toLocaleString('nl-BE', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + (m.door ? ' door ' + m.door : '') + '. Sollicitaties hieronder zijn die van dezelfde periode, beide regio’s.';
+    var sol = alle().filter(function (x) { return x.datum >= van && x.datum <= tot; });
+    var perAdv = {}; sol.forEach(function (x) { var k = sleutel(x.utm_content); perAdv[k] = (perAdv[k] || 0) + 1; });
+    var adv = Array.isArray(m.advertenties) ? m.advertenties : [], tot_u = 0, tot_k = 0, tot_l = 0, gekoppeld = 0;
+    adv.slice().sort(function (a, b) { return getal(b.uitgaven) - getal(a.uitgaven); }).forEach(function (a) {
+      var n = perAdv[sleutel(a.advertentie)] || 0, u = getal(a.uitgaven);
+      gekoppeld += n; tot_u += u; tot_k += getal(a.linkklikken); tot_l += getal(a.landingspaginaweergaven);
+      var tr = el('tr');
+      tr.append(el('td', String(a.advertentie || '—')), el('td', String(a.campagne || '—')), el('td', euro(u), 'n'), el('td', geheel(getal(a.vertoningen)), 'n'),
+        el('td', geheel(getal(a.linkklikken)), 'n'), el('td', geheel(getal(a.landingspaginaweergaven)), 'n'), el('td', a.leads_meta == null ? '—' : geheel(getal(a.leads_meta)), 'n'),
+        el('td', String(n), 'n'), el('td', n ? euro(u / n) : '—', 'n'));
+      tb.append(tr);
+    });
+    var los = sol.length - gekoppeld;
+    if (los > 0) { var tr = el('tr'); tr.append(el('td', 'Niet aan een advertentie gekoppeld'), el('td', 'rechtstreeks, Google of zonder utm_content')); for (var i = 0; i < 5; i++) tr.append(el('td', '')); tr.append(el('td', String(los), 'n'), el('td', '')); tb.append(tr); }
+    $('m-uitgaven').textContent = euro(tot_u);
+    $('m-klikken').textContent = geheel(tot_k);
+    $('m-lpv').textContent = geheel(tot_l);
+    $('m-sol').textContent = gekoppeld + (los > 0 ? ' (+' + los + ')' : '');
+    $('m-kost').textContent = gekoppeld ? euro(tot_u / gekoppeld) : '—';
+  }
+  function metaUitTekst(t) {
+    var o = JSON.parse(t);
+    if (!o || !/^\d{4}-\d{2}-\d{2}$/.test(o.periode_van) || !/^\d{4}-\d{2}-\d{2}$/.test(o.periode_tot) || !Array.isArray(o.advertenties)) throw new Error('vorm');
+    return {
+      periode_van: o.periode_van, periode_tot: o.periode_tot, opgehaald: o.opgehaald || new Date().toISOString(), door: String(o.door || '').slice(0, 60),
+      advertentie_account: String(o.advertentie_account || '').slice(0, 80), analyse: String(o.analyse || '').slice(0, 4000),
+      advertenties: o.advertenties.slice(0, 200).map(function (a) {
+        return { campagne: String(a.campagne || '').slice(0, 200), advertentie: String(a.advertentie || '').slice(0, 200), uitgaven: getal(a.uitgaven), vertoningen: getal(a.vertoningen),
+          bereik: getal(a.bereik), linkklikken: getal(a.linkklikken), landingspaginaweergaven: getal(a.landingspaginaweergaven), leads_meta: a.leads_meta == null ? null : getal(a.leads_meta) };
+      })
+    };
+  }
+  $('meta-plak-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = $('meta-plak-status'), doc;
+    try { doc = metaUitTekst($('meta-plak').value); } catch (x) { st.textContent = 'Dit is geen geldig Meta-blok. Vraag Claude om het blok "Meta-cijfers voor de pagina" opnieuw te geven, precies in het formaat van "Voor Claude" hieronder.'; return; }
+    if (!dbRef) { st.textContent = 'Opslaan kan nu niet: de pagina is niet verbonden. Herlaad en probeer opnieuw.'; return; }
+    dbRef.collection('meta').doc(doc.periode_van + '_' + doc.periode_tot).set(doc).then(function () {
+      st.textContent = 'Bewaard. De tabel is bijgewerkt.'; $('meta-plak').value = '';
+    }, function () { st.textContent = 'Je mag hier geen Meta-cijfers bewaren. Sven moet je als Editor toevoegen aan deze pagina.'; });
   });
   render();
 
@@ -298,6 +370,10 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       render();
     }, function () { clearTimeout(timer); $('stand').textContent = 'De gegevens konden niet geladen worden. Herlaad de pagina.'; });
     db.doc('rapport/stand').onSnapshot(function (d) { stand = d.exists ? d.data() : null; render(); }, function () {});
+    dbRef = db;
+    db.collection('meta').onSnapshot(function (snap) {
+      metaDocs = snap.docs.map(function (d) { return d.data() || {}; }); render();
+    }, function () {});
   });
 
   claude.use('sample').then(function (sample) {
@@ -314,8 +390,10 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       var prompt = 'Je helpt de marketeer en HR van Electro Zwijsen (elektrotechnische installaties, Duffel) met hun cijfers over snelsollicitaties voor technieker/elektricien via zwijsen.be.\n'
         + 'Hieronder staan de sollicitaties (puntkomma-gescheiden) voor ' + periode + ', regio: ' + (f.regio || 'Dendermonde en Lier en Antwerpen-Zuidrand') + '. Er staan geen namen of contactgegevens in.\n'
         + 'werkervaring: 1-2, 3-4, 5-10, 10+ (jaren) of geen. rijbewijs: b, be, ce of nee. utm_content is de advertentie, utm_campaign de campagne, utm_source de bron (leeg = rechtstreeks of Google).\n'
-        + 'Antwoord in het Nederlands, kort en concreet, met de cijfers erbij. Gebruik alleen deze gegevens; als ze het antwoord niet bevatten (bv. advertentiekosten of klikken), zeg dat dan.\n\n'
-        + (r.length ? csv : '(geen sollicitaties in deze selectie)') + '\n\nVraag: ' + tekst;
+        + 'Antwoord in het Nederlands, kort en concreet, met de cijfers erbij. Gebruik alleen deze gegevens; als ze het antwoord niet bevatten, zeg dat dan.\n\n'
+        + (r.length ? csv : '(geen sollicitaties in deze selectie)')
+        + (laatsteMeta() ? '\n\nMeta-advertentiecijfers (periode ' + laatsteMeta().periode_van + ' tot en met ' + laatsteMeta().periode_tot + '; koppel advertentie aan utm_content; reken kost per sollicitatie op de echte sollicitaties van die periode):\n' + JSON.stringify(laatsteMeta().advertenties) : '\n\n(Er zijn nog geen Meta-cijfers bewaard; vragen over kosten of klikken kan je niet beantwoorden.)')
+        + '\n\nVraag: ' + tekst;
       var out = $('antwoord'), knop = $('vraag-knop');
       out.textContent = 'Claude denkt na…'; knop.disabled = true;
       sample(prompt, { signal: bezig.signal, cache: false, onText: function (u) { out.textContent = u.text; } })

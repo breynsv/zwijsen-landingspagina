@@ -20,3 +20,14 @@ tool niet; getest 2 nov 2026).
 3. ArtifactData `batch`: per maandbestand `set` op `maanden/<maand>` met `file_path`
    (`if_version` als het document al bestaat), `delete` voor maanden die niet meer in `uit/` staan,
    en `set` op `rapport/stand` met `uit/stand.json` (met `if_version`).
+
+## Meta-cijfers (sinds 2 nov 2026, versie 4)
+
+Jana's Claude haalt Meta-cijfers op met háár Facebook-connector (Sven heeft geen toegang tot het
+Zwijsen-advertentieaccount) en schrijft ze in collectie `meta`, doc `<van>_<tot>`. Vorm en werkwijze
+staan zichtbaar op de pagina, sectie "Voor Claude". Regels: `meta` schrijfbaar vanaf Editor (admin),
+alles anders alleen eigenaar. Gecontroleerd met as_level: admin mag `meta` schrijven en `maanden`
+niet; interact mag niets. Jana moet dus als **Editor** per e-mail uitgenodigd zijn, en de pagina
+mag NIET ook via een openbare link gedeeld worden (dan verliest een externe Editor zijn schrijfrecht).
+Lukt het haar Claude niet om in de database te schrijven, dan geeft hij een JSON-blok dat zij plakt
+bij "Meta-cijfers plakken".
