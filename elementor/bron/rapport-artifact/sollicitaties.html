@@ -1,0 +1,310 @@
+<title>Sollicitaties Electro Zwijsen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@500;700;900&display=swap">
+<style>
+/* Layout: één kolom werkblad — stand bovenaan, dan cijfers, per week, per advertentie, profiel, vraag, lijst. */
+:root {
+  --bg: #F6F5F5; --panel: #FFFFFF; --fg: #121413; --muted: #5E5A5C; --line: #DDD9DB;
+  --red: #E60E13; --red-tint: #FDECEC; --yellow: #FCC715; --bar: #121413; --bar2: #E60E13;
+  --display: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --body: "Open Sans", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141516; --panel: #1D1F20; --fg: #EFEDEE; --muted: #A7A2A4; --line: #34373A;
+  --red: #FF4A4E; --red-tint: #3A1E1F; --yellow: #FCC715; --bar: #EFEDEE; --bar2: #FF4A4E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141516; --panel: #1D1F20; --fg: #EFEDEE; --muted: #A7A2A4; --line: #34373A;
+  --red: #FF4A4E; --red-tint: #3A1E1F; --yellow: #FCC715; --bar: #EFEDEE; --bar2: #FF4A4E; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 var(--body); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 24px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px; }
+header { display: grid; gap: 6px; border-bottom: 4px solid var(--red); padding-bottom: 14px; }
+.merk { font: 700 12px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
+h1 { font: 900 clamp(26px, 5vw, 38px)/1.1 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 700 18px/1.2 var(--display); margin: 0; }
+.stand { color: var(--muted); font-size: 13px; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel); }
+.seg button { font: 600 13px var(--body); color: var(--fg); background: none; border: 0; padding: 7px 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.cijfers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.cijfer { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 2px; }
+.cijfer b { font: 900 34px/1 var(--display); font-variant-numeric: tabular-nums; }
+.cijfer span { color: var(--muted); font-size: 13px; }
+section { display: grid; gap: 12px; min-width: 0; }
+.uitleg { color: var(--muted); font-size: 13px; margin: 0; }
+.grafiek svg { display: block; width: 100%; height: auto; }
+.grafiek text { fill: var(--muted); font: 11px var(--body); }
+.twee { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.scroll { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: top; }
+th { font: 700 11.5px var(--display); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+td.n, th.n { text-align: right; }
+.balk { display: grid; grid-template-columns: minmax(90px, 34%) 1fr 34px; gap: 10px; align-items: center; font-size: 13.5px; }
+.balk i { display: block; height: 10px; background: var(--bar); border-radius: 2px; min-width: 2px; }
+.balk em { font-style: normal; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.balken { display: grid; gap: 7px; }
+.balken h3 { font: 700 13px var(--display); margin: 8px 0 2px; }
+.leeg { background: var(--panel); border: 1px dashed var(--line); border-radius: 8px; padding: 18px; color: var(--muted); }
+.vraag { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--yellow); border-radius: 8px; padding: 16px; display: grid; gap: 12px; }
+.vraag form { display: flex; gap: 8px; flex-wrap: wrap; }
+.vraag input { flex: 1 1 260px; min-width: 0; font: 15px var(--body); padding: 9px 11px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
+.knop { font: 700 14px var(--display); background: var(--red); color: #fff; border: 0; border-radius: 6px; padding: 9px 16px; cursor: pointer; }
+.knop[disabled] { opacity: .55; cursor: default; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: 13px var(--body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; cursor: pointer; }
+.antwoord { white-space: pre-wrap; margin: 0; }
+.antwoord:empty { display: none; }
+footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 12px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="merk">Electro Zwijsen · snelsollicitatie</span>
+    <h1>Sollicitaties via zwijsen.be</h1>
+    <span class="stand" id="stand">Gegevens laden…</span>
+  </header>
+
+  <div class="filters">
+    <div class="seg" role="group" aria-label="Periode" id="periode">
+      <button type="button" data-v="7">7 dagen</button>
+      <button type="button" data-v="30" aria-pressed="true">30 dagen</button>
+      <button type="button" data-v="90">90 dagen</button>
+      <button type="button" data-v="alles">Alles</button>
+    </div>
+    <div class="seg" role="group" aria-label="Regio" id="regio">
+      <button type="button" data-v="" aria-pressed="true">Beide regio's</button>
+      <button type="button" data-v="Dendermonde">Dendermonde</button>
+      <button type="button" data-v="Lier en Antwerpen-Zuidrand">Lier en Antwerpen-Zuidrand</button>
+    </div>
+  </div>
+
+  <div id="leeg" class="leeg" hidden></div>
+
+  <div class="cijfers" id="cijfers">
+    <div class="cijfer"><b id="k-totaal">—</b><span id="k-totaal-l">sollicitaties in deze periode</span></div>
+    <div class="cijfer"><b id="k-week">—</b><span>de voorbije 7 dagen</span></div>
+    <div class="cijfer"><b id="k-dm">—</b><span>Dendermonde</span></div>
+    <div class="cijfer"><b id="k-lier">—</b><span>Lier en Antwerpen-Zuidrand</span></div>
+  </div>
+
+  <section>
+    <h2>Per week</h2>
+    <p class="uitleg">Aantal sollicitaties per week (maandag tot zondag), de voorbije 12 weken. Rood is de lopende week.</p>
+    <div class="grafiek" id="grafiek"></div>
+  </section>
+
+  <section>
+    <h2>Per advertentie</h2>
+    <p class="uitleg">Uit de link waarmee de sollicitant op de pagina kwam (utm-parameters). "Geen" betekent: rechtstreeks, via Google of via een link zonder parameters.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Advertentie</th><th>Campagne</th><th>Bron</th><th class="n">Aantal</th><th class="n">Aandeel</th></tr></thead>
+      <tbody id="t-adv"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Profiel van de sollicitanten</h2>
+    <div class="twee">
+      <div class="balken" id="p-ervaring"></div>
+      <div class="balken" id="p-rijbewijs"></div>
+      <div class="balken" id="p-talen"></div>
+      <div class="balken" id="p-woonplaats"></div>
+    </div>
+  </section>
+
+  <section class="vraag" id="vraag" hidden>
+    <h2>Vraag het Claude</h2>
+    <p class="uitleg">Claude antwoordt op basis van de sollicitaties in de gekozen periode en regio, en niets anders.</p>
+    <div class="chips" id="chips">
+      <button type="button">Welke advertentie levert de meeste sollicitaties op?</button>
+      <button type="button">Hoe evolueert het aantal per week?</button>
+      <button type="button">Hoeveel sollicitanten hebben minstens 3 jaar ervaring?</button>
+    </div>
+    <form id="vraag-form">
+      <input id="vraag-in" type="text" maxlength="400" placeholder="Bijvoorbeeld: welke dag van de week komen de meeste binnen?" aria-label="Je vraag">
+      <button class="knop" id="vraag-knop" type="submit">Vraag</button>
+    </form>
+    <p class="antwoord" id="antwoord" aria-live="polite"></p>
+  </section>
+
+  <section>
+    <h2>Alle sollicitaties</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Datum</th><th>Uur</th><th>Regio</th><th>Advertentie</th><th>Bron</th><th>Ervaring</th><th>Rijbewijs</th><th>Talen</th><th>Woonplaats</th></tr></thead>
+      <tbody id="t-rijen"></tbody>
+    </table></div>
+    <p class="uitleg" id="rijen-noot"></p>
+  </section>
+
+  <footer>Zonder namen, e-mailadressen of telefoonnummers: die staan alleen in WordPress. Woonplaats is ingekort tot postcode en gemeente. De gegevens komen van zwijsen.be en worden op aanvraag bijgewerkt; bovenaan staat van wanneer ze zijn.</footer>
+</div>
+
+<script>
+(function () {
+  var rijenPerMaand = {}, stand = null, f = { periode: '30', regio: '' }, geladen = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var ERVARING = { '1-2': '1-2 jaar', '3-4': '3-4 jaar', '5-10': '5-10 jaar', '10+': 'Meer dan 10 jaar', 'geen': 'Geen ervaring' };
+  var RIJBEWIJS = { b: 'B', be: 'BE', ce: 'C(E)', nee: 'Geen' };
+
+  function alle() {
+    var a = [];
+    Object.keys(rijenPerMaand).forEach(function (m) { a = a.concat(rijenPerMaand[m]); });
+    return a.sort(function (x, y) { return (y.datum + y.uur).localeCompare(x.datum + x.uur); });
+  }
+  function isoDag(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function dagenTerug(n) { var d = new Date(); d.setDate(d.getDate() - (n - 1)); return isoDag(d); }
+  function gefilterd() {
+    var vanaf = f.periode === 'alles' ? '' : dagenTerug(+f.periode);
+    return alle().filter(function (r) { return r.datum >= vanaf && (!f.regio || r.regio === f.regio); });
+  }
+  function tel(rijen, fn) {
+    var n = {};
+    rijen.forEach(function (r) { [].concat(fn(r)).forEach(function (k) { n[k] = (n[k] || 0) + 1; }); });
+    return Object.keys(n).map(function (k) { return [k, n[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
+  }
+  function el(tag, tekst, cls) { var e = document.createElement(tag); if (tekst != null) e.textContent = tekst; if (cls) e.className = cls; return e; }
+  function talen(r) { var t = String(r.talen || '').split(/[,;|]/).map(function (s) { return s.trim(); }).filter(Boolean); return t.length ? t.map(function (s) { return s.charAt(0).toUpperCase() + s.slice(1); }) : ['(niet ingevuld)']; }
+
+  function balken(doel, titel, lijst, max) {
+    var c = $(doel); c.replaceChildren(el('h3', titel));
+    if (!lijst.length) { c.append(el('span', 'Nog geen gegevens.', 'uitleg')); return; }
+    var top = lijst[0][1];
+    lijst.slice(0, max || 8).forEach(function (p) {
+      var rij = el('div', null, 'balk'), b = el('i');
+      b.style.width = Math.max(2, Math.round(p[1] / top * 100)) + '%';
+      var s = el('span'); s.append(b);
+      rij.append(el('span', p[0]), s, el('em', String(p[1])));
+      c.append(rij);
+    });
+  }
+
+  function grafiek(rijen) {
+    var maandag = new Date(); maandag.setHours(0, 0, 0, 0); maandag.setDate(maandag.getDate() - ((maandag.getDay() + 6) % 7));
+    var weken = [];
+    for (var i = 11; i >= 0; i--) { var s = new Date(maandag); s.setDate(s.getDate() - 7 * i); var e = new Date(s); e.setDate(e.getDate() + 7); weken.push({ van: isoDag(s), tot: isoDag(e), d: s, n: 0 }); }
+    rijen.forEach(function (r) { weken.forEach(function (w) { if (r.datum >= w.van && r.datum < w.tot) w.n++; }); });
+    var max = Math.max(4, Math.ceil(Math.max.apply(null, weken.map(function (w) { return w.n; })) / 4) * 4);
+    var W = 720, H = 220, L = 30, B = 26, T = 10, bw = (W - L) / 12;
+    var ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Sollicitaties per week: ' + weken.map(function (w) { return w.n; }).join(', '));
+    function mk(t, a, txt) { var n = document.createElementNS(ns, t); for (var k in a) n.setAttribute(k, a[k]); if (txt != null) n.textContent = txt; svg.append(n); return n; }
+    var y = function (v) { return T + (H - B - T) * (1 - v / max); };
+    [0, max / 2, max].forEach(function (v) {
+      mk('line', { x1: L, x2: W, y1: y(v), y2: y(v), stroke: 'var(--line)', 'stroke-width': 1 });
+      mk('text', { x: L - 6, y: y(v) + 4, 'text-anchor': 'end' }, String(v));
+    });
+    weken.forEach(function (w, i) {
+      var x = L + i * bw + bw * 0.18, h = y(0) - y(w.n);
+      mk('rect', { x: x, y: y(w.n), width: bw * 0.64, height: Math.max(0, h), rx: 2, fill: i === 11 ? 'var(--bar2)' : 'var(--bar)' });
+      if (w.n) mk('text', { x: x + bw * 0.32, y: y(w.n) - 4, 'text-anchor': 'middle' }, String(w.n));
+      mk('text', { x: x + bw * 0.32, y: H - 8, 'text-anchor': 'middle' }, w.d.getDate() + '/' + (w.d.getMonth() + 1));
+    });
+    $('grafiek').replaceChildren(svg);
+  }
+
+  function render() {
+    if (stand && stand.bijgewerkt) {
+      var d = new Date(stand.bijgewerkt);
+      $('stand').textContent = 'Bijgewerkt op ' + d.toLocaleDateString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long' }) + ' om ' + d.toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) + ' · ' + (stand.aantal || 0) + ' sollicitaties in totaal';
+    } else if (geladen) { $('stand').textContent = 'Nog niet bijgewerkt.'; }
+
+    var a = alle(), r = gefilterd(), wk = dagenTerug(7);
+    var leeg = $('leeg');
+    if (geladen && !a.length) { leeg.hidden = false; leeg.textContent = 'Nog geen sollicitaties. De pagina’s staan sinds 2 november 2026 online; zodra iemand het formulier invult, verschijnt die hier bij de volgende update.'; }
+    else if (geladen && !r.length) { leeg.hidden = false; leeg.textContent = 'Geen sollicitaties in deze periode en regio. Kies een langere periode of beide regio’s.'; }
+    else leeg.hidden = true;
+
+    $('k-totaal').textContent = r.length;
+    $('k-totaal-l').textContent = f.periode === 'alles' ? 'sollicitaties in totaal' : 'sollicitaties, voorbije ' + f.periode + ' dagen';
+    $('k-week').textContent = r.filter(function (x) { return x.datum >= wk; }).length;
+    $('k-dm').textContent = r.filter(function (x) { return x.regio === 'Dendermonde'; }).length;
+    $('k-lier').textContent = r.filter(function (x) { return x.regio === 'Lier en Antwerpen-Zuidrand'; }).length;
+
+    grafiek(alle().filter(function (x) { return !f.regio || x.regio === f.regio; }));
+
+    var adv = $('t-adv'); adv.replaceChildren();
+    var groepen = tel(r, function (x) { return JSON.stringify([x.utm_content || 'Geen', x.utm_campaign || '', x.utm_source || '']); });
+    if (!groepen.length) { var tr0 = el('tr'), td0 = el('td', 'Nog geen gegevens.'); td0.colSpan = 5; tr0.append(td0); adv.append(tr0); }
+    groepen.forEach(function (g) {
+      var k = JSON.parse(g[0]), tr = el('tr');
+      tr.append(el('td', k[0]), el('td', k[1] || '—'), el('td', k[2] || '—'), el('td', String(g[1]), 'n'), el('td', Math.round(g[1] / r.length * 100) + '%', 'n'));
+      adv.append(tr);
+    });
+
+    balken('p-ervaring', 'Werkervaring', tel(r, function (x) { return ERVARING[x.werkervaring] || x.werkervaring || '(niet ingevuld)'; }));
+    balken('p-rijbewijs', 'Rijbewijs', tel(r, function (x) { return RIJBEWIJS[x.rijbewijs] || x.rijbewijs || '(niet ingevuld)'; }));
+    balken('p-talen', 'Talen (meerdere mogelijk)', tel(r, talen));
+    balken('p-woonplaats', 'Woonplaats (top 8)', tel(r, function (x) { return x.woonplaats || '(niet ingevuld)'; }), 8);
+
+    var tb = $('t-rijen'); tb.replaceChildren();
+    r.slice(0, 300).forEach(function (x) {
+      var tr = el('tr');
+      [x.datum.split('-').reverse().join('/'), x.uur, x.regio, x.utm_content || '—', x.utm_source || '—', ERVARING[x.werkervaring] || x.werkervaring || '—', RIJBEWIJS[x.rijbewijs] || x.rijbewijs || '—', talen(x).join(', '), x.woonplaats || '—']
+        .forEach(function (v) { tr.append(el('td', v)); });
+      tb.append(tr);
+    });
+    $('rijen-noot').textContent = r.length > 300 ? 'De nieuwste 300 van ' + r.length + ' getoond.' : '';
+  }
+
+  function knoppen(id, sleutel) {
+    $(id).addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      f[sleutel] = b.dataset.v;
+      $(id).querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      render();
+    });
+  }
+  knoppen('periode', 'periode'); knoppen('regio', 'regio');
+  render();
+
+  var timer = setTimeout(function () { if (!geladen) $('stand').textContent = 'De gegevens laden niet. Ben je aangemeld bij Claude? Herlaad de pagina.'; }, 10000);
+
+  claude.use('db').then(function (db) {
+    if (!db) { clearTimeout(timer); $('stand').textContent = 'Meld je aan bij Claude om de sollicitaties te zien.'; return; }
+    db.collection('maanden').onSnapshot(function (snap) {
+      clearTimeout(timer); geladen = true; rijenPerMaand = {};
+      snap.docs.forEach(function (d) { var v = d.data(); rijenPerMaand[d.id] = (v && Array.isArray(v.rijen)) ? v.rijen : []; });
+      render();
+    }, function () { clearTimeout(timer); $('stand').textContent = 'De gegevens konden niet geladen worden. Herlaad de pagina.'; });
+    db.doc('rapport/stand').onSnapshot(function (d) { stand = d.exists ? d.data() : null; render(); }, function () {});
+  });
+
+  claude.use('sample').then(function (sample) {
+    if (!sample) return;
+    $('vraag').hidden = false;
+    var bezig = null;
+    function vraag(tekst) {
+      tekst = String(tekst || '').trim(); if (!tekst) return;
+      if (bezig) bezig.abort();
+      bezig = new AbortController();
+      var r = gefilterd(), kol = ['datum', 'uur', 'regio', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'werkervaring', 'talen', 'rijbewijs', 'woonplaats'];
+      var csv = [kol.join(';')].concat(r.map(function (x) { return kol.map(function (k) { return String(x[k] || '').replace(/[;\n]/g, ' '); }).join(';'); })).join('\n');
+      var periode = f.periode === 'alles' ? 'alle beschikbare dagen' : 'de voorbije ' + f.periode + ' dagen (tot en met ' + isoDag(new Date()) + ')';
+      var prompt = 'Je helpt de marketeer en HR van Electro Zwijsen (elektrotechnische installaties, Duffel) met hun cijfers over snelsollicitaties voor technieker/elektricien via zwijsen.be.\n'
+        + 'Hieronder staan de sollicitaties (puntkomma-gescheiden) voor ' + periode + ', regio: ' + (f.regio || 'Dendermonde en Lier en Antwerpen-Zuidrand') + '. Er staan geen namen of contactgegevens in.\n'
+        + 'werkervaring: 1-2, 3-4, 5-10, 10+ (jaren) of geen. rijbewijs: b, be, ce of nee. utm_content is de advertentie, utm_campaign de campagne, utm_source de bron (leeg = rechtstreeks of Google).\n'
+        + 'Antwoord in het Nederlands, kort en concreet, met de cijfers erbij. Gebruik alleen deze gegevens; als ze het antwoord niet bevatten (bv. advertentiekosten of klikken), zeg dat dan.\n\n'
+        + (r.length ? csv : '(geen sollicitaties in deze selectie)') + '\n\nVraag: ' + tekst;
+      var out = $('antwoord'), knop = $('vraag-knop');
+      out.textContent = 'Claude denkt na…'; knop.disabled = true;
+      sample(prompt, { signal: bezig.signal, cache: false, onText: function (u) { out.textContent = u.text; } })
+        .then(function (res) { out.textContent = res.text; })
+        .catch(function (e) {
+          if (e && e.name === 'AbortError') return;
+          out.textContent = e && e.code === 'not_granted' ? 'Claude mag hier niet antwoorden. Sta het toe via het menu Machtigingen van deze pagina.'
+            : e && e.code === 'rate_limited' ? 'Even te veel vragen na elkaar. Probeer het over een minuut opnieuw.'
+            : 'Er liep iets mis bij het antwoorden. Probeer het opnieuw.';
+        })
+        .then(function () { knop.disabled = false; });
+    }
+    $('vraag-form').addEventListener('submit', function (e) { e.preventDefault(); vraag($('vraag-in').value); });
+    $('chips').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { $('vraag-in').value = b.textContent; vraag(b.textContent); } });
+  });
+})();
+</script>
