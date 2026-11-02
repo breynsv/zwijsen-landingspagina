@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Elke dag om 07:00 (bij ontwaken als de Mac sliep): sollicitatiecijfers van zwijsen.be naar de
+     rapportpagina op claude.ai. Zie ververs-dagelijks.sh en LEESMIJ.md.
+     Installeren: cp naar ~/Library/LaunchAgents/ en
+                  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/be.site-specialist.zwijsen-rapport.plist
+     Nu draaien:  launchctl kickstart gui/$(id -u)/be.site-specialist.zwijsen-rapport
+     Weghalen:    launchctl bootout gui/$(id -u)/be.site-specialist.zwijsen-rapport -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>be.site-specialist.zwijsen-rapport</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/svenbreynaert/Sites/zwijsen-landing/elementor/bron/rapport-artifact/ververs-dagelijks.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>0</integer></dict>
+  <key>StandardOutPath</key><string>/Users/svenbreynaert/Library/Logs/zwijsen-rapport.log</string>
+  <key>StandardErrorPath</key><string>/Users/svenbreynaert/Library/Logs/zwijsen-rapport.log</string>
+</dict>
+</plist>

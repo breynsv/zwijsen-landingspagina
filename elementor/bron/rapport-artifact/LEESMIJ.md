@@ -9,10 +9,20 @@ Bron van de pagina: `sollicitaties.html` (bevat geen data). Data staat in de ops
 
 Toegang: lezen = iedereen met wie de pagina gedeeld is; schrijven = alleen de eigenaar.
 
-## Bijwerken (op aanvraag — "ververs het sollicitatierapport van Zwijsen")
+## Bijwerken — automatisch elke dag om 07:00 (sinds 2 nov 2026)
 
-Moet vanuit een Claude Code-sessie met de ArtifactData-tool (een headless `claude -p` heeft die
-tool niet; getest 2 nov 2026).
+LaunchAgent `be.site-specialist.zwijsen-rapport` (bron: `be.site-specialist.zwijsen-rapport.plist`
+hier, geïnstalleerd in ~/Library/LaunchAgents) draait `ververs-dagelijks.sh`: export via SSH, daarna
+een `claude --bg`-sessie met `ververs-prompt.md` die ALLEEN `maanden/*` en `rapport/stand` schrijft —
+nooit `meta`. Log: ~/Library/Logs/zwijsen-rapport.log. Sliep de Mac om 07:00, dan draait hij bij
+ontwaken; stond hij uit, dan valt die dag weg. Getest 2 nov 2026 via `launchctl kickstart`.
+Nu draaien: `launchctl kickstart gui/$(id -u)/be.site-specialist.zwijsen-rapport`.
+Weghalen: `launchctl bootout gui/$(id -u)/be.site-specialist.zwijsen-rapport`.
+
+## Bijwerken met de hand (dezelfde stappen)
+
+Moet vanuit een Claude Code-sessie met de ArtifactData-tool: een interactieve of `--bg`-sessie.
+Een headless `claude -p` heeft die tool niet (getest 2 nov 2026).
 
 1. `python3 ververs.py` — haalt de rijen via `ssh zwijsen-combell`, schrijft `uit/stand.json` en
    `uit/maanden/*.json`. `uit/` staat in .gitignore: deze repo is publiek.
