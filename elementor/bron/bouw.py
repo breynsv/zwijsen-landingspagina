@@ -14,7 +14,7 @@ gelezen. Een tekstwijziging = de HTML aanpassen en opnieuw bouwen.
 
 Uitvoer in elementor/bron/build/:
     pagina-dendermonde.json, pagina-lier.json   titel, slug, (id), elements, page settings, yoast
-    static/js/apply-form.js                      formulier ZONDER meting (geen pixel/gtag/dataLayer)
+    static/js/apply-form.js                      formulier: staging ZONDER meting; productie alleen Meta, na toestemming (5h)
     static/js/film.js                            ongewijzigd
     static/*.avif|webp                           de foto's die de film via JS laadt
 bron/plaats.php zet een pagina op de site; bron/herplaats.sh doet het geheel.
@@ -235,8 +235,34 @@ def versie(path):
     return hashlib.sha1(open(path, 'rb').read()).hexdigest()[:10]
 
 
+# Productie (sinds 2 nov 2026, runbook 5h): alleen Meta, en alleen met toestemming.
+# De pixel (1170263142231501) laadt via de Elementor-code "Pixel Meta" pas na toestemming
+# voor de CookieYes-categorie "Advertenties"; zonder toestemming bestaat fbq dus niet.
+# Daarbovenop controleert dit stuk zelf de toestemmingscookies, zodat een event ook niet
+# vertrekt als de bezoeker zijn toestemming tijdens het bezoek intrekt.
+# Geen gtag en geen dataLayer: die gaan naar GTM-PK8MTPM, een container die niemand beheert.
+# De params zijn dezelfde als in assets/apply-form.js: geen antwoorden, geen persoonsgegevens.
+METING_PRODUCTIE = (
+    "  /* Meting op productie (gebouwd door elementor/bron/bouw.py uit assets/apply-form.js):\n"
+    "     alleen de Meta-pixel, en alleen als de bezoeker in de cookiebanner toestemming gaf\n"
+    "     voor \"Advertenties\". Zonder die toestemming is de pixel niet geladen en vertrekt er\n"
+    "     niets. Geen Google-meting (GTM). Geen antwoorden of persoonsgegevens in de params. */\n"
+    "  function adConsent() {\n"
+    "    var c = '; ' + document.cookie + ';';\n"
+    "    return c.indexOf('; viewed_cookie_policy=yes;') !== -1 &&\n"
+    "           c.indexOf('; cookielawinfo-checkbox-advertisement=yes;') !== -1;\n"
+    "  }\n"
+    "  function track(event, params) {\n"
+    "    try { if (typeof global.fbq === 'function' && adConsent()) global.fbq('trackCustom', event, params || {}); } catch (e) {}\n"
+    "  }\n"
+    "  function trackStandard(event, params) {\n"
+    "    try { if (typeof global.fbq === 'function' && adConsent()) global.fbq('track', event, params || {}); } catch (e) {}\n"
+    "  }\n\n")
+
+
 def formulier_js():
-    """apply-form.js zonder meting: geen pixel, geen gtag, geen dataLayer op staging."""
+    """apply-form.js: op staging zonder meting (geen pixel/gtag/dataLayer);
+    op productie alleen Meta, en alleen met toestemming voor advertenties (METING_PRODUCTIE)."""
     js = open(os.path.join(ROOT, 'assets', 'apply-form.js'), encoding='utf-8').read()
     start = js.index('  /* Meta Pixel / GA4')
     end = js.index('  /* ----------------------------------------------------------------------\n     3. De motor')
@@ -244,13 +270,19 @@ def formulier_js():
             "     toestemmingslaag. Zie README, hoofdstuk \"Meta Pixel en events\".\n"
             "     (Gebouwd door elementor/bron/bouw.py uit assets/apply-form.js.) */\n"
             "  function track() {}\n  function trackStandard() {}\n\n")
+    if DOEL == 'productie':
+        stub = METING_PRODUCTIE
     js = js[:start] + stub + js[end:]
     oud = "var header = document.querySelector('.zw-header');"
     assert oud in js, 'kleefbalk: hoofdingselector niet gevonden'
     js = js.replace(oud, "var header = document.querySelector('.zw-header')"
                          " || document.querySelector('.elementor-location-header .elementor-sticky--active:not(.elementor-sticky__spacer)')"
                          " || document.querySelector('.elementor-location-header');")
-    assert 'fbq' not in js and 'gtag' not in js and 'dataLayer' not in js, 'meetcode niet volledig verwijderd'
+    assert 'gtag' not in js and 'dataLayer' not in js, 'gtag/dataLayer niet volledig verwijderd'
+    if DOEL == 'productie':
+        assert js.count('global.fbq(') == 2 and js.count('&& adConsent()') == 2, 'productiemeting niet zoals verwacht'
+    else:
+        assert 'fbq' not in js, 'meetcode niet volledig verwijderd'
     return js
 
 
