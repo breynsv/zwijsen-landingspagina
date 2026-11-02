@@ -81,7 +81,10 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
       <button type="button" data-v="Dendermonde">Dendermonde</button>
       <button type="button" data-v="Lier en Antwerpen-Zuidrand">Lier en Antwerpen-Zuidrand</button>
     </div>
+    <button type="button" class="knop" id="kopieer">Kopieer voor Claude</button>
+    <span class="uitleg" id="kopieer-status" aria-live="polite"></span>
   </div>
+  <textarea id="kopieer-tekst" readonly hidden aria-label="Gegevens om te kopiëren" style="width:100%;min-height:140px;font:12px monospace;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px"></textarea>
 
   <div id="leeg" class="leeg" hidden></div>
 
@@ -261,6 +264,28 @@ footer { color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--lin
     });
   }
   knoppen('periode', 'periode'); knoppen('regio', 'regio');
+
+  var KOL = ['datum', 'uur', 'regio', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'werkervaring', 'talen', 'rijbewijs', 'woonplaats'];
+  function alsTekst() {
+    var r = gefilterd();
+    var kop = 'SOLLICITATIES ELECTRO ZWIJSEN (snelsollicitatie via zwijsen.be, zonder persoonsgegevens)\n'
+      + 'Periode: ' + (f.periode === 'alles' ? 'alles' : 'voorbije ' + f.periode + ' dagen, van ' + dagenTerug(+f.periode) + ' tot en met ' + isoDag(new Date())) + '\n'
+      + 'Regio: ' + (f.regio || 'beide') + '\n'
+      + 'Gegevens bijgewerkt: ' + (stand && stand.bijgewerkt ? stand.bijgewerkt : 'onbekend') + '\n'
+      + 'Aantal: ' + r.length + '\n\n';
+    var per = tel(r, function (x) { return [x.utm_campaign || '(geen)', x.utm_content || '(geen)'].join(' | '); })
+      .map(function (p) { return p[0] + ' | ' + p[1]; }).join('\n');
+    var csv = [KOL.join(';')].concat(r.map(function (x) { return KOL.map(function (k) { return String(x[k] || '').replace(/[;\n]/g, ' '); }).join(';'); })).join('\n');
+    return kop + 'PER CAMPAGNE | ADVERTENTIE (utm_content) | AANTAL\n' + (per || '(geen)') + '\n\nALLE RIJEN\n' + csv + '\n';
+  }
+  $('kopieer').addEventListener('click', function () {
+    var t = alsTekst(), ta = $('kopieer-tekst'), st = $('kopieer-status');
+    ta.value = t;
+    function toon() { ta.hidden = false; ta.focus(); ta.select(); st.textContent = 'Kopiëren lukte niet automatisch: de tekst is geselecteerd, druk Ctrl+C of Cmd+C.'; }
+    try {
+      navigator.clipboard.writeText(t).then(function () { ta.hidden = true; st.textContent = 'Gekopieerd: ' + gefilterd().length + ' sollicitaties. Plak het in je gesprek met Claude.'; }, toon);
+    } catch (e) { toon(); }
+  });
   render();
 
   var timer = setTimeout(function () { if (!geladen) $('stand').textContent = 'De gegevens laden niet. Ben je aangemeld bij Claude? Herlaad de pagina.'; }, 10000);
