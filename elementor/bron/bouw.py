@@ -19,7 +19,8 @@ Uitvoer in elementor/bron/build/:
     static/*.avif|webp                           de foto's die de film via JS laadt
 bron/plaats.php zet een pagina op de site; bron/herplaats.sh doet het geheel.
 
-    python3 elementor/bron/bouw.py
+    python3 elementor/bron/bouw.py                        staging  -> build/
+    ZWL_DOEL=productie python3 elementor/bron/bouw.py     productie -> build-productie/ (media-prod.json)
 """
 import hashlib
 import json
@@ -32,7 +33,13 @@ from bs4 import BeautifulSoup, Comment
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HIER))
-BUILD = os.path.join(HIER, 'build')
+
+# Doelsite: ZWL_DOEL=staging (standaard) of ZWL_DOEL=productie (sinds 2 nov 2026, 5d).
+# Verschil: de mediabibliotheek (andere id's en url's) en de bouwmap. Op productie bestaat
+# post 3292 niet: daar zoekt plaats.php de pagina op slug, dus geen vaste id's.
+DOEL = os.environ.get('ZWL_DOEL', 'staging')
+assert DOEL in ('staging', 'productie'), 'ZWL_DOEL moet staging of productie zijn, niet ' + DOEL
+BUILD = os.path.join(HIER, 'build' if DOEL == 'staging' else 'build-productie')
 STATIC = os.path.join(BUILD, 'static')
 JANA = os.path.join(ROOT, 'assets', 'img', 'jana')
 
@@ -42,8 +49,9 @@ STATIC_URL = '/wp-content/uploads/zwijsen-landing/'
 # De lokale HTML-drafts geven geen endpoint mee en blijven dus in demomodus.
 FORM_ENDPOINT = '/wp-json/zwijsen/v1/sollicitatie'
 
-# Foto's in de mediabibliotheek van staging (id + url + alt). Zie media.json.
-MEDIA = json.load(open(os.path.join(HIER, 'media.json'), encoding='utf-8'))
+# Foto's in de mediabibliotheek (id + url + alt): media.json voor staging,
+# media-prod.json voor productie (zelfde sleutels, andere id's).
+MEDIA = json.load(open(os.path.join(HIER, 'media.json' if DOEL == 'staging' else 'media-prod.json'), encoding='utf-8'))
 
 PAGINAS = {
     'dendermonde': {
@@ -567,7 +575,7 @@ def pagina(cfg, versies):
             'settings': {'hide_title': 'yes', 'template': 'default', 'custom_css': pagina_css()},
             'yoast': {'title': tekst(src.soup.title), 'metadesc': src.meta('description')},
             'controle': {'faq': items, 'jsonld': src.jsonld()}}
-    if cfg.get('id'):
+    if cfg.get('id') and DOEL == 'staging':
         page['id'] = cfg['id']
     return page
 

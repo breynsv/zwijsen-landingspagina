@@ -15,14 +15,34 @@
  *
  * Opnieuw draaien is veilig: niets wordt dubbel aangemaakt. De kaartsjablonen (1595, 1462)
  * en de Posts-widget worden niet aangeraakt.
- * Op productie: andere bijlage-id's (MEDIA) en de pagina-id's van de regiopagina's controleren;
- * stap 1 alleen als daar ook een knoppenblok staat.
+ * Productie (5d, 2 nov 2026):
+ *
+ *   wp eval-file zwl-vacaturekaarten.php - <media-prod.json> --user=breynsv
+ *
+ *   "-" slaat stap 1 over (op productie stond er nooit een knoppenblok). De regiopagina's
+ *   worden op slug opgezocht (en moeten van plaats.php zijn, meta _zwl_landing), de
+ *   bijlagen komen uit de meegegeven mediakoppeling (sleutels verdeelbord-bekabelen en
+ *   kurt-werfleider). Zonder tweede argument: de staging-id's 3325 en 3312.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit( 1 ); }
 $dir = rtrim( (string) ( $args[0] ?? '' ), '/' ) . '/';
+$media = [ 'verdeelbord-bekabelen' => 3325, 'kurt-werfleider' => 3312 ];
+if ( ! empty( $args[1] ) ) {
+	$map = json_decode( (string) file_get_contents( $args[1] ), true );
+	if ( ! is_array( $map ) ) { WP_CLI::error( "Mediakoppeling onleesbaar: {$args[1]}" ); }
+	foreach ( array_keys( $media ) as $k ) {
+		if ( empty( $map[ $k ]['id'] ) ) { WP_CLI::error( "Mediakoppeling mist $k" ); }
+		$media[ $k ] = (int) $map[ $k ]['id'];
+	}
+}
+$landing = function ( $slug ) {
+	$p = get_page_by_path( $slug, OBJECT, 'page' );
+	if ( ! $p || ! get_post_meta( $p->ID, '_zwl_landing', true ) ) { WP_CLI::error( "Regiopagina $slug niet gevonden (of niet van plaats.php)" ); }
+	return (int) $p->ID;
+};
 
-// ---------- 1. pagina's terugzetten ----------
-foreach ( [ 1641, 1145 ] as $id ) {
+// ---------- 1. pagina's terugzetten (alleen staging) ----------
+foreach ( '-/' === $dir ? [] : [ 1641, 1145 ] as $id ) {
 	$f = $dir . "staging-elementor-data-$id-voor-links-20261031-2007.json";
 	if ( ! is_readable( $f ) ) { WP_CLI::error( "Kopie ontbreekt: $f" ); }
 	$raw = rtrim( file_get_contents( $f ), "\n" );
@@ -51,10 +71,10 @@ $gemeen = [
 	'Ervaring op werven is mooi meegenomen.',
 ];
 $jobs = [
-	[ 'landing' => 3292, 'title' => 'Elektricien – regio Dendermonde', 'slug' => 'elektricien-dendermonde',
-	  'media' => 3325, 'woon' => 'Je woont in (of vlakbij) Dendermonde', 'date' => '2026-10-31 21:00:01' ],
-	[ 'landing' => 3350, 'title' => 'Elektricien – Lier en Antwerpen-Zuidrand', 'slug' => 'elektricien-lier-antwerpen-zuidrand',
-	  'media' => 3312, 'woon' => 'Je woont in (of vlakbij) Hoboken, Wilrijk, Edegem, Mortsel, Hove, Boechout, Lint, Kontich, Duffel of Lier', 'date' => '2026-10-31 21:00:00' ],
+	[ 'landing' => $landing( 'elektricien-dendermonde' ), 'title' => 'Elektricien – regio Dendermonde', 'slug' => 'elektricien-dendermonde',
+	  'media' => $media['verdeelbord-bekabelen'], 'woon' => 'Je woont in (of vlakbij) Dendermonde', 'date' => '2026-10-31 21:00:01' ],
+	[ 'landing' => $landing( 'elektricien-lier-antwerpen-zuidrand' ), 'title' => 'Elektricien – Lier en Antwerpen-Zuidrand', 'slug' => 'elektricien-lier-antwerpen-zuidrand',
+	  'media' => $media['kurt-werfleider'], 'woon' => 'Je woont in (of vlakbij) Hoboken, Wilrijk, Edegem, Mortsel, Hove, Boechout, Lint, Kontich, Duffel of Lier', 'date' => '2026-10-31 21:00:00' ],
 ];
 $regels = [];
 foreach ( $jobs as $j ) {

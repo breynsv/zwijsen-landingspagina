@@ -12,8 +12,11 @@
  */
 if ( PHP_SAPI !== 'cli' ) { exit( 1 ); }
 $path = $argv[1] ?? '/';
+// Host: staging tenzij ZWL_HOST iets anders zegt (ZWL_HOST=zwijsen.be voor productie, 5d).
+$host = getenv( 'ZWL_HOST' ) ?: 'staging.zwijsen.be';
+if ( ! in_array( $host, [ 'staging.zwijsen.be', 'zwijsen.be' ], true ) ) { fwrite( STDERR, "onbekende host $host\n" ); exit( 2 ); }
 $_SERVER = array_merge( $_SERVER, [
-	'HTTP_HOST' => 'staging.zwijsen.be', 'SERVER_NAME' => 'staging.zwijsen.be', 'HTTPS' => 'on',
+	'HTTP_HOST' => $host, 'SERVER_NAME' => $host, 'HTTPS' => 'on',
 	'SERVER_PORT' => '443', 'REQUEST_METHOD' => 'GET', 'REQUEST_URI' => $path,
 	'SCRIPT_NAME' => '/index.php', 'PHP_SELF' => '/index.php', 'SCRIPT_FILENAME' => getcwd() . '/index.php',
 	'REMOTE_ADDR' => '127.0.0.1', 'HTTP_USER_AGENT' => 'Mozilla/5.0 (zwl-render)', 'HTTP_ACCEPT' => 'text/html',
